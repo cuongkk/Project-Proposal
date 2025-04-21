@@ -4,14 +4,20 @@
 #include <string>
 class SanPham
 {
-private:
+protected:
     int _id;
-    std::string _name;
+    std::string _type; // Thức ăn, thức uống
     int _quantity;
+    int _cost;
+    int _discount;
+    std::string _manufacture_Date;
+    std::string _expiry_Date;
 
 public:
     SanPham();
-    SanPham(const int &, const std::string &, const int &);
+    ~SanPham();
+    SanPham(const int &, const std::string &, const int &, const int &, const int &,
+            const std::string &, const std::string &);
 };
 
 #endif
