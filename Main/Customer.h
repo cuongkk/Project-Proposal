@@ -6,7 +6,7 @@
 
 class Customer : public User
 {
-private:
+protected:
     std::string _name;
     std::string _email;
     std::string _phone_Number;

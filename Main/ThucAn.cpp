@@ -6,6 +6,10 @@ ThucAn::ThucAn() : SanPham()
     _inf = "";
 }
 
+ThucAn::~ThucAn() // Định nghĩa Destructor
+{
+}
+
 ThucAn::ThucAn(const std::string &name, const std::string &inf,
                const int &id, const std::string &type, const int &quantity, const int &cost, const int &discount,
                const std::string &manufacture_Date, const std::string &expiry_Date)
@@ -13,4 +17,22 @@ ThucAn::ThucAn(const std::string &name, const std::string &inf,
 {
     _name = name;
     _inf = inf;
+}
+
+void ThucAn::print(std::ostream &os) const
+{
+    os << _name << ", ";
+    os << _inf << ", ";
+    os << _id << ", ";
+    os << _type << ", ";
+    os << _quantity << ", ";
+    os << _cost << ", ";
+    os << _discount << ", ";
+    os << _manufacture_Date << ", ";
+    os << _expiry_Date << ", ";
+}
+
+std::ostream &operator<<(std::ostream &os, const ThucAn &thucAn)
+{
+    return os;
 }

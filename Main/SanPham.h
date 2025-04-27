@@ -1,6 +1,7 @@
 #ifndef SANPHAM_H
 #define SANPHAM_H
 
+#include <iostream>
 #include <string>
 class SanPham
 {
@@ -15,9 +16,12 @@ protected:
 
 public:
     SanPham();
-    ~SanPham();
     SanPham(const int &, const std::string &, const int &, const int &, const int &,
             const std::string &, const std::string &);
+
+    virtual void print(std::ostream &) const = 0;
+
+    friend std::ostream &operator<<(std::ostream &, const SanPham &sp);
 };
 
 #endif

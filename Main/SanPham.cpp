@@ -11,10 +11,6 @@ SanPham::SanPham()
     _expiry_Date = "";
 }
 
-SanPham::~SanPham()
-{
-}
-
 SanPham::SanPham(const int &id, const std::string &type, const int &quantity, const int &cost, const int &discount,
                  const std::string &manufacture_Date, const std::string &expiry_Date)
 {
@@ -25,4 +21,10 @@ SanPham::SanPham(const int &id, const std::string &type, const int &quantity, co
     _discount = discount;
     _manufacture_Date = manufacture_Date;
     _expiry_Date = expiry_Date;
+}
+
+std::ostream &operator<<(std::ostream &os, const SanPham &value)
+{
+    value.print(os);
+    return os;
 }
