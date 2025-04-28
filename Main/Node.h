@@ -9,7 +9,6 @@ class Node
 public:
     std::unique_ptr<SanPham> data;
     Node *pNext;
-
     Node(std::unique_ptr<SanPham> sp);
     ~Node();
     static Node *CreateNode(std::unique_ptr<SanPham> sp);

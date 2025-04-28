@@ -1,21 +1,25 @@
 #ifndef BILL_H
 #define BILL_H
 
-#include "SanPham.h"
+#include "KhoHang.h"
 #include "Customer.h"
+#include "Cart.h"
 
 #include <iostream>
 #include <string>
-class Bill : public SanPham, public Customer
+class Bill
 {
 protected:
     int _id;
-    int *_id_SanPham;
     int _id_Customer;
-    int _cost;
+    Cart _cart;
+    int _totalCost;
 
 public:
     Bill();
     ~Bill();
+    void confirmBill(KhoHang &khoHang, Cart &&);
+
+    friend std::ostream &operator<<(std::ostream &, const Bill &);
 };
 #endif

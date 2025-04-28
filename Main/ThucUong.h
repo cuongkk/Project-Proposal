@@ -13,10 +13,13 @@ public:
     ThucUong();
     ~ThucUong();
     ThucUong(const std::string &, const std::string &,
-             const int &, const std::string &, const int &, const int &, const int &,
+             const int &, const std::string &, const int &, const float &, const float &,
              const std::string &, const std::string &);
-    void print(std::ostream &) const override;
 
+    std::unique_ptr<SanPham> clone() const override;
+    SanPham *get_origin() const override;
+
+    void print(std::ostream &) const override;
     friend std::ostream &operator<<(std::ostream &os, const ThucUong &ThucUong);
 };
 #endif
