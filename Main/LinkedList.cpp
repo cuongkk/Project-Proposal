@@ -40,7 +40,7 @@ Node *LinkedList::get_Head() const
 {
     return _pHead;
 }
-void LinkedList::add_Head(std::unique_ptr<SanPham> sp)
+void LinkedList::add_Head_to_KhoHang(std::unique_ptr<SanPham> sp)
 {
     Node *newNode = Node::CreateNode(std::move(sp));
     newNode->pNext = _pHead;
@@ -50,8 +50,56 @@ void LinkedList::add_Head(std::unique_ptr<SanPham> sp)
     _size++;
 }
 
-void LinkedList::add_Tail(std::unique_ptr<SanPham> sp)
+void LinkedList::add_Tail_to_KhoHang(std::unique_ptr<SanPham> sp)
 {
+    Node *newNode = Node::CreateNode(std::move(sp));
+    if (_pTail != nullptr)
+    {
+        _pTail->pNext = newNode;
+    }
+    else
+    {
+        _pHead = newNode;
+    }
+    _pTail = newNode;
+    _size++;
+}
+
+void LinkedList::add_Head_to_Cart(std::unique_ptr<SanPham> sp)
+{
+    Node *cur = _pHead;
+    while (cur)
+    {
+        if (cur->data && *cur->data == *sp)
+        {
+            cur->data->set_quantity(cur->data->get_quantity() + 1);
+            return;
+        }
+        cur = cur->pNext;
+    }
+
+    sp->set_quantity(1);
+    Node *newNode = Node::CreateNode(std::move(sp));
+    newNode->pNext = _pHead;
+    _pHead = newNode;
+    if (_pTail == nullptr)
+        _pTail = _pHead;
+    _size++;
+}
+
+void LinkedList::add_Tail_to_Cart(std::unique_ptr<SanPham> sp)
+{
+    Node *cur = _pHead;
+    while (cur)
+    {
+        if (cur->data && *cur->data == *sp)
+        {
+            cur->data->set_quantity(cur->data->get_quantity() + 1);
+            return;
+        }
+        cur = cur->pNext;
+    }
+    sp->set_quantity(1);
     Node *newNode = Node::CreateNode(std::move(sp));
     if (_pTail != nullptr)
     {
@@ -108,7 +156,7 @@ void LinkedList::operator=(const LinkedList &ll)
     Node *cur = ll._pHead;
     while (cur)
     {
-        add_Tail(cur->data->clone());
+        add_Tail_to_Cart(cur->data->clone());
         cur = cur->pNext;
     }
 }

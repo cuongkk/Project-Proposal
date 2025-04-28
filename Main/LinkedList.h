@@ -18,8 +18,10 @@ public:
     float get_cost() const;
 
     Node *get_Head() const;
-    void add_Head(std::unique_ptr<SanPham>);
-    void add_Tail(std::unique_ptr<SanPham>);
+    void add_Head_to_KhoHang(std::unique_ptr<SanPham>);
+    void add_Tail_to_KhoHang(std::unique_ptr<SanPham>);
+    void add_Head_to_Cart(std::unique_ptr<SanPham>);
+    void add_Tail_to_Cart(std::unique_ptr<SanPham>);
     void remove(const int &);
 
     void operator=(const LinkedList &);

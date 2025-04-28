@@ -40,6 +40,7 @@ public:
     friend std::unique_ptr<SanPham> operator-(std::unique_ptr<SanPham> a, const SanPham &b);
     friend std::unique_ptr<SanPham> operator-(const SanPham &a, const SanPham &b);
 
+    friend bool operator==(const SanPham &a, const SanPham &b);
     virtual void print(std::ostream &) const = 0;
     friend std::ostream &operator<<(std::ostream &, const SanPham &sp);
 };

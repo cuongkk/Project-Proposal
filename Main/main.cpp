@@ -14,9 +14,14 @@ int main()
     khoHang.add(std::move(thucAn));
     khoHang.add(std::move(thucUong));
     Cart cart;
-    cart.addSanPham(khoHang.getSanPham_from_id(1));
-    // Bill bill;
-    // bill.confirmBill(khoHang, std::move(cart));
+    cart.add(khoHang.getSanPham_from_id(1));
+    cart.add(khoHang.getSanPham_from_id(2));
+    cart.add(khoHang.getSanPham_from_id(2));
+
+    std::cout << cart;
+    Bill bill;
+    bill.confirmBill(khoHang, std::move(cart));
+    std::cout << "Bill: " << bill.get_totalCost() << "\n";
     khoHang.print();
 
     return 0;

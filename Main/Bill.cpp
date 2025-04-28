@@ -14,27 +14,22 @@ Bill::~Bill()
 
 void Bill::confirmBill(KhoHang &khoHang, Cart &&cart)
 {
-
+    _cart = cart;
+    _totalCost = _cart.get_cost();
     Node *current = cart._sanpham.get_Head();
     while (current != nullptr)
     {
         if (current->data)
         {
-            SanPham *spOrigin = current->data->get_origin();
-            if (spOrigin)
             {
-                khoHang.remove(spOrigin->get_id());
+                khoHang.updateQuantity(current->data->get_id(), current->data->get_quantity());
             }
-        }
-        else
-        {
-            std::cerr << "Warning: Product data is null!" << std::endl;
-        }
 
-        current = current->pNext;
+            current = current->pNext;
+        }
     }
-    std::cout << cart;
-    _cart = cart;
-    std::cout << _cart;
-    _totalCost = _cart.get_cost();
+}
+float Bill::get_totalCost() const
+{
+    return _totalCost;
 }

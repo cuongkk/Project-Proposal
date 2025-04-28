@@ -18,12 +18,12 @@ float Cart::get_cost() const
     return _sanpham.get_cost();
 }
 
-void Cart::addSanPham(std::unique_ptr<SanPham> sp)
+void Cart::add(std::unique_ptr<SanPham> sp)
 {
-    _sanpham.add_Tail(std::move(sp));
+    _sanpham.add_Tail_to_Cart(std::move(sp));
 }
 
-void Cart::removeSanPham(const int &id)
+void Cart::remove(const int &id)
 {
     _sanpham.remove(id);
 }

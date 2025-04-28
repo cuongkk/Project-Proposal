@@ -12,6 +12,7 @@ public:
     ~KhoHang();
     void add(std::unique_ptr<SanPham> sp);
     void remove(const int &);
+    void updateQuantity(const int &, const int &);
     std::unique_ptr<SanPham> getSanPham_from_id(const int &);
     void print();
 };

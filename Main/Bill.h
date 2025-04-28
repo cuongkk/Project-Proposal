@@ -13,12 +13,13 @@ protected:
     int _id;
     int _id_Customer;
     Cart _cart;
-    int _totalCost;
+    float _totalCost;
 
 public:
     Bill();
     ~Bill();
     void confirmBill(KhoHang &khoHang, Cart &&);
+    float get_totalCost() const;
 
     friend std::ostream &operator<<(std::ostream &, const Bill &);
 };

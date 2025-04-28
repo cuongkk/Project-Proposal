@@ -60,37 +60,41 @@ float SanPham::get_discount() const
 float operator+(const float &a, std::unique_ptr<SanPham> b)
 {
     auto res = std::make_unique<ThucAn>();
-    res->set_cost(a + b->get_cost() * (1 - b->get_discount()));
+    res->set_cost(a + b->get_quantity() * b->get_cost() * (1 - b->get_discount()));
     return res->get_cost();
 }
 std::unique_ptr<SanPham> operator+(const SanPham &a, const SanPham &b)
 {
     auto res = std::make_unique<ThucAn>();
-    res->set_cost(a.get_cost() * (1 - a.get_discount()) + b.get_cost() * (1 - b.get_discount()));
+    res->set_cost(a.get_quantity() * a.get_cost() * (1 - a.get_discount()) + b.get_quantity() * b.get_cost() * (1 - b.get_discount()));
     return res;
 }
 
 std::unique_ptr<SanPham> operator+(std::unique_ptr<SanPham> a, const SanPham &b)
 {
     auto res = std::make_unique<ThucAn>();
-    res->set_cost(a->get_cost() * (1 - a->get_discount()) + b.get_cost() * (1 - b.get_discount()));
+    res->set_cost(a->get_quantity() * a->get_cost() * (1 - a->get_discount()) + b.get_quantity() * b.get_cost() * (1 - b.get_discount()));
     return res;
 }
 
 std::unique_ptr<SanPham> operator-(const SanPham &a, const SanPham &b)
 {
     auto res = std::make_unique<ThucAn>();
-    res->set_cost(a.get_cost() * (1 - a.get_discount()) + b.get_cost() * (1 - b.get_discount()));
+    res->set_cost(a.get_quantity() * a.get_cost() * (1 - a.get_discount()) - b.get_quantity() * a.get_cost() * (1 - b.get_discount()));
     return res;
 }
 
 std::unique_ptr<SanPham> operator-(std::unique_ptr<SanPham> a, const SanPham &b)
 {
     auto res = std::make_unique<ThucAn>();
-    res->set_cost(a->get_cost() * (1 - a->get_discount()) + b.get_cost() * (1 - b.get_discount()));
+    res->set_cost(a->get_quantity() * a->get_cost() * (1 - a->get_discount()) - b.get_quantity() * b.get_cost() * (1 - b.get_discount()));
     return res;
 }
 
+bool operator==(const SanPham &a, const SanPham &b)
+{
+    return a.get_id() == b.get_id();
+}
 std::ostream &operator<<(std::ostream &os, const SanPham &value)
 {
     value.print(os);
