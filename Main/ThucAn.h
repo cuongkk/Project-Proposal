@@ -13,8 +13,12 @@ public:
     ThucAn();
     ~ThucAn();
     ThucAn(const std::string &, const std::string &,
-           const int &, const std::string &, const int &, const int &, const int &,
+           const int &, const std::string &, const int &, const float &, const float &,
            const std::string &, const std::string &);
+
+    std::unique_ptr<SanPham> clone() const override;
+    SanPham *get_origin() const override;
+
     void print(std::ostream &) const override;
 
     friend std::ostream &operator<<(std::ostream &os, const ThucAn &thucAn);

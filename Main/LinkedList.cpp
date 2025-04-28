@@ -8,9 +8,41 @@ LinkedList::LinkedList()
     _pTail = nullptr;
 }
 
-void LinkedList::add_Head(std::unique_ptr<SanPham> value)
+LinkedList::~LinkedList()
 {
-    Node *newNode = Node::CreateNode(std::move(value));
+    Node *cur = _pHead;
+    while (cur)
+    {
+        Node *tmp = cur;
+        cur = cur->pNext;
+        delete tmp;
+    }
+}
+
+int LinkedList::get_size()
+{
+    return _size;
+}
+
+float LinkedList::get_cost() const
+{
+    float totalCost = 0;
+    Node *cur = _pHead;
+    while (cur)
+    {
+        totalCost = totalCost + cur->data->clone();
+        cur = cur->pNext;
+    }
+    return totalCost;
+}
+
+Node *LinkedList::get_Head() const
+{
+    return _pHead;
+}
+void LinkedList::add_Head(std::unique_ptr<SanPham> sp)
+{
+    Node *newNode = Node::CreateNode(std::move(sp));
     newNode->pNext = _pHead;
     _pHead = newNode;
     if (_pTail == nullptr)
@@ -18,9 +50,9 @@ void LinkedList::add_Head(std::unique_ptr<SanPham> value)
     _size++;
 }
 
-void LinkedList::add_Tail(std::unique_ptr<SanPham> value)
+void LinkedList::add_Tail(std::unique_ptr<SanPham> sp)
 {
-    Node *newNode = Node::CreateNode(std::move(value));
+    Node *newNode = Node::CreateNode(std::move(sp));
     if (_pTail != nullptr)
     {
         _pTail->pNext = newNode;
@@ -33,17 +65,53 @@ void LinkedList::add_Tail(std::unique_ptr<SanPham> value)
     _size++;
 }
 
-LinkedList::~LinkedList()
+void LinkedList::remove(const int &id)
 {
+    if (_pHead == nullptr)
+    {
+        return;
+    }
+
     Node *cur = _pHead;
+    Node *prev = nullptr;
+
     while (cur)
     {
-        Node *tmp = cur;
+        if (cur->data && cur->data->get_id() == id)
+        {
+            if (prev == nullptr)
+            {
+                _pHead = cur->pNext;
+            }
+            else
+            {
+                prev->pNext = cur->pNext;
+            }
+
+            if (cur == _pTail)
+            {
+                _pTail = prev;
+            }
+
+            delete cur;
+            _size--;
+            return;
+        }
+
+        prev = cur;
         cur = cur->pNext;
-        delete tmp;
     }
 }
 
+void LinkedList::operator=(const LinkedList &ll)
+{
+    Node *cur = ll._pHead;
+    while (cur)
+    {
+        add_Tail(cur->data->clone());
+        cur = cur->pNext;
+    }
+}
 std::ostream &operator<<(std::ostream &os, const LinkedList &ll)
 {
     Node *cur = ll._pHead;
