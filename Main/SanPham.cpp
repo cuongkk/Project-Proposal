@@ -2,7 +2,7 @@
 #include "ThucAn.h"
 SanPham::SanPham()
 {
-    _id = 0;
+    _id = "";
     _type = "";
     _quantity = 0;
     _cost = 0;
@@ -11,10 +11,10 @@ SanPham::SanPham()
     _expiry_Date = "";
 }
 
-SanPham::SanPham(const int &id, const std::string &type, const int &quantity, const float &cost, const float &discount,
+SanPham::SanPham(const std::string &type, const int &quantity, const float &cost, const float &discount,
                  const std::string &manufacture_Date, const std::string &expiry_Date)
 {
-    _id = id;
+    set_id();
     _type = type;
     _quantity = quantity;
     _cost = cost;
@@ -23,10 +23,39 @@ SanPham::SanPham(const int &id, const std::string &type, const int &quantity, co
     _expiry_Date = expiry_Date;
 }
 
-int SanPham::get_id() const
+void SanPham::set_counter(const int &index)
+{
+    _id_counter[index] = 0;
+}
+void SanPham::set_id()
+{
+    for (int i = 0; i < _id_counter.size(); i++)
+    {
+        if (_id_counter[i] == 0)
+        {
+            _id = create_id("SP", i + 1);
+            _id_counter[i] = 1;
+            return;
+        }
+        else if (_id_counter[i] == 1 && i < _id_counter.size() - 1)
+        {
+            continue;
+        }
+        else if (_id_counter[_id_counter.size() - 1] == 1)
+        {
+            _id_counter.push_back(1);
+            _id = create_id("SP", _id_counter.size());
+            _id_counter[i] = 1;
+            return;
+        }
+    }
+}
+
+std::string SanPham::get_id() const
 {
     return _id;
 }
+
 void SanPham::set_quantity(int quantity)
 {
     _quantity = quantity;

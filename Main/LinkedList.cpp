@@ -59,12 +59,13 @@ const std::list<std::unique_ptr<SanPham>> &LinkedList::get_SanPham() const
     return _sanpham;
 }
 
-void LinkedList::remove_from_KhoHang(const SanPham &sp)
+void LinkedList::remove_from_KhoHang(std::unique_ptr<SanPham> sp)
 {
     for (auto item = _sanpham.begin(); item != _sanpham.end(); ++item)
     {
-        if (**item == sp)
+        if (**item == *sp)
         {
+            (*item)->set_counter(get_counter_from_id("SP", (*item)->get_id()) - 1);
             _sanpham.erase(item);
             return;
         }

@@ -13,7 +13,7 @@ public:
     ThucUong();
     ~ThucUong();
     ThucUong(const std::string &, const std::string &,
-             const int &, const std::string &, const int &, const float &, const float &,
+             const std::string &, const int &, const float &, const float &,
              const std::string &, const std::string &);
 
     std::unique_ptr<SanPham> clone() const override;

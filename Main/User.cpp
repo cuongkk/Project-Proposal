@@ -1,17 +1,19 @@
-#include "User.h"
+// #include "User.h"
 
-User::User()
-{
-    _id = 0;
-    _username = "";
-    _password = "";
-}
-User::~User()
-{
-}
-User::User(const int &id, const std::string &user_Name, const std::string &password)
-{
-    _id = id;
-    _username = user_Name;
-    _password = password;
-}
+// User::User()
+// {
+//     _id = 0;
+//     _username = "";
+//     _password = "";
+//     _inf = "";
+// }
+// User::~User()
+// {
+// }
+// User::User(const int &id, const std::string &username, const std::string &password, const std::string &inf)
+// {
+//     _id = id;
+//     _username = username;
+//     _password = password;
+//     _inf = inf;
+// }

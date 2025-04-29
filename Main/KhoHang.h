@@ -14,9 +14,9 @@ public:
     ~KhoHang() = default;
 
     void add(std::unique_ptr<SanPham>);
-    void remove(const SanPham &);
+    void remove(std::unique_ptr<SanPham>);
     void updateQuantity(const SanPham &, const int &);
-    std::unique_ptr<SanPham> getSanPham_from_id(const int &);
+    std::unique_ptr<SanPham> getSanPham_from_id(const std::string &);
     friend std::ostream &operator<<(std::ostream &, const KhoHang &);
 };
 #endif

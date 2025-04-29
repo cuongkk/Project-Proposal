@@ -1,18 +1,19 @@
-#ifndef USER_H
-#define USER_H
+// #ifndef USER_H
+// #define USER_H
 
-#include <string>
-class User
-{
-protected:
-    int _id;
-    std::string _username;
-    std::string _password;
+// #include <string>
+// class User
+// {
+// protected:
+//     int _id;
+//     std::string _username;
+//     std::string _password;
+//     std::string _inf;
 
-public:
-    User();
-    ~User();
-    User(const int &, const std::string &, const std::string &);
-};
+// public:
+//     User();
+//     ~User();
+//     User(const int &, const std::string &, const std::string &, const std::string &);
+// };
 
-#endif
+// #endif

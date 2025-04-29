@@ -23,7 +23,7 @@ public:
     void add_Tail_to_Cart(std::unique_ptr<SanPham>);
     const std::list<std::unique_ptr<SanPham>> &get_SanPham() const;
 
-    void remove_from_KhoHang(const SanPham &);
+    void remove_from_KhoHang(std::unique_ptr<SanPham>);
     void remove_from_Cart(std::unique_ptr<SanPham>);
 
     LinkedList &operator=(const LinkedList &other);
