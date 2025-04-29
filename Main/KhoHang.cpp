@@ -1,59 +1,46 @@
 #include "KhoHang.h"
-
-KhoHang::KhoHang()
-{
-}
-
-KhoHang::~KhoHang()
-{
-}
+#include <iostream>
 
 void KhoHang::add(std::unique_ptr<SanPham> sp)
 {
     _sanpham.add_Tail_to_KhoHang(std::move(sp));
 }
 
-void KhoHang::remove(const int &id)
+void KhoHang::remove(const SanPham &sp)
 {
-    _sanpham.remove(id);
+    _sanpham.remove_from_KhoHang(sp);
 }
 
-void KhoHang::updateQuantity(const int &id, const int &quantity)
+void KhoHang::updateQuantity(const SanPham &sp, const int &quantity)
 {
-    Node *cur = _sanpham.get_Head();
-    while (cur)
+    for (auto &item : _sanpham.get_SanPham())
     {
-        if (cur->data->get_id() == id)
+        if (*item == sp)
         {
-            int newQuantity = cur->data->get_quantity() - quantity;
-            if (newQuantity > 0)
+            int newQuantity = item->get_quantity() - quantity;
+            if (newQuantity >= 0)
             {
-                cur->data->set_quantity(newQuantity);
-            }
-            else
-            {
-                remove(cur->data->get_id());
+                item->set_quantity(newQuantity);
             }
             return;
         }
-        cur = cur->pNext;
     }
 }
 
 std::unique_ptr<SanPham> KhoHang::getSanPham_from_id(const int &id)
 {
-    Node *cur = _sanpham.get_Head();
-    while (cur)
+    for (const auto &sp : _sanpham.get_SanPham())
     {
-        if (cur->data->get_id() == id)
+        if (sp->get_id() == id)
         {
-            return cur->data->clone();
+            return sp->clone();
         }
-        cur = cur->pNext;
     }
-    return 0;
+    return nullptr;
 }
-void KhoHang::print()
+
+std::ostream &operator<<(std::ostream &os, const KhoHang &KhoHang)
 {
-    std::cout << _sanpham;
+    os << KhoHang._sanpham;
+    return os;
 }

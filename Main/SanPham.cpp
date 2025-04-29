@@ -57,11 +57,9 @@ float SanPham::get_discount() const
     return _discount;
 }
 
-float operator+(const float &a, std::unique_ptr<SanPham> b)
+float operator+(const float &a, const SanPham &b)
 {
-    auto res = std::make_unique<ThucAn>();
-    res->set_cost(a + b->get_quantity() * b->get_cost() * (1 - b->get_discount()));
-    return res->get_cost();
+    return a + b.get_quantity() * b.get_cost() * (1 - b.get_discount());
 }
 std::unique_ptr<SanPham> operator+(const SanPham &a, const SanPham &b)
 {

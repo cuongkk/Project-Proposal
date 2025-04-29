@@ -1,7 +1,6 @@
 #ifndef BILL_H
 #define BILL_H
 
-#include "KhoHang.h"
 #include "Customer.h"
 #include "Cart.h"
 
@@ -18,7 +17,7 @@ protected:
 public:
     Bill();
     ~Bill();
-    void confirmBill(KhoHang &khoHang, Cart &&);
+    void confirmBill(Cart &&);
     float get_totalCost() const;
 
     friend std::ostream &operator<<(std::ostream &, const Bill &);

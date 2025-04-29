@@ -33,14 +33,14 @@ public:
     void set_discount(int discount);
     float get_discount() const;
 
-    friend float operator+(const float &a, std::unique_ptr<SanPham> b);
-    friend std::unique_ptr<SanPham> operator+(std::unique_ptr<SanPham> a, const SanPham &b);
-    friend std::unique_ptr<SanPham> operator+(const SanPham &a, const SanPham &b);
+    friend float operator+(const float &, const SanPham &);
+    friend std::unique_ptr<SanPham> operator+(std::unique_ptr<SanPham>, const SanPham &);
+    friend std::unique_ptr<SanPham> operator+(const SanPham &, const SanPham &);
 
-    friend std::unique_ptr<SanPham> operator-(std::unique_ptr<SanPham> a, const SanPham &b);
-    friend std::unique_ptr<SanPham> operator-(const SanPham &a, const SanPham &b);
+    friend std::unique_ptr<SanPham> operator-(std::unique_ptr<SanPham>, const SanPham &ss);
+    friend std::unique_ptr<SanPham> operator-(const SanPham &, const SanPham &);
 
-    friend bool operator==(const SanPham &a, const SanPham &b);
+    friend bool operator==(const SanPham &, const SanPham &);
     virtual void print(std::ostream &) const = 0;
     friend std::ostream &operator<<(std::ostream &, const SanPham &sp);
 };
