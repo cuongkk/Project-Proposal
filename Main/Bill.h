@@ -1,7 +1,6 @@
 #ifndef BILL_H
 #define BILL_H
 
-#include "KhoHang.h"
 #include "Customer.h"
 #include "Cart.h"
 
@@ -13,14 +12,15 @@ protected:
     int _id;
     int _id_Customer;
     Cart _cart;
-    int _totalCost;
+    float _totalCost;
 
 public:
     Bill();
     ~Bill();
 <<<<<<< HEAD
 =======
-    void confirmBill(KhoHang &khoHang, Cart &&);
+    void confirmBill(Cart &&);
+    float get_totalCost() const;
 
     friend std::ostream &operator<<(std::ostream &, const Bill &);
 >>>>>>> origin/TuanCuong

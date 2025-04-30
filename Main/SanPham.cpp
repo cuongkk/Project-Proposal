@@ -2,7 +2,7 @@
 #include "ThucAn.h"
 SanPham::SanPham()
 {
-    _id = 0;
+    _id = "";
     _type = "";
     _quantity = 0;
     _cost = 0;
@@ -11,10 +11,10 @@ SanPham::SanPham()
     _expiry_Date = "";
 }
 
-SanPham::SanPham(const int &id, const std::string &type, const int &quantity, const float &cost, const float &discount,
+SanPham::SanPham(const std::string &type, const int &quantity, const float &cost, const float &discount,
                  const std::string &manufacture_Date, const std::string &expiry_Date)
 {
-    _id = id;
+    set_id();
     _type = type;
     _quantity = quantity;
     _cost = cost;
@@ -23,10 +23,39 @@ SanPham::SanPham(const int &id, const std::string &type, const int &quantity, co
     _expiry_Date = expiry_Date;
 }
 
-int SanPham::get_id() const
+void SanPham::set_counter(const int &index)
+{
+    _id_counter[index] = 0;
+}
+void SanPham::set_id()
+{
+    for (int i = 0; i < _id_counter.size(); i++)
+    {
+        if (_id_counter[i] == 0)
+        {
+            _id = create_id("SP", i + 1);
+            _id_counter[i] = 1;
+            return;
+        }
+        else if (_id_counter[i] == 1 && i < _id_counter.size() - 1)
+        {
+            continue;
+        }
+        else if (_id_counter[_id_counter.size() - 1] == 1)
+        {
+            _id_counter.push_back(1);
+            _id = create_id("SP", _id_counter.size());
+            _id_counter[i] = 1;
+            return;
+        }
+    }
+}
+
+std::string SanPham::get_id() const
 {
     return _id;
 }
+
 void SanPham::set_quantity(int quantity)
 {
     _quantity = quantity;
@@ -57,40 +86,42 @@ float SanPham::get_discount() const
     return _discount;
 }
 
-float operator+(const float &a, std::unique_ptr<SanPham> b)
+float operator+(const float &a, const SanPham &b)
 {
-    auto res = std::make_unique<ThucAn>();
-    res->set_cost(a + b->get_cost() * (1 - b->get_discount()));
-    return res->get_cost();
+    return a + b.get_quantity() * b.get_cost() * (1 - b.get_discount());
 }
 std::unique_ptr<SanPham> operator+(const SanPham &a, const SanPham &b)
 {
     auto res = std::make_unique<ThucAn>();
-    res->set_cost(a.get_cost() * (1 - a.get_discount()) + b.get_cost() * (1 - b.get_discount()));
+    res->set_cost(a.get_quantity() * a.get_cost() * (1 - a.get_discount()) + b.get_quantity() * b.get_cost() * (1 - b.get_discount()));
     return res;
 }
 
 std::unique_ptr<SanPham> operator+(std::unique_ptr<SanPham> a, const SanPham &b)
 {
     auto res = std::make_unique<ThucAn>();
-    res->set_cost(a->get_cost() * (1 - a->get_discount()) + b.get_cost() * (1 - b.get_discount()));
+    res->set_cost(a->get_quantity() * a->get_cost() * (1 - a->get_discount()) + b.get_quantity() * b.get_cost() * (1 - b.get_discount()));
     return res;
 }
 
 std::unique_ptr<SanPham> operator-(const SanPham &a, const SanPham &b)
 {
     auto res = std::make_unique<ThucAn>();
-    res->set_cost(a.get_cost() * (1 - a.get_discount()) + b.get_cost() * (1 - b.get_discount()));
+    res->set_cost(a.get_quantity() * a.get_cost() * (1 - a.get_discount()) - b.get_quantity() * a.get_cost() * (1 - b.get_discount()));
     return res;
 }
 
 std::unique_ptr<SanPham> operator-(std::unique_ptr<SanPham> a, const SanPham &b)
 {
     auto res = std::make_unique<ThucAn>();
-    res->set_cost(a->get_cost() * (1 - a->get_discount()) + b.get_cost() * (1 - b.get_discount()));
+    res->set_cost(a->get_quantity() * a->get_cost() * (1 - a->get_discount()) - b.get_quantity() * b.get_cost() * (1 - b.get_discount()));
     return res;
 }
 
+bool operator==(const SanPham &a, const SanPham &b)
+{
+    return a.get_id() == b.get_id();
+}
 std::ostream &operator<<(std::ostream &os, const SanPham &value)
 {
     value.print(os);

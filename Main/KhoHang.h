@@ -2,17 +2,21 @@
 #define KHOHANG_H
 
 #include "LinkedList.h"
+#include <memory>
+
 class KhoHang
 {
 private:
     LinkedList _sanpham;
 
 public:
-    KhoHang();
-    ~KhoHang();
-    void add(std::unique_ptr<SanPham> sp);
-    void remove(const int &);
-    std::unique_ptr<SanPham> getSanPham_from_id(const int &);
-    void print();
+    KhoHang() = default;
+    ~KhoHang() = default;
+
+    void add(std::unique_ptr<SanPham>);
+    void remove(std::unique_ptr<SanPham>);
+    void updateQuantity(const SanPham &, const int &);
+    std::unique_ptr<SanPham> getSanPham_from_id(const std::string &);
+    friend std::ostream &operator<<(std::ostream &, const KhoHang &);
 };
 #endif

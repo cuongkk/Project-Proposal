@@ -1,124 +1,111 @@
 #include "LinkedList.h"
+#include <iostream>
 
-int LinkedList::_size = 0;
-
-LinkedList::LinkedList()
+int LinkedList::get_size() const
 {
-    _pHead = nullptr;
-    _pTail = nullptr;
-}
-
-LinkedList::~LinkedList()
-{
-    Node *cur = _pHead;
-    while (cur)
-    {
-        Node *tmp = cur;
-        cur = cur->pNext;
-        delete tmp;
-    }
-}
-
-int LinkedList::get_size()
-{
-    return _size;
+    return _sanpham.size();
 }
 
 float LinkedList::get_cost() const
 {
     float totalCost = 0;
-    Node *cur = _pHead;
-    while (cur)
+    for (const auto &item : _sanpham)
     {
-        totalCost = totalCost + cur->data->clone();
-        cur = cur->pNext;
+        totalCost = totalCost + *item;
     }
     return totalCost;
 }
 
-Node *LinkedList::get_Head() const
+void LinkedList::add_Head_to_KhoHang(std::unique_ptr<SanPham> sp)
 {
-    return _pHead;
-}
-void LinkedList::add_Head(std::unique_ptr<SanPham> sp)
-{
-    Node *newNode = Node::CreateNode(std::move(sp));
-    newNode->pNext = _pHead;
-    _pHead = newNode;
-    if (_pTail == nullptr)
-        _pTail = _pHead;
-    _size++;
+    _sanpham.push_front(std::move(sp));
 }
 
-void LinkedList::add_Tail(std::unique_ptr<SanPham> sp)
+void LinkedList::add_Tail_to_KhoHang(std::unique_ptr<SanPham> sp)
 {
-    Node *newNode = Node::CreateNode(std::move(sp));
-    if (_pTail != nullptr)
-    {
-        _pTail->pNext = newNode;
-    }
-    else
-    {
-        _pHead = newNode;
-    }
-    _pTail = newNode;
-    _size++;
+    _sanpham.push_back(std::move(sp));
 }
 
-void LinkedList::remove(const int &id)
+void LinkedList::add_Head_to_Cart(std::unique_ptr<SanPham> sp)
 {
-    if (_pHead == nullptr)
+    for (auto &item : _sanpham)
     {
-        return;
-    }
-
-    Node *cur = _pHead;
-    Node *prev = nullptr;
-
-    while (cur)
-    {
-        if (cur->data && cur->data->get_id() == id)
+        if (*item == *sp)
         {
-            if (prev == nullptr)
-            {
-                _pHead = cur->pNext;
-            }
-            else
-            {
-                prev->pNext = cur->pNext;
-            }
-
-            if (cur == _pTail)
-            {
-                _pTail = prev;
-            }
-
-            delete cur;
-            _size--;
+            item->set_quantity(item->get_quantity() + 1);
             return;
         }
-
-        prev = cur;
-        cur = cur->pNext;
     }
+    sp->set_quantity(1);
+    _sanpham.push_front(std::move(sp));
 }
 
-void LinkedList::operator=(const LinkedList &ll)
+void LinkedList::add_Tail_to_Cart(std::unique_ptr<SanPham> sp)
 {
-    Node *cur = ll._pHead;
-    while (cur)
+    for (auto &item : _sanpham)
     {
-        add_Tail(cur->data->clone());
-        cur = cur->pNext;
+        if (*item == *sp)
+        {
+            item->set_quantity(item->get_quantity() + 1);
+            return;
+        }
+    }
+    sp->set_quantity(1);
+    _sanpham.push_back(std::move(sp));
+}
+
+const std::list<std::unique_ptr<SanPham>> &LinkedList::get_SanPham() const
+{
+    return _sanpham;
+}
+
+void LinkedList::remove_from_KhoHang(std::unique_ptr<SanPham> sp)
+{
+    for (auto item = _sanpham.begin(); item != _sanpham.end(); ++item)
+    {
+        if (**item == *sp)
+        {
+            (*item)->set_counter(get_counter_from_id("SP", (*item)->get_id()) - 1);
+            _sanpham.erase(item);
+            return;
+        }
     }
 }
+
+void LinkedList::remove_from_Cart(std::unique_ptr<SanPham> sp)
+{
+    for (auto item = _sanpham.begin(); item != _sanpham.end(); ++item)
+    {
+        if (**item == *sp)
+        {
+            (*item)->set_quantity((*item)->get_quantity() - 1);
+            if ((*item)->get_quantity() == 0)
+            {
+                _sanpham.erase(item);
+            }
+            return;
+        }
+    }
+}
+LinkedList &LinkedList::operator=(const LinkedList &other)
+{
+    if (this != &other)
+    {
+        _sanpham.clear();
+        for (const auto &item : other._sanpham)
+        {
+            _sanpham.push_back(item->clone());
+        }
+    }
+    return *this;
+}
+
 std::ostream &operator<<(std::ostream &os, const LinkedList &ll)
 {
-    Node *cur = ll._pHead;
-    while (cur)
+    for (const auto &item : ll.get_SanPham())
     {
-        os << *cur << "\n";
-        cur = cur->pNext;
+        os << *item;
+        os << "\n";
     }
     return os;
 }
