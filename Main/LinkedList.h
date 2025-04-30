@@ -5,10 +5,11 @@
 #include <memory>
 #include "SanPham.h"
 
+template <typename T>
 class LinkedList
 {
 protected:
-    std::list<std::unique_ptr<SanPham>> _sanpham;
+    std::list<std::unique_ptr<T>> _list;
 
 public:
     LinkedList() = default;
@@ -17,18 +18,21 @@ public:
     int get_size() const;
     float get_cost() const;
 
-    void add_Head_to_KhoHang(std::unique_ptr<SanPham>);
-    void add_Tail_to_KhoHang(std::unique_ptr<SanPham>);
-    void add_Head_to_Cart(std::unique_ptr<SanPham>);
-    void add_Tail_to_Cart(std::unique_ptr<SanPham>);
-    const std::list<std::unique_ptr<SanPham>> &get_SanPham() const;
+    void add_Head(std::unique_ptr<T>);
+    void add_Tail(std::unique_ptr<T>);
+    void add_Head_to_Cart(std::unique_ptr<T>);
+    void add_Tail_to_Cart(std::unique_ptr<T>);
+    const std::list<std::unique_ptr<T>> &get_SanPham() const;
 
-    void remove_from_KhoHang(std::unique_ptr<SanPham>);
-    void remove_from_Cart(std::unique_ptr<SanPham>);
+    void remove_from_KhoHang(std::unique_ptr<T>);
+    void remove_from_Cart(std::unique_ptr<T>);
 
-    LinkedList &operator=(const LinkedList &other);
-
-    friend std::ostream &operator<<(std::ostream &os, const LinkedList &ll);
+    LinkedList<T> &operator=(const LinkedList &other);
 };
+
+template <typename T>
+std::ostream &operator<<(std::ostream &, const LinkedList<T> &);
+
+#include "LinkedList.tpp"
 
 #endif

@@ -21,6 +21,6 @@ public:
 
     void print(std::ostream &) const override;
 
-    friend std::ostream &operator<<(std::ostream &os, const ThucAn &thucAn);
+    friend std::ostream &operator<<(std::ostream &, const ThucAn &);
 };
 #endif

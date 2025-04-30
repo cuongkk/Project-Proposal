@@ -2,12 +2,13 @@
 #define KHOHANG_H
 
 #include "LinkedList.h"
+#include "SanPham.h"
 #include <memory>
 
 class KhoHang
 {
 private:
-    LinkedList _sanpham;
+    LinkedList<SanPham> _sanpham;
 
 public:
     KhoHang() = default;

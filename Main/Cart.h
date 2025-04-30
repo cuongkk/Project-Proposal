@@ -2,6 +2,7 @@
 #define CART_H
 
 #include "KhoHang.h"
+#include "SanPham.h"
 #include "LinkedList.h"
 class Cart
 {
@@ -9,7 +10,7 @@ class Cart
 public:
     Cart();
     ~Cart();
-    LinkedList _sanpham;
+    LinkedList<SanPham> _sanpham;
 
     int get_size() const;
     float get_cost() const;

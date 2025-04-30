@@ -3,7 +3,7 @@
 
 void KhoHang::add(std::unique_ptr<SanPham> sp)
 {
-    _sanpham.add_Tail_to_KhoHang(std::move(sp));
+    _sanpham.add_Tail(std::move(sp));
 }
 
 void KhoHang::remove(std::unique_ptr<SanPham> sp)

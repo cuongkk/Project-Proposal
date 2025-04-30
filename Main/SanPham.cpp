@@ -14,7 +14,7 @@ SanPham::SanPham()
 SanPham::SanPham(const std::string &type, const int &quantity, const float &cost, const float &discount,
                  const std::string &manufacture_Date, const std::string &expiry_Date)
 {
-    set_id();
+    _id = set_id("SP", _id_counter_sp);
     _type = type;
     _quantity = quantity;
     _cost = cost;
@@ -25,30 +25,7 @@ SanPham::SanPham(const std::string &type, const int &quantity, const float &cost
 
 void SanPham::set_counter(const int &index)
 {
-    _id_counter[index] = 0;
-}
-void SanPham::set_id()
-{
-    for (int i = 0; i < _id_counter.size(); i++)
-    {
-        if (_id_counter[i] == 0)
-        {
-            _id = create_id("SP", i + 1);
-            _id_counter[i] = 1;
-            return;
-        }
-        else if (_id_counter[i] == 1 && i < _id_counter.size() - 1)
-        {
-            continue;
-        }
-        else if (_id_counter[_id_counter.size() - 1] == 1)
-        {
-            _id_counter.push_back(1);
-            _id = create_id("SP", _id_counter.size());
-            _id_counter[i] = 1;
-            return;
-        }
-    }
+    _id_counter_sp[index] = 0;
 }
 
 std::string SanPham::get_id() const
@@ -122,8 +99,8 @@ bool operator==(const SanPham &a, const SanPham &b)
 {
     return a.get_id() == b.get_id();
 }
-std::ostream &operator<<(std::ostream &os, const SanPham &value)
+std::ostream &operator<<(std::ostream &os, const SanPham &sp)
 {
-    value.print(os);
+    sp.print(os);
     return os;
 }
