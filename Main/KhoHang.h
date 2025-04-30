@@ -3,6 +3,7 @@
 
 #include "LinkedList.h"
 #include <memory>
+#include <regex>
 
 class KhoHang
 {
@@ -13,6 +14,7 @@ public:
     KhoHang() = default;
     ~KhoHang() = default;
 
+    void search(const std::string &keyword);
     void add(std::unique_ptr<SanPham>);
     void remove(std::unique_ptr<SanPham>);
     void updateQuantity(const SanPham &, const int &);

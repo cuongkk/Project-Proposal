@@ -34,9 +34,24 @@ int main()
 
     cart.remove(khoHang, khoHang.getSanPham_from_id("SP0002"));
     std::cout << khoHang << "\n";
+    std::cout <<"Cart: \n";
+    std::cout << cart << "\n";
 
     Bill bill;
     bill.confirmBill(std::move(cart));
-    std::cout << "Bill: " << bill.get_totalCost() << "\n";
+    
+    std::cout << "Bill: " << bill.get_totalCost() << "\n\n";
+
+    std::string keyWord =  "Bánh mì";
+    khoHang.search(keyWord);
+    keyWord =  "SP0001";
+    khoHang.search(keyWord);
+    keyWord =  "SP0009";
+    khoHang.search(keyWord);
+    keyWord =  "Trà sữa MATCHA";
+    khoHang.search(keyWord);
+    keyWord =  "Bánh mì thịt";
+    khoHang.search(keyWord);
+    
     return 0;
 }

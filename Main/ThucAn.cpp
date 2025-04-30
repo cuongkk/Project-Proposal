@@ -19,6 +19,12 @@ ThucAn::ThucAn(const std::string &name, const std::string &inf,
     _inf = inf;
 }
 
+bool ThucAn::containsKeyword(const std::string &keyword) const // không phân biệt hoa thường
+{
+    std::regex pattern(keyword, std::regex_constants::icase);
+    return std::regex_search(_name, pattern) || std::regex_search(_inf, pattern) || std::regex_search(_id, pattern);
+}
+
 std::unique_ptr<SanPham> ThucAn::clone() const
 {
     auto cloned = std::make_unique<ThucAn>(*this);

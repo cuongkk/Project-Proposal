@@ -19,6 +19,13 @@ ThucUong::ThucUong(const std::string &name, const std::string &inf,
     _inf = inf;
 }
 
+
+bool ThucUong::containsKeyword(const std::string& keyword) const
+{
+    std::regex pattern(keyword, std::regex_constants::icase);
+    return std::regex_search(_name, pattern) || std::regex_search(_inf, pattern);
+}
+
 std::unique_ptr<SanPham> ThucUong::clone() const
 {
     auto cloned = std::make_unique<ThucUong>(*this);

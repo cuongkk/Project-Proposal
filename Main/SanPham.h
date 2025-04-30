@@ -6,6 +6,7 @@
 #include <string>
 #include <memory>
 #include <vector>
+#include <regex>
 
 class SanPham
 {
@@ -26,12 +27,14 @@ public:
     SanPham(const std::string &, const int &, const float &, const float &,
             const std::string &, const std::string &);
 
+    virtual bool containsKeyword(const std::string& keyword) const = 0;
     virtual std::unique_ptr<SanPham> clone() const = 0;
     virtual SanPham *get_origin() const = 0;
 
     void set_counter(const int &);
     void set_id();
     std::string get_id() const;
+    
     void set_quantity(int quantity);
     int get_quantity() const;
     void set_cost(int cost);

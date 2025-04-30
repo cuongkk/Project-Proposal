@@ -39,6 +39,23 @@ std::unique_ptr<SanPham> KhoHang::getSanPham_from_id(const std::string &id)
     return nullptr;
 }
 
+void KhoHang::search(const std::string &keyword) 
+{   
+    bool found = false;
+    std::cout << "Tìm kiếm sản phẩm với từ khóa: " << keyword << "\n";
+    for(const auto &sp : _sanpham.get_SanPham())
+    {
+        if (sp->containsKeyword(keyword))
+        {
+            found = true;
+            std::cout << *sp << "\n";
+        }
+    }
+    if (!found)
+    {
+        std::cout << "Không tìm thấy sản phẩm nào với từ khóa: " << keyword << "\n";
+    }
+}
 std::ostream &operator<<(std::ostream &os, const KhoHang &KhoHang)
 {
     os << KhoHang._sanpham;

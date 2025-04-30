@@ -17,12 +17,9 @@ protected:
 public:
     Bill();
     ~Bill();
-<<<<<<< HEAD
-=======
     void confirmBill(Cart &&);
     float get_totalCost() const;
 
     friend std::ostream &operator<<(std::ostream &, const Bill &);
->>>>>>> origin/TuanCuong
 };
 #endif
