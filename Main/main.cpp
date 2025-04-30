@@ -16,7 +16,7 @@ std::vector<int> User::_id_counter_user = {0};
 int main()
 {
     auto admin = std::make_unique<Admin>("admin", "admin123", "admin");
-    auto customer = std::make_unique<Customer>("Nguyen Van A", "abc@gmail.com", "0123456789", "1000000", "customer", "customet123", "customer");
+    auto customer = std::make_unique<Customer>("Nguyen Van B", "abc@gmail.com", "0123456789", "1000000", "customer", "customet123", "customer");
 
     userManagement.add(std::move(admin));
     userManagement.add(std::move(customer));
