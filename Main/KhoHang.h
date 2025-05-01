@@ -14,7 +14,7 @@ public:
     KhoHang() = default;
     ~KhoHang() = default;
 
-    void search(const std::string &keyword);
+    void search(const std::string &keyword, const int &optionSearch);
     void add(std::unique_ptr<SanPham>);
     void remove(std::unique_ptr<SanPham>);
     void updateQuantity(const SanPham &, const int &);

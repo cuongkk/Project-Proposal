@@ -27,7 +27,7 @@ public:
     SanPham(const std::string &, const int &, const float &, const float &,
             const std::string &, const std::string &);
 
-    virtual bool containsKeyword(const std::string& keyword) const = 0;
+    virtual bool containsKeyword(const std::string& keyword, const int& option) const = 0;
     virtual std::unique_ptr<SanPham> clone() const = 0;
     virtual SanPham *get_origin() const = 0;
 

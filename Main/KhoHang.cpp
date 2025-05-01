@@ -39,13 +39,13 @@ std::unique_ptr<SanPham> KhoHang::getSanPham_from_id(const std::string &id)
     return nullptr;
 }
 
-void KhoHang::search(const std::string &keyword) 
+void KhoHang::search(const std::string &keyword, const int& optionSearch) 
 {   
     bool found = false;
     std::cout << "Tìm kiếm sản phẩm với từ khóa: " << keyword << "\n";
     for(const auto &sp : _sanpham.get_SanPham())
     {
-        if (sp->containsKeyword(keyword))
+        if (sp->containsKeyword(keyword, optionSearch))
         {
             found = true;
             std::cout << *sp << "\n";
