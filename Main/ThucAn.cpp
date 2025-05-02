@@ -11,9 +11,10 @@ ThucAn::~ThucAn()
 }
 
 ThucAn::ThucAn(const std::string &name, const std::string &inf,
-               const std::string &type, const int &quantity, const float &cost, const float &discount,
+               const std::string &type, const int &quantity, const std::string &money,
+               const std::string &type_money, const float &discount,
                const std::string &manufacture_Date, const std::string &expiry_Date)
-    : SanPham(type, quantity, cost, discount, manufacture_Date, expiry_Date)
+    : SanPham(type, quantity, money, type_money, discount, manufacture_Date, expiry_Date)
 {
     _name = name;
     _inf = inf;
@@ -54,10 +55,10 @@ void ThucAn::print(std::ostream &os) const
 {
     os << _name << ", ";
     os << _inf << ", ";
-    os << _id << ", ";
+    os << _id_sp << ", ";
     os << _type << ", ";
     os << _quantity << ", ";
-    os << _cost << ", ";
+    os << _money << ", ";
     os << _discount << ", ";
     os << _manufacture_Date << ", ";
     os << _expiry_Date;

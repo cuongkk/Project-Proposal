@@ -1,24 +1,33 @@
 #ifndef BILL_H
 #define BILL_H
 
-#include "Customer.h"
+#include "Main.h"
 #include "Cart.h"
+#include "UserManagement.h"
 
-#include <iostream>
-#include <string>
 class Bill
 {
 protected:
-    int _id;
-    int _id_Customer;
+    std::string _id_Bill;
+    std::string _id_Customer;
     Cart _cart;
-    float _totalCost;
+    std::string _totalCost;
+    Bill *_origin = nullptr;
+    static std::vector<int> _id_counter_bill;
 
 public:
     Bill();
     ~Bill();
-    void confirmBill(Cart &&);
-    float get_totalCost() const;
+    Bill(const std::string &, Cart &&);
+
+    std::unique_ptr<Bill> clone();
+    Bill *get_origin();
+
+    void set_counter(const int &);
+    std::string get_id() const;
+
+    std::unique_ptr<Bill> confirmBill(UserManagement &, const std::string &, Cart &&);
+    std::string get_totalCost() const;
 
     friend std::ostream &operator<<(std::ostream &, const Bill &);
 };

@@ -1,9 +1,8 @@
 #include "KhoHang.h"
-#include <iostream>
 
 void KhoHang::add(std::unique_ptr<SanPham> sp)
 {
-    _sanpham.add_Tail_to_KhoHang(std::move(sp));
+    _sanpham.add_Tail(std::move(sp));
 }
 
 void KhoHang::remove(std::unique_ptr<SanPham> sp)
@@ -13,7 +12,7 @@ void KhoHang::remove(std::unique_ptr<SanPham> sp)
 
 void KhoHang::updateQuantity(const SanPham &sp, const int &quantity)
 {
-    for (auto &item : _sanpham.get_SanPham())
+    for (auto &item : _sanpham.get_Item())
     {
         if (*item == sp)
         {
@@ -29,7 +28,7 @@ void KhoHang::updateQuantity(const SanPham &sp, const int &quantity)
 
 std::unique_ptr<SanPham> KhoHang::getSanPham_from_id(const std::string &id)
 {
-    for (const auto &sp : _sanpham.get_SanPham())
+    for (const auto &sp : _sanpham.get_Item())
     {
         if (sp->get_id() == id)
         {

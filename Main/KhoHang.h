@@ -1,6 +1,8 @@
 #ifndef KHOHANG_H
 #define KHOHANG_H
 
+#include "Main.h"
+#include "SanPham.h"
 #include "LinkedList.h"
 #include <memory>
 #include <regex>
@@ -8,7 +10,7 @@
 class KhoHang
 {
 private:
-    LinkedList _sanpham;
+    LinkedList<SanPham> _sanpham;
 
 public:
     KhoHang() = default;
