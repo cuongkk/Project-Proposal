@@ -9,5 +9,6 @@
 #include <list>
 #include <iomanip>
 #include <sstream>
+#include <regex>
 
 #endif

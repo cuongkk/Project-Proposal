@@ -47,5 +47,23 @@ int main()
 
     std::cout << userManagement << "\n";
 
+    std::string keyWord =  "";
+    int optionSearch = 0;
+    //1: search by name, information, id
+    //2: search by type
+    //3: sort by lower cost
+    //4: sort by higher cost
+    std::cout << "Menu tìm kiếm: \n";
+    std::cout << "1. Tìm kiếm theo tên, thông tin, id\n";
+    std::cout << "2. Tìm kiếm theo loại (Thức ăn, Thức uống)\n";
+    std::cout << "3. Lọc theo mức giá nhập vào trở xuống\n";
+    std::cout << "4. Lọc theo mức giá nhập vào trở lên\n";
+    std::cout << "Nhập lựa chọn: ";
+    std::cin >> optionSearch;
+    std::cin.ignore();
+    std::cout << "Nhập từ khóa hoặc con số: ";
+    std::getline(std::cin, keyWord);
+    khoHang.search(keyWord, optionSearch);
+
     return 0;
 }

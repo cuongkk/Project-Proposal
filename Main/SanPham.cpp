@@ -34,6 +34,11 @@ std::string SanPham::get_id() const
     return _id_sp;
 }
 
+std::string SanPham::get_type() const
+{
+    return _type;
+}
+
 void SanPham::set_quantity(const int &quantity)
 {
     _quantity = quantity;

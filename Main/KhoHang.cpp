@@ -38,23 +38,36 @@ std::unique_ptr<SanPham> KhoHang::getSanPham_from_id(const std::string &id)
     return nullptr;
 }
 
-void KhoHang::search(const std::string &keyword, const int& optionSearch) 
-{   
-    bool found = false;
-    std::cout << "Tìm kiếm sản phẩm với từ khóa: " << keyword << "\n";
-    for(const auto &sp : _sanpham.get_SanPham())
+bool KhoHang::containsKeyword(const std::string &keyword, const int& option, const SanPham& sp) const 
+{
+    std::regex pattern(keyword, std::regex_constants::icase);// không phân biệt hoa thường
+    switch (option)
     {
-        if (sp->containsKeyword(keyword, optionSearch))
-        {
-            found = true;
-            std::cout << *sp << "\n";
-        }
-    }
-    if (!found)
-    {
-        std::cout << "Không tìm thấy sản phẩm nào với từ khóa: " << keyword << "\n";
+        case 1: // search by name, information
+            return std::regex_search(sp.get_name(), pattern) || std::regex_search(sp.get_inf(), pattern) || std::regex_search(sp.get_id(), pattern);
+        case 2: // search by type
+            return std::regex_search(sp.get_type(), pattern);
+        case 3: // sort by lower cost 
+            return (std::stof(sp.get_money().first) <= std::stof(keyword));
+        case 4: // sort by higher cost
+            return (std::stof(sp.get_money().first) >= std::stof(keyword));
+        default:
+            return false; // Invalid option
     }
 }
+
+void KhoHang::search(const std::string &keyword, const int& optionSearch) 
+{   
+    std::cout << "Danh sách sản phẩm tìm thấy:\n";
+    for (const auto &item : _sanpham.get_Item())
+    {
+        if (containsKeyword(keyword, optionSearch, *item))
+        {
+            std::cout << *item << "\n";
+        }
+    }
+}
+
 std::ostream &operator<<(std::ostream &os, const KhoHang &KhoHang)
 {
     os << KhoHang._sanpham;

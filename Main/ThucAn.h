@@ -18,9 +18,11 @@ public:
            const std::string &, const float &,
            const std::string &, const std::string &);
 
-    bool containsKeyword(const std::string& keyword, const int& option) const override; 
+    
     std::unique_ptr<SanPham> clone() const override;
     SanPham *get_origin() const override;
+    std::string get_name() const override;
+    std::string get_inf() const override;
 
     void print(std::ostream &) const override;
 

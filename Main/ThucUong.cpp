@@ -20,25 +20,6 @@ ThucUong::ThucUong(const std::string &name, const std::string &inf,
     _inf = inf;
 }
 
-
-bool ThucUong::containsKeyword(const std::string& keyword, const int& option) const
-{
-    std::regex pattern(keyword, std::regex_constants::icase);// không phân biệt hoa thường
-    switch (option)
-    {
-        case 1: // search by name, information
-            return std::regex_search(_name, pattern) || std::regex_search(_inf, pattern) || std::regex_search(_id, pattern);
-        case 2: // search by type
-            return std::regex_search(_type, pattern);
-        case 3: // sort by lower cost 
-            return (_cost <= std::stof(keyword));
-        case 4: // sort by higher cost
-            return (_cost >= std::stof(keyword));
-        default:
-            return false; // Invalid option
-    }
-}
-
 std::unique_ptr<SanPham> ThucUong::clone() const
 {
     auto cloned = std::make_unique<ThucUong>(*this);
@@ -50,6 +31,16 @@ std::unique_ptr<SanPham> ThucUong::clone() const
 SanPham *ThucUong::get_origin() const
 {
     return _origin;
+}
+
+std::string ThucUong::get_name() const
+{
+    return _name;
+}
+
+std::string ThucUong::get_inf() const
+{
+    return _inf;
 }
 
 void ThucUong::print(std::ostream &os) const

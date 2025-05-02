@@ -56,6 +56,8 @@
         "stdexcept": "cpp",
         "streambuf": "cpp",
         "text_encoding": "cpp",
-        "variant": "cpp"
+        "variant": "cpp",
+        "*.tpp": "cpp",
+        "iomanip": "cpp"
     }
 }

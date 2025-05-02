@@ -24,12 +24,15 @@ public:
             const float &,
             const std::string &, const std::string &);
 
-    virtual bool containsKeyword(const std::string& keyword, const int& option) const = 0;
     virtual std::unique_ptr<SanPham> clone() const = 0;
     virtual SanPham *get_origin() const = 0;
 
+    virtual std::string get_name() const = 0;
+    virtual std::string get_inf() const = 0;
+    
     void set_counter(const int &);
     std::string get_id() const;
+    std::string get_type() const;
     void set_quantity(const int &);
     int get_quantity() const;
     void set_money(const std::string &, const std::string &);
