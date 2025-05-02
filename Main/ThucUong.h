@@ -1,9 +1,9 @@
 #ifndef THUCUONG_H
 #define THUCUONG_H
 
+#include "Main.h"
 #include "SanPham.h"
-#include <iostream>
-#include <string>
+
 class ThucUong : public SanPham
 {
 private:
@@ -14,7 +14,8 @@ public:
     ThucUong();
     ~ThucUong();
     ThucUong(const std::string &, const std::string &,
-             const std::string &, const int &, const float &, const float &,
+             const std::string &, const int &, const std::string &,
+             const std::string &, const float &,
              const std::string &, const std::string &);
 
     std::unique_ptr<SanPham> clone() const override;

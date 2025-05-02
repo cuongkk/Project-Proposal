@@ -1,16 +1,12 @@
 #ifndef USER_H
 #define USER_H
 
-#include "Utils.h"
-#include <vector>
-#include <string>
-#include <iostream>
-#include <memory>
+#include "Main.h"
 
 class User
 {
 protected:
-    std::string _id;
+    std::string _id_user;
     std::string _username;
     std::string _password;
     std::string _inf;
@@ -21,8 +17,11 @@ public:
     User();
     virtual ~User() = default;
     User(const std::string &, const std::string &, const std::string &);
+
     virtual std::unique_ptr<User> clone() const = 0;
     virtual User *get_origin() const = 0;
+    virtual std::string get_money() const = 0;
+    virtual void set_money(const std::string &) = 0;
 
     void set_counter(const int &);
     std::string get_id() const;
@@ -33,6 +32,10 @@ public:
     void set_inf(const std::string &);
     std::string get_inf() const;
 
+    friend std::string operator-(const std::unique_ptr<User> &, const std::string &);
+
+    friend bool operator<=(const std::unique_ptr<User> &, const long long &);
+    friend bool operator>=(const std::unique_ptr<User> &, const long long &);
     friend bool operator==(const User &, const User &);
 
     virtual void print(std::ostream &) const = 0;

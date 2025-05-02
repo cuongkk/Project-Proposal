@@ -26,7 +26,7 @@ User *Admin::get_origin() const
 }
 void Admin::print(std::ostream &os) const
 {
-    os << _id << ", ";
+    os << _id_user << ", ";
     os << _username << ", ";
     os << _password << ", ";
     os << _inf;

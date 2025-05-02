@@ -5,20 +5,21 @@ Customer::Customer() : User()
     _name = "";
     _email = "";
     _phoneNumber = "";
-    _money = "";
+    Money _money;
 }
 
 Customer::~Customer() = default;
 
 Customer::Customer(const std::string &name, const std::string &email,
                    const std::string &phoneNumber, const std::string &money,
-                   const std::string &username, const std::string &password, const std::string &inf)
+                   const std::string &type, const std::string &username,
+                   const std::string &password, const std::string &inf)
     : User(username, password, inf)
 {
     _name = name;
     _email = email;
     _phoneNumber = phoneNumber;
-    _money = money;
+    _money = Money(money, type);
 }
 
 std::unique_ptr<User> Customer::clone() const
@@ -34,9 +35,19 @@ User *Customer::get_origin() const
     return _origin;
 }
 
+std::string Customer::get_money() const
+{
+    return _money.get_money();
+}
+
+void Customer::set_money(const std::string &money)
+{
+    _money.set_money(money);
+}
+
 void Customer::print(std::ostream &os) const
 {
-    os << _id << ", ";
+    os << _id_user << ", ";
     os << _username << ", ";
     os << _password << ", ";
     os << _inf << ", ";

@@ -1,5 +1,4 @@
 #include "LinkedList.h"
-#include <iostream>
 
 template <typename T>
 int LinkedList<T>::get_size() const
@@ -8,9 +7,9 @@ int LinkedList<T>::get_size() const
 }
 
 template <typename T>
-float LinkedList<T>::get_cost() const
+std::string LinkedList<T>::get_money() const
 {
-    float totalCost = 0;
+    std::string totalCost = "";
     for (const auto &item : _list)
     {
         totalCost = totalCost + *item;
@@ -18,6 +17,11 @@ float LinkedList<T>::get_cost() const
     return totalCost;
 }
 
+template <typename T>
+void LinkedList<T>::push_back(std::unique_ptr<T> sp)
+{
+    _list.push_back(std::move(sp));
+}
 template <typename T>
 void LinkedList<T>::add_Head(std::unique_ptr<T> sp)
 {
@@ -61,7 +65,7 @@ void LinkedList<T>::add_Tail_to_Cart(std::unique_ptr<T> sp)
 }
 
 template <typename T>
-const std::list<std::unique_ptr<T>> &LinkedList<T>::get_SanPham() const
+const std::list<std::unique_ptr<T>> &LinkedList<T>::get_Item() const
 {
     return _list;
 }
@@ -114,7 +118,7 @@ LinkedList<T> &LinkedList<T>::operator=(const LinkedList<T> &other)
 template <typename T>
 std::ostream &operator<<(std::ostream &os, const LinkedList<T> &ll)
 {
-    for (const auto &item : ll.get_SanPham())
+    for (const auto &item : ll.get_Item())
     {
         os << *item;
         os << "\n";

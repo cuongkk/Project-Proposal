@@ -8,14 +8,28 @@ Cart::~Cart()
 {
 }
 
+Cart::Cart(const std::string &id_Customer)
+{
+    _id_Customer = id_Customer;
+}
 int Cart::get_size() const
 {
-    return _sanpham.get_size();
+    return _list.get_size();
 }
 
-float Cart::get_cost() const
+std::string Cart::get_money() const
 {
-    return _sanpham.get_cost();
+    return _list.get_money();
+}
+
+std::unique_ptr<Cart> Cart::clone() const
+{
+    auto new_cart = std::make_unique<Cart>();
+    for (const auto &item : this->_list.get_Item())
+    {
+        new_cart->_list.push_back(item->clone());
+    }
+    return new_cart;
 }
 
 bool Cart::add(KhoHang &khoHang, std::unique_ptr<SanPham> sp)
@@ -23,8 +37,8 @@ bool Cart::add(KhoHang &khoHang, std::unique_ptr<SanPham> sp)
     SanPham *spOrigin = sp->get_origin();
     if (spOrigin->get_quantity() > 0)
     {
-        khoHang.updateQuantity(*sp->get_origin(), 1);
-        _sanpham.add_Tail_to_Cart(std::move(sp));
+        khoHang.updateQuantity(*spOrigin, 1);
+        _list.add_Tail_to_Cart(std::move(sp));
         return true;
     }
     else if (spOrigin->get_quantity() == 0)
@@ -38,15 +52,15 @@ void Cart::remove(KhoHang &khoHang, std::unique_ptr<SanPham> sp)
 {
     SanPham *spOrigin = sp->get_origin();
     khoHang.updateQuantity(*spOrigin, -1);
-    _sanpham.remove_from_Cart(std::move(sp));
+    _list.remove_from_Cart(std::move(sp));
 }
 
 void Cart::operator=(const Cart &cart)
 {
-    _sanpham = cart._sanpham;
+    _list = cart._list;
 }
 std::ostream &operator<<(std::ostream &os, const Cart &cart)
 {
-    os << cart._sanpham;
+    os << cart._list;
     return os;
 }

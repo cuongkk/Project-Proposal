@@ -2,22 +2,23 @@
 #include "ThucAn.h"
 SanPham::SanPham()
 {
-    _id = "";
+    _id_sp = "";
     _type = "";
     _quantity = 0;
-    _cost = 0;
+    Money _money;
     _discount = 0;
     _manufacture_Date = "";
     _expiry_Date = "";
 }
 
-SanPham::SanPham(const std::string &type, const int &quantity, const float &cost, const float &discount,
+SanPham::SanPham(const std::string &type, const int &quantity, const std::string &money,
+                 const std::string &type_money, const float &discount,
                  const std::string &manufacture_Date, const std::string &expiry_Date)
 {
-    _id = set_id("SP", _id_counter_sp);
+    _id_sp = set_id("SP", _id_counter_sp);
     _type = type;
     _quantity = quantity;
-    _cost = cost;
+    _money = Money(money, type_money);
     _discount = discount;
     _manufacture_Date = manufacture_Date;
     _expiry_Date = expiry_Date;
@@ -30,10 +31,10 @@ void SanPham::set_counter(const int &index)
 
 std::string SanPham::get_id() const
 {
-    return _id;
+    return _id_sp;
 }
 
-void SanPham::set_quantity(int quantity)
+void SanPham::set_quantity(const int &quantity)
 {
     _quantity = quantity;
 }
@@ -43,17 +44,18 @@ int SanPham::get_quantity() const
     return _quantity;
 }
 
-void SanPham::set_cost(int cost)
+void SanPham::set_money(const std::string &money, const std::string &type_money)
 {
-    _cost = cost;
+    _money.set_money(money);
+    _money.set_type(type_money);
 }
 
-float SanPham::get_cost() const
+std::pair<std::string, std::string> SanPham::get_money() const
 {
-    return _cost;
+    return std::make_pair(_money.get_money(), _money._type);
 }
 
-void SanPham::set_discount(int discount)
+void SanPham::set_discount(const int &discount)
 {
     _discount = discount;
 }
@@ -63,36 +65,26 @@ float SanPham::get_discount() const
     return _discount;
 }
 
-float operator+(const float &a, const SanPham &b)
+std::string operator+(const long long &m1, const std::string &m2)
 {
-    return a + b.get_quantity() * b.get_cost() * (1 - b.get_discount());
-}
-std::unique_ptr<SanPham> operator+(const SanPham &a, const SanPham &b)
-{
-    auto res = std::make_unique<ThucAn>();
-    res->set_cost(a.get_quantity() * a.get_cost() * (1 - a.get_discount()) + b.get_quantity() * b.get_cost() * (1 - b.get_discount()));
-    return res;
+    long long value = m1 + std::stoll(m2);
+    return std::to_string(value);
 }
 
-std::unique_ptr<SanPham> operator+(std::unique_ptr<SanPham> a, const SanPham &b)
+std::string operator+(const std::string &a, const SanPham &b)
 {
-    auto res = std::make_unique<ThucAn>();
-    res->set_cost(a->get_quantity() * a->get_cost() * (1 - a->get_discount()) + b.get_quantity() * b.get_cost() * (1 - b.get_discount()));
-    return res;
-}
+    long long money_value = std::stoll(b._money.get_money());
 
-std::unique_ptr<SanPham> operator-(const SanPham &a, const SanPham &b)
-{
-    auto res = std::make_unique<ThucAn>();
-    res->set_cost(a.get_quantity() * a.get_cost() * (1 - a.get_discount()) - b.get_quantity() * a.get_cost() * (1 - b.get_discount()));
-    return res;
-}
-
-std::unique_ptr<SanPham> operator-(std::unique_ptr<SanPham> a, const SanPham &b)
-{
-    auto res = std::make_unique<ThucAn>();
-    res->set_cost(a->get_quantity() * a->get_cost() * (1 - a->get_discount()) - b.get_quantity() * b.get_cost() * (1 - b.get_discount()));
-    return res;
+    long long total_cost = money_value * b.get_quantity() * (1 - b.get_discount());
+    if (a == "")
+    {
+        return std::to_string(total_cost);
+    }
+    else
+    {
+        std::string total = std::stoll(a) + std::to_string(total_cost);
+        return total;
+    }
 }
 
 bool operator==(const SanPham &a, const SanPham &b)

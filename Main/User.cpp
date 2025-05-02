@@ -8,7 +8,7 @@ User::User()
 }
 User::User(const std::string &username, const std::string &password, const std::string &inf)
 {
-    _id = set_id("US", _id_counter_user);
+    _id_user = set_id("US", _id_counter_user);
     _username = username;
     _password = password;
     _inf = inf;
@@ -21,7 +21,7 @@ void User::set_counter(const int &index)
 
 std::string User::get_id() const
 {
-    return _id;
+    return _id_user;
 }
 
 void User::set_username(const std::string &username)
@@ -52,6 +52,22 @@ void User::set_inf(const std::string &inf)
 std::string User::get_inf() const
 {
     return _inf;
+}
+
+std::string operator-(const std::unique_ptr<User> &a, const std::string &b)
+{
+    long long result = std::stoll(a->get_money()) - std::stoll(b);
+    return std::to_string(result);
+}
+
+bool operator<=(const std::unique_ptr<User> &a, const long long &b)
+{
+    return std::stoll(a->get_money()) <= b;
+}
+
+bool operator>=(const std::unique_ptr<User> &a, const long long &b)
+{
+    return std::stoll(a->get_money()) >= b;
 }
 
 bool operator==(const User &a, const User &b)

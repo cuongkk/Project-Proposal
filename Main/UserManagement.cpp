@@ -1,30 +1,29 @@
 #include "UserManagement.h"
-#include <iostream>
 
-void UserManagement::add(std::unique_ptr<User> sp)
+void UserManagement::add(std::unique_ptr<User> us)
 {
-    _user.add_Tail(std::move(sp));
+    _user.add_Tail(std::move(us));
 }
 
-void UserManagement::remove(std::unique_ptr<User> sp)
+void UserManagement::remove(std::unique_ptr<User> us)
 {
-    _user.remove_from_KhoHang(std::move(sp));
+    _user.remove_from_KhoHang(std::move(us));
 }
 
 std::unique_ptr<User> UserManagement::getUser_from_id(const std::string &id)
 {
-    for (const auto &sp : _user.get_SanPham())
+    for (const auto &item : _user.get_Item())
     {
-        if (sp->get_id() == id)
+        if (item->get_id() == id)
         {
-            return sp->clone();
+            return item->clone();
         }
     }
     return nullptr;
 }
 
-std::ostream &operator<<(std::ostream &os, const UserManagement &KhoHang)
+std::ostream &operator<<(std::ostream &os, const UserManagement &userManagement)
 {
-    os << KhoHang._user;
+    os << userManagement._user;
     return os;
 }
