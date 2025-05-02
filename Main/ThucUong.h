@@ -20,6 +20,7 @@ public:
 
     std::unique_ptr<SanPham> clone() const override;
     SanPham *get_origin() const override;
+    std::string get_name() const override;
 
     void print(std::ostream &) const override;
     friend std::ostream &operator<<(std::ostream &os, const ThucUong &ThucUong);

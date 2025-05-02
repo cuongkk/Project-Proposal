@@ -8,13 +8,14 @@
                 "/usr/local/include/**",
                 "/usr/include/x86_64-linux-gnu/**",
                 "/usr/include/**",
-                "/usr/include/mysql**"
+                "/usr/include/mysql**",
+                "${workspaceFolder}/Html/Crow/**"
             ],
             "defines": [],
-            "compilerPath": "/usr/bin/gcc-9",
+            "compilerPath": "/usr/bin/g++-13",
             "cStandard": "c23",
-            "cppStandard": "c++14",
-            "intelliSenseMode": "linux-gcc-arm"
+            "cppStandard": "c++23",
+            "intelliSenseMode": "linux-gcc-x64"
         }
     ],
     "version": 4

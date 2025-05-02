@@ -33,6 +33,11 @@ SanPham *ThucAn::get_origin() const
     return _origin;
 }
 
+std::string ThucAn::get_name() const
+{
+    return _name;
+}
+
 void ThucAn::print(std::ostream &os) const
 {
     os << _name << ", ";

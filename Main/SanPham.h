@@ -27,6 +27,7 @@ public:
     virtual std::unique_ptr<SanPham> clone() const = 0;
     virtual SanPham *get_origin() const = 0;
 
+    virtual std::string get_name() const = 0;
     void set_counter(const int &);
     std::string get_id() const;
     void set_quantity(const int &);
@@ -38,12 +39,6 @@ public:
 
     friend std::string operator+(const std::string &, const std::string &);
     friend std::string operator+(const std::string &, const SanPham &);
-
-    friend std::unique_ptr<SanPham> operator+(std::unique_ptr<SanPham>, const SanPham &);
-    friend std::unique_ptr<SanPham> operator+(const SanPham &, const SanPham &);
-
-    friend std::unique_ptr<SanPham> operator-(std::unique_ptr<SanPham>, const SanPham &ss);
-    friend std::unique_ptr<SanPham> operator-(const SanPham &, const SanPham &);
 
     friend std::string operator*(const int &, const std::string &);
     friend std::string operator*(const std::string &, const float &);
