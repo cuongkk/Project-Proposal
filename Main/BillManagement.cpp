@@ -22,6 +22,41 @@ std::unique_ptr<Bill> BillManagement::getBill_from_id(const std::string &id)
     return nullptr;
 }
 
+bool BillManagement::containsKeyword(const std::string &keyword, const int& option, const Bill& bill) const 
+{
+    std::regex pattern("^" + keyword + "$", std::regex_constants::icase);// không phân biệt hoa thường
+    switch (option)
+    {
+        case 1: //Tìm kiếm theo mã bill
+            return std::regex_match(bill.get_id(), pattern);
+        case 2: //Tìm kiếm theo mã khách hàng
+            return std::regex_match(bill.get_id_Customer(), pattern);
+        case 3: //Tìm kiếm theo tổng tiền
+            return std::regex_match(bill.get_totalCost(), pattern);
+        default:
+            return false; // Invalid option
+    }
+}
+
+std::vector<std::string> BillManagement::search(const std::string &keyword, const int& optionSearch) 
+{   
+    bool found = false;
+    std::vector<std::string> result;
+    for (const auto &bill : _bill.get_Item())
+    {
+        if (containsKeyword(keyword, optionSearch, *bill))
+        {
+            found = true;
+            result.push_back(bill->get_id());
+        }
+    }
+    if (!found)
+    {
+        std::cout << "Không tìm thấy hóa đơn nào.\n";
+    }
+    return result;
+}
+
 std::ostream &operator<<(std::ostream &os, const BillManagement &billManagement)
 {
     os << billManagement._bill;

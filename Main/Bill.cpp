@@ -44,6 +44,11 @@ std::string Bill::get_id() const
     return _id_Bill;
 }
 
+std::string Bill::get_id_Customer() const
+{
+    return _id_Customer;
+}
+
 std::unique_ptr<Bill> Bill::confirmBill(UserManagement &userManagement, const std::string &id_Customer, Cart &&cart)
 {
     auto bill1 = std::unique_ptr<Bill>(new Bill());

@@ -19,12 +19,18 @@ std::vector<int> Bill::_id_counter_bill = {0};
 
 int main()
 {
+    //username, password, inf
+    //inf: admin, customer
     auto admin = std::make_unique<Admin>("admin", "admin123", "admin");
+    //name, email, phoneNumber, money, type, username, password, inf
     auto customer = std::make_unique<Customer>("Nguyen Van B", "abc@gmail.com", "0123456789", "1000000", "VND", "customer",
                                                "customet123", "customer");
+    auto customer1 = std::make_unique<Customer>("Tran Van Giau", "tvg@gmail.com", "0123455552", "2000000", "VND", "customer2",
+                                               "customet124", "customer");    
 
     userManagement.add(std::move(admin));
     userManagement.add(std::move(customer));
+    userManagement.add(std::move(customer1));
 
     std::cout << userManagement << "\n";
 
@@ -45,17 +51,49 @@ int main()
     cart.add(khoHang, khoHang.getSanPham_from_id("SP0001"));
     cart.add(khoHang, khoHang.getSanPham_from_id("SP0002"));
 
-    Bill bill;
     std::cout << cart << "\n";
 
+    Bill bill;
     std::unique_ptr<Bill> bill1 = bill.confirmBill(userManagement, "US0002", std::move(cart));
     billManagement.add(std::move(bill1));
+
+    cart.remove(khoHang, khoHang.getSanPham_from_id("SP0001"));
+    std::unique_ptr<Bill> bill2 = bill.confirmBill(userManagement, "US0002", std::move(cart));
+    billManagement.add(std::move(bill2)); 
+    
     std::cout << billManagement << "\n";
 
     std::cout << userManagement << "\n";
 
     std::string keyWord =  "";
     int optionSearch = 0;
+    // Tìm kiếm hóa đơn theo các tiêu chí sau:
+    //1: Tìm kiếm theo mã hóa đơn
+    //2: Tìm kiếm theo mã khách hàng
+    //3: Tìm kiếm theo tổng tiền
+    keyWord = "US0002";
+    optionSearch = 2;
+    std::vector<std::string> result = billManagement.search(keyWord, optionSearch);
+    std::cout << "2. Kết quả tìm kiếm: \n";
+    for(const auto &id : result){
+        std::cout << id << " || ";
+    }
+    std::cout << "\n";
+    std::cout << "\n";
+
+    // Tìm kiếm người dùng theo các tiêu chí sau:
+    //1: Tìm kiếm theo id người dùng
+    //2: Tìm kiếm theo tên người dùng
+    //3: Tìm kiếm theo loại người dùng (customer, admin))
+    keyWord = "customer2";
+    optionSearch = 2;
+    result = userManagement.search(keyWord, optionSearch);
+    std::cout << "\n2. Kết quả tìm kiếm: \n";
+    for(const auto &id : result){
+        std::cout << id << " || ";
+    }
+    std::cout << "\n";
+
     //1: Tìm kiếm theo tên, thông tin, id
     //2: Tìm kiếm sản phẩm theo loại (type)
     //3: Tìm kiếm các sản phẩm có giá thấp hơn giá nhập vào
@@ -71,11 +109,7 @@ int main()
     std::cout << "5. Tìm kiếm các sản phẩm còn hàng\n";
     std::cout << "6. Tìm kiếm các sản phẩm còn hạn sử dụng (yy-mm-dd)\n";
     std::cout << "7. Tìm kiếm các sản phẩm hết hạn sử dụng (yy-mm-dd)\n";
-    //std::cout << "Nhập lựa chọn: ";
-    //std::cin >> optionSearch;
-    //std::cin.ignore();
-    //std::cout << "Nhập từ khóa hoặc con số: ";
-    //if(optionSearch < 5) std::getline(std::cin, keyWord);
+    /*
     std::vector<std::string> result;
     keyWord = "Thức ăn";
     optionSearch = 2;
@@ -129,6 +163,6 @@ int main()
     for(const auto &id : result){
         std::cout << id << " || ";
     }
-
+    */
     return 0;
 }

@@ -66,7 +66,7 @@ bool KhoHang::containsKeyword(const std::string &keyword, const int& option, con
     switch (option)
     {
         case 1: //Tìm kiếm theo tên, thông tin, id
-            return std::regex_search(sp.get_name(), pattern) || std::regex_search(sp.get_inf(), pattern) || std::regex_search(sp.get_id(), pattern);
+            return std::regex_search(sp.get_name(), pattern) || std::regex_search(sp.get_inf(), pattern) || std::regex_match(sp.get_id(), pattern);
         case 2: //Tìm kiếm sản phẩm theo loại (type)
             return std::regex_search(sp.get_type(), pattern);
         case 3: //Tìm kiếm sản phẩm theo mức giá nhập vào trở xuống
@@ -86,7 +86,6 @@ bool KhoHang::containsKeyword(const std::string &keyword, const int& option, con
 
 std::vector<std::string> KhoHang::search(const std::string &keyword, const int& optionSearch) 
 {   
-    std::cout << "Danh sách sản phẩm tìm thấy:\n";
     bool found = false;
     std::vector<std::string> result;
     for (const auto &item : _sanpham.get_Item())

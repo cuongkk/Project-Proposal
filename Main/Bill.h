@@ -25,6 +25,7 @@ public:
 
     void set_counter(const int &);
     std::string get_id() const;
+    std::string get_id_Customer() const;
 
     std::unique_ptr<Bill> confirmBill(UserManagement &, const std::string &, Cart &&);
     std::string get_totalCost() const;
