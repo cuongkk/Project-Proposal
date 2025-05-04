@@ -70,6 +70,16 @@ float SanPham::get_discount() const
     return _discount;
 }
 
+std::string SanPham::get_manufacture_Date() const
+{
+    return _manufacture_Date;
+}
+
+std::string SanPham::get_expiry_Date() const
+{
+    return _expiry_Date;
+}
+
 std::string operator+(const long long &m1, const std::string &m2)
 {
     long long value = m1 + std::stoll(m2);

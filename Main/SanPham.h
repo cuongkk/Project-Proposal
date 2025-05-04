@@ -39,6 +39,8 @@ public:
     std::pair<std::string, std::string> get_money() const;
     void set_discount(const int &);
     float get_discount() const;
+    std::string get_manufacture_Date() const;
+    std::string get_expiry_Date() const;
 
     friend std::string operator+(const std::string &, const std::string &);
     friend std::string operator+(const std::string &, const SanPham &);

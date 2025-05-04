@@ -4,8 +4,6 @@
 #include "Main.h"
 #include "SanPham.h"
 #include "LinkedList.h"
-#include <memory>
-#include <regex>
 
 class KhoHang
 {
@@ -16,8 +14,9 @@ public:
     KhoHang() = default;
     ~KhoHang() = default;
 
+    bool isExpired(const std::string &expiryDateStr) const;
     bool containsKeyword(const std::string &keyword, const int &option, const SanPham& sp) const;
-    void search(const std::string &keyword, const int &optionSearch);
+    std::vector<std::string> search(const std::string &keyword, const int &optionSearch);
     
     void add(std::unique_ptr<SanPham>);
     void remove(std::unique_ptr<SanPham>);
