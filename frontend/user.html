@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Danh sách người dùng</title>
+</head>
+
+<body>
+    <h1>Chọn người dùng</h1>
+    <div id="content"></div>
+
+    <script>
+        fetch("https://fictional-system-pjp4xjw69x55f656x-18080.app.github.dev/api/usernames")
+            .then(res => res.json())
+            .then(users => {
+                users.forEach(user => {
+                    const btn = document.createElement("button");
+                    btn.innerText = user;
+                    btn.onclick = () => {
+                        // Chuyển hướng tới work.html với username
+                        window.location.href = `/Html/work.html?user=${user}`;
+                        // => bạn sẽ có thể xử lý đường dẫn này trong work.html
+                    };
+                    document.getElementById("content").appendChild(btn);
+                    document.getElementById("content").appendChild(document.createElement("br"));
+                });
+            });
+    </script>
+</body>
+
+</html>

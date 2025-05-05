@@ -1,0 +1,3 @@
+/workspaces/Project-Proposal/build/CMakeFiles/rebuild_cache.dir
+/workspaces/Project-Proposal/build/CMakeFiles/edit_cache.dir
+/workspaces/Project-Proposal/build/CMakeFiles/server.dir

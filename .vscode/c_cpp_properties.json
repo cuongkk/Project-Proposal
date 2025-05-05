@@ -4,12 +4,12 @@
             "name": "Linux",
             "includePath": [
                 "${workspaceFolder}/**",
-                "/usr/lib/gcc/x86_64-linux-gnu/13/include/**",
+                "${workspaceFolder}/external/crow/include",
                 "/usr/local/include/**",
                 "/usr/include/x86_64-linux-gnu/**",
                 "/usr/include/**",
-                "/usr/include/mysql**",
-                "${workspaceFolder}/Html/Crow/**"
+                "/usr/include/mysql/**",
+                "${workspaceFolder}/backend"
             ],
             "defines": [],
             "compilerPath": "/usr/bin/g++-13",

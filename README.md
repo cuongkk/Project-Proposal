@@ -74,11 +74,35 @@ Hệ thống được thiết kế dựa trên các đặc điểm của lập t
 
 ## 🛠️ Công nghệ sử dụng
 
-- **C++** – Xử lý logic nghiệp vụ và kết nối cơ sở dữ liệu
-- **MySQL** – Lưu trữ thông tin người dùng, món ăn, đơn hàng,...
-- **HTML/CSS + Java (Servlet hoặc JSP)** – Giao diện người dùng
-- (Tùy chọn) **Apache / Tomcat** – Chạy phần frontend động
+Hệ thống quản lý căn tin được xây dựng với các công nghệ sau:
 
----
+- **Ngôn ngữ lập trình C++**: Dùng để xử lý logic nghiệp vụ, quản lý dữ liệu và kết nối đến cơ sở dữ liệu.
+- **MySQL**: Được sử dụng làm hệ quản trị cơ sở dữ liệu để lưu trữ thông tin về người dùng, món ăn, đơn hàng,...
+- **HTML/CSS với JavaScript**: Dùng để xây dựng giao diện người dùng, hiển thị thông tin và tương tác với hệ thống.
+- **RESTful API**: Được sử dụng để giao tiếp giữa frontend (giao diện người dùng) và backend (xử lý logic nghiệp vụ).
+- **Crow**: Một web framework cho C++ được sử dụng để xây dựng các API một cách hiệu quả và đơn giản.
 
+## ✅ Đảm bảo chất lượng phần mềm
+
+Hệ thống được xây dựng với các biện pháp đảm bảo chất lượng nhằm tăng độ tin cậy, dễ bảo trì và mở rộng trong tương lai:
+
+- **Kiểm thử chức năng (Function Testing)**  
+  Kiểm thử thủ công các chức năng chính như đăng nhập, đặt món, tạo hóa đơn, phân quyền để đảm bảo đúng yêu cầu đề ra.
+
+- **Kiểm thử giao diện người dùng (UI Testing)**  
+  Đảm bảo giao diện hiển thị đúng, dễ sử dụng và thân thiện với người dùng.
+
+- **Quản lý mã nguồn rõ ràng**  
+  Các chức năng được chia theo từng lớp/layer (`User`, `SanPham`, `Bill`,...) giúp mã nguồn dễ đọc, dễ bảo trì và phát triển.
+
+- **Tuân thủ nguyên tắc SOLID trong thiết kế hướng đối tượng (OOP)**  
+  Giúp hệ thống dễ mở rộng, dễ tái sử dụng và giảm phụ thuộc giữa các thành phần.
+
+- **Xử lý lỗi và thông báo rõ ràng**  
+  Cung cấp thông báo phù hợp khi xảy ra lỗi như: không đủ số lượng món, đăng nhập sai, món ăn không tồn tại,...
+
+
+## 📚 Nguồn tham khảo
+
+- [Canteen Management System in C with MySQL – CodeWithC](https://www.codewithc.com/c-program-canteen-management-system-c-mysql/)
 

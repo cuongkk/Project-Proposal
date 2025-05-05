@@ -1,0 +1,42 @@
+#ifndef ROUTE_H
+#define ROUTE_H
+
+#include "Main_all.h"
+#include <crow.h>
+#include <crow/json.h>
+#include <string>
+#include <unordered_map>
+
+struct CORS
+{
+    struct context
+    {
+    };
+
+    void before_handle(crow::request &req, crow::response &res, context &)
+    {
+        if (req.method == crow::HTTPMethod::OPTIONS)
+        {
+            res.code = 204; // No content
+            res.end();
+        }
+    }
+
+    void after_handle(crow::request &, crow::response &res, context &)
+    {
+        res.add_header("Access-Control-Allow-Origin", "*");
+        res.add_header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
+        res.add_header("Access-Control-Allow-Headers", "Content-Type");
+    }
+};
+
+extern std::vector<std::string> username;
+extern std::unordered_map<std::string, std::string> UserList;
+extern std::unordered_map<std::string, std::string> workUser;
+
+// void add_cors_headers(crow::response &res);
+void setup_username_routes(crow::App<CORS> &);
+void setup_user_routes(crow::App<CORS> &);
+void setup_signup_routes(crow::App<CORS> &);
+
+#endif

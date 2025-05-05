@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Chức năng người dùng</title>
+</head>
+
+<body>
+    <h1 id="title">Chức năng của người dùng</h1>
+    <div id="content"></div>
+
+    <script>
+        const params = new URLSearchParams(window.location.search);
+        const username = params.get("user");
+
+        if (!username) {
+            document.getElementById("title").innerText = "Không tìm thấy người dùng.";
+        } else {
+            document.getElementById("title").innerText = "Chức năng của " + username;
+
+            fetch(`https://fictional-system-pjp4xjw69x55f656x-18080.app.github.dev/api/${username}`)
+                .then(res => res.json())
+                .then(data => {
+                    if (data.functions) {
+                        data.functions.forEach(func => {
+                            const btn = document.createElement("button");
+                            btn.innerText = func;
+                            btn.onclick = () => {
+                                alert(`${username} chọn chức năng: ${func}`);
+                                // Có thể mở rộng để chuyển hướng sâu hơn nếu muốn
+                            };
+                            document.getElementById("content").appendChild(btn);
+                            document.getElementById("content").appendChild(document.createElement("br"));
+                        });
+                    }
+                });
+        }
+    </script>
+</body>
+
+</html>

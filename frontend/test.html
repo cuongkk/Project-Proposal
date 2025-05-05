@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Manage Users</title>
+</head>
+
+<body>
+    <h2>Tạo user</h2>
+    <input id="username" placeholder="Username">
+    <input id="role" placeholder="Role">
+    <button onclick="createUser()">Tạo</button>
+
+    <h2>Cập nhật role</h2>
+    <input id="usernameUpdate" placeholder="Username">
+    <input id="newRole" placeholder="New Role">
+    <button onclick="updateUser()">Cập nhật</button>
+
+    <h2>Xoá user</h2>
+    <input id="usernameDelete" placeholder="Username">
+    <button onclick="deleteUser()">Xoá</button>
+
+    <script>
+        const API = "https://fictional-system-pjp4xjw69x55f656x-18080.app.github.dev/api/user";
+
+        function createUser() {
+            const username = document.getElementById("username").value;
+            const role = document.getElementById("role").value;
+
+            fetch(API, {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ username, role })
+            }).then(res => res.text()).then(alert);
+        }
+
+        function updateUser() {
+            const username = document.getElementById("usernameUpdate").value;
+            const role = document.getElementById("newRole").value;
+
+            fetch(`${API}/${username}`, {
+                method: "PUT",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ role })
+            }).then(res => res.text()).then(alert);
+        }
+
+        function deleteUser() {
+            const username = document.getElementById("usernameDelete").value;
+
+            fetch(`${API}/${username}`, {
+                method: "DELETE"
+            }).then(res => res.text()).then(alert);
+        }
+    </script>
+</body>
+
+</html>
