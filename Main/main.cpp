@@ -19,6 +19,7 @@ std::vector<int> Bill::_id_counter_bill = {0};
 
 int main()
 {
+    //Ham Main hien tai chu yeu de test cac chuc nang cua chuong trinh
     //username, password, inf
     //inf: admin, customer
     auto admin = std::make_unique<Admin>("admin", "admin123", "admin");
@@ -26,12 +27,16 @@ int main()
     auto customer = std::make_unique<Customer>("Nguyen Van B", "abc@gmail.com", "0123456789", "1000000", "VND", "customer",
                                                "customet123", "customer");
     auto customer1 = std::make_unique<Customer>("Tran Van Giau", "tvg@gmail.com", "0123455552", "2000000", "VND", "customer2",
-                                               "customet124", "customer");    
+                                               "customet124", "customer"); 
+    auto customer2 = std::make_unique<Customer>("Nguyen Thi Anh", "nta@gmail.com", "0123455593", "2500000", "VND", "customer3",
+                                               "customet1255", "customer");   
 
     userManagement.add(std::move(admin));
     userManagement.add(std::move(customer));
     userManagement.add(std::move(customer1));
+    userManagement.add(std::move(customer2));
 
+    std::cout << "Danh sách người dùng: \n";
     std::cout << userManagement << "\n";
 
     auto thucAn = std::make_unique<ThucAn>("Bánh mì", "Bánh mì thịt", "Thức ăn", 100, "5000", "VND", 0.1, "2025-04-01", "2025-09-10");
@@ -51,19 +56,19 @@ int main()
     cart.add(khoHang, khoHang.getSanPham_from_id("SP0001"));
     cart.add(khoHang, khoHang.getSanPham_from_id("SP0002"));
 
+    std::cout << "Giỏ hàng: \n";
     std::cout << cart << "\n";
 
     Bill bill;
     std::unique_ptr<Bill> bill1 = bill.confirmBill(userManagement, "US0002", std::move(cart));
-    billManagement.add(std::move(bill1));
+    billManagement.add(std::move(bill1)); //Hóa đơn cho giỏ hàng đầu tiên
 
-    cart.remove(khoHang, khoHang.getSanPham_from_id("SP0001"));
+    cart.remove(khoHang, khoHang.getSanPham_from_id("SP0001")); //Xóa sản phẩm khỏi giỏ hàng
     std::unique_ptr<Bill> bill2 = bill.confirmBill(userManagement, "US0002", std::move(cart));
-    billManagement.add(std::move(bill2)); 
+    billManagement.add(std::move(bill2)); //Hóa đơn cho giỏ hàng thứ hai
     
+    std::cout << "Danh sách hóa đơn: \n";
     std::cout << billManagement << "\n";
-
-    std::cout << userManagement << "\n";
 
     std::string keyWord =  "";
     int optionSearch = 0;
@@ -79,16 +84,32 @@ int main()
         std::cout << id << " || ";
     }
     std::cout << "\n";
-    std::cout << "\n";
 
     // Tìm kiếm người dùng theo các tiêu chí sau:
     //1: Tìm kiếm theo id người dùng
     //2: Tìm kiếm theo tên người dùng
     //3: Tìm kiếm theo loại người dùng (customer, admin))
+
+    keyWord = "US0001";
+    optionSearch = 1;
+    result = userManagement.search(keyWord, optionSearch);
+    std::cout << "\n1. Kết quả tìm kiếm: \n";
+    for(const auto &id : result){
+        std::cout << id << " || ";
+    }
+
     keyWord = "customer2";
     optionSearch = 2;
     result = userManagement.search(keyWord, optionSearch);
     std::cout << "\n2. Kết quả tìm kiếm: \n";
+    for(const auto &id : result){
+        std::cout << id << " || ";
+    }
+
+    keyWord = "customer";
+    optionSearch = 3;
+    result = userManagement.search(keyWord, optionSearch);
+    std::cout << "\n3. Kết quả tìm kiếm: \n";
     for(const auto &id : result){
         std::cout << id << " || ";
     }
@@ -109,16 +130,6 @@ int main()
     std::cout << "5. Tìm kiếm các sản phẩm còn hàng\n";
     std::cout << "6. Tìm kiếm các sản phẩm còn hạn sử dụng (yy-mm-dd)\n";
     std::cout << "7. Tìm kiếm các sản phẩm hết hạn sử dụng (yy-mm-dd)\n";
-    /*
-    std::vector<std::string> result;
-    keyWord = "Thức ăn";
-    optionSearch = 2;
-    result = khoHang.search(keyWord, optionSearch);
-    std::cout << "2. Kết quả tìm kiếm: \n";
-    for(const auto &id : result){
-        std::cout << id << " || ";
-    }
-    std::cout << "\n";
 
     keyWord = "Trà sữa";
     optionSearch = 1;
@@ -163,6 +174,6 @@ int main()
     for(const auto &id : result){
         std::cout << id << " || ";
     }
-    */
+    
     return 0;
 }
