@@ -17,6 +17,7 @@ public:
     void add(std::unique_ptr<Product>);
     void remove(std::unique_ptr<Product>);
     void updateQuantity(const Product &, const int &);
+    const LinkedList<Product> &getProduct() const;
     std::unique_ptr<Product> getProduct_from_id(const std::string &);
     friend std::ostream &operator<<(std::ostream &, const KhoHang &);
 

@@ -51,6 +51,14 @@ int DateTime::get_year() const
     return _year;
 }
 
+std::string DateTime::get_date()
+{
+    std::ostringstream oss;
+    oss << std::setw(2) << std::setfill('0') << _day << "/"
+        << std::setw(2) << std::setfill('0') << _month << "/"
+        << _year;
+    return oss.str();
+}
 void DateTime::operator=(const DateTime &dt)
 {
     _day = dt.get_day();

@@ -35,7 +35,7 @@ public:
     void set_quantity(const int &);
     int get_quantity() const;
     void set_money(const std::string &, const std::string &);
-    std::pair<std::string, std::string> get_money() const;
+    std::string get_money() const;
     void set_discount(const int &);
     float get_discount() const;
     DateTime get_manufacture_Date() const;

@@ -42,7 +42,7 @@ std::string set_id(const std::string &prefix, std::vector<int> &_id_counter)
     return id;
 }
 
-bool findContainsx(const std::string &text, const std::string &pattern)
+bool findContains(const std::string &text, const std::string &pattern)
 {
     std::regex regex(pattern);
     return std::regex_search(text, regex);

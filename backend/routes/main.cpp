@@ -10,6 +10,7 @@ int main()
     setup_login_routes(app);
     setup_inf_user_routes(app);
     setup_add_product_routes(app);
+    setup_show_product_routes(app);
 
     // GET
     CROW_ROUTE(app, "/submit").methods(crow::HTTPMethod::GET)([]()

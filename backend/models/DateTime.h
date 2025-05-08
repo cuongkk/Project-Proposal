@@ -5,6 +5,7 @@
 class DateTime
 {
 private:
+    std::string _date;
     int _day;
     int _month;
     int _year;
@@ -23,6 +24,8 @@ public:
     int get_month() const;
     void set_year(int year);
     int get_year() const;
+
+    std::string get_date();
 
     void operator=(const DateTime &);
     friend bool operator==(const DateTime &, const DateTime &);

@@ -13,6 +13,10 @@ public:
     LinkedList() = default;
     ~LinkedList() = default;
 
+    auto begin();
+    auto end();
+    auto begin() const;
+    auto end() const;
     int get_size() const;
     std::string get_money() const;
 

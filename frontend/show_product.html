@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Danh sách sản phẩm</title>
+    <style>
+        table {
+            width: 90%;
+            border-collapse: collapse;
+            margin: 20px auto;
+        }
+
+        th,
+        td {
+            border: 1px solid #ccc;
+            padding: 12px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        p {
+            margin: 0;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h2 style="text-align:center;">Danh sách sản phẩm</h2>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Tên sản phẩm</th>
+                <th>Thông tin</th>
+                <th>Số lượng</th>
+                <th>Giá</th>
+                <th>Giảm giá</th>
+                <th>Ngày sản xuất</th>
+                <th>Ngày hết hạn</th>
+
+            </tr>
+        </thead>
+        <tbody id="product-list">
+            <!-- Hàng sản phẩm sẽ được thêm ở đây bằng JavaScript -->
+        </tbody>
+    </table>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', async () => {
+            const _params = new URLSearchParams(window.location.search);
+            const _id_user = _params.get('msg');
+
+            if (!_id_user) {
+                console.error("Không có 'msg' trên URL");
+                return;
+            }
+
+            try {
+                const response = await fetch('https://fictional-system-pjp4xjw69x55f656x-18080.app.github.dev/show_product', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        id_user: _id_user
+                    })
+                });
+
+                if (!response.ok) {
+                    throw new Error(`Lỗi HTTP: ${response.status}`);
+                }
+
+                const result = await response.json();
+                const products = result.products || [];
+                const tbody = document.getElementById('product-list');
+
+                if (products.length === 0) {
+                    tbody.innerHTML = `<tr><td colspan="7">Không có sản phẩm nào</td></tr>`;
+                    return;
+                }
+
+                products.forEach((product, index) => {
+                    const row = document.createElement('tr');
+                    row.innerHTML = `
+                        <td><p>${product.name}</p></td>
+                        <td><p>${product.inf}</p></td>
+                        <td><p>${product.quantity}</p></td>
+                        <td><p>${product.price}</p></td>
+                        <td><p>${product.discount}</p></td>
+                        <td><p>${product.manufacture_Date}</p></td>
+                        <td><p>${product.expiry_Date}</p></td>
+                    `;
+                    tbody.appendChild(row);
+                });
+
+            } catch (error) {
+                console.error('Lỗi khi gọi API:', error);
+                const tbody = document.getElementById('product-list');
+                tbody.innerHTML = `<tr><td colspan="7">Lỗi khi tải sản phẩm</td></tr>`;
+            }
+        });
+    </script>
+
+</body>
+
+</html>

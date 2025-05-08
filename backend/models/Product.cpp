@@ -21,7 +21,6 @@ Product::Product(const int &quantity, const std::string &money,
     _manufacture_Date = manufacture_Date;
     _expiry_Date = expiry_Date;
     _origin = this;
-
 }
 
 void Product::set_counter(const int &index)
@@ -50,9 +49,9 @@ void Product::set_money(const std::string &money, const std::string &type_money)
     _money.set_type(type_money);
 }
 
-std::pair<std::string, std::string> Product::get_money() const
+std::string Product::get_money() const
 {
-    return std::make_pair(_money.get_value(), _money._type);
+    return _money.get_value() + " " + _money._type;
 }
 
 void Product::set_discount(const int &discount)

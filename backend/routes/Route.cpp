@@ -215,8 +215,7 @@ void setup_add_product_routes(crow::App<CORS> &app)
         res["message"] = "Vui lòng nhập thông tin sản phẩm";
         return crow::response{res};
     }
-    else if ((findContains(_inf, "thức ăn") != std::string::npos && findContains(_inf, "đồ uống") != std::string::npos)
-    ||(findContains(_inf, "thức ăn") == std::string::npos && findContains(_inf, "đồ uống") == std::string::npos))
+    else if (!(findContains(_inf, "thức ăn") != std::string::npos || findContains(_inf, "đồ uống") != std::string::npos))
     {
         res["message"] = "Thông tin sản phẩm không hợp lệ";
         return crow::response{res};
@@ -241,11 +240,7 @@ void setup_add_product_routes(crow::App<CORS> &app)
         res["message"] = "Giá tiền không hợp lệ";
         return crow::response{res};
     }
-    else if (_discount == "")
-    {
-        res["message"] = "Vui lòng nhập phần trăm giảm giá";
-        return crow::response{res};
-    }
+
     else if (std::stof(_discount) < 0 || std::stof(_discount) > 100 || !is_positive_number(_discount))
     {
         res["message"] = "Phần trăm giảm giá không hợp lệ";
@@ -279,14 +274,14 @@ void setup_add_product_routes(crow::App<CORS> &app)
         return crow::response{res};
     }
 
-    if (findContainsx(_inf, "thức ăn"))
+    if (findContains(_inf, "thức ăn"))
     {
         auto food = std::make_unique<Food>(_name, _inf, std::stoi(_quantity), _price, std::stof(_discount), std::move(manufacture_Date), std::move(expiry_Date));
         khoHang.add(std::move(food));
         res["message"] = "Thêm sản phẩm thành công";
         return crow::response{res};
     }
-    else if (findContainsx(_inf, "đồ uống"))
+    else if (findContains(_inf, "đồ uống"))
     {
         auto drink = std::make_unique<Drink>(_name, _inf, std::stoi(_quantity), _price, std::stof(_discount), std::move(manufacture_Date), std::move(expiry_Date));
         khoHang.add(std::move(drink));
@@ -295,4 +290,47 @@ void setup_add_product_routes(crow::App<CORS> &app)
     }
     
     return crow::response{res}; });
+}
+
+void setup_show_product_routes(crow::App<CORS> &app)
+{
+    CROW_ROUTE(app, "/show_product").methods(crow::HTTPMethod::POST)([](const crow::request &req)
+                                                                     {
+        auto body = crow::json::load(req.body);
+        if (!body || !body.has("id_user"))
+            return crow::response(400, "Invalid request: missing 'msg'");
+
+        std::string id_user = body["id_user"].s();
+        auto userPtr = userManagement.getUser_from_id(id_user);
+        if (!userPtr)
+            return crow::response(404, "User not found");
+
+        crow::json::wvalue res;
+        int i = 0;
+
+        auto BanhMi = std::make_unique<Food>("Bánh mì", "Thức ăn", 10, "20000", 0, DateTime(2023, 10, 1), DateTime(2024, 10, 1));
+        khoHang.add(std::move(BanhMi));
+        if (khoHang.getProduct().get_size() == 0)
+        {
+            res["message"] = "Kho hàng trống";
+            return crow::response{res};
+        }
+        else
+        {
+            const auto &products = khoHang.getProduct(); // lấy tham chiếu tránh copy
+            for (auto it = products.begin(); it != products.end(); ++it)
+            {
+                const auto &product = *it;
+                res["products"][i]["name"] = product->get_name();
+                res["products"][i]["inf"] = product->get_inf();
+                res["products"][i]["quantity"] = product->get_quantity();
+                res["products"][i]["price"] = product->get_money();
+                res["products"][i]["discount"] = product->get_discount();
+                res["products"][i]["manufacture_Date"] = product->get_manufacture_Date().get_date();
+                res["products"][i]["expiry_Date"] = product->get_expiry_Date().get_date(); 
+                i++;
+            }
+        }
+
+        return crow::response{res}; });
 }

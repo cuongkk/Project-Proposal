@@ -26,6 +26,10 @@ void KhoHang::updateQuantity(const Product &sp, const int &quantity)
     }
 }
 
+const LinkedList<Product> &KhoHang::getProduct() const
+{
+    return _Product;
+}
 std::unique_ptr<Product> KhoHang::getProduct_from_id(const std::string &id)
 {
     for (const auto &sp : _Product.get_Item())
@@ -70,9 +74,9 @@ bool KhoHang::containsKeyword(const std::string &keyword, const int &option, con
     case 1: // Tìm kiếm theo tên, thông tin, id
         return std::regex_search(sp.get_name(), pattern) || std::regex_search(sp.get_inf(), pattern) || std::regex_match(sp.get_id(), pattern);
     case 2: // Tìm kiếm sản phẩm theo mức giá nhập vào trở xuống
-        return (std::stof(sp.get_money().first) <= std::stof(keyword));
+        return (std::stof(sp.get_money()) <= std::stof(keyword));
     case 3: // Tìm kiếm sản phẩm theo mức giá nhập vào trở lên
-        return (std::stof(sp.get_money().first) >= std::stof(keyword));
+        return (std::stof(sp.get_money()) >= std::stof(keyword));
     case 4: // Tìm kiếm sản phẩm còn hàng
         return (sp.get_quantity() > 0);
     // case 5: // Tìm kiếm sản phẩm còn hạn sử dụng

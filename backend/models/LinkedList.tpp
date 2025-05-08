@@ -1,6 +1,30 @@
 #include "LinkedList.h"
 
 template <typename T>
+auto LinkedList<T>::begin()
+{
+    return _list.begin();
+}
+
+template <typename T>
+auto LinkedList<T>::end() const
+{
+    return _list.end();
+}
+
+template <typename T>
+auto LinkedList<T>::begin() const
+{
+    return _list.begin();
+}
+
+template <typename T>
+auto LinkedList<T>::end()
+{
+    return _list.end();
+}
+
+template <typename T>
 int LinkedList<T>::get_size() const
 {
     return _list.size();
