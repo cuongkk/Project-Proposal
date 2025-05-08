@@ -32,9 +32,9 @@ std::unique_ptr<Cart> Cart::clone() const
     return new_cart;
 }
 
-bool Cart::add(KhoHang &khoHang, std::unique_ptr<SanPham> sp)
+bool Cart::add(KhoHang &khoHang, std::unique_ptr<Product> sp)
 {
-    SanPham *spOrigin = sp->get_origin();
+    Product *spOrigin = sp->get_origin();
     if (spOrigin->get_quantity() > 0)
     {
         khoHang.updateQuantity(*spOrigin, 1);
@@ -48,9 +48,9 @@ bool Cart::add(KhoHang &khoHang, std::unique_ptr<SanPham> sp)
     return true;
 }
 
-void Cart::remove(KhoHang &khoHang, std::unique_ptr<SanPham> sp)
+void Cart::remove(KhoHang &khoHang, std::unique_ptr<Product> sp)
 {
-    SanPham *spOrigin = sp->get_origin();
+    Product *spOrigin = sp->get_origin();
     khoHang.updateQuantity(*spOrigin, -1);
     _list.remove_from_Cart(std::move(sp));
 }

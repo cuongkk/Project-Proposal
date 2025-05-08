@@ -10,21 +10,20 @@ Customer::Customer() : User()
 
 Customer::~Customer() = default;
 
-Customer::Customer(const std::string &username,
-                   const std::string &password, const std::string &name) : User(username, password, name)
+Customer::Customer(const std::string &username, const std::string &password, const std::string &name)
+    : User(username, password, name)
 
 {
 }
-Customer::Customer(const std::string &fullname, const std::string &email,
-                   const std::string &phoneNumber, const std::string &money,
-                   const std::string &type, const std::string &username,
-                   const std::string &password, const std::string &name)
+Customer::Customer(const std::string &username, const std::string &password, const std::string &name,
+                   const std::string &fullname, const std::string &email,
+                   const std::string &phoneNumber, const std::string &money)
     : User(username, password, name)
 {
     _fullname = fullname;
     _email = email;
     _phoneNumber = phoneNumber;
-    _money = Money(money, type);
+    _money = Money(money);
 }
 
 std::unique_ptr<User> Customer::clone() const
@@ -40,14 +39,44 @@ User *Customer::get_origin() const
     return _origin;
 }
 
-std::string Customer::get_money() const
+void Customer::set_fullname(const std::string &fullname)
 {
-    return _money.get_money();
+    _fullname = fullname;
+}
+
+std::string Customer::get_fullname() const
+{
+    return _fullname;
+}
+
+void Customer::set_email(const std::string &email)
+{
+    _email = email;
+}
+
+std::string Customer::get_email() const
+{
+    return _email;
+}
+
+void Customer::set_phoneNumber(const std::string &phoneNumber)
+{
+    _phoneNumber = phoneNumber;
+}
+
+std::string Customer::get_phoneNumber() const
+{
+    return _phoneNumber;
 }
 
 void Customer::set_money(const std::string &money)
 {
-    _money.set_money(money);
+    _money.set_value(money);
+}
+
+std::string Customer::get_money() const
+{
+    return _money.get_value();
 }
 
 void Customer::print(std::ostream &os) const

@@ -35,14 +35,14 @@ bool UserManagement::containsKeyword(const std::string &keyword, const int &opti
     std::regex pattern("^" + keyword + "$", std::regex_constants::icase); // không phân biệt hoa thường
     switch (option)
     {
-    case 1: // Tìm kiếm theo id người dùng
+    case 1:
         return std::regex_match(us.get_id(), pattern);
-    case 2: // Tìm kiếm theo tên người dùng
+    case 2:
         return std::regex_match(us.get_username(), pattern);
-    case 3: // Tìm kiếm theo loại người dùng (Khách hàng, Nhân viên)
+    case 3:
         return std::regex_match(us.get_name(), pattern);
     default:
-        return false; // Invalid option
+        return false;
     }
 }
 

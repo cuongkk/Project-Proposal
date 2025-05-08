@@ -76,7 +76,23 @@
         "shared_mutex": "cpp",
         "typeindex": "cpp"
     },
-    "liveServer.settings.port": 5502,
+    "liveServer.settings.port": 5503,
     "cmake.sourceDirectory": "/workspaces/Project-Proposal/Html",
-    "cmake.ignoreCMakeListsMissing": true
+    "cmake.ignoreCMakeListsMissing": true,
+    "editor.quickSuggestions": {
+        "other": true,
+        "comments": true,
+        "strings": true
+    },
+    "editor.suggestOnTriggerCharacters": true,
+    "editor.suggest.showWords": true,
+    "editor.acceptSuggestionOnEnter": "smart",
+    "editor.suggestSelection": "first",
+    "github.copilot.enable": {
+        "*": true,
+        "plaintext": false,
+        "markdown": false,
+        "scminput": false
+    },
+    "C_Cpp.errorSquiggles": "disabled",
 }

@@ -123,518 +123,491 @@ server/fast:
 	$(MAKE) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/build
 .PHONY : server/fast
 
-Main/main.o: Main/main.cpp.o
+backend/models/Admin.o: backend/models/Admin.cpp.o
 
-.PHONY : Main/main.o
-
-# target to build an object file
-Main/main.cpp.o:
-	$(MAKE) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/Main/main.cpp.o
-.PHONY : Main/main.cpp.o
-
-Main/main.i: Main/main.cpp.i
-
-.PHONY : Main/main.i
-
-# target to preprocess a source file
-Main/main.cpp.i:
-	$(MAKE) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/Main/main.cpp.i
-.PHONY : Main/main.cpp.i
-
-Main/main.s: Main/main.cpp.s
-
-.PHONY : Main/main.s
-
-# target to generate assembly for a file
-Main/main.cpp.s:
-	$(MAKE) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/Main/main.cpp.s
-.PHONY : Main/main.cpp.s
-
-Main/models/Admin.o: Main/models/Admin.cpp.o
-
-.PHONY : Main/models/Admin.o
+.PHONY : backend/models/Admin.o
 
 # target to build an object file
-Main/models/Admin.cpp.o:
-	$(MAKE) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/Main/models/Admin.cpp.o
-.PHONY : Main/models/Admin.cpp.o
+backend/models/Admin.cpp.o:
+	$(MAKE) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/backend/models/Admin.cpp.o
+.PHONY : backend/models/Admin.cpp.o
 
-Main/models/Admin.i: Main/models/Admin.cpp.i
+backend/models/Admin.i: backend/models/Admin.cpp.i
 
-.PHONY : Main/models/Admin.i
+.PHONY : backend/models/Admin.i
 
 # target to preprocess a source file
-Main/models/Admin.cpp.i:
-	$(MAKE) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/Main/models/Admin.cpp.i
-.PHONY : Main/models/Admin.cpp.i
+backend/models/Admin.cpp.i:
+	$(MAKE) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/backend/models/Admin.cpp.i
+.PHONY : backend/models/Admin.cpp.i
 
-Main/models/Admin.s: Main/models/Admin.cpp.s
+backend/models/Admin.s: backend/models/Admin.cpp.s
 
-.PHONY : Main/models/Admin.s
+.PHONY : backend/models/Admin.s
 
 # target to generate assembly for a file
-Main/models/Admin.cpp.s:
-	$(MAKE) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/Main/models/Admin.cpp.s
-.PHONY : Main/models/Admin.cpp.s
+backend/models/Admin.cpp.s:
+	$(MAKE) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/backend/models/Admin.cpp.s
+.PHONY : backend/models/Admin.cpp.s
 
-Main/models/Bill.o: Main/models/Bill.cpp.o
+backend/models/Bill.o: backend/models/Bill.cpp.o
 
-.PHONY : Main/models/Bill.o
+.PHONY : backend/models/Bill.o
 
 # target to build an object file
-Main/models/Bill.cpp.o:
-	$(MAKE) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/Main/models/Bill.cpp.o
-.PHONY : Main/models/Bill.cpp.o
+backend/models/Bill.cpp.o:
+	$(MAKE) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/backend/models/Bill.cpp.o
+.PHONY : backend/models/Bill.cpp.o
 
-Main/models/Bill.i: Main/models/Bill.cpp.i
+backend/models/Bill.i: backend/models/Bill.cpp.i
 
-.PHONY : Main/models/Bill.i
+.PHONY : backend/models/Bill.i
 
 # target to preprocess a source file
-Main/models/Bill.cpp.i:
-	$(MAKE) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/Main/models/Bill.cpp.i
-.PHONY : Main/models/Bill.cpp.i
+backend/models/Bill.cpp.i:
+	$(MAKE) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/backend/models/Bill.cpp.i
+.PHONY : backend/models/Bill.cpp.i
 
-Main/models/Bill.s: Main/models/Bill.cpp.s
+backend/models/Bill.s: backend/models/Bill.cpp.s
 
-.PHONY : Main/models/Bill.s
+.PHONY : backend/models/Bill.s
 
 # target to generate assembly for a file
-Main/models/Bill.cpp.s:
-	$(MAKE) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/Main/models/Bill.cpp.s
-.PHONY : Main/models/Bill.cpp.s
+backend/models/Bill.cpp.s:
+	$(MAKE) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/backend/models/Bill.cpp.s
+.PHONY : backend/models/Bill.cpp.s
 
-Main/models/BillManagement.o: Main/models/BillManagement.cpp.o
+backend/models/BillManagement.o: backend/models/BillManagement.cpp.o
 
-.PHONY : Main/models/BillManagement.o
+.PHONY : backend/models/BillManagement.o
 
 # target to build an object file
-Main/models/BillManagement.cpp.o:
-	$(MAKE) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/Main/models/BillManagement.cpp.o
-.PHONY : Main/models/BillManagement.cpp.o
+backend/models/BillManagement.cpp.o:
+	$(MAKE) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/backend/models/BillManagement.cpp.o
+.PHONY : backend/models/BillManagement.cpp.o
 
-Main/models/BillManagement.i: Main/models/BillManagement.cpp.i
+backend/models/BillManagement.i: backend/models/BillManagement.cpp.i
 
-.PHONY : Main/models/BillManagement.i
+.PHONY : backend/models/BillManagement.i
 
 # target to preprocess a source file
-Main/models/BillManagement.cpp.i:
-	$(MAKE) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/Main/models/BillManagement.cpp.i
-.PHONY : Main/models/BillManagement.cpp.i
+backend/models/BillManagement.cpp.i:
+	$(MAKE) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/backend/models/BillManagement.cpp.i
+.PHONY : backend/models/BillManagement.cpp.i
 
-Main/models/BillManagement.s: Main/models/BillManagement.cpp.s
+backend/models/BillManagement.s: backend/models/BillManagement.cpp.s
 
-.PHONY : Main/models/BillManagement.s
+.PHONY : backend/models/BillManagement.s
 
 # target to generate assembly for a file
-Main/models/BillManagement.cpp.s:
-	$(MAKE) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/Main/models/BillManagement.cpp.s
-.PHONY : Main/models/BillManagement.cpp.s
+backend/models/BillManagement.cpp.s:
+	$(MAKE) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/backend/models/BillManagement.cpp.s
+.PHONY : backend/models/BillManagement.cpp.s
 
-Main/models/Cart.o: Main/models/Cart.cpp.o
+backend/models/Cart.o: backend/models/Cart.cpp.o
 
-.PHONY : Main/models/Cart.o
+.PHONY : backend/models/Cart.o
 
 # target to build an object file
-Main/models/Cart.cpp.o:
-	$(MAKE) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/Main/models/Cart.cpp.o
-.PHONY : Main/models/Cart.cpp.o
+backend/models/Cart.cpp.o:
+	$(MAKE) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/backend/models/Cart.cpp.o
+.PHONY : backend/models/Cart.cpp.o
 
-Main/models/Cart.i: Main/models/Cart.cpp.i
+backend/models/Cart.i: backend/models/Cart.cpp.i
 
-.PHONY : Main/models/Cart.i
+.PHONY : backend/models/Cart.i
 
 # target to preprocess a source file
-Main/models/Cart.cpp.i:
-	$(MAKE) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/Main/models/Cart.cpp.i
-.PHONY : Main/models/Cart.cpp.i
+backend/models/Cart.cpp.i:
+	$(MAKE) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/backend/models/Cart.cpp.i
+.PHONY : backend/models/Cart.cpp.i
 
-Main/models/Cart.s: Main/models/Cart.cpp.s
+backend/models/Cart.s: backend/models/Cart.cpp.s
 
-.PHONY : Main/models/Cart.s
+.PHONY : backend/models/Cart.s
 
 # target to generate assembly for a file
-Main/models/Cart.cpp.s:
-	$(MAKE) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/Main/models/Cart.cpp.s
-.PHONY : Main/models/Cart.cpp.s
+backend/models/Cart.cpp.s:
+	$(MAKE) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/backend/models/Cart.cpp.s
+.PHONY : backend/models/Cart.cpp.s
 
-Main/models/Customer.o: Main/models/Customer.cpp.o
+backend/models/Customer.o: backend/models/Customer.cpp.o
 
-.PHONY : Main/models/Customer.o
+.PHONY : backend/models/Customer.o
 
 # target to build an object file
-Main/models/Customer.cpp.o:
-	$(MAKE) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/Main/models/Customer.cpp.o
-.PHONY : Main/models/Customer.cpp.o
+backend/models/Customer.cpp.o:
+	$(MAKE) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/backend/models/Customer.cpp.o
+.PHONY : backend/models/Customer.cpp.o
 
-Main/models/Customer.i: Main/models/Customer.cpp.i
+backend/models/Customer.i: backend/models/Customer.cpp.i
 
-.PHONY : Main/models/Customer.i
+.PHONY : backend/models/Customer.i
 
 # target to preprocess a source file
-Main/models/Customer.cpp.i:
-	$(MAKE) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/Main/models/Customer.cpp.i
-.PHONY : Main/models/Customer.cpp.i
+backend/models/Customer.cpp.i:
+	$(MAKE) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/backend/models/Customer.cpp.i
+.PHONY : backend/models/Customer.cpp.i
 
-Main/models/Customer.s: Main/models/Customer.cpp.s
+backend/models/Customer.s: backend/models/Customer.cpp.s
 
-.PHONY : Main/models/Customer.s
+.PHONY : backend/models/Customer.s
 
 # target to generate assembly for a file
-Main/models/Customer.cpp.s:
-	$(MAKE) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/Main/models/Customer.cpp.s
-.PHONY : Main/models/Customer.cpp.s
+backend/models/Customer.cpp.s:
+	$(MAKE) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/backend/models/Customer.cpp.s
+.PHONY : backend/models/Customer.cpp.s
 
-Main/models/KhoHang.o: Main/models/KhoHang.cpp.o
+backend/models/Datetime.o: backend/models/Datetime.cpp.o
 
-.PHONY : Main/models/KhoHang.o
+.PHONY : backend/models/Datetime.o
 
 # target to build an object file
-Main/models/KhoHang.cpp.o:
-	$(MAKE) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/Main/models/KhoHang.cpp.o
-.PHONY : Main/models/KhoHang.cpp.o
+backend/models/Datetime.cpp.o:
+	$(MAKE) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/backend/models/Datetime.cpp.o
+.PHONY : backend/models/Datetime.cpp.o
 
-Main/models/KhoHang.i: Main/models/KhoHang.cpp.i
+backend/models/Datetime.i: backend/models/Datetime.cpp.i
 
-.PHONY : Main/models/KhoHang.i
+.PHONY : backend/models/Datetime.i
 
 # target to preprocess a source file
-Main/models/KhoHang.cpp.i:
-	$(MAKE) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/Main/models/KhoHang.cpp.i
-.PHONY : Main/models/KhoHang.cpp.i
+backend/models/Datetime.cpp.i:
+	$(MAKE) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/backend/models/Datetime.cpp.i
+.PHONY : backend/models/Datetime.cpp.i
 
-Main/models/KhoHang.s: Main/models/KhoHang.cpp.s
+backend/models/Datetime.s: backend/models/Datetime.cpp.s
 
-.PHONY : Main/models/KhoHang.s
+.PHONY : backend/models/Datetime.s
 
 # target to generate assembly for a file
-Main/models/KhoHang.cpp.s:
-	$(MAKE) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/Main/models/KhoHang.cpp.s
-.PHONY : Main/models/KhoHang.cpp.s
+backend/models/Datetime.cpp.s:
+	$(MAKE) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/backend/models/Datetime.cpp.s
+.PHONY : backend/models/Datetime.cpp.s
 
-Main/models/Main.o: Main/models/Main.cpp.o
+backend/models/Drink.o: backend/models/Drink.cpp.o
 
-.PHONY : Main/models/Main.o
+.PHONY : backend/models/Drink.o
 
 # target to build an object file
-Main/models/Main.cpp.o:
-	$(MAKE) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/Main/models/Main.cpp.o
-.PHONY : Main/models/Main.cpp.o
+backend/models/Drink.cpp.o:
+	$(MAKE) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/backend/models/Drink.cpp.o
+.PHONY : backend/models/Drink.cpp.o
 
-Main/models/Main.i: Main/models/Main.cpp.i
+backend/models/Drink.i: backend/models/Drink.cpp.i
 
-.PHONY : Main/models/Main.i
+.PHONY : backend/models/Drink.i
 
 # target to preprocess a source file
-Main/models/Main.cpp.i:
-	$(MAKE) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/Main/models/Main.cpp.i
-.PHONY : Main/models/Main.cpp.i
+backend/models/Drink.cpp.i:
+	$(MAKE) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/backend/models/Drink.cpp.i
+.PHONY : backend/models/Drink.cpp.i
 
-Main/models/Main.s: Main/models/Main.cpp.s
+backend/models/Drink.s: backend/models/Drink.cpp.s
 
-.PHONY : Main/models/Main.s
+.PHONY : backend/models/Drink.s
 
 # target to generate assembly for a file
-Main/models/Main.cpp.s:
-	$(MAKE) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/Main/models/Main.cpp.s
-.PHONY : Main/models/Main.cpp.s
+backend/models/Drink.cpp.s:
+	$(MAKE) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/backend/models/Drink.cpp.s
+.PHONY : backend/models/Drink.cpp.s
 
-Main/models/Main_all.o: Main/models/Main_all.cpp.o
+backend/models/Food.o: backend/models/Food.cpp.o
 
-.PHONY : Main/models/Main_all.o
+.PHONY : backend/models/Food.o
 
 # target to build an object file
-Main/models/Main_all.cpp.o:
-	$(MAKE) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/Main/models/Main_all.cpp.o
-.PHONY : Main/models/Main_all.cpp.o
+backend/models/Food.cpp.o:
+	$(MAKE) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/backend/models/Food.cpp.o
+.PHONY : backend/models/Food.cpp.o
 
-Main/models/Main_all.i: Main/models/Main_all.cpp.i
+backend/models/Food.i: backend/models/Food.cpp.i
 
-.PHONY : Main/models/Main_all.i
+.PHONY : backend/models/Food.i
 
 # target to preprocess a source file
-Main/models/Main_all.cpp.i:
-	$(MAKE) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/Main/models/Main_all.cpp.i
-.PHONY : Main/models/Main_all.cpp.i
+backend/models/Food.cpp.i:
+	$(MAKE) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/backend/models/Food.cpp.i
+.PHONY : backend/models/Food.cpp.i
 
-Main/models/Main_all.s: Main/models/Main_all.cpp.s
+backend/models/Food.s: backend/models/Food.cpp.s
 
-.PHONY : Main/models/Main_all.s
+.PHONY : backend/models/Food.s
 
 # target to generate assembly for a file
-Main/models/Main_all.cpp.s:
-	$(MAKE) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/Main/models/Main_all.cpp.s
-.PHONY : Main/models/Main_all.cpp.s
+backend/models/Food.cpp.s:
+	$(MAKE) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/backend/models/Food.cpp.s
+.PHONY : backend/models/Food.cpp.s
 
-Main/models/Money.o: Main/models/Money.cpp.o
+backend/models/KhoHang.o: backend/models/KhoHang.cpp.o
 
-.PHONY : Main/models/Money.o
+.PHONY : backend/models/KhoHang.o
 
 # target to build an object file
-Main/models/Money.cpp.o:
-	$(MAKE) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/Main/models/Money.cpp.o
-.PHONY : Main/models/Money.cpp.o
+backend/models/KhoHang.cpp.o:
+	$(MAKE) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/backend/models/KhoHang.cpp.o
+.PHONY : backend/models/KhoHang.cpp.o
 
-Main/models/Money.i: Main/models/Money.cpp.i
+backend/models/KhoHang.i: backend/models/KhoHang.cpp.i
 
-.PHONY : Main/models/Money.i
+.PHONY : backend/models/KhoHang.i
 
 # target to preprocess a source file
-Main/models/Money.cpp.i:
-	$(MAKE) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/Main/models/Money.cpp.i
-.PHONY : Main/models/Money.cpp.i
+backend/models/KhoHang.cpp.i:
+	$(MAKE) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/backend/models/KhoHang.cpp.i
+.PHONY : backend/models/KhoHang.cpp.i
 
-Main/models/Money.s: Main/models/Money.cpp.s
+backend/models/KhoHang.s: backend/models/KhoHang.cpp.s
 
-.PHONY : Main/models/Money.s
+.PHONY : backend/models/KhoHang.s
 
 # target to generate assembly for a file
-Main/models/Money.cpp.s:
-	$(MAKE) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/Main/models/Money.cpp.s
-.PHONY : Main/models/Money.cpp.s
+backend/models/KhoHang.cpp.s:
+	$(MAKE) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/backend/models/KhoHang.cpp.s
+.PHONY : backend/models/KhoHang.cpp.s
 
-Main/models/SanPham.o: Main/models/SanPham.cpp.o
+backend/models/Main.o: backend/models/Main.cpp.o
 
-.PHONY : Main/models/SanPham.o
+.PHONY : backend/models/Main.o
 
 # target to build an object file
-Main/models/SanPham.cpp.o:
-	$(MAKE) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/Main/models/SanPham.cpp.o
-.PHONY : Main/models/SanPham.cpp.o
+backend/models/Main.cpp.o:
+	$(MAKE) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/backend/models/Main.cpp.o
+.PHONY : backend/models/Main.cpp.o
 
-Main/models/SanPham.i: Main/models/SanPham.cpp.i
+backend/models/Main.i: backend/models/Main.cpp.i
 
-.PHONY : Main/models/SanPham.i
+.PHONY : backend/models/Main.i
 
 # target to preprocess a source file
-Main/models/SanPham.cpp.i:
-	$(MAKE) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/Main/models/SanPham.cpp.i
-.PHONY : Main/models/SanPham.cpp.i
+backend/models/Main.cpp.i:
+	$(MAKE) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/backend/models/Main.cpp.i
+.PHONY : backend/models/Main.cpp.i
 
-Main/models/SanPham.s: Main/models/SanPham.cpp.s
+backend/models/Main.s: backend/models/Main.cpp.s
 
-.PHONY : Main/models/SanPham.s
+.PHONY : backend/models/Main.s
 
 # target to generate assembly for a file
-Main/models/SanPham.cpp.s:
-	$(MAKE) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/Main/models/SanPham.cpp.s
-.PHONY : Main/models/SanPham.cpp.s
+backend/models/Main.cpp.s:
+	$(MAKE) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/backend/models/Main.cpp.s
+.PHONY : backend/models/Main.cpp.s
 
-Main/models/ThucAn.o: Main/models/ThucAn.cpp.o
+backend/models/Main_all.o: backend/models/Main_all.cpp.o
 
-.PHONY : Main/models/ThucAn.o
+.PHONY : backend/models/Main_all.o
 
 # target to build an object file
-Main/models/ThucAn.cpp.o:
-	$(MAKE) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/Main/models/ThucAn.cpp.o
-.PHONY : Main/models/ThucAn.cpp.o
+backend/models/Main_all.cpp.o:
+	$(MAKE) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/backend/models/Main_all.cpp.o
+.PHONY : backend/models/Main_all.cpp.o
 
-Main/models/ThucAn.i: Main/models/ThucAn.cpp.i
+backend/models/Main_all.i: backend/models/Main_all.cpp.i
 
-.PHONY : Main/models/ThucAn.i
+.PHONY : backend/models/Main_all.i
 
 # target to preprocess a source file
-Main/models/ThucAn.cpp.i:
-	$(MAKE) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/Main/models/ThucAn.cpp.i
-.PHONY : Main/models/ThucAn.cpp.i
+backend/models/Main_all.cpp.i:
+	$(MAKE) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/backend/models/Main_all.cpp.i
+.PHONY : backend/models/Main_all.cpp.i
 
-Main/models/ThucAn.s: Main/models/ThucAn.cpp.s
+backend/models/Main_all.s: backend/models/Main_all.cpp.s
 
-.PHONY : Main/models/ThucAn.s
+.PHONY : backend/models/Main_all.s
 
 # target to generate assembly for a file
-Main/models/ThucAn.cpp.s:
-	$(MAKE) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/Main/models/ThucAn.cpp.s
-.PHONY : Main/models/ThucAn.cpp.s
+backend/models/Main_all.cpp.s:
+	$(MAKE) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/backend/models/Main_all.cpp.s
+.PHONY : backend/models/Main_all.cpp.s
 
-Main/models/ThucUong.o: Main/models/ThucUong.cpp.o
+backend/models/Money.o: backend/models/Money.cpp.o
 
-.PHONY : Main/models/ThucUong.o
+.PHONY : backend/models/Money.o
 
 # target to build an object file
-Main/models/ThucUong.cpp.o:
-	$(MAKE) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/Main/models/ThucUong.cpp.o
-.PHONY : Main/models/ThucUong.cpp.o
+backend/models/Money.cpp.o:
+	$(MAKE) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/backend/models/Money.cpp.o
+.PHONY : backend/models/Money.cpp.o
 
-Main/models/ThucUong.i: Main/models/ThucUong.cpp.i
+backend/models/Money.i: backend/models/Money.cpp.i
 
-.PHONY : Main/models/ThucUong.i
+.PHONY : backend/models/Money.i
 
 # target to preprocess a source file
-Main/models/ThucUong.cpp.i:
-	$(MAKE) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/Main/models/ThucUong.cpp.i
-.PHONY : Main/models/ThucUong.cpp.i
+backend/models/Money.cpp.i:
+	$(MAKE) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/backend/models/Money.cpp.i
+.PHONY : backend/models/Money.cpp.i
 
-Main/models/ThucUong.s: Main/models/ThucUong.cpp.s
+backend/models/Money.s: backend/models/Money.cpp.s
 
-.PHONY : Main/models/ThucUong.s
+.PHONY : backend/models/Money.s
 
 # target to generate assembly for a file
-Main/models/ThucUong.cpp.s:
-	$(MAKE) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/Main/models/ThucUong.cpp.s
-.PHONY : Main/models/ThucUong.cpp.s
+backend/models/Money.cpp.s:
+	$(MAKE) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/backend/models/Money.cpp.s
+.PHONY : backend/models/Money.cpp.s
 
-Main/models/User.o: Main/models/User.cpp.o
+backend/models/Product.o: backend/models/Product.cpp.o
 
-.PHONY : Main/models/User.o
+.PHONY : backend/models/Product.o
 
 # target to build an object file
-Main/models/User.cpp.o:
-	$(MAKE) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/Main/models/User.cpp.o
-.PHONY : Main/models/User.cpp.o
+backend/models/Product.cpp.o:
+	$(MAKE) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/backend/models/Product.cpp.o
+.PHONY : backend/models/Product.cpp.o
 
-Main/models/User.i: Main/models/User.cpp.i
+backend/models/Product.i: backend/models/Product.cpp.i
 
-.PHONY : Main/models/User.i
+.PHONY : backend/models/Product.i
 
 # target to preprocess a source file
-Main/models/User.cpp.i:
-	$(MAKE) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/Main/models/User.cpp.i
-.PHONY : Main/models/User.cpp.i
+backend/models/Product.cpp.i:
+	$(MAKE) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/backend/models/Product.cpp.i
+.PHONY : backend/models/Product.cpp.i
 
-Main/models/User.s: Main/models/User.cpp.s
+backend/models/Product.s: backend/models/Product.cpp.s
 
-.PHONY : Main/models/User.s
+.PHONY : backend/models/Product.s
 
 # target to generate assembly for a file
-Main/models/User.cpp.s:
-	$(MAKE) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/Main/models/User.cpp.s
-.PHONY : Main/models/User.cpp.s
+backend/models/Product.cpp.s:
+	$(MAKE) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/backend/models/Product.cpp.s
+.PHONY : backend/models/Product.cpp.s
 
-Main/models/UserManagement.o: Main/models/UserManagement.cpp.o
+backend/models/User.o: backend/models/User.cpp.o
 
-.PHONY : Main/models/UserManagement.o
+.PHONY : backend/models/User.o
 
 # target to build an object file
-Main/models/UserManagement.cpp.o:
-	$(MAKE) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/Main/models/UserManagement.cpp.o
-.PHONY : Main/models/UserManagement.cpp.o
+backend/models/User.cpp.o:
+	$(MAKE) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/backend/models/User.cpp.o
+.PHONY : backend/models/User.cpp.o
 
-Main/models/UserManagement.i: Main/models/UserManagement.cpp.i
+backend/models/User.i: backend/models/User.cpp.i
 
-.PHONY : Main/models/UserManagement.i
+.PHONY : backend/models/User.i
 
 # target to preprocess a source file
-Main/models/UserManagement.cpp.i:
-	$(MAKE) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/Main/models/UserManagement.cpp.i
-.PHONY : Main/models/UserManagement.cpp.i
+backend/models/User.cpp.i:
+	$(MAKE) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/backend/models/User.cpp.i
+.PHONY : backend/models/User.cpp.i
 
-Main/models/UserManagement.s: Main/models/UserManagement.cpp.s
+backend/models/User.s: backend/models/User.cpp.s
 
-.PHONY : Main/models/UserManagement.s
+.PHONY : backend/models/User.s
 
 # target to generate assembly for a file
-Main/models/UserManagement.cpp.s:
-	$(MAKE) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/Main/models/UserManagement.cpp.s
-.PHONY : Main/models/UserManagement.cpp.s
+backend/models/User.cpp.s:
+	$(MAKE) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/backend/models/User.cpp.s
+.PHONY : backend/models/User.cpp.s
 
-Main/models/UserRoute.o: Main/models/UserRoute.cpp.o
+backend/models/UserManagement.o: backend/models/UserManagement.cpp.o
 
-.PHONY : Main/models/UserRoute.o
+.PHONY : backend/models/UserManagement.o
 
 # target to build an object file
-Main/models/UserRoute.cpp.o:
-	$(MAKE) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/Main/models/UserRoute.cpp.o
-.PHONY : Main/models/UserRoute.cpp.o
+backend/models/UserManagement.cpp.o:
+	$(MAKE) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/backend/models/UserManagement.cpp.o
+.PHONY : backend/models/UserManagement.cpp.o
 
-Main/models/UserRoute.i: Main/models/UserRoute.cpp.i
+backend/models/UserManagement.i: backend/models/UserManagement.cpp.i
 
-.PHONY : Main/models/UserRoute.i
+.PHONY : backend/models/UserManagement.i
 
 # target to preprocess a source file
-Main/models/UserRoute.cpp.i:
-	$(MAKE) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/Main/models/UserRoute.cpp.i
-.PHONY : Main/models/UserRoute.cpp.i
+backend/models/UserManagement.cpp.i:
+	$(MAKE) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/backend/models/UserManagement.cpp.i
+.PHONY : backend/models/UserManagement.cpp.i
 
-Main/models/UserRoute.s: Main/models/UserRoute.cpp.s
+backend/models/UserManagement.s: backend/models/UserManagement.cpp.s
 
-.PHONY : Main/models/UserRoute.s
+.PHONY : backend/models/UserManagement.s
 
 # target to generate assembly for a file
-Main/models/UserRoute.cpp.s:
-	$(MAKE) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/Main/models/UserRoute.cpp.s
-.PHONY : Main/models/UserRoute.cpp.s
+backend/models/UserManagement.cpp.s:
+	$(MAKE) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/backend/models/UserManagement.cpp.s
+.PHONY : backend/models/UserManagement.cpp.s
 
-Main/models/Utils.o: Main/models/Utils.cpp.o
+backend/models/main.o: backend/models/main.cpp.o
 
-.PHONY : Main/models/Utils.o
+.PHONY : backend/models/main.o
 
 # target to build an object file
-Main/models/Utils.cpp.o:
-	$(MAKE) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/Main/models/Utils.cpp.o
-.PHONY : Main/models/Utils.cpp.o
+backend/models/main.cpp.o:
+	$(MAKE) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/backend/models/main.cpp.o
+.PHONY : backend/models/main.cpp.o
 
-Main/models/Utils.i: Main/models/Utils.cpp.i
+backend/models/main.i: backend/models/main.cpp.i
 
-.PHONY : Main/models/Utils.i
+.PHONY : backend/models/main.i
 
 # target to preprocess a source file
-Main/models/Utils.cpp.i:
-	$(MAKE) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/Main/models/Utils.cpp.i
-.PHONY : Main/models/Utils.cpp.i
+backend/models/main.cpp.i:
+	$(MAKE) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/backend/models/main.cpp.i
+.PHONY : backend/models/main.cpp.i
 
-Main/models/Utils.s: Main/models/Utils.cpp.s
+backend/models/main.s: backend/models/main.cpp.s
 
-.PHONY : Main/models/Utils.s
+.PHONY : backend/models/main.s
 
 # target to generate assembly for a file
-Main/models/Utils.cpp.s:
-	$(MAKE) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/Main/models/Utils.cpp.s
-.PHONY : Main/models/Utils.cpp.s
+backend/models/main.cpp.s:
+	$(MAKE) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/backend/models/main.cpp.s
+.PHONY : backend/models/main.cpp.s
 
-Main/models/show_Data.o: Main/models/show_Data.cpp.o
+backend/routes/Route.o: backend/routes/Route.cpp.o
 
-.PHONY : Main/models/show_Data.o
+.PHONY : backend/routes/Route.o
 
 # target to build an object file
-Main/models/show_Data.cpp.o:
-	$(MAKE) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/Main/models/show_Data.cpp.o
-.PHONY : Main/models/show_Data.cpp.o
+backend/routes/Route.cpp.o:
+	$(MAKE) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/backend/routes/Route.cpp.o
+.PHONY : backend/routes/Route.cpp.o
 
-Main/models/show_Data.i: Main/models/show_Data.cpp.i
+backend/routes/Route.i: backend/routes/Route.cpp.i
 
-.PHONY : Main/models/show_Data.i
+.PHONY : backend/routes/Route.i
 
 # target to preprocess a source file
-Main/models/show_Data.cpp.i:
-	$(MAKE) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/Main/models/show_Data.cpp.i
-.PHONY : Main/models/show_Data.cpp.i
+backend/routes/Route.cpp.i:
+	$(MAKE) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/backend/routes/Route.cpp.i
+.PHONY : backend/routes/Route.cpp.i
 
-Main/models/show_Data.s: Main/models/show_Data.cpp.s
+backend/routes/Route.s: backend/routes/Route.cpp.s
 
-.PHONY : Main/models/show_Data.s
+.PHONY : backend/routes/Route.s
 
 # target to generate assembly for a file
-Main/models/show_Data.cpp.s:
-	$(MAKE) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/Main/models/show_Data.cpp.s
-.PHONY : Main/models/show_Data.cpp.s
+backend/routes/Route.cpp.s:
+	$(MAKE) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/backend/routes/Route.cpp.s
+.PHONY : backend/routes/Route.cpp.s
 
-Main/routes/Route.o: Main/routes/Route.cpp.o
+backend/routes/main.o: backend/routes/main.cpp.o
 
-.PHONY : Main/routes/Route.o
+.PHONY : backend/routes/main.o
 
 # target to build an object file
-Main/routes/Route.cpp.o:
-	$(MAKE) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/Main/routes/Route.cpp.o
-.PHONY : Main/routes/Route.cpp.o
+backend/routes/main.cpp.o:
+	$(MAKE) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/backend/routes/main.cpp.o
+.PHONY : backend/routes/main.cpp.o
 
-Main/routes/Route.i: Main/routes/Route.cpp.i
+backend/routes/main.i: backend/routes/main.cpp.i
 
-.PHONY : Main/routes/Route.i
+.PHONY : backend/routes/main.i
 
 # target to preprocess a source file
-Main/routes/Route.cpp.i:
-	$(MAKE) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/Main/routes/Route.cpp.i
-.PHONY : Main/routes/Route.cpp.i
+backend/routes/main.cpp.i:
+	$(MAKE) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/backend/routes/main.cpp.i
+.PHONY : backend/routes/main.cpp.i
 
-Main/routes/Route.s: Main/routes/Route.cpp.s
+backend/routes/main.s: backend/routes/main.cpp.s
 
-.PHONY : Main/routes/Route.s
+.PHONY : backend/routes/main.s
 
 # target to generate assembly for a file
-Main/routes/Route.cpp.s:
-	$(MAKE) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/Main/routes/Route.cpp.s
-.PHONY : Main/routes/Route.cpp.s
+backend/routes/main.cpp.s:
+	$(MAKE) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/backend/routes/main.cpp.s
+.PHONY : backend/routes/main.cpp.s
 
 # Help Target
 help:
@@ -645,63 +618,60 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... edit_cache"
 	@echo "... server"
-	@echo "... Main/main.o"
-	@echo "... Main/main.i"
-	@echo "... Main/main.s"
-	@echo "... Main/models/Admin.o"
-	@echo "... Main/models/Admin.i"
-	@echo "... Main/models/Admin.s"
-	@echo "... Main/models/Bill.o"
-	@echo "... Main/models/Bill.i"
-	@echo "... Main/models/Bill.s"
-	@echo "... Main/models/BillManagement.o"
-	@echo "... Main/models/BillManagement.i"
-	@echo "... Main/models/BillManagement.s"
-	@echo "... Main/models/Cart.o"
-	@echo "... Main/models/Cart.i"
-	@echo "... Main/models/Cart.s"
-	@echo "... Main/models/Customer.o"
-	@echo "... Main/models/Customer.i"
-	@echo "... Main/models/Customer.s"
-	@echo "... Main/models/KhoHang.o"
-	@echo "... Main/models/KhoHang.i"
-	@echo "... Main/models/KhoHang.s"
-	@echo "... Main/models/Main.o"
-	@echo "... Main/models/Main.i"
-	@echo "... Main/models/Main.s"
-	@echo "... Main/models/Main_all.o"
-	@echo "... Main/models/Main_all.i"
-	@echo "... Main/models/Main_all.s"
-	@echo "... Main/models/Money.o"
-	@echo "... Main/models/Money.i"
-	@echo "... Main/models/Money.s"
-	@echo "... Main/models/SanPham.o"
-	@echo "... Main/models/SanPham.i"
-	@echo "... Main/models/SanPham.s"
-	@echo "... Main/models/ThucAn.o"
-	@echo "... Main/models/ThucAn.i"
-	@echo "... Main/models/ThucAn.s"
-	@echo "... Main/models/ThucUong.o"
-	@echo "... Main/models/ThucUong.i"
-	@echo "... Main/models/ThucUong.s"
-	@echo "... Main/models/User.o"
-	@echo "... Main/models/User.i"
-	@echo "... Main/models/User.s"
-	@echo "... Main/models/UserManagement.o"
-	@echo "... Main/models/UserManagement.i"
-	@echo "... Main/models/UserManagement.s"
-	@echo "... Main/models/UserRoute.o"
-	@echo "... Main/models/UserRoute.i"
-	@echo "... Main/models/UserRoute.s"
-	@echo "... Main/models/Utils.o"
-	@echo "... Main/models/Utils.i"
-	@echo "... Main/models/Utils.s"
-	@echo "... Main/models/show_Data.o"
-	@echo "... Main/models/show_Data.i"
-	@echo "... Main/models/show_Data.s"
-	@echo "... Main/routes/Route.o"
-	@echo "... Main/routes/Route.i"
-	@echo "... Main/routes/Route.s"
+	@echo "... backend/models/Admin.o"
+	@echo "... backend/models/Admin.i"
+	@echo "... backend/models/Admin.s"
+	@echo "... backend/models/Bill.o"
+	@echo "... backend/models/Bill.i"
+	@echo "... backend/models/Bill.s"
+	@echo "... backend/models/BillManagement.o"
+	@echo "... backend/models/BillManagement.i"
+	@echo "... backend/models/BillManagement.s"
+	@echo "... backend/models/Cart.o"
+	@echo "... backend/models/Cart.i"
+	@echo "... backend/models/Cart.s"
+	@echo "... backend/models/Customer.o"
+	@echo "... backend/models/Customer.i"
+	@echo "... backend/models/Customer.s"
+	@echo "... backend/models/Datetime.o"
+	@echo "... backend/models/Datetime.i"
+	@echo "... backend/models/Datetime.s"
+	@echo "... backend/models/Drink.o"
+	@echo "... backend/models/Drink.i"
+	@echo "... backend/models/Drink.s"
+	@echo "... backend/models/Food.o"
+	@echo "... backend/models/Food.i"
+	@echo "... backend/models/Food.s"
+	@echo "... backend/models/KhoHang.o"
+	@echo "... backend/models/KhoHang.i"
+	@echo "... backend/models/KhoHang.s"
+	@echo "... backend/models/Main.o"
+	@echo "... backend/models/Main.i"
+	@echo "... backend/models/Main.s"
+	@echo "... backend/models/Main_all.o"
+	@echo "... backend/models/Main_all.i"
+	@echo "... backend/models/Main_all.s"
+	@echo "... backend/models/Money.o"
+	@echo "... backend/models/Money.i"
+	@echo "... backend/models/Money.s"
+	@echo "... backend/models/Product.o"
+	@echo "... backend/models/Product.i"
+	@echo "... backend/models/Product.s"
+	@echo "... backend/models/User.o"
+	@echo "... backend/models/User.i"
+	@echo "... backend/models/User.s"
+	@echo "... backend/models/UserManagement.o"
+	@echo "... backend/models/UserManagement.i"
+	@echo "... backend/models/UserManagement.s"
+	@echo "... backend/models/main.o"
+	@echo "... backend/models/main.i"
+	@echo "... backend/models/main.s"
+	@echo "... backend/routes/Route.o"
+	@echo "... backend/routes/Route.i"
+	@echo "... backend/routes/Route.s"
+	@echo "... backend/routes/main.o"
+	@echo "... backend/routes/main.i"
+	@echo "... backend/routes/main.s"
 .PHONY : help
 
 

@@ -1,43 +1,61 @@
-// #include "Main.h"
-// #include "UserManagement.h"
-// #include "BillManagement.h"
-// #include "KhoHang.h"
-// #include "Bill.h"
-// #include "Cart.h"
-// #include "ThucAn.h"
-// #include "ThucUong.h"
-// #include "Admin.h"
-// #include "Customer.h"
+#include "Main.h"
 
-// int main()
-// {
-//     auto admin = std::make_unique<Admin>("admin", "admin123", "admin");
-//     auto customer = std::make_unique<Customer>("Nguyen Van B", "abc@gmail.com", "0123456789", "1000000", "VND", "customer",
-//                                                "customet123", "customer");
+std::string create_id(const std::string &prefix, const int &counter)
+{
+    std::string id_str = std::to_string(counter);
+    while (id_str.size() < 4)
+    {
+        id_str = '0' + id_str;
+    }
+    return prefix + id_str;
+}
 
-//     userManagement.add(std::move(admin));
-//     userManagement.add(std::move(customer));
+int get_counter_from_id(const std::string &prefix, const std::string &id)
+{
+    std::string counter = id.substr(prefix.size());
+    return std::stoi(counter);
+}
 
-//     std::cout << userManagement << "\n";
+std::string set_id(const std::string &prefix, std::vector<int> &_id_counter)
+{
+    std::string id = "";
+    for (int i = 0; i < _id_counter.size(); i++)
+    {
+        if (_id_counter[i] == 0)
+        {
+            id = create_id(prefix, i + 1);
+            _id_counter[i] = 1;
+            return id;
+        }
+        else if (_id_counter[i] == 1 && i < _id_counter.size() - 1)
+        {
+            continue;
+        }
+        else if (_id_counter[_id_counter.size() - 1] == 1)
+        {
+            _id_counter.push_back(1);
+            id = create_id(prefix, _id_counter.size());
+            _id_counter[i] = 1;
+            return id;
+        }
+    }
+    return id;
+}
 
-//     auto thucAn = std::make_unique<ThucAn>("Bánh mì", "Bánh mì thịt", "Thức ăn", 100, "5000", "VND", 0.1, "2025-04-01", "2025-04-10");
-//     auto thucUong = std::make_unique<ThucUong>("Trà sữa", "Trà sữa matcha", "Thức uống", 1, "25000", "VND", 0.05, "2025-04-01", "2025-04-15");
+bool findContainsx(const std::string &text, const std::string &pattern)
+{
+    std::regex regex(pattern);
+    return std::regex_search(text, regex);
+}
 
-//     khoHang.add(std::move(thucAn));
-//     khoHang.add(std::move(thucUong));
-
-//     Cart cart;
-//     cart.add(khoHang, khoHang.getSanPham_from_id("SP0001"));
-//     cart.add(khoHang, khoHang.getSanPham_from_id("SP0002"));
-
-//     Bill bill;
-//     std::cout << cart << "\n";
-
-//     std::unique_ptr<Bill> bill1 = bill.confirmBill(userManagement, "US0002", std::move(cart));
-//     billManagement.add(std::move(bill1));
-//     std::cout << billManagement << "\n";
-
-//     std::cout << userManagement << "\n";
-
-//     return 0;
-// }
+bool is_positive_number(const std::string &str)
+{
+    if (str.empty())
+        return false;
+    for (char c : str)
+    {
+        if (!isdigit(c))
+            return false;
+    }
+    return !str.empty() && std::stoll(str) > 0;
+}

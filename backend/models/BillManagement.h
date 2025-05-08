@@ -1,5 +1,6 @@
-#ifndef BILLMANAGEMENT_H
-#define BILLMANAGEMENT_H
+
+#ifndef _BILLMANAGEMENT_H
+#define _BILLMANAGEMENT_H
 
 #include "Main.h"
 #include "Bill.h"

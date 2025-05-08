@@ -21,8 +21,6 @@ public:
 
     virtual std::unique_ptr<User> clone() const = 0;
     virtual User *get_origin() const = 0;
-    virtual std::string get_money() const = 0;
-    virtual void set_money(const std::string &) = 0;
 
     void set_counter(const int &);
     std::string get_id() const;
@@ -32,6 +30,15 @@ public:
     std::string get_password() const;
     void set_name(const std::string &);
     std::string get_name() const;
+
+    virtual void set_fullname(const std::string &) = 0;
+    virtual std::string get_fullname() const = 0;
+    virtual void set_email(const std::string &) = 0;
+    virtual std::string get_email() const = 0;
+    virtual void set_phoneNumber(const std::string &) = 0;
+    virtual std::string get_phoneNumber() const = 0;
+    virtual void set_money(const std::string &) = 0;
+    virtual std::string get_money() const = 0;
 
     friend std::string operator-(const std::unique_ptr<User> &, const std::string &);
 

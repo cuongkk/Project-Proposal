@@ -15,14 +15,17 @@ public:
 
     int get_size() const;
     std::string get_money() const;
-    bool check_username(const std::string &);
-    bool check_name(const std::string &);
+
     void push_back(std::unique_ptr<T> sp);
     void add_Head(std::unique_ptr<T>);
     void add_Tail(std::unique_ptr<T>);
     void add_Head_to_Cart(std::unique_ptr<T>);
     void add_Tail_to_Cart(std::unique_ptr<T>);
     const std::list<std::unique_ptr<T>> &get_Item() const;
+
+    bool check_username(const std::string &);
+    bool check_name(const std::string &);
+    bool check_product(const T &sp) const;
 
     void remove_from_KhoHang(std::unique_ptr<T>);
     void remove_from_Cart(std::unique_ptr<T>);

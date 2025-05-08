@@ -13,15 +13,24 @@ public:
 
     Money();
     ~Money();
+    Money(const std::string &);
     Money(const std::string &, const std::string &);
     static std::vector<std::string> type;
 
-    std::string get_money() const;
-    void set_money(const std::string &);
+    void set_value(const std::string &);
+    std::string get_value() const;
     void set_type(const std::string &);
 
     long long ConvertToVND() const;
 
+    void operator=(const Money &);
+    friend Money operator+(const Money &, const Money &);
+    friend Money operator-(const Money &, const Money &);
+    friend Money operator*(const int &, const Money &);
+    friend Money operator*(const Money &, const float &);
+    friend bool operator==(const Money &, const Money &);
+    friend bool operator<(const Money &, const Money &);
+    friend bool operator>(const Money &, const Money &);
     friend std::ostream &operator<<(std::ostream &, const Money &);
 };
 #endif

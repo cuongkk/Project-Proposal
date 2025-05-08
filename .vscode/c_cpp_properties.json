@@ -9,7 +9,7 @@
                 "/usr/include/x86_64-linux-gnu/**",
                 "/usr/include/**",
                 "/usr/include/mysql/**",
-                "${workspaceFolder}/backend"
+                "${workspaceFolder}/backend/models"
             ],
             "defines": [],
             "compilerPath": "/usr/bin/g++-13",

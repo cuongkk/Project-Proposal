@@ -2,8 +2,8 @@
 #define ROUTE_H
 
 #include "Main_all.h"
-#include <crow.h>
-#include <crow/json.h>
+#include "crow.h"
+#include "crow/json.h"
 #include <string>
 #include <unordered_map>
 
@@ -30,6 +30,7 @@ struct CORS
     }
 };
 
+
 extern std::vector<std::string> username;
 extern std::unordered_map<std::string, std::string> UserList;
 extern std::unordered_map<std::string, std::string> workUser;
@@ -38,5 +39,8 @@ extern std::unordered_map<std::string, std::string> workUser;
 void setup_username_routes(crow::App<CORS> &);
 void setup_user_routes(crow::App<CORS> &);
 void setup_signup_routes(crow::App<CORS> &);
+void setup_login_routes(crow::App<CORS> &);
+void setup_inf_user_routes(crow::App<CORS> &);
+void setup_add_product_routes(crow::App<CORS> &);
 
 #endif

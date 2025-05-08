@@ -3,22 +3,23 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Submit and View Data</title>
+    <title>Đăng kí</title>
 </head>
 
 <body>
-    <h1>Submit Data</h1>
-    <form id="SignUp">
+    <h1>Đăng kí</h1>
+    <form id="signupForm">
         <label for="username">Username:</label>
         <input type="text" id="username" required><br><br>
 
-        <label for=" password">Password:</label>
+        <label for="password">Password:</label>
         <input type="text" id="password" required><br><br>
 
         <label for=" name">Name:</label>
         <input type="text" id="name" required><br><br>
 
-        <button type="submit">SignUp</button>
+        <button id="signup" type="button">Đăng kí</button>
+        <button id="login" type="button">Đăng nhập</button>
     </form>
 
     <p id="response"></p>
@@ -26,9 +27,16 @@
     <hr>
 
     <script>
-        const form = document.getElementById('SignUp');
+        const _form = document.getElementById('signupForm');
+        const _signup = document.getElementById('signup');
+        const _login = document.getElementById('login');
+        const _responseServer = document.getElementById('response');
 
-        form.addEventListener('submit', async function (e) {
+
+        _login.style.display = 'none';
+
+
+        _signup.addEventListener('click', async function (e) {
             e.preventDefault();
 
             const username = document.getElementById('username').value;
@@ -45,10 +53,18 @@
             });
 
             const result = await response.json();
-            document.getElementById('response').textContent = result.message || JSON.stringify(result);
+            _responseServer.textContent = result.message || JSON.stringify(result);
 
-            // Clear input
-            form.reset();
+            if (result.message.trim() === "Thành công") {
+                login.style.display = 'inline-block';
+            }
+
+            _form.reset();
+        });
+
+        _login.addEventListener('click', async function (e) {
+            e.preventDefault();
+            window.location.href = "https://fictional-system-pjp4xjw69x55f656x-5503.app.github.dev/frontend/login.html"
         });
     </script>
 </body>

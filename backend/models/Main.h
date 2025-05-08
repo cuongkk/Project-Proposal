@@ -1,7 +1,6 @@
 #ifndef MAIN_H
 #define MAIN_H
 
-#include "Utils.h"
 #include <iostream>
 #include <string>
 #include <memory>
@@ -10,7 +9,14 @@
 #include <iomanip>
 #include <sstream>
 #include <unordered_map>
-#include <regex>
 #include <ctime>
+#include <regex>
+#include <bitset>
+
+std::string create_id(const std::string &, const int &);
+int get_counter_from_id(const std::string &, const std::string &);
+std::string set_id(const std::string &, std::vector<int> &);
+bool findContainsx(const std::string &text, const std::string &pattern);
+bool is_positive_number(const std::string &str);
 
 #endif

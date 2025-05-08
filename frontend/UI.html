@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>UI</title>
+</head>
+
+<body>
+    <h1>UI</h1>
+    <p id="Name"></p><br></br>
+    <form id="inf and buy">
+
+        <button id="inf">Xem thông tin</button>
+        <button id="show">Xem Sản Phẩm</button>
+    </form>
+    <hr>
+
+    <script>
+        const _username = document.getElementById('username')
+        const _inf = document.getElementById('inf');
+        const _show = document.getElementById('show');
+
+
+        const _params = new URLSearchParams(window.location.search);
+        const _id_user = _params.get('msg');
+
+        async function get_username() {
+            if (_id_user) {
+                const response = await fetch('https://fictional-system-pjp4xjw69x55f656x-18080.app.github.dev/user', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ id_user: _id_user })
+                });
+                const result = await response.json();
+                Name.textContent = "Chào " + result["name"];
+            }
+        }
+        get_username();
+
+
+        _inf.addEventListener('click', async function (e) {
+            e.preventDefault();
+            const encodedMsg = encodeURIComponent(_id_user);
+            window.location.href = `https://fictional-system-pjp4xjw69x55f656x-5503.app.github.dev/frontend/inf.html?msg=${encodedMsg}`;
+        });
+
+        _show.addEventListener('click', async function (e) {
+            e.preventDefault();
+            window.location.href = 'https://fictional-system-pjp4xjw69x55f656x-5503.app.github.dev/frontend/sanpham.html';
+        });
+
+
+    </script>
+</body>
+
+</html>

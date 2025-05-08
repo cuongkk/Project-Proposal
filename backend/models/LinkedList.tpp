@@ -18,32 +18,6 @@ std::string LinkedList<T>::get_money() const
 }
 
 template <typename T>
-bool LinkedList<T>::check_username(const std::string &username)
-{
-    for (const auto &item : _list)
-    {
-        if (item->get_username() == username)
-        {
-            return false;
-        }
-    }
-    return true;
-}
-
-template <typename T>
-bool LinkedList<T>::check_name(const std::string &name)
-{
-    for (const auto &item : _list)
-    {
-        if (item->get_name() == name)
-        {
-            return false;
-        }
-    }
-    return true;
-}
-
-template <typename T>
 void LinkedList<T>::push_back(std::unique_ptr<T> sp)
 {
     _list.push_back(std::move(sp));
@@ -96,6 +70,44 @@ const std::list<std::unique_ptr<T>> &LinkedList<T>::get_Item() const
     return _list;
 }
 
+template <typename T>
+bool LinkedList<T>::check_username(const std::string &username)
+{
+    for (const auto &item : _list)
+    {
+        if (item->get_username() == username)
+        {
+            return false;
+        }
+    }
+    return true;
+}
+
+template <typename T>
+bool LinkedList<T>::check_name(const std::string &name)
+{
+    for (const auto &item : _list)
+    {
+        if (item->get_name() == name)
+        {
+            return false;
+        }
+    }
+    return true;
+}
+
+template <typename T>
+bool LinkedList<T>::check_product(const T &sp) const
+{
+    for (const auto &item : _list)
+    {
+        if (*item == sp)
+        {
+            return false;
+        }
+    }
+    return true;
+}
 template <typename T>
 void LinkedList<T>::remove_from_KhoHang(std::unique_ptr<T> sp)
 {

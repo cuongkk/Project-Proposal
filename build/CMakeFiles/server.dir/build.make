@@ -57,300 +57,285 @@ include CMakeFiles/server.dir/progress.make
 # Include the compile flags for this target's objects.
 include CMakeFiles/server.dir/flags.make
 
-CMakeFiles/server.dir/Main/main.cpp.o: CMakeFiles/server.dir/flags.make
-CMakeFiles/server.dir/Main/main.cpp.o: ../Main/main.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/workspaces/Project-Proposal/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/server.dir/Main/main.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/server.dir/Main/main.cpp.o -c /workspaces/Project-Proposal/Main/main.cpp
+CMakeFiles/server.dir/backend/routes/main.cpp.o: CMakeFiles/server.dir/flags.make
+CMakeFiles/server.dir/backend/routes/main.cpp.o: ../backend/routes/main.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/workspaces/Project-Proposal/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/server.dir/backend/routes/main.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/server.dir/backend/routes/main.cpp.o -c /workspaces/Project-Proposal/backend/routes/main.cpp
 
-CMakeFiles/server.dir/Main/main.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/server.dir/Main/main.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /workspaces/Project-Proposal/Main/main.cpp > CMakeFiles/server.dir/Main/main.cpp.i
+CMakeFiles/server.dir/backend/routes/main.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/server.dir/backend/routes/main.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /workspaces/Project-Proposal/backend/routes/main.cpp > CMakeFiles/server.dir/backend/routes/main.cpp.i
 
-CMakeFiles/server.dir/Main/main.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/server.dir/Main/main.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /workspaces/Project-Proposal/Main/main.cpp -o CMakeFiles/server.dir/Main/main.cpp.s
+CMakeFiles/server.dir/backend/routes/main.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/server.dir/backend/routes/main.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /workspaces/Project-Proposal/backend/routes/main.cpp -o CMakeFiles/server.dir/backend/routes/main.cpp.s
 
-CMakeFiles/server.dir/Main/models/Admin.cpp.o: CMakeFiles/server.dir/flags.make
-CMakeFiles/server.dir/Main/models/Admin.cpp.o: ../Main/models/Admin.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/workspaces/Project-Proposal/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/server.dir/Main/models/Admin.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/server.dir/Main/models/Admin.cpp.o -c /workspaces/Project-Proposal/Main/models/Admin.cpp
+CMakeFiles/server.dir/backend/models/Admin.cpp.o: CMakeFiles/server.dir/flags.make
+CMakeFiles/server.dir/backend/models/Admin.cpp.o: ../backend/models/Admin.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/workspaces/Project-Proposal/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/server.dir/backend/models/Admin.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/server.dir/backend/models/Admin.cpp.o -c /workspaces/Project-Proposal/backend/models/Admin.cpp
 
-CMakeFiles/server.dir/Main/models/Admin.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/server.dir/Main/models/Admin.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /workspaces/Project-Proposal/Main/models/Admin.cpp > CMakeFiles/server.dir/Main/models/Admin.cpp.i
+CMakeFiles/server.dir/backend/models/Admin.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/server.dir/backend/models/Admin.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /workspaces/Project-Proposal/backend/models/Admin.cpp > CMakeFiles/server.dir/backend/models/Admin.cpp.i
 
-CMakeFiles/server.dir/Main/models/Admin.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/server.dir/Main/models/Admin.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /workspaces/Project-Proposal/Main/models/Admin.cpp -o CMakeFiles/server.dir/Main/models/Admin.cpp.s
+CMakeFiles/server.dir/backend/models/Admin.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/server.dir/backend/models/Admin.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /workspaces/Project-Proposal/backend/models/Admin.cpp -o CMakeFiles/server.dir/backend/models/Admin.cpp.s
 
-CMakeFiles/server.dir/Main/models/Bill.cpp.o: CMakeFiles/server.dir/flags.make
-CMakeFiles/server.dir/Main/models/Bill.cpp.o: ../Main/models/Bill.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/workspaces/Project-Proposal/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/server.dir/Main/models/Bill.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/server.dir/Main/models/Bill.cpp.o -c /workspaces/Project-Proposal/Main/models/Bill.cpp
+CMakeFiles/server.dir/backend/models/Bill.cpp.o: CMakeFiles/server.dir/flags.make
+CMakeFiles/server.dir/backend/models/Bill.cpp.o: ../backend/models/Bill.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/workspaces/Project-Proposal/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/server.dir/backend/models/Bill.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/server.dir/backend/models/Bill.cpp.o -c /workspaces/Project-Proposal/backend/models/Bill.cpp
 
-CMakeFiles/server.dir/Main/models/Bill.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/server.dir/Main/models/Bill.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /workspaces/Project-Proposal/Main/models/Bill.cpp > CMakeFiles/server.dir/Main/models/Bill.cpp.i
+CMakeFiles/server.dir/backend/models/Bill.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/server.dir/backend/models/Bill.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /workspaces/Project-Proposal/backend/models/Bill.cpp > CMakeFiles/server.dir/backend/models/Bill.cpp.i
 
-CMakeFiles/server.dir/Main/models/Bill.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/server.dir/Main/models/Bill.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /workspaces/Project-Proposal/Main/models/Bill.cpp -o CMakeFiles/server.dir/Main/models/Bill.cpp.s
+CMakeFiles/server.dir/backend/models/Bill.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/server.dir/backend/models/Bill.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /workspaces/Project-Proposal/backend/models/Bill.cpp -o CMakeFiles/server.dir/backend/models/Bill.cpp.s
 
-CMakeFiles/server.dir/Main/models/BillManagement.cpp.o: CMakeFiles/server.dir/flags.make
-CMakeFiles/server.dir/Main/models/BillManagement.cpp.o: ../Main/models/BillManagement.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/workspaces/Project-Proposal/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/server.dir/Main/models/BillManagement.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/server.dir/Main/models/BillManagement.cpp.o -c /workspaces/Project-Proposal/Main/models/BillManagement.cpp
+CMakeFiles/server.dir/backend/models/BillManagement.cpp.o: CMakeFiles/server.dir/flags.make
+CMakeFiles/server.dir/backend/models/BillManagement.cpp.o: ../backend/models/BillManagement.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/workspaces/Project-Proposal/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/server.dir/backend/models/BillManagement.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/server.dir/backend/models/BillManagement.cpp.o -c /workspaces/Project-Proposal/backend/models/BillManagement.cpp
 
-CMakeFiles/server.dir/Main/models/BillManagement.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/server.dir/Main/models/BillManagement.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /workspaces/Project-Proposal/Main/models/BillManagement.cpp > CMakeFiles/server.dir/Main/models/BillManagement.cpp.i
+CMakeFiles/server.dir/backend/models/BillManagement.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/server.dir/backend/models/BillManagement.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /workspaces/Project-Proposal/backend/models/BillManagement.cpp > CMakeFiles/server.dir/backend/models/BillManagement.cpp.i
 
-CMakeFiles/server.dir/Main/models/BillManagement.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/server.dir/Main/models/BillManagement.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /workspaces/Project-Proposal/Main/models/BillManagement.cpp -o CMakeFiles/server.dir/Main/models/BillManagement.cpp.s
+CMakeFiles/server.dir/backend/models/BillManagement.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/server.dir/backend/models/BillManagement.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /workspaces/Project-Proposal/backend/models/BillManagement.cpp -o CMakeFiles/server.dir/backend/models/BillManagement.cpp.s
 
-CMakeFiles/server.dir/Main/models/Cart.cpp.o: CMakeFiles/server.dir/flags.make
-CMakeFiles/server.dir/Main/models/Cart.cpp.o: ../Main/models/Cart.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/workspaces/Project-Proposal/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/server.dir/Main/models/Cart.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/server.dir/Main/models/Cart.cpp.o -c /workspaces/Project-Proposal/Main/models/Cart.cpp
+CMakeFiles/server.dir/backend/models/Cart.cpp.o: CMakeFiles/server.dir/flags.make
+CMakeFiles/server.dir/backend/models/Cart.cpp.o: ../backend/models/Cart.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/workspaces/Project-Proposal/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/server.dir/backend/models/Cart.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/server.dir/backend/models/Cart.cpp.o -c /workspaces/Project-Proposal/backend/models/Cart.cpp
 
-CMakeFiles/server.dir/Main/models/Cart.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/server.dir/Main/models/Cart.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /workspaces/Project-Proposal/Main/models/Cart.cpp > CMakeFiles/server.dir/Main/models/Cart.cpp.i
+CMakeFiles/server.dir/backend/models/Cart.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/server.dir/backend/models/Cart.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /workspaces/Project-Proposal/backend/models/Cart.cpp > CMakeFiles/server.dir/backend/models/Cart.cpp.i
 
-CMakeFiles/server.dir/Main/models/Cart.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/server.dir/Main/models/Cart.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /workspaces/Project-Proposal/Main/models/Cart.cpp -o CMakeFiles/server.dir/Main/models/Cart.cpp.s
+CMakeFiles/server.dir/backend/models/Cart.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/server.dir/backend/models/Cart.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /workspaces/Project-Proposal/backend/models/Cart.cpp -o CMakeFiles/server.dir/backend/models/Cart.cpp.s
 
-CMakeFiles/server.dir/Main/models/Customer.cpp.o: CMakeFiles/server.dir/flags.make
-CMakeFiles/server.dir/Main/models/Customer.cpp.o: ../Main/models/Customer.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/workspaces/Project-Proposal/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/server.dir/Main/models/Customer.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/server.dir/Main/models/Customer.cpp.o -c /workspaces/Project-Proposal/Main/models/Customer.cpp
+CMakeFiles/server.dir/backend/models/Customer.cpp.o: CMakeFiles/server.dir/flags.make
+CMakeFiles/server.dir/backend/models/Customer.cpp.o: ../backend/models/Customer.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/workspaces/Project-Proposal/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/server.dir/backend/models/Customer.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/server.dir/backend/models/Customer.cpp.o -c /workspaces/Project-Proposal/backend/models/Customer.cpp
 
-CMakeFiles/server.dir/Main/models/Customer.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/server.dir/Main/models/Customer.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /workspaces/Project-Proposal/Main/models/Customer.cpp > CMakeFiles/server.dir/Main/models/Customer.cpp.i
+CMakeFiles/server.dir/backend/models/Customer.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/server.dir/backend/models/Customer.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /workspaces/Project-Proposal/backend/models/Customer.cpp > CMakeFiles/server.dir/backend/models/Customer.cpp.i
 
-CMakeFiles/server.dir/Main/models/Customer.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/server.dir/Main/models/Customer.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /workspaces/Project-Proposal/Main/models/Customer.cpp -o CMakeFiles/server.dir/Main/models/Customer.cpp.s
+CMakeFiles/server.dir/backend/models/Customer.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/server.dir/backend/models/Customer.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /workspaces/Project-Proposal/backend/models/Customer.cpp -o CMakeFiles/server.dir/backend/models/Customer.cpp.s
 
-CMakeFiles/server.dir/Main/models/KhoHang.cpp.o: CMakeFiles/server.dir/flags.make
-CMakeFiles/server.dir/Main/models/KhoHang.cpp.o: ../Main/models/KhoHang.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/workspaces/Project-Proposal/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/server.dir/Main/models/KhoHang.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/server.dir/Main/models/KhoHang.cpp.o -c /workspaces/Project-Proposal/Main/models/KhoHang.cpp
+CMakeFiles/server.dir/backend/models/Datetime.cpp.o: CMakeFiles/server.dir/flags.make
+CMakeFiles/server.dir/backend/models/Datetime.cpp.o: ../backend/models/Datetime.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/workspaces/Project-Proposal/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/server.dir/backend/models/Datetime.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/server.dir/backend/models/Datetime.cpp.o -c /workspaces/Project-Proposal/backend/models/Datetime.cpp
 
-CMakeFiles/server.dir/Main/models/KhoHang.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/server.dir/Main/models/KhoHang.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /workspaces/Project-Proposal/Main/models/KhoHang.cpp > CMakeFiles/server.dir/Main/models/KhoHang.cpp.i
+CMakeFiles/server.dir/backend/models/Datetime.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/server.dir/backend/models/Datetime.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /workspaces/Project-Proposal/backend/models/Datetime.cpp > CMakeFiles/server.dir/backend/models/Datetime.cpp.i
 
-CMakeFiles/server.dir/Main/models/KhoHang.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/server.dir/Main/models/KhoHang.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /workspaces/Project-Proposal/Main/models/KhoHang.cpp -o CMakeFiles/server.dir/Main/models/KhoHang.cpp.s
+CMakeFiles/server.dir/backend/models/Datetime.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/server.dir/backend/models/Datetime.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /workspaces/Project-Proposal/backend/models/Datetime.cpp -o CMakeFiles/server.dir/backend/models/Datetime.cpp.s
 
-CMakeFiles/server.dir/Main/models/Main.cpp.o: CMakeFiles/server.dir/flags.make
-CMakeFiles/server.dir/Main/models/Main.cpp.o: ../Main/models/Main.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/workspaces/Project-Proposal/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object CMakeFiles/server.dir/Main/models/Main.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/server.dir/Main/models/Main.cpp.o -c /workspaces/Project-Proposal/Main/models/Main.cpp
+CMakeFiles/server.dir/backend/models/Drink.cpp.o: CMakeFiles/server.dir/flags.make
+CMakeFiles/server.dir/backend/models/Drink.cpp.o: ../backend/models/Drink.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/workspaces/Project-Proposal/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object CMakeFiles/server.dir/backend/models/Drink.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/server.dir/backend/models/Drink.cpp.o -c /workspaces/Project-Proposal/backend/models/Drink.cpp
 
-CMakeFiles/server.dir/Main/models/Main.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/server.dir/Main/models/Main.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /workspaces/Project-Proposal/Main/models/Main.cpp > CMakeFiles/server.dir/Main/models/Main.cpp.i
+CMakeFiles/server.dir/backend/models/Drink.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/server.dir/backend/models/Drink.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /workspaces/Project-Proposal/backend/models/Drink.cpp > CMakeFiles/server.dir/backend/models/Drink.cpp.i
 
-CMakeFiles/server.dir/Main/models/Main.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/server.dir/Main/models/Main.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /workspaces/Project-Proposal/Main/models/Main.cpp -o CMakeFiles/server.dir/Main/models/Main.cpp.s
+CMakeFiles/server.dir/backend/models/Drink.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/server.dir/backend/models/Drink.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /workspaces/Project-Proposal/backend/models/Drink.cpp -o CMakeFiles/server.dir/backend/models/Drink.cpp.s
 
-CMakeFiles/server.dir/Main/models/Main_all.cpp.o: CMakeFiles/server.dir/flags.make
-CMakeFiles/server.dir/Main/models/Main_all.cpp.o: ../Main/models/Main_all.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/workspaces/Project-Proposal/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building CXX object CMakeFiles/server.dir/Main/models/Main_all.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/server.dir/Main/models/Main_all.cpp.o -c /workspaces/Project-Proposal/Main/models/Main_all.cpp
+CMakeFiles/server.dir/backend/models/Food.cpp.o: CMakeFiles/server.dir/flags.make
+CMakeFiles/server.dir/backend/models/Food.cpp.o: ../backend/models/Food.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/workspaces/Project-Proposal/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building CXX object CMakeFiles/server.dir/backend/models/Food.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/server.dir/backend/models/Food.cpp.o -c /workspaces/Project-Proposal/backend/models/Food.cpp
 
-CMakeFiles/server.dir/Main/models/Main_all.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/server.dir/Main/models/Main_all.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /workspaces/Project-Proposal/Main/models/Main_all.cpp > CMakeFiles/server.dir/Main/models/Main_all.cpp.i
+CMakeFiles/server.dir/backend/models/Food.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/server.dir/backend/models/Food.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /workspaces/Project-Proposal/backend/models/Food.cpp > CMakeFiles/server.dir/backend/models/Food.cpp.i
 
-CMakeFiles/server.dir/Main/models/Main_all.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/server.dir/Main/models/Main_all.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /workspaces/Project-Proposal/Main/models/Main_all.cpp -o CMakeFiles/server.dir/Main/models/Main_all.cpp.s
+CMakeFiles/server.dir/backend/models/Food.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/server.dir/backend/models/Food.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /workspaces/Project-Proposal/backend/models/Food.cpp -o CMakeFiles/server.dir/backend/models/Food.cpp.s
 
-CMakeFiles/server.dir/Main/models/Money.cpp.o: CMakeFiles/server.dir/flags.make
-CMakeFiles/server.dir/Main/models/Money.cpp.o: ../Main/models/Money.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/workspaces/Project-Proposal/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Building CXX object CMakeFiles/server.dir/Main/models/Money.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/server.dir/Main/models/Money.cpp.o -c /workspaces/Project-Proposal/Main/models/Money.cpp
+CMakeFiles/server.dir/backend/models/KhoHang.cpp.o: CMakeFiles/server.dir/flags.make
+CMakeFiles/server.dir/backend/models/KhoHang.cpp.o: ../backend/models/KhoHang.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/workspaces/Project-Proposal/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Building CXX object CMakeFiles/server.dir/backend/models/KhoHang.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/server.dir/backend/models/KhoHang.cpp.o -c /workspaces/Project-Proposal/backend/models/KhoHang.cpp
 
-CMakeFiles/server.dir/Main/models/Money.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/server.dir/Main/models/Money.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /workspaces/Project-Proposal/Main/models/Money.cpp > CMakeFiles/server.dir/Main/models/Money.cpp.i
+CMakeFiles/server.dir/backend/models/KhoHang.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/server.dir/backend/models/KhoHang.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /workspaces/Project-Proposal/backend/models/KhoHang.cpp > CMakeFiles/server.dir/backend/models/KhoHang.cpp.i
 
-CMakeFiles/server.dir/Main/models/Money.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/server.dir/Main/models/Money.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /workspaces/Project-Proposal/Main/models/Money.cpp -o CMakeFiles/server.dir/Main/models/Money.cpp.s
+CMakeFiles/server.dir/backend/models/KhoHang.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/server.dir/backend/models/KhoHang.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /workspaces/Project-Proposal/backend/models/KhoHang.cpp -o CMakeFiles/server.dir/backend/models/KhoHang.cpp.s
 
-CMakeFiles/server.dir/Main/models/SanPham.cpp.o: CMakeFiles/server.dir/flags.make
-CMakeFiles/server.dir/Main/models/SanPham.cpp.o: ../Main/models/SanPham.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/workspaces/Project-Proposal/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_11) "Building CXX object CMakeFiles/server.dir/Main/models/SanPham.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/server.dir/Main/models/SanPham.cpp.o -c /workspaces/Project-Proposal/Main/models/SanPham.cpp
+CMakeFiles/server.dir/backend/models/Main.cpp.o: CMakeFiles/server.dir/flags.make
+CMakeFiles/server.dir/backend/models/Main.cpp.o: ../backend/models/Main.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/workspaces/Project-Proposal/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_11) "Building CXX object CMakeFiles/server.dir/backend/models/Main.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/server.dir/backend/models/Main.cpp.o -c /workspaces/Project-Proposal/backend/models/Main.cpp
 
-CMakeFiles/server.dir/Main/models/SanPham.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/server.dir/Main/models/SanPham.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /workspaces/Project-Proposal/Main/models/SanPham.cpp > CMakeFiles/server.dir/Main/models/SanPham.cpp.i
+CMakeFiles/server.dir/backend/models/Main.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/server.dir/backend/models/Main.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /workspaces/Project-Proposal/backend/models/Main.cpp > CMakeFiles/server.dir/backend/models/Main.cpp.i
 
-CMakeFiles/server.dir/Main/models/SanPham.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/server.dir/Main/models/SanPham.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /workspaces/Project-Proposal/Main/models/SanPham.cpp -o CMakeFiles/server.dir/Main/models/SanPham.cpp.s
+CMakeFiles/server.dir/backend/models/Main.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/server.dir/backend/models/Main.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /workspaces/Project-Proposal/backend/models/Main.cpp -o CMakeFiles/server.dir/backend/models/Main.cpp.s
 
-CMakeFiles/server.dir/Main/models/ThucAn.cpp.o: CMakeFiles/server.dir/flags.make
-CMakeFiles/server.dir/Main/models/ThucAn.cpp.o: ../Main/models/ThucAn.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/workspaces/Project-Proposal/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_12) "Building CXX object CMakeFiles/server.dir/Main/models/ThucAn.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/server.dir/Main/models/ThucAn.cpp.o -c /workspaces/Project-Proposal/Main/models/ThucAn.cpp
+CMakeFiles/server.dir/backend/models/Main_all.cpp.o: CMakeFiles/server.dir/flags.make
+CMakeFiles/server.dir/backend/models/Main_all.cpp.o: ../backend/models/Main_all.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/workspaces/Project-Proposal/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_12) "Building CXX object CMakeFiles/server.dir/backend/models/Main_all.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/server.dir/backend/models/Main_all.cpp.o -c /workspaces/Project-Proposal/backend/models/Main_all.cpp
 
-CMakeFiles/server.dir/Main/models/ThucAn.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/server.dir/Main/models/ThucAn.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /workspaces/Project-Proposal/Main/models/ThucAn.cpp > CMakeFiles/server.dir/Main/models/ThucAn.cpp.i
+CMakeFiles/server.dir/backend/models/Main_all.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/server.dir/backend/models/Main_all.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /workspaces/Project-Proposal/backend/models/Main_all.cpp > CMakeFiles/server.dir/backend/models/Main_all.cpp.i
 
-CMakeFiles/server.dir/Main/models/ThucAn.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/server.dir/Main/models/ThucAn.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /workspaces/Project-Proposal/Main/models/ThucAn.cpp -o CMakeFiles/server.dir/Main/models/ThucAn.cpp.s
+CMakeFiles/server.dir/backend/models/Main_all.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/server.dir/backend/models/Main_all.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /workspaces/Project-Proposal/backend/models/Main_all.cpp -o CMakeFiles/server.dir/backend/models/Main_all.cpp.s
 
-CMakeFiles/server.dir/Main/models/ThucUong.cpp.o: CMakeFiles/server.dir/flags.make
-CMakeFiles/server.dir/Main/models/ThucUong.cpp.o: ../Main/models/ThucUong.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/workspaces/Project-Proposal/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_13) "Building CXX object CMakeFiles/server.dir/Main/models/ThucUong.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/server.dir/Main/models/ThucUong.cpp.o -c /workspaces/Project-Proposal/Main/models/ThucUong.cpp
+CMakeFiles/server.dir/backend/models/Money.cpp.o: CMakeFiles/server.dir/flags.make
+CMakeFiles/server.dir/backend/models/Money.cpp.o: ../backend/models/Money.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/workspaces/Project-Proposal/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_13) "Building CXX object CMakeFiles/server.dir/backend/models/Money.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/server.dir/backend/models/Money.cpp.o -c /workspaces/Project-Proposal/backend/models/Money.cpp
 
-CMakeFiles/server.dir/Main/models/ThucUong.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/server.dir/Main/models/ThucUong.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /workspaces/Project-Proposal/Main/models/ThucUong.cpp > CMakeFiles/server.dir/Main/models/ThucUong.cpp.i
+CMakeFiles/server.dir/backend/models/Money.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/server.dir/backend/models/Money.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /workspaces/Project-Proposal/backend/models/Money.cpp > CMakeFiles/server.dir/backend/models/Money.cpp.i
 
-CMakeFiles/server.dir/Main/models/ThucUong.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/server.dir/Main/models/ThucUong.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /workspaces/Project-Proposal/Main/models/ThucUong.cpp -o CMakeFiles/server.dir/Main/models/ThucUong.cpp.s
+CMakeFiles/server.dir/backend/models/Money.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/server.dir/backend/models/Money.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /workspaces/Project-Proposal/backend/models/Money.cpp -o CMakeFiles/server.dir/backend/models/Money.cpp.s
 
-CMakeFiles/server.dir/Main/models/User.cpp.o: CMakeFiles/server.dir/flags.make
-CMakeFiles/server.dir/Main/models/User.cpp.o: ../Main/models/User.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/workspaces/Project-Proposal/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_14) "Building CXX object CMakeFiles/server.dir/Main/models/User.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/server.dir/Main/models/User.cpp.o -c /workspaces/Project-Proposal/Main/models/User.cpp
+CMakeFiles/server.dir/backend/models/Product.cpp.o: CMakeFiles/server.dir/flags.make
+CMakeFiles/server.dir/backend/models/Product.cpp.o: ../backend/models/Product.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/workspaces/Project-Proposal/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_14) "Building CXX object CMakeFiles/server.dir/backend/models/Product.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/server.dir/backend/models/Product.cpp.o -c /workspaces/Project-Proposal/backend/models/Product.cpp
 
-CMakeFiles/server.dir/Main/models/User.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/server.dir/Main/models/User.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /workspaces/Project-Proposal/Main/models/User.cpp > CMakeFiles/server.dir/Main/models/User.cpp.i
+CMakeFiles/server.dir/backend/models/Product.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/server.dir/backend/models/Product.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /workspaces/Project-Proposal/backend/models/Product.cpp > CMakeFiles/server.dir/backend/models/Product.cpp.i
 
-CMakeFiles/server.dir/Main/models/User.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/server.dir/Main/models/User.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /workspaces/Project-Proposal/Main/models/User.cpp -o CMakeFiles/server.dir/Main/models/User.cpp.s
+CMakeFiles/server.dir/backend/models/Product.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/server.dir/backend/models/Product.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /workspaces/Project-Proposal/backend/models/Product.cpp -o CMakeFiles/server.dir/backend/models/Product.cpp.s
 
-CMakeFiles/server.dir/Main/models/UserManagement.cpp.o: CMakeFiles/server.dir/flags.make
-CMakeFiles/server.dir/Main/models/UserManagement.cpp.o: ../Main/models/UserManagement.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/workspaces/Project-Proposal/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_15) "Building CXX object CMakeFiles/server.dir/Main/models/UserManagement.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/server.dir/Main/models/UserManagement.cpp.o -c /workspaces/Project-Proposal/Main/models/UserManagement.cpp
+CMakeFiles/server.dir/backend/models/User.cpp.o: CMakeFiles/server.dir/flags.make
+CMakeFiles/server.dir/backend/models/User.cpp.o: ../backend/models/User.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/workspaces/Project-Proposal/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_15) "Building CXX object CMakeFiles/server.dir/backend/models/User.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/server.dir/backend/models/User.cpp.o -c /workspaces/Project-Proposal/backend/models/User.cpp
 
-CMakeFiles/server.dir/Main/models/UserManagement.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/server.dir/Main/models/UserManagement.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /workspaces/Project-Proposal/Main/models/UserManagement.cpp > CMakeFiles/server.dir/Main/models/UserManagement.cpp.i
+CMakeFiles/server.dir/backend/models/User.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/server.dir/backend/models/User.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /workspaces/Project-Proposal/backend/models/User.cpp > CMakeFiles/server.dir/backend/models/User.cpp.i
 
-CMakeFiles/server.dir/Main/models/UserManagement.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/server.dir/Main/models/UserManagement.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /workspaces/Project-Proposal/Main/models/UserManagement.cpp -o CMakeFiles/server.dir/Main/models/UserManagement.cpp.s
+CMakeFiles/server.dir/backend/models/User.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/server.dir/backend/models/User.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /workspaces/Project-Proposal/backend/models/User.cpp -o CMakeFiles/server.dir/backend/models/User.cpp.s
 
-CMakeFiles/server.dir/Main/models/UserRoute.cpp.o: CMakeFiles/server.dir/flags.make
-CMakeFiles/server.dir/Main/models/UserRoute.cpp.o: ../Main/models/UserRoute.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/workspaces/Project-Proposal/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_16) "Building CXX object CMakeFiles/server.dir/Main/models/UserRoute.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/server.dir/Main/models/UserRoute.cpp.o -c /workspaces/Project-Proposal/Main/models/UserRoute.cpp
+CMakeFiles/server.dir/backend/models/UserManagement.cpp.o: CMakeFiles/server.dir/flags.make
+CMakeFiles/server.dir/backend/models/UserManagement.cpp.o: ../backend/models/UserManagement.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/workspaces/Project-Proposal/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_16) "Building CXX object CMakeFiles/server.dir/backend/models/UserManagement.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/server.dir/backend/models/UserManagement.cpp.o -c /workspaces/Project-Proposal/backend/models/UserManagement.cpp
 
-CMakeFiles/server.dir/Main/models/UserRoute.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/server.dir/Main/models/UserRoute.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /workspaces/Project-Proposal/Main/models/UserRoute.cpp > CMakeFiles/server.dir/Main/models/UserRoute.cpp.i
+CMakeFiles/server.dir/backend/models/UserManagement.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/server.dir/backend/models/UserManagement.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /workspaces/Project-Proposal/backend/models/UserManagement.cpp > CMakeFiles/server.dir/backend/models/UserManagement.cpp.i
 
-CMakeFiles/server.dir/Main/models/UserRoute.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/server.dir/Main/models/UserRoute.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /workspaces/Project-Proposal/Main/models/UserRoute.cpp -o CMakeFiles/server.dir/Main/models/UserRoute.cpp.s
+CMakeFiles/server.dir/backend/models/UserManagement.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/server.dir/backend/models/UserManagement.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /workspaces/Project-Proposal/backend/models/UserManagement.cpp -o CMakeFiles/server.dir/backend/models/UserManagement.cpp.s
 
-CMakeFiles/server.dir/Main/models/Utils.cpp.o: CMakeFiles/server.dir/flags.make
-CMakeFiles/server.dir/Main/models/Utils.cpp.o: ../Main/models/Utils.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/workspaces/Project-Proposal/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_17) "Building CXX object CMakeFiles/server.dir/Main/models/Utils.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/server.dir/Main/models/Utils.cpp.o -c /workspaces/Project-Proposal/Main/models/Utils.cpp
+CMakeFiles/server.dir/backend/models/main.cpp.o: CMakeFiles/server.dir/flags.make
+CMakeFiles/server.dir/backend/models/main.cpp.o: ../backend/models/main.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/workspaces/Project-Proposal/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_17) "Building CXX object CMakeFiles/server.dir/backend/models/main.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/server.dir/backend/models/main.cpp.o -c /workspaces/Project-Proposal/backend/models/main.cpp
 
-CMakeFiles/server.dir/Main/models/Utils.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/server.dir/Main/models/Utils.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /workspaces/Project-Proposal/Main/models/Utils.cpp > CMakeFiles/server.dir/Main/models/Utils.cpp.i
+CMakeFiles/server.dir/backend/models/main.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/server.dir/backend/models/main.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /workspaces/Project-Proposal/backend/models/main.cpp > CMakeFiles/server.dir/backend/models/main.cpp.i
 
-CMakeFiles/server.dir/Main/models/Utils.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/server.dir/Main/models/Utils.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /workspaces/Project-Proposal/Main/models/Utils.cpp -o CMakeFiles/server.dir/Main/models/Utils.cpp.s
+CMakeFiles/server.dir/backend/models/main.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/server.dir/backend/models/main.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /workspaces/Project-Proposal/backend/models/main.cpp -o CMakeFiles/server.dir/backend/models/main.cpp.s
 
-CMakeFiles/server.dir/Main/models/show_Data.cpp.o: CMakeFiles/server.dir/flags.make
-CMakeFiles/server.dir/Main/models/show_Data.cpp.o: ../Main/models/show_Data.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/workspaces/Project-Proposal/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_18) "Building CXX object CMakeFiles/server.dir/Main/models/show_Data.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/server.dir/Main/models/show_Data.cpp.o -c /workspaces/Project-Proposal/Main/models/show_Data.cpp
+CMakeFiles/server.dir/backend/routes/Route.cpp.o: CMakeFiles/server.dir/flags.make
+CMakeFiles/server.dir/backend/routes/Route.cpp.o: ../backend/routes/Route.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/workspaces/Project-Proposal/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_18) "Building CXX object CMakeFiles/server.dir/backend/routes/Route.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/server.dir/backend/routes/Route.cpp.o -c /workspaces/Project-Proposal/backend/routes/Route.cpp
 
-CMakeFiles/server.dir/Main/models/show_Data.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/server.dir/Main/models/show_Data.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /workspaces/Project-Proposal/Main/models/show_Data.cpp > CMakeFiles/server.dir/Main/models/show_Data.cpp.i
+CMakeFiles/server.dir/backend/routes/Route.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/server.dir/backend/routes/Route.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /workspaces/Project-Proposal/backend/routes/Route.cpp > CMakeFiles/server.dir/backend/routes/Route.cpp.i
 
-CMakeFiles/server.dir/Main/models/show_Data.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/server.dir/Main/models/show_Data.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /workspaces/Project-Proposal/Main/models/show_Data.cpp -o CMakeFiles/server.dir/Main/models/show_Data.cpp.s
-
-CMakeFiles/server.dir/Main/routes/Route.cpp.o: CMakeFiles/server.dir/flags.make
-CMakeFiles/server.dir/Main/routes/Route.cpp.o: ../Main/routes/Route.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/workspaces/Project-Proposal/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_19) "Building CXX object CMakeFiles/server.dir/Main/routes/Route.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/server.dir/Main/routes/Route.cpp.o -c /workspaces/Project-Proposal/Main/routes/Route.cpp
-
-CMakeFiles/server.dir/Main/routes/Route.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/server.dir/Main/routes/Route.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /workspaces/Project-Proposal/Main/routes/Route.cpp > CMakeFiles/server.dir/Main/routes/Route.cpp.i
-
-CMakeFiles/server.dir/Main/routes/Route.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/server.dir/Main/routes/Route.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /workspaces/Project-Proposal/Main/routes/Route.cpp -o CMakeFiles/server.dir/Main/routes/Route.cpp.s
+CMakeFiles/server.dir/backend/routes/Route.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/server.dir/backend/routes/Route.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /workspaces/Project-Proposal/backend/routes/Route.cpp -o CMakeFiles/server.dir/backend/routes/Route.cpp.s
 
 # Object files for target server
 server_OBJECTS = \
-"CMakeFiles/server.dir/Main/main.cpp.o" \
-"CMakeFiles/server.dir/Main/models/Admin.cpp.o" \
-"CMakeFiles/server.dir/Main/models/Bill.cpp.o" \
-"CMakeFiles/server.dir/Main/models/BillManagement.cpp.o" \
-"CMakeFiles/server.dir/Main/models/Cart.cpp.o" \
-"CMakeFiles/server.dir/Main/models/Customer.cpp.o" \
-"CMakeFiles/server.dir/Main/models/KhoHang.cpp.o" \
-"CMakeFiles/server.dir/Main/models/Main.cpp.o" \
-"CMakeFiles/server.dir/Main/models/Main_all.cpp.o" \
-"CMakeFiles/server.dir/Main/models/Money.cpp.o" \
-"CMakeFiles/server.dir/Main/models/SanPham.cpp.o" \
-"CMakeFiles/server.dir/Main/models/ThucAn.cpp.o" \
-"CMakeFiles/server.dir/Main/models/ThucUong.cpp.o" \
-"CMakeFiles/server.dir/Main/models/User.cpp.o" \
-"CMakeFiles/server.dir/Main/models/UserManagement.cpp.o" \
-"CMakeFiles/server.dir/Main/models/UserRoute.cpp.o" \
-"CMakeFiles/server.dir/Main/models/Utils.cpp.o" \
-"CMakeFiles/server.dir/Main/models/show_Data.cpp.o" \
-"CMakeFiles/server.dir/Main/routes/Route.cpp.o"
+"CMakeFiles/server.dir/backend/routes/main.cpp.o" \
+"CMakeFiles/server.dir/backend/models/Admin.cpp.o" \
+"CMakeFiles/server.dir/backend/models/Bill.cpp.o" \
+"CMakeFiles/server.dir/backend/models/BillManagement.cpp.o" \
+"CMakeFiles/server.dir/backend/models/Cart.cpp.o" \
+"CMakeFiles/server.dir/backend/models/Customer.cpp.o" \
+"CMakeFiles/server.dir/backend/models/Datetime.cpp.o" \
+"CMakeFiles/server.dir/backend/models/Drink.cpp.o" \
+"CMakeFiles/server.dir/backend/models/Food.cpp.o" \
+"CMakeFiles/server.dir/backend/models/KhoHang.cpp.o" \
+"CMakeFiles/server.dir/backend/models/Main.cpp.o" \
+"CMakeFiles/server.dir/backend/models/Main_all.cpp.o" \
+"CMakeFiles/server.dir/backend/models/Money.cpp.o" \
+"CMakeFiles/server.dir/backend/models/Product.cpp.o" \
+"CMakeFiles/server.dir/backend/models/User.cpp.o" \
+"CMakeFiles/server.dir/backend/models/UserManagement.cpp.o" \
+"CMakeFiles/server.dir/backend/models/main.cpp.o" \
+"CMakeFiles/server.dir/backend/routes/Route.cpp.o"
 
 # External object files for target server
 server_EXTERNAL_OBJECTS =
 
-server: CMakeFiles/server.dir/Main/main.cpp.o
-server: CMakeFiles/server.dir/Main/models/Admin.cpp.o
-server: CMakeFiles/server.dir/Main/models/Bill.cpp.o
-server: CMakeFiles/server.dir/Main/models/BillManagement.cpp.o
-server: CMakeFiles/server.dir/Main/models/Cart.cpp.o
-server: CMakeFiles/server.dir/Main/models/Customer.cpp.o
-server: CMakeFiles/server.dir/Main/models/KhoHang.cpp.o
-server: CMakeFiles/server.dir/Main/models/Main.cpp.o
-server: CMakeFiles/server.dir/Main/models/Main_all.cpp.o
-server: CMakeFiles/server.dir/Main/models/Money.cpp.o
-server: CMakeFiles/server.dir/Main/models/SanPham.cpp.o
-server: CMakeFiles/server.dir/Main/models/ThucAn.cpp.o
-server: CMakeFiles/server.dir/Main/models/ThucUong.cpp.o
-server: CMakeFiles/server.dir/Main/models/User.cpp.o
-server: CMakeFiles/server.dir/Main/models/UserManagement.cpp.o
-server: CMakeFiles/server.dir/Main/models/UserRoute.cpp.o
-server: CMakeFiles/server.dir/Main/models/Utils.cpp.o
-server: CMakeFiles/server.dir/Main/models/show_Data.cpp.o
-server: CMakeFiles/server.dir/Main/routes/Route.cpp.o
+server: CMakeFiles/server.dir/backend/routes/main.cpp.o
+server: CMakeFiles/server.dir/backend/models/Admin.cpp.o
+server: CMakeFiles/server.dir/backend/models/Bill.cpp.o
+server: CMakeFiles/server.dir/backend/models/BillManagement.cpp.o
+server: CMakeFiles/server.dir/backend/models/Cart.cpp.o
+server: CMakeFiles/server.dir/backend/models/Customer.cpp.o
+server: CMakeFiles/server.dir/backend/models/Datetime.cpp.o
+server: CMakeFiles/server.dir/backend/models/Drink.cpp.o
+server: CMakeFiles/server.dir/backend/models/Food.cpp.o
+server: CMakeFiles/server.dir/backend/models/KhoHang.cpp.o
+server: CMakeFiles/server.dir/backend/models/Main.cpp.o
+server: CMakeFiles/server.dir/backend/models/Main_all.cpp.o
+server: CMakeFiles/server.dir/backend/models/Money.cpp.o
+server: CMakeFiles/server.dir/backend/models/Product.cpp.o
+server: CMakeFiles/server.dir/backend/models/User.cpp.o
+server: CMakeFiles/server.dir/backend/models/UserManagement.cpp.o
+server: CMakeFiles/server.dir/backend/models/main.cpp.o
+server: CMakeFiles/server.dir/backend/routes/Route.cpp.o
 server: CMakeFiles/server.dir/build.make
 server: CMakeFiles/server.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/workspaces/Project-Proposal/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_20) "Linking CXX executable server"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/workspaces/Project-Proposal/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_19) "Linking CXX executable server"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/server.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.

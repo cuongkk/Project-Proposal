@@ -6,5 +6,5 @@ CXX_FLAGS =   -std=gnu++17
 
 CXX_DEFINES = 
 
-CXX_INCLUDES = -I/workspaces/Project-Proposal/external/crow/include -I/workspaces/Project-Proposal/Main -I/workspaces/Project-Proposal/Main/models -I/workspaces/Project-Proposal/Main/routes 
+CXX_INCLUDES = -I/workspaces/Project-Proposal/external/crow/include -I/workspaces/Project-Proposal/backend/models -I/workspaces/Project-Proposal/backend/routes 
 
