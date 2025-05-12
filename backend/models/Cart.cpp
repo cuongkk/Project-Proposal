@@ -24,6 +24,11 @@ std::string Cart::get_money() const
     return _list.get_money();
 }
 
+LinkedList<Product> Cart::get_list() const
+{
+    return _list;
+}
+
 std::unique_ptr<Cart> Cart::clone() const
 {
     auto new_cart = std::make_unique<Cart>();

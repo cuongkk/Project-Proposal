@@ -71,7 +71,7 @@ void setup_signup_routes(crow::App<CORS> &app)
         {
             User = std::make_unique<Customer>(username, password, name);
             userManagement.add(std::move(User));
-            result["message"] = "Thành công";
+            result["message"] = "Success";
         }
 
         return crow::response{result.dump()}; });
@@ -209,7 +209,7 @@ void setup_update_inf_user_routes(crow::App<CORS> &app)
             res["message"] = "Vui lòng nhập email";
             return crow::response{res};
         }
-        else if (is_diffrent_name(_email, userManagement.get_email_user()))
+        else if (!is_diffrent_name(_email, userManagement.get_email_user()))
         {
             res["message"] = _email + " đã trùng lặp";
             return crow::response{res};
@@ -219,7 +219,7 @@ void setup_update_inf_user_routes(crow::App<CORS> &app)
             res["message"] = "Vui lòng nhập số điện thoại";
             return crow::response{res};
         }
-        else if (is_diffrent_name(_phoneNumber, userManagement.get_phoneNumber_user()))
+        else if (!is_diffrent_name(_phoneNumber, userManagement.get_phoneNumber_user()))
         {
             res["message"] = _phoneNumber + " đã trùng lặp";
             return crow::response{res};
@@ -258,7 +258,9 @@ void setup_add_product_routes(crow::App<CORS> &app)
                                                                     {
     auto body = crow::json::load(req.body);
     if (!body || !body.has("name"))
+    {
         return crow::response(400, "Invalid request: missing 'msg'");
+    }
 
     crow::json::wvalue res;
 
@@ -280,7 +282,7 @@ void setup_add_product_routes(crow::App<CORS> &app)
         res["message"] = "Tên sản phẩm không được quá 50 ký tự";
         return crow::response{res};
     }
-    else if (is_diffrent_name(_name, khoHang.get_name_product()))
+    else if (!is_diffrent_name(_name, khoHang.get_name_product()))
     {
         res["message"] = _name + " đã trùng lặp";
         return crow::response{res};
@@ -295,7 +297,8 @@ void setup_add_product_routes(crow::App<CORS> &app)
         res["message"] = "Vui lòng nhập thông tin sản phẩm";
         return crow::response{res};
     }
-    else if (!(findContains(_inf, "thức ăn") != std::string::npos || findContains(_inf, "đồ uống") != std::string::npos))
+    else if ((findContains(_inf, "thức ăn") && findContains(_inf, "đồ uống"))
+              || !findContains(_inf, "thức ăn") && !findContains(_inf, "đồ uống"))
     {
         res["message"] = "Thông tin sản phẩm không hợp lệ";
         return crow::response{res};
@@ -320,7 +323,6 @@ void setup_add_product_routes(crow::App<CORS> &app)
         res["message"] = "Giá tiền không hợp lệ";
         return crow::response{res};
     }
-
     else if (std::stof(_discount) < 0 || std::stof(_discount) > 100 || !is_positive_number(_discount))
     {
         res["message"] = "Phần trăm giảm giá không hợp lệ";
@@ -368,7 +370,7 @@ void setup_add_product_routes(crow::App<CORS> &app)
         res["message"] = "Thêm sản phẩm thành công";
         return crow::response{res};
     }
-    
+    res["message"] = "Thêm sản phẩm không thành công";
     return crow::response{res}; });
 }
 
@@ -401,6 +403,11 @@ void setup_show_product_routes(crow::App<CORS> &app)
             for (auto it = products.begin(); it != products.end(); ++it)
             {
                 const auto &product = *it;
+                if (product->get_origin()->get_quantity() == 0)
+                {
+                    continue;
+                }
+                res["products"][i]["id"] = product->get_id();
                 res["products"][i]["name"] = product->get_name();
                 res["products"][i]["inf"] = product->get_inf();
                 res["products"][i]["quantity"] = product->get_quantity();
@@ -493,7 +500,7 @@ void setup_add_product_to_cart_routes(crow::App<CORS> &app)
             return crow::response(400, "Invalid request: missing 'msg'");
 
         std::string id_user = body["id_user"].s();
-        auto userPtr = userManagement.getUser_from_id(id_user);
+        auto userPtr = userManagement.getUser_from_id(id_user)->get_origin();
         if (!userPtr)
             return crow::response(404, "User not found");
         
@@ -517,7 +524,7 @@ void setup_add_product_to_cart_routes(crow::App<CORS> &app)
             int quantity = khoHang.getProduct_from_id(_id_product)->get_origin()->get_quantity();
             if (quantity != 0)
             {
-                userPtr->_cart.add(khoHang.getProduct_from_id(_id_product)->clone());
+                userPtr->_cart.add(khoHang.getProduct_from_id(_id_product));
                 khoHang.getProduct_from_id(_id_product)->get_origin()->set_quantity(quantity - std::stoi(_quantity_change));
                 res["message"] = "Success";
                 return crow::response{res};
@@ -529,7 +536,47 @@ void setup_add_product_to_cart_routes(crow::App<CORS> &app)
             }
             
         }
+        return crow::response(404, "User not found"); });
+}
 
+void setup_remove_product_from_cart_routes(crow::App<CORS> &app)
+{
+    CROW_ROUTE(app, "/remove_product_from_cart").methods(crow::HTTPMethod::POST)([](const crow::request &req)
+                                                                                 {
+        auto body = crow::json::load(req.body);
+        if (!body || !body.has("id_user"))
+            return crow::response(400, "Invalid request: missing 'msg'");
+
+        std::string id_user = body["id_user"].s();
+        auto userPtr = userManagement.getUser_from_id(id_user)->get_origin();
+        if (!userPtr)
+            return crow::response(404, "User not found");
+        
+        crow::json::wvalue res;
+
+        std::string _id_product = body["id_product"].s();
+        std::string _quantity_change = body["quantity_change"].s();
+
+        if (_quantity_change == "")
+        {
+            res["message"] = "Vui lòng nhập số lượng";
+            return crow::response{res};
+        }
+        else if (!is_positive_number(_quantity_change))
+        {
+            res["message"] = "Số lượng không hợp lệ";
+            return crow::response{res};
+        }
+        else
+        {
+            int quantity = khoHang.getProduct_from_id(_id_product)->get_origin()->get_quantity();
+            userPtr->_cart.remove(khoHang.getProduct_from_id(_id_product));
+            khoHang.getProduct_from_id(_id_product)->get_origin()->set_quantity(quantity + std::stoi(_quantity_change));
+            res["message"] = "Success";
+            return crow::response{res};
+            
+            
+        }
         return crow::response(404, "User not found"); });
 }
 
@@ -542,7 +589,7 @@ void setup_show_cart_routes(crow::App<CORS> &app)
             return crow::response(400, "Invalid request: missing 'msg'");
 
         std::string id_user = body["id_user"].s();
-        auto userPtr = userManagement.getUser_from_id(id_user);
+        auto userPtr = userManagement.getUser_from_id(id_user)->get_origin();
         if (!userPtr)
             return crow::response(404, "User not found");
 
@@ -556,16 +603,18 @@ void setup_show_cart_routes(crow::App<CORS> &app)
         }
         else
         {
-            const auto &products = userPtr->_cart.get_list();
-            for (auto it = products.begin(); it != products.end(); ++it)
+            const auto &list = userPtr->_cart.get_list();
+            for (auto &item : list)
             {
-                const auto &product = *it;
-                res["products"][i]["name"] = product->get_name();
-                res["products"][i]["quantity"] = product->get_quantity();
-                res["products"][i]["price"] = product->get_money();
+                res["products"][i]["id"] = item->get_id();
+                res["products"][i]["name"] = item->get_name();
+                res["products"][i]["quantity"] = item->get_quantity();
+                res["products"][i]["price"] =  item->get_money();
                 i++;
             }
+            res["price"] =  userPtr->_cart.get_money();
+            return crow::response{res};
+                 
         }
-
         return crow::response{res}; });
 }

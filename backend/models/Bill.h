@@ -29,7 +29,7 @@ public:
     std::string get_id() const;
     std::string get_id_Customer() const;
 
-    std::unique_ptr<Bill> confirmBill(UserManagement &, const std::string &, Cart &&);
+    // std::unique_ptr<Bill> confirmBill(UserManagement &, const std::string &);
     std::string get_totalCost() const;
 
     friend std::ostream &operator<<(std::ostream &, const Bill &);

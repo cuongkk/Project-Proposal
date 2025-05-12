@@ -76,28 +76,11 @@
         </tbody>
     </table>
 
-    <div id="cart-container" style="display:none;">
-        <h3>🛒 Giỏ hàng của bạn</h3>
-        <table>
-            <thead>
-                <tr>
-                    <th>Tên sản phẩm</th>
-                    <th>Số lượng</th>
-                    <th>Giá</th>
-                </tr>
-            </thead>
-            <tbody id="cart-list">
-                <!-- Sản phẩm trong giỏ hàng -->
-            </tbody>
-        </table>
-    </div>
-
     <script>
-        let userId = null;
 
         document.addEventListener('DOMContentLoaded', async () => {
             const _params = new URLSearchParams(window.location.search);
-            _id_user = _params.get('msg');
+            const _id_user = _params.get('msg');
 
             if (!_id_user) {
                 console.error("Không có 'msg' trên URL");
@@ -112,7 +95,7 @@
             tbody.innerHTML = "<tr><td colspan='7'>Đang tải...</td></tr>";
 
             try {
-                const response = await fetch('https://fictional-system-pjp4xjw69x55f656x-18080.app.github.dev/show_product', {
+                const response = await fetch('http://localhost:18080/show_product', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({ id_user: _id_user })
@@ -130,6 +113,7 @@
                 products.forEach((product) => {
                     const row = document.createElement('tr');
                     row.innerHTML = `
+                        <td style="display:none;"><p>${product.id}</p></td>
                         <td><p class="clickable">${product.name}</p></td>
                         <td><p>${product.inf}</p></td>
                         <td><p>${product.quantity}</p></td>
@@ -152,10 +136,11 @@
         }
 
         function addToCart(product) {
-            const productId = product.id || product.name; // Ưu tiên id nếu có
-            const quantityToAdd = 1;
+            const _id_user = new URLSearchParams(window.location.search).get('msg');
+            const productId = product.id || product.name;
+            const quantityToAdd = "1";
 
-            fetch('https://fictional-system-pjp4xjw69x55f656x-18080.app.github.dev/add_product_to_cart', {
+            fetch('http://localhost:18080/add_product_to_cart', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
@@ -175,40 +160,12 @@
         }
 
         function showCart() {
-            const cartContainer = document.getElementById('cart-container');
-            const cartList = document.getElementById('cart-list');
-            cartList.innerHTML = `<tr><td colspan="3">Đang tải giỏ hàng...</td></tr>`;
-            cartContainer.style.display = 'block';
-
-            fetch('https://fictional-system-pjp4xjw69x55f656x-18080.app.github.dev/show_cart', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ id_user: _id_user })
-            })
-                .then(res => res.json())
-                .then(data => {
-                    const cartItems = data.cart || [];
-                    cartList.innerHTML = '';
-                    if (cartItems.length === 0) {
-                        cartList.innerHTML = `<tr><td colspan="3">Giỏ hàng trống</td></tr>`;
-                        return;
-                    }
-
-                    cartItems.forEach(item => {
-                        const row = document.createElement('tr');
-                        row.innerHTML = `
-                        <td>${item.name}</td>
-                        <td>${item.quantity}</td>
-                        <td>${item.price}</td>
-                    `;
-                        cartList.appendChild(row);
-                    });
-                })
-                .catch(err => {
-                    console.error("Lỗi khi tải giỏ hàng:", err);
-                    cartList.innerHTML = `<tr><td colspan="3">Lỗi khi tải giỏ hàng</td></tr>`;
-                });
+            const _id_user = new URLSearchParams(window.location.search).get('msg');
+            const encodedMsg = encodeURIComponent(_id_user);
+            window.location.href = `http://127.0.0.1:5503/frontend/show_cart.html?msg=${encodedMsg}`;
         }
+
+
     </script>
 
 </body>

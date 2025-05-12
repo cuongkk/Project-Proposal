@@ -27,8 +27,8 @@ public:
     void operator=(const Money &);
     friend Money operator+(const Money &, const Money &);
     friend Money operator-(const Money &, const Money &);
-    friend Money operator*(const int &, const Money &);
-    friend Money operator*(const Money &, const float &);
+    friend std::string operator*(const std::string &, const int &);
+    friend std::string operator*(const std::string &, const float &);
     friend bool operator==(const Money &, const Money &);
     friend bool operator<(const Money &, const Money &);
     friend bool operator>(const Money &, const Money &);

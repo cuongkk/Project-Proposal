@@ -83,14 +83,14 @@ Money operator-(const Money &money1, const Money &money2)
     }
 }
 
-Money operator*(const int &value, const Money &money)
+std::string operator*(const std::string &money, const int &value)
 {
-    return Money(std::to_string(value * std::stoll(money.get_value())), money._type);
+    return std::to_string(value * std::stoll(money));
 }
 
-Money operator*(const Money &money, const float &value)
+std::string operator*(const std::string &money, const float &value)
 {
-    return Money(std::to_string(static_cast<long long>(std::stoll(money.get_value()) * value)), money._type);
+    return std::to_string(static_cast<long long>(std::stoll(money) * value));
 }
 
 bool operator==(const Money &money1, const Money &money2)

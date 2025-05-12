@@ -13,6 +13,7 @@ int main()
     setup_add_product_routes(app);
     setup_show_product_routes(app);
     setup_add_product_to_cart_routes(app);
+    setup_remove_product_from_cart_routes(app);
     setup_show_cart_routes(app);
 
     // GET

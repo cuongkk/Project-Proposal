@@ -43,9 +43,6 @@ public:
     friend std::string operator+(const std::string &, const std::string &);
     friend std::string operator+(const std::string &, const Product &);
 
-    friend std::string operator*(const int &, const std::string &);
-    friend std::string operator*(const std::string &, const float &);
-
     friend bool operator==(const Product &, const Product &);
     virtual void print(std::ostream &) const = 0;
     friend std::ostream &operator<<(std::ostream &, const Product &sp);

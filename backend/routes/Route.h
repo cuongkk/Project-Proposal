@@ -45,6 +45,7 @@ void setup_add_product_routes(crow::App<CORS> &);
 void setup_show_product_routes(crow::App<CORS> &);
 void setup_update_product_routes(crow::App<CORS> &);
 void setup_add_product_to_cart_routes(crow::App<CORS> &);
+void setup_remove_product_from_cart_routes(crow::App<CORS> &);
 void setup_show_cart_routes(crow::App<CORS> &);
 
 #endif

@@ -38,7 +38,7 @@ std::string LinkedList<T>::get_money() const
     {
         totalCost = totalCost + *item;
     }
-    return totalCost;
+    return totalCost + " VND";
 }
 
 template <typename T>

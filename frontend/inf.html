@@ -43,7 +43,7 @@
 
         async function get_inf() {
             if (_id_user) {
-                const response = await fetch('https://fictional-system-pjp4xjw69x55f656x-18080.app.github.dev/inf_user', {
+                const response = await fetch('http://localhost:18080/inf_user', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'
@@ -74,7 +74,7 @@
             const _phoneNumber = document.getElementById('phoneNumber').value;
             const _money = document.getElementById('money').value;
 
-            const response = await fetch('https://fictional-system-pjp4xjw69x55f656x-18080.app.github.dev/update_inf_user', {
+            const response = await fetch('http://localhost:18080/update_inf_user', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'

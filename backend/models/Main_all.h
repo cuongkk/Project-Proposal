@@ -1,7 +1,6 @@
 #ifndef MAIN_ALL_H
 #define MAIN_ALL_H
 
-#include "Main.h"
 #include "Product.h"
 #include "LinkedList.h"
 #include "DateTime.h"

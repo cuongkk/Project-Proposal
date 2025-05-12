@@ -20,10 +20,7 @@ public:
 
     int get_size() const;
     std::string get_money() const;
-    LinkedList<Product> get_list() const
-    {
-        return _list;
-    }
+    LinkedList<Product> get_list() const;
 
     bool add(std::unique_ptr<Product>);
     void remove(std::unique_ptr<Product>);

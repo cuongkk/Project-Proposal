@@ -84,7 +84,7 @@ std::string operator+(const std::string &a, const Product &b)
 {
     long long money_value = std::stoll(b._money.get_value());
 
-    long long total_cost = money_value * b.get_quantity() * (1 - b.get_discount());
+    long long total_cost = money_value * b.get_quantity() * (100 - b.get_discount()) / 100;
     if (a == "")
     {
         return std::to_string(total_cost);

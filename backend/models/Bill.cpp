@@ -49,26 +49,28 @@ std::string Bill::get_id_Customer() const
     return _id_Customer;
 }
 
-std::unique_ptr<Bill> Bill::confirmBill(UserManagement &userManagement, const std::string &id_Customer, Cart &&cart)
-{
-    auto bill1 = std::unique_ptr<Bill>(new Bill());
+// std::unique_ptr<Bill> Bill::confirmBill(UserManagement &userManagement, const std::string &id_Customer)
+// {
+//     auto bill1 = std::unique_ptr<Bill>(new Bill());
+//     auto userPtr = userManagement.getUser_from_id(id_Customer)->get_origin();
+//     auto cart = userPtr->_cart.clone();
 
-    if (0 < cart.get_size())
-    {
-        if (userManagement.getUser_from_id(id_Customer) >= std::stoll(cart.get_money()))
-        {
-            User *userOrigin = userManagement.getUser_from_id(id_Customer)->get_origin();
-            userOrigin->set_money(userManagement.getUser_from_id(id_Customer) - cart.get_money());
-            _totalCost = _cart.get_money();
-            auto bill = std::make_unique<Bill>(id_Customer, std::move(cart));
-            return bill;
-        }
-        else
-        {
-        }
-    }
-    return bill1;
-}
+//     if (0 < cart.get_size())
+//     {
+//         if (userManagement.getUser_from_id(id_Customer)->get_money() >= std::stoll(cart.get_money()))
+//         {
+//             User *userOrigin = userManagement.getUser_from_id(id_Customer)->get_origin();
+//             userOrigin->set_money(userManagement.getUser_from_id(id_Customer) - cart.get_money());
+//             _totalCost = _cart.get_money();
+//             auto bill = std::make_unique<Bill>(id_Customer, std::move(cart));
+//             return bill;
+//         }
+//         else
+//         {
+//         }
+//     }
+//     return bill1;
+// }
 std::string Bill::get_totalCost() const
 {
     return _totalCost;
