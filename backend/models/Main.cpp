@@ -59,3 +59,15 @@ bool is_positive_number(const std::string &str)
     }
     return !str.empty() && std::stoll(str) > 0;
 }
+
+bool is_diffrent_name(const std::string &name, const std::vector<std::string> &names)
+{
+    for (const auto &existing_name : names)
+    {
+        if (name == existing_name)
+        {
+            return false;
+        }
+    }
+    return true;
+}

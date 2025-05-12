@@ -42,24 +42,24 @@ std::string LinkedList<T>::get_money() const
 }
 
 template <typename T>
-void LinkedList<T>::push_back(std::unique_ptr<T> sp)
+void LinkedList<T>::push_back(std::shared_ptr<T> sp)
 {
     _list.push_back(std::move(sp));
 }
 template <typename T>
-void LinkedList<T>::add_Head(std::unique_ptr<T> sp)
+void LinkedList<T>::add_Head(std::shared_ptr<T> sp)
 {
     _list.push_front(std::move(sp));
 }
 
 template <typename T>
-void LinkedList<T>::add_Tail(std::unique_ptr<T> sp)
+void LinkedList<T>::add_Tail(std::shared_ptr<T> sp)
 {
     _list.push_back(std::move(sp));
 }
 
 template <typename T>
-void LinkedList<T>::add_Head_to_Cart(std::unique_ptr<T> sp)
+void LinkedList<T>::add_Head_to_Cart(std::shared_ptr<T> sp)
 {
     for (auto &item : _list)
     {
@@ -74,7 +74,7 @@ void LinkedList<T>::add_Head_to_Cart(std::unique_ptr<T> sp)
 }
 
 template <typename T>
-void LinkedList<T>::add_Tail_to_Cart(std::unique_ptr<T> sp)
+void LinkedList<T>::add_Tail_to_Cart(std::shared_ptr<T> sp)
 {
     for (auto &item : _list)
     {
@@ -89,7 +89,7 @@ void LinkedList<T>::add_Tail_to_Cart(std::unique_ptr<T> sp)
 }
 
 template <typename T>
-const std::list<std::unique_ptr<T>> &LinkedList<T>::get_Item() const
+const std::list<std::shared_ptr<T>> &LinkedList<T>::get_Item() const
 {
     return _list;
 }
@@ -133,7 +133,7 @@ bool LinkedList<T>::check_product(const T &sp) const
     return true;
 }
 template <typename T>
-void LinkedList<T>::remove_from_KhoHang(std::unique_ptr<T> sp)
+void LinkedList<T>::remove_from_KhoHang(std::shared_ptr<T> sp)
 {
     for (auto item = _list.begin(); item != _list.end(); ++item)
     {
@@ -147,7 +147,7 @@ void LinkedList<T>::remove_from_KhoHang(std::unique_ptr<T> sp)
 }
 
 template <typename T>
-void LinkedList<T>::remove_from_Cart(std::unique_ptr<T> sp)
+void LinkedList<T>::remove_from_Cart(std::shared_ptr<T> sp)
 {
     for (auto item = _list.begin(); item != _list.end(); ++item)
     {

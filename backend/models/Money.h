@@ -20,6 +20,7 @@ public:
     void set_value(const std::string &);
     std::string get_value() const;
     void set_type(const std::string &);
+    std::string get_money() const;
 
     long long ConvertToVND() const;
 

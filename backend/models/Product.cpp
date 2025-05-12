@@ -51,7 +51,7 @@ void Product::set_money(const std::string &money, const std::string &type_money)
 
 std::string Product::get_money() const
 {
-    return _money.get_value() + " " + _money._type;
+    return _money.get_money();
 }
 
 void Product::set_discount(const int &discount)
@@ -74,20 +74,6 @@ DateTime Product::get_expiry_Date() const
     return _expiry_Date;
 }
 
-bool Product::isDifferentName() const
-{
-    return false;
-}
-
-bool Product::isManufactureDateValid() const
-{
-    return false;
-}
-
-bool Product::isExpiryDateValid() const
-{
-    return false;
-}
 std::string operator+(const long long &m1, const std::string &m2)
 {
     long long value = m1 + std::stoll(m2);

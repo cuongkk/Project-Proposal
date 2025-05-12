@@ -10,14 +10,46 @@ void UserManagement::remove(std::unique_ptr<User> us)
     _user.remove_from_KhoHang(std::move(us));
 }
 
-bool UserManagement::check_username(const std::string &username)
+std::vector<std::string> UserManagement::get_username_user() const
 {
-    return _user.check_username(username);
+    std::vector<std::string> result;
+    for (const auto &item : _user.get_Item())
+    {
+        result.push_back(item->get_username());
+    }
+    return result;
 }
-bool UserManagement::check_name(const std::string &name)
+
+std::vector<std::string> UserManagement::get_name_user() const
 {
-    return _user.check_name(name);
+    std::vector<std::string> result;
+    for (const auto &item : _user.get_Item())
+    {
+        result.push_back(item->get_name());
+    }
+    return result;
 }
+
+std::vector<std::string> UserManagement::get_email_user() const
+{
+    std::vector<std::string> result;
+    for (const auto &item : _user.get_Item())
+    {
+        result.push_back(item->get_email());
+    }
+    return result;
+}
+
+std::vector<std::string> UserManagement::get_phoneNumber_user() const
+{
+    std::vector<std::string> result;
+    for (const auto &item : _user.get_Item())
+    {
+        result.push_back(item->get_phoneNumber());
+    }
+    return result;
+}
+
 std::unique_ptr<User> UserManagement::getUser_from_id(const std::string &id)
 {
     for (const auto &item : _user.get_Item())

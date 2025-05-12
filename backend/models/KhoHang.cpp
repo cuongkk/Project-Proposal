@@ -30,6 +30,17 @@ const LinkedList<Product> &KhoHang::getProduct() const
 {
     return _Product;
 }
+
+std::vector<std::string> KhoHang::get_name_product() const
+{
+    std::vector<std::string> result;
+    for (const auto &item : _Product.get_Item())
+    {
+        result.push_back(item->get_name());
+    }
+    return result;
+}
+
 std::unique_ptr<Product> KhoHang::getProduct_from_id(const std::string &id)
 {
     for (const auto &sp : _Product.get_Item())

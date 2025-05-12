@@ -9,8 +9,11 @@ int main()
     setup_signup_routes(app);
     setup_login_routes(app);
     setup_inf_user_routes(app);
+    setup_update_inf_user_routes(app);
     setup_add_product_routes(app);
     setup_show_product_routes(app);
+    setup_add_product_to_cart_routes(app);
+    setup_show_cart_routes(app);
 
     // GET
     CROW_ROUTE(app, "/submit").methods(crow::HTTPMethod::GET)([]()

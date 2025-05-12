@@ -40,7 +40,11 @@ void setup_user_routes(crow::App<CORS> &);
 void setup_signup_routes(crow::App<CORS> &);
 void setup_login_routes(crow::App<CORS> &);
 void setup_inf_user_routes(crow::App<CORS> &);
+void setup_update_inf_user_routes(crow::App<CORS> &);
 void setup_add_product_routes(crow::App<CORS> &);
 void setup_show_product_routes(crow::App<CORS> &);
+void setup_update_product_routes(crow::App<CORS> &);
+void setup_add_product_to_cart_routes(crow::App<CORS> &);
+void setup_show_cart_routes(crow::App<CORS> &);
 
 #endif

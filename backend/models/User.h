@@ -2,6 +2,7 @@
 #define USER_H
 
 #include "Main.h"
+#include "Cart.h"
 
 class User
 {
@@ -13,6 +14,7 @@ protected:
     User *_origin = nullptr;
 
 public:
+    Cart _cart;
     static std::vector<int> _id_counter_user;
 
     User();

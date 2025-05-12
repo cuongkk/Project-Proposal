@@ -33,8 +33,6 @@ LinkedList.h
 ../backend/models/Cart.h
 Main.h
 ../backend/models/Main.h
-KhoHang.h
-../backend/models/KhoHang.h
 Product.h
 ../backend/models/Product.h
 LinkedList.h
@@ -149,12 +147,12 @@ Money.h
 ../backend/models/Money.h
 DateTime.h
 ../backend/models/DateTime.h
-Customer.h
-../backend/models/Customer.h
 
 ../backend/models/User.h
 Main.h
 ../backend/models/Main.h
+Cart.h
+../backend/models/Cart.h
 
 ../backend/models/UserManagement.h
 Main.h

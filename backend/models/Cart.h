@@ -3,7 +3,6 @@
 #define CART_H
 
 #include "Main.h"
-#include "KhoHang.h"
 #include "Product.h"
 #include "LinkedList.h"
 class Cart
@@ -15,15 +14,19 @@ protected:
 public:
     Cart();
     ~Cart();
-    Cart(const std::string &);
+    Cart(const std::string &, const LinkedList<Product> &);
 
     std::unique_ptr<Cart> clone() const;
 
     int get_size() const;
     std::string get_money() const;
+    LinkedList<Product> get_list() const
+    {
+        return _list;
+    }
 
-    bool add(KhoHang &, std::unique_ptr<Product>);
-    void remove(KhoHang &, std::unique_ptr<Product>);
+    bool add(std::unique_ptr<Product>);
+    void remove(std::unique_ptr<Product>);
 
     void operator=(const Cart &);
     friend std::ostream &operator<<(std::ostream &os, const Cart &);

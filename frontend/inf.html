@@ -22,12 +22,13 @@
         <input type="text" id="email" required><br><br>
 
         <label for="phone">phone:</label>
-        <input type="text" id="phone" required><br><br>
+        <input type="text" id="phoneNumber" required><br><br>
 
         <label for="" money">money:</label>
         <input type="text" id="money" required><br><br>
 
         <button id="confirm" type="button">Xác nhận</button>
+        <p id="response"></p>
     </form>
     <hr>
 
@@ -39,6 +40,7 @@
         const _button_confirm = document.getElementById('confirm');
 
 
+
         async function get_inf() {
             if (_id_user) {
                 const response = await fetch('https://fictional-system-pjp4xjw69x55f656x-18080.app.github.dev/inf_user', {
@@ -46,17 +48,20 @@
                     headers: {
                         'Content-Type': 'application/json'
                     },
-                    body: JSON.stringify({ id_user: _id_user })
+                    body: JSON.stringify({
+                        id_user: _id_user,
+                    })
                 });
                 const result = await response.json();
                 username.textContent = result.username;
                 password.textContent = result.password;
                 Name.textContent = result.name;
-                // fullname.textContent = result.fullname;
-                // email.textContent = result.email;
-                // phone.textContent = result.phone;
-                // money.textContent = result.money;
+                document.getElementById('fullname').value = result.fullname;
+                document.getElementById('email').value = result.email;
+                document.getElementById('phoneNumber').value = result.phoneNumber;
+                document.getElementById('money').value = result.money;
             }
+
         }
 
         get_inf();
@@ -64,24 +69,28 @@
         _button_confirm.addEventListener('click', async function (e) {
             e.preventDefault();
 
-            const _id_user = document.getElementById('id_user').value;
             const _fullname = document.getElementById('fullname').value;
             const _email = document.getElementById('email').value;
-            const _phone = document.getElementById('phone').value;
+            const _phoneNumber = document.getElementById('phoneNumber').value;
             const _money = document.getElementById('money').value;
 
-            const response = await fetch('https://fictional-system-pjp4xjw69x55f656x-18080.app.github.dev/inf_user', {
+            const response = await fetch('https://fictional-system-pjp4xjw69x55f656x-18080.app.github.dev/update_inf_user', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
                 },
-                body: JSON.stringify({ id_user, fullname, email, phone, money })
+                body: JSON.stringify({
+                    id_user: _id_user,
+                    fullname: _fullname,
+                    email: _email,
+                    phoneNumber: _phoneNumber,
+                    money: _money
+                })
             });
 
             const result = await response.json();
-            alert(result.message);
+            document.getElementById('response').innerText = result.message;
         });
-
 
     </script>
 </body>

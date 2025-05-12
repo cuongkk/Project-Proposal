@@ -8,10 +8,12 @@ Cart::~Cart()
 {
 }
 
-Cart::Cart(const std::string &id_Customer)
+Cart::Cart(const std::string &id_Customer, const LinkedList<Product> &list)
 {
     _id_Customer = id_Customer;
+    _list = std::move(list);
 }
+
 int Cart::get_size() const
 {
     return _list.get_size();
@@ -32,12 +34,11 @@ std::unique_ptr<Cart> Cart::clone() const
     return new_cart;
 }
 
-bool Cart::add(KhoHang &khoHang, std::unique_ptr<Product> sp)
+bool Cart::add(std::unique_ptr<Product> sp)
 {
     Product *spOrigin = sp->get_origin();
     if (spOrigin->get_quantity() > 0)
     {
-        khoHang.updateQuantity(*spOrigin, 1);
         _list.add_Tail_to_Cart(std::move(sp));
         return true;
     }
@@ -48,10 +49,9 @@ bool Cart::add(KhoHang &khoHang, std::unique_ptr<Product> sp)
     return true;
 }
 
-void Cart::remove(KhoHang &khoHang, std::unique_ptr<Product> sp)
+void Cart::remove(std::unique_ptr<Product> sp)
 {
     Product *spOrigin = sp->get_origin();
-    khoHang.updateQuantity(*spOrigin, -1);
     _list.remove_from_Cart(std::move(sp));
 }
 

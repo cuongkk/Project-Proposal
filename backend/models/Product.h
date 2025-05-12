@@ -4,7 +4,6 @@
 #include "Main.h"
 #include "Money.h"
 #include "DateTime.h"
-#include "Customer.h"
 
 class Product
 {
@@ -40,10 +39,6 @@ public:
     float get_discount() const;
     DateTime get_manufacture_Date() const;
     DateTime get_expiry_Date() const;
-
-    bool isDifferentName() const;
-    bool isManufactureDateValid() const;
-    bool isExpiryDateValid() const;
 
     friend std::string operator+(const std::string &, const std::string &);
     friend std::string operator+(const std::string &, const Product &);

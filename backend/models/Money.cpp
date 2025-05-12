@@ -37,6 +37,10 @@ void Money::set_type(const std::string &type)
     _type = type;
 }
 
+std::string Money::get_money() const
+{
+    return _value + " " + _type;
+}
 long long Money::ConvertToVND() const
 {
     long long value = std::stoll(_value);

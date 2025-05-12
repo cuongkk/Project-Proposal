@@ -3,15 +3,19 @@
 
 CMakeFiles/server.dir/backend/models/Admin.cpp.o: ../backend/models/Admin.cpp
 CMakeFiles/server.dir/backend/models/Admin.cpp.o: ../backend/models/Admin.h
+CMakeFiles/server.dir/backend/models/Admin.cpp.o: ../backend/models/Cart.h
+CMakeFiles/server.dir/backend/models/Admin.cpp.o: ../backend/models/DateTime.h
+CMakeFiles/server.dir/backend/models/Admin.cpp.o: ../backend/models/LinkedList.h
+CMakeFiles/server.dir/backend/models/Admin.cpp.o: ../backend/models/LinkedList.tpp
 CMakeFiles/server.dir/backend/models/Admin.cpp.o: ../backend/models/Main.h
+CMakeFiles/server.dir/backend/models/Admin.cpp.o: ../backend/models/Money.h
+CMakeFiles/server.dir/backend/models/Admin.cpp.o: ../backend/models/Product.h
 CMakeFiles/server.dir/backend/models/Admin.cpp.o: ../backend/models/User.h
 
 CMakeFiles/server.dir/backend/models/Bill.cpp.o: ../backend/models/Bill.cpp
 CMakeFiles/server.dir/backend/models/Bill.cpp.o: ../backend/models/Bill.h
 CMakeFiles/server.dir/backend/models/Bill.cpp.o: ../backend/models/Cart.h
-CMakeFiles/server.dir/backend/models/Bill.cpp.o: ../backend/models/Customer.h
 CMakeFiles/server.dir/backend/models/Bill.cpp.o: ../backend/models/DateTime.h
-CMakeFiles/server.dir/backend/models/Bill.cpp.o: ../backend/models/KhoHang.h
 CMakeFiles/server.dir/backend/models/Bill.cpp.o: ../backend/models/LinkedList.h
 CMakeFiles/server.dir/backend/models/Bill.cpp.o: ../backend/models/LinkedList.tpp
 CMakeFiles/server.dir/backend/models/Bill.cpp.o: ../backend/models/Main.h
@@ -24,7 +28,6 @@ CMakeFiles/server.dir/backend/models/BillManagement.cpp.o: ../backend/models/Bil
 CMakeFiles/server.dir/backend/models/BillManagement.cpp.o: ../backend/models/BillManagement.cpp
 CMakeFiles/server.dir/backend/models/BillManagement.cpp.o: ../backend/models/BillManagement.h
 CMakeFiles/server.dir/backend/models/BillManagement.cpp.o: ../backend/models/Cart.h
-CMakeFiles/server.dir/backend/models/BillManagement.cpp.o: ../backend/models/Customer.h
 CMakeFiles/server.dir/backend/models/BillManagement.cpp.o: ../backend/models/DateTime.h
 CMakeFiles/server.dir/backend/models/BillManagement.cpp.o: ../backend/models/KhoHang.h
 CMakeFiles/server.dir/backend/models/BillManagement.cpp.o: ../backend/models/LinkedList.h
@@ -37,45 +40,42 @@ CMakeFiles/server.dir/backend/models/BillManagement.cpp.o: ../backend/models/Use
 
 CMakeFiles/server.dir/backend/models/Cart.cpp.o: ../backend/models/Cart.cpp
 CMakeFiles/server.dir/backend/models/Cart.cpp.o: ../backend/models/Cart.h
-CMakeFiles/server.dir/backend/models/Cart.cpp.o: ../backend/models/Customer.h
 CMakeFiles/server.dir/backend/models/Cart.cpp.o: ../backend/models/DateTime.h
-CMakeFiles/server.dir/backend/models/Cart.cpp.o: ../backend/models/KhoHang.h
 CMakeFiles/server.dir/backend/models/Cart.cpp.o: ../backend/models/LinkedList.h
 CMakeFiles/server.dir/backend/models/Cart.cpp.o: ../backend/models/LinkedList.tpp
 CMakeFiles/server.dir/backend/models/Cart.cpp.o: ../backend/models/Main.h
 CMakeFiles/server.dir/backend/models/Cart.cpp.o: ../backend/models/Money.h
 CMakeFiles/server.dir/backend/models/Cart.cpp.o: ../backend/models/Product.h
-CMakeFiles/server.dir/backend/models/Cart.cpp.o: ../backend/models/User.h
 
+CMakeFiles/server.dir/backend/models/Customer.cpp.o: ../backend/models/Cart.h
 CMakeFiles/server.dir/backend/models/Customer.cpp.o: ../backend/models/Customer.cpp
 CMakeFiles/server.dir/backend/models/Customer.cpp.o: ../backend/models/Customer.h
+CMakeFiles/server.dir/backend/models/Customer.cpp.o: ../backend/models/DateTime.h
+CMakeFiles/server.dir/backend/models/Customer.cpp.o: ../backend/models/LinkedList.h
+CMakeFiles/server.dir/backend/models/Customer.cpp.o: ../backend/models/LinkedList.tpp
 CMakeFiles/server.dir/backend/models/Customer.cpp.o: ../backend/models/Main.h
 CMakeFiles/server.dir/backend/models/Customer.cpp.o: ../backend/models/Money.h
+CMakeFiles/server.dir/backend/models/Customer.cpp.o: ../backend/models/Product.h
 CMakeFiles/server.dir/backend/models/Customer.cpp.o: ../backend/models/User.h
 
 CMakeFiles/server.dir/backend/models/Datetime.cpp.o: ../backend/models/DateTime.h
 CMakeFiles/server.dir/backend/models/Datetime.cpp.o: ../backend/models/Datetime.cpp
 CMakeFiles/server.dir/backend/models/Datetime.cpp.o: ../backend/models/Main.h
 
-CMakeFiles/server.dir/backend/models/Drink.cpp.o: ../backend/models/Customer.h
 CMakeFiles/server.dir/backend/models/Drink.cpp.o: ../backend/models/DateTime.h
 CMakeFiles/server.dir/backend/models/Drink.cpp.o: ../backend/models/Drink.cpp
 CMakeFiles/server.dir/backend/models/Drink.cpp.o: ../backend/models/Drink.h
 CMakeFiles/server.dir/backend/models/Drink.cpp.o: ../backend/models/Main.h
 CMakeFiles/server.dir/backend/models/Drink.cpp.o: ../backend/models/Money.h
 CMakeFiles/server.dir/backend/models/Drink.cpp.o: ../backend/models/Product.h
-CMakeFiles/server.dir/backend/models/Drink.cpp.o: ../backend/models/User.h
 
-CMakeFiles/server.dir/backend/models/Food.cpp.o: ../backend/models/Customer.h
 CMakeFiles/server.dir/backend/models/Food.cpp.o: ../backend/models/DateTime.h
 CMakeFiles/server.dir/backend/models/Food.cpp.o: ../backend/models/Food.cpp
 CMakeFiles/server.dir/backend/models/Food.cpp.o: ../backend/models/Food.h
 CMakeFiles/server.dir/backend/models/Food.cpp.o: ../backend/models/Main.h
 CMakeFiles/server.dir/backend/models/Food.cpp.o: ../backend/models/Money.h
 CMakeFiles/server.dir/backend/models/Food.cpp.o: ../backend/models/Product.h
-CMakeFiles/server.dir/backend/models/Food.cpp.o: ../backend/models/User.h
 
-CMakeFiles/server.dir/backend/models/KhoHang.cpp.o: ../backend/models/Customer.h
 CMakeFiles/server.dir/backend/models/KhoHang.cpp.o: ../backend/models/DateTime.h
 CMakeFiles/server.dir/backend/models/KhoHang.cpp.o: ../backend/models/KhoHang.cpp
 CMakeFiles/server.dir/backend/models/KhoHang.cpp.o: ../backend/models/KhoHang.h
@@ -84,7 +84,6 @@ CMakeFiles/server.dir/backend/models/KhoHang.cpp.o: ../backend/models/LinkedList
 CMakeFiles/server.dir/backend/models/KhoHang.cpp.o: ../backend/models/Main.h
 CMakeFiles/server.dir/backend/models/KhoHang.cpp.o: ../backend/models/Money.h
 CMakeFiles/server.dir/backend/models/KhoHang.cpp.o: ../backend/models/Product.h
-CMakeFiles/server.dir/backend/models/KhoHang.cpp.o: ../backend/models/User.h
 
 CMakeFiles/server.dir/backend/models/Main.cpp.o: ../backend/models/Main.cpp
 CMakeFiles/server.dir/backend/models/Main.cpp.o: ../backend/models/Main.h
@@ -112,21 +111,29 @@ CMakeFiles/server.dir/backend/models/Money.cpp.o: ../backend/models/Main.h
 CMakeFiles/server.dir/backend/models/Money.cpp.o: ../backend/models/Money.cpp
 CMakeFiles/server.dir/backend/models/Money.cpp.o: ../backend/models/Money.h
 
-CMakeFiles/server.dir/backend/models/Product.cpp.o: ../backend/models/Customer.h
 CMakeFiles/server.dir/backend/models/Product.cpp.o: ../backend/models/DateTime.h
 CMakeFiles/server.dir/backend/models/Product.cpp.o: ../backend/models/Main.h
 CMakeFiles/server.dir/backend/models/Product.cpp.o: ../backend/models/Money.h
 CMakeFiles/server.dir/backend/models/Product.cpp.o: ../backend/models/Product.cpp
 CMakeFiles/server.dir/backend/models/Product.cpp.o: ../backend/models/Product.h
-CMakeFiles/server.dir/backend/models/Product.cpp.o: ../backend/models/User.h
 
+CMakeFiles/server.dir/backend/models/User.cpp.o: ../backend/models/Cart.h
+CMakeFiles/server.dir/backend/models/User.cpp.o: ../backend/models/DateTime.h
+CMakeFiles/server.dir/backend/models/User.cpp.o: ../backend/models/LinkedList.h
+CMakeFiles/server.dir/backend/models/User.cpp.o: ../backend/models/LinkedList.tpp
 CMakeFiles/server.dir/backend/models/User.cpp.o: ../backend/models/Main.h
+CMakeFiles/server.dir/backend/models/User.cpp.o: ../backend/models/Money.h
+CMakeFiles/server.dir/backend/models/User.cpp.o: ../backend/models/Product.h
 CMakeFiles/server.dir/backend/models/User.cpp.o: ../backend/models/User.cpp
 CMakeFiles/server.dir/backend/models/User.cpp.o: ../backend/models/User.h
 
+CMakeFiles/server.dir/backend/models/UserManagement.cpp.o: ../backend/models/Cart.h
+CMakeFiles/server.dir/backend/models/UserManagement.cpp.o: ../backend/models/DateTime.h
 CMakeFiles/server.dir/backend/models/UserManagement.cpp.o: ../backend/models/LinkedList.h
 CMakeFiles/server.dir/backend/models/UserManagement.cpp.o: ../backend/models/LinkedList.tpp
 CMakeFiles/server.dir/backend/models/UserManagement.cpp.o: ../backend/models/Main.h
+CMakeFiles/server.dir/backend/models/UserManagement.cpp.o: ../backend/models/Money.h
+CMakeFiles/server.dir/backend/models/UserManagement.cpp.o: ../backend/models/Product.h
 CMakeFiles/server.dir/backend/models/UserManagement.cpp.o: ../backend/models/User.h
 CMakeFiles/server.dir/backend/models/UserManagement.cpp.o: ../backend/models/UserManagement.cpp
 CMakeFiles/server.dir/backend/models/UserManagement.cpp.o: ../backend/models/UserManagement.h

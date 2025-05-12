@@ -72,6 +72,7 @@ std::string Customer::get_phoneNumber() const
 void Customer::set_money(const std::string &money)
 {
     _money.set_value(money);
+    _money.set_type("VND");
 }
 
 std::string Customer::get_money() const
