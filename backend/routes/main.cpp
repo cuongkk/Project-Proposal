@@ -15,6 +15,8 @@ int main()
     setup_add_product_to_cart_routes(app);
     setup_remove_product_from_cart_routes(app);
     setup_show_cart_routes(app);
+    setup_checkout_routes(app);
+    setup_show_bill_routes(app);
 
     // GET
     CROW_ROUTE(app, "/submit").methods(crow::HTTPMethod::GET)([]()

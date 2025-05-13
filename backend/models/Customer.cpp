@@ -80,6 +80,11 @@ std::string Customer::get_money() const
     return _money.get_value();
 }
 
+Cart Customer::get_cart() const
+{
+    return _cart;
+}
+
 void Customer::print(std::ostream &os) const
 {
     os << _id_user << ", ";

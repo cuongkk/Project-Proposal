@@ -9,7 +9,26 @@ Bill::Bill()
 
 Bill::~Bill() = default;
 
-Bill::Bill(const std::string &id_Customer, Cart &&cart)
+Bill::Bill(const Bill &other)
+    : _id_Bill(other._id_Bill),
+      _id_Customer(other._id_Customer),
+      _cart(other._cart),
+      _totalCost(other._totalCost),
+      _dateTime(other._dateTime)
+{
+}
+
+Bill::Bill(Bill &&other) noexcept
+{
+    _id_Bill = std::move(other._id_Bill);
+    _id_Customer = std::move(other._id_Customer);
+    _cart = std::move(other._cart);
+    _totalCost = std::move(other._totalCost);
+    _dateTime = std::move(other._dateTime);
+}
+
+Bill::Bill(const std::string &id_Customer, Cart &&cart, const DateTime &dateTime)
+    : _dateTime(dateTime)
 {
 
     _id_Bill = set_id("BI", _id_counter_bill);
@@ -20,13 +39,7 @@ Bill::Bill(const std::string &id_Customer, Cart &&cart)
 
 std::unique_ptr<Bill> Bill::clone()
 {
-    auto new_bill = std::make_unique<Bill>();
-    new_bill->_id_Bill = this->_id_Bill;
-    new_bill->_id_Customer = this->_id_Customer;
-    new_bill->_cart = *(this->_cart.clone()); // sử dụng clone() của Cart
-    new_bill->_totalCost = this->_totalCost;
-    new_bill->_origin = this;
-    return new_bill;
+    return std::make_unique<Bill>(*this);
 }
 
 Bill *Bill::get_origin()
@@ -49,31 +62,30 @@ std::string Bill::get_id_Customer() const
     return _id_Customer;
 }
 
-// std::unique_ptr<Bill> Bill::confirmBill(UserManagement &userManagement, const std::string &id_Customer)
-// {
-//     auto bill1 = std::unique_ptr<Bill>(new Bill());
-//     auto userPtr = userManagement.getUser_from_id(id_Customer)->get_origin();
-//     auto cart = userPtr->_cart.clone();
+std::unique_ptr<Bill> Bill::confirmBill(UserManagement &userManagement, std::string &id_user, const DateTime &dateTime)
 
-//     if (0 < cart.get_size())
-//     {
-//         if (userManagement.getUser_from_id(id_Customer)->get_money() >= std::stoll(cart.get_money()))
-//         {
-//             User *userOrigin = userManagement.getUser_from_id(id_Customer)->get_origin();
-//             userOrigin->set_money(userManagement.getUser_from_id(id_Customer) - cart.get_money());
-//             _totalCost = _cart.get_money();
-//             auto bill = std::make_unique<Bill>(id_Customer, std::move(cart));
-//             return bill;
-//         }
-//         else
-//         {
-//         }
-//     }
-//     return bill1;
-// }
+{
+    auto Customer = userManagement.getUser_from_id(id_user);
+    auto cart = Customer->get_cart();
+    Customer->get_origin()->_cart.clear();
+    Customer->get_origin()->set_money(std::to_string(stoll(Customer->get_money()) - stoll(cart.get_money())));
+    auto bill = std::make_unique<Bill>(id_user, std::move(cart), dateTime);
+    return bill;
+}
+
+Cart Bill::get_cart() const
+{
+    return _cart;
+}
+
 std::string Bill::get_totalCost() const
 {
     return _totalCost;
+}
+
+DateTime Bill::get_dateTime() const
+{
+    return _dateTime;
 }
 
 std::ostream &operator<<(std::ostream &os, const Bill &bill)

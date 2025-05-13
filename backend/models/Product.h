@@ -19,6 +19,8 @@ protected:
 public:
     static std::vector<int> _id_counter_sp;
     Product();
+    Product(const Product &);
+    Product(Product &&) noexcept;
     virtual ~Product() = default;
     Product(const int &, const std::string &,
             const float &, const DateTime &, const DateTime &);

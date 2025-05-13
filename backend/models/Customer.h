@@ -32,6 +32,7 @@ public:
     std::string get_phoneNumber() const override;
     void set_money(const std::string &) override;
     std::string get_money() const override;
+    Cart get_cart() const override;
 
     void print(std::ostream &) const override;
 };

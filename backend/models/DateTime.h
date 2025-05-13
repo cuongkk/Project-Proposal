@@ -16,6 +16,7 @@ private:
 public:
     DateTime();
     ~DateTime();
+    DateTime(const DateTime &);
     DateTime(int day, int month, int year);
 
     void set_day(int day);
@@ -25,7 +26,7 @@ public:
     void set_year(int year);
     int get_year() const;
 
-    std::string get_date();
+    std::string get_date() const;
 
     void operator=(const DateTime &);
     friend bool operator==(const DateTime &, const DateTime &);

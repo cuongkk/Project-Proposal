@@ -41,6 +41,7 @@ public:
     virtual std::string get_phoneNumber() const = 0;
     virtual void set_money(const std::string &) = 0;
     virtual std::string get_money() const = 0;
+    virtual Cart get_cart() const = 0;
 
     friend std::string operator-(const std::unique_ptr<User> &, const std::string &);
 

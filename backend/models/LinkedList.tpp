@@ -95,6 +95,12 @@ const std::list<std::shared_ptr<T>> &LinkedList<T>::get_Item() const
 }
 
 template <typename T>
+void LinkedList<T>::clear()
+{
+    _list.clear();
+}
+
+template <typename T>
 bool LinkedList<T>::check_username(const std::string &username)
 {
     for (const auto &item : _list)

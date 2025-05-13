@@ -13,6 +13,8 @@
 
         <button id="inf">Xem thông tin</button>
         <button id="show">Xem Sản Phẩm</button>
+        <button id="bill">Xem Lịch Sử Mua Hàng</button>
+
     </form>
     <hr>
 
@@ -20,6 +22,8 @@
         const _username = document.getElementById('username')
         const _inf = document.getElementById('inf');
         const _show = document.getElementById('show');
+        const _bill = document.getElementById('bill');
+
 
 
         const _params = new URLSearchParams(window.location.search);
@@ -51,6 +55,12 @@
             e.preventDefault();
             const encodedMsg = encodeURIComponent(_id_user);
             window.location.href = `http://127.0.0.1:5503/frontend/show_product.html?msg=${encodedMsg}`;
+        });
+
+        _bill.addEventListener('click', async function (e) {
+            e.preventDefault();
+            const encodedMsg = encodeURIComponent(_id_user);
+            window.location.href = `http://127.0.0.1:5503/frontend/show_bill.html?msg=${encodedMsg}`;
         });
 
 

@@ -22,6 +22,19 @@ std::unique_ptr<Bill> BillManagement::getBill_from_id(const std::string &id)
     return nullptr;
 }
 
+std::list<std::unique_ptr<Bill>> BillManagement::getBill_from_id_Customer(const std::string &id)
+{
+    std::list<std::unique_ptr<Bill>> result;
+    for (const auto &item : _bill.get_Item())
+    {
+        if (item->get_id_Customer() == id)
+        {
+            result.push_back(item->clone());
+        }
+    }
+    return result;
+}
+
 bool BillManagement::containsKeyword(const std::string &keyword, const int &option, const Bill &bill) const
 {
     std::regex pattern("^" + keyword + "$", std::regex_constants::icase); // không phân biệt hoa thường

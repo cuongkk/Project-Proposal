@@ -14,6 +14,8 @@ protected:
 public:
     Cart();
     ~Cart();
+    Cart(const Cart &);
+    Cart(Cart &&) noexcept;
     Cart(const std::string &, const LinkedList<Product> &);
 
     std::unique_ptr<Cart> clone() const;
@@ -24,6 +26,7 @@ public:
 
     bool add(std::unique_ptr<Product>);
     void remove(std::unique_ptr<Product>);
+    void clear();
 
     void operator=(const Cart &);
     friend std::ostream &operator<<(std::ostream &os, const Cart &);

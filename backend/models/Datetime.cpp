@@ -11,6 +11,16 @@ DateTime::DateTime()
 }
 DateTime::~DateTime() = default;
 
+DateTime::DateTime(const DateTime &dt)
+{
+    _day = dt.get_day();
+    _month = dt.get_month();
+    _year = dt.get_year();
+    _hour = dt._hour;
+    _minute = dt._minute;
+    _second = dt._second;
+}
+
 DateTime::DateTime(int day, int month, int year)
 {
     _day = day;
@@ -51,7 +61,7 @@ int DateTime::get_year() const
     return _year;
 }
 
-std::string DateTime::get_date()
+std::string DateTime::get_date() const
 {
     std::ostringstream oss;
     oss << std::setw(2) << std::setfill('0') << _day << "/"

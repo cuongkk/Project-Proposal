@@ -10,6 +10,28 @@ Product::Product()
     _origin = this;
 }
 
+Product::Product(const Product &sp)
+{
+    _id_sp = sp.get_id();
+    _quantity = sp.get_quantity();
+    _money = sp._money;
+    _discount = sp.get_discount();
+    _manufacture_Date = sp.get_manufacture_Date();
+    _expiry_Date = sp.get_expiry_Date();
+    _origin = this;
+}
+
+Product::Product(Product &&sp) noexcept
+{
+    _id_sp = std::move(sp._id_sp);
+    _quantity = std::move(sp._quantity);
+    _money = std::move(sp._money);
+    _discount = std::move(sp._discount);
+    _manufacture_Date = std::move(sp._manufacture_Date);
+    _expiry_Date = std::move(sp._expiry_Date);
+    _origin = this;
+}
+
 Product::Product(const int &quantity, const std::string &money,
                  const float &discount,
                  const DateTime &manufacture_Date, const DateTime &expiry_Date)

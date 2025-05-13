@@ -8,6 +8,18 @@ Cart::~Cart()
 {
 }
 
+Cart::Cart(const Cart &cart)
+{
+    _id_Customer = cart._id_Customer;
+    _list = cart._list;
+}
+
+Cart::Cart(Cart &&cart) noexcept
+{
+    _id_Customer = std::move(cart._id_Customer);
+    _list = std::move(cart._list);
+}
+
 Cart::Cart(const std::string &id_Customer, const LinkedList<Product> &list)
 {
     _id_Customer = id_Customer;
@@ -58,6 +70,11 @@ void Cart::remove(std::unique_ptr<Product> sp)
 {
     Product *spOrigin = sp->get_origin();
     _list.remove_from_Cart(std::move(sp));
+}
+
+void Cart::clear()
+{
+    _list.clear();
 }
 
 void Cart::operator=(const Cart &cart)

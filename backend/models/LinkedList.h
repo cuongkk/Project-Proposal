@@ -26,6 +26,7 @@ public:
     void add_Head_to_Cart(std::shared_ptr<T>);
     void add_Tail_to_Cart(std::shared_ptr<T>);
     const std::list<std::shared_ptr<T>> &get_Item() const;
+    void clear();
 
     bool check_username(const std::string &);
     bool check_name(const std::string &);
