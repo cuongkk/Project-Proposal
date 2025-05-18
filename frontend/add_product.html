@@ -8,12 +8,18 @@
 
 <body>
     <h1>Thêm Sản Phẩm</h1>
-    <form id="form_add_product">
+    <form id="form_add_product" enctype="multipart/form-data">
         <label for="name">Tên sản phẩm:</label>
         <input type="text" id="name" name="name"><br><br>
 
         <label for="inf">Thông tin:</label>
         <input type="text" id="inf" name="inf"><br><br>
+
+        <label for="type">Loại sản phẩm:</label>
+        <select id="type" name="type">
+            <option value="food">Đồ ăn</option>
+            <option value="drink">Thức uống</option>
+        </select><br><br>
 
         <label for="quantity">Số lượng:</label>
         <input type="text" id="quantity" name="quantity"><br><br>
@@ -30,6 +36,8 @@
         <label for="expiry_Date">Ngày hết hạn:</label>
         <input type="date" id="expiry_Date" name="expiry_Date"><br><br>
 
+        <label for="image">Hình ảnh:</label>
+        <input type="file" id="image" name="image"><br><br>
 
         <button id="add_product">Thêm sản phẩm</button>
 
@@ -50,31 +58,21 @@
             _add_product.addEventListener('click', async function (e) {
                 e.preventDefault();
 
-                const _name = document.getElementById('name').value;
-                const _inf = document.getElementById('inf').value;
-                const _quantity = document.getElementById('quantity').value;
-                const _price = document.getElementById('price').value;
-                const _discount = document.getElementById('discount').value;
-                const _manufacture_Date = document.getElementById('manufacture_Date').value;
-                const _expiry_Date = document.getElementById('expiry_Date').value;
-
+                const formData = new FormData();
+                formData.append('name', document.getElementById('name').value);
+                formData.append('inf', document.getElementById('inf').value);
+                formData.append('type', document.getElementById('type').value);
+                formData.append('quantity', document.getElementById('quantity').value);
+                formData.append('price', document.getElementById('price').value);
+                formData.append('discount', document.getElementById('discount').value);
+                formData.append('manufacture_Date', document.getElementById('manufacture_Date').value);
+                formData.append('expiry_Date', document.getElementById('expiry_Date').value);
+                formData.append('image', document.getElementById('image').files[0]);
 
                 const response = await fetch('http://localhost:18080/add_product', {
                     method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify({
-                        name: _name,
-                        inf: _inf,
-                        quantity: _quantity,
-                        price: _price,
-                        discount: _discount,
-                        manufacture_Date: _manufacture_Date,
-                        expiry_Date: _expiry_Date
-                    })
-
-                });
+                    body: formData // Không dùng headers 'Content-Type'!
+                });;
 
                 const result = await response.json();
                 document.getElementById('response').innerText = result.message;

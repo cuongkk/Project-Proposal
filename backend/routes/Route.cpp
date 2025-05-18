@@ -272,21 +272,69 @@ void setup_add_product_routes(crow::App<CORS> &app)
 {
     CROW_ROUTE(app, "/add_product").methods(crow::HTTPMethod::POST)([](const crow::request &req)
                                                                     {
-    auto body = crow::json::load(req.body);
-    if (!body || !body.has("name"))
-    {
-        return crow::response(400, "Invalid request: missing 'msg'");
-    }
+        std::string contentType = req.get_header_value("Content-Type");
 
-    crow::json::wvalue res;
+        std::smatch match;
+        std::regex boundary_regex("boundary=(.*)");
+        if (!std::regex_search(contentType, match, boundary_regex)) {
+            return crow::response(400, "Missing boundary");
+        }
+        std::string boundary = "--" + match[1].str();
 
-    std::string _name = body["name"].s();
-    std::string _inf = body["inf"].s();
-    std::string _quantity = body["quantity"].s();
-    std::string _price = body["price"].s();
-    std::string _discount = body["discount"].s();
-    std::string _manufacture_Date = body["manufacture_Date"].s();
-    std::string _expiry_Date = body["expiry_Date"].s();
+        // Biến lưu dữ liệu text
+        std::string _name, _inf, _type, _quantity, _price, _discount, _manufacture_Date, _expiry_Date;
+        std::string imageFilePath;
+
+        std::istringstream stream(req.body);
+        std::string line;
+        std::string currentField;
+        bool isHeader = false;
+
+        std::ostringstream fileContent;
+        bool isParsingFile = false;
+        bool startedWriting = false;
+        std::ofstream ofs;
+
+        // ──────────────── PHẦN 1: ĐỌC DỮ LIỆU TEXT ────────────────
+        std::istringstream streamText(req.body);
+        while (std::getline(streamText, line)) {
+            if (!line.empty() && line.back() == '\r') line.pop_back();
+
+            if (line.find(boundary) != std::string::npos) {
+                currentField.clear();
+                isHeader = true;
+                continue;
+            }
+
+            if (isHeader && line.find("Content-Disposition:") != std::string::npos) {
+                std::smatch nameMatch;
+                std::regex name_regex("name=\"(.*?)\"");
+                if (std::regex_search(line, nameMatch, name_regex)) {
+                    currentField = nameMatch[1];
+                }
+
+                // Bỏ qua phần ảnh (không gán text nếu là ảnh)
+                if (line.find("filename=") != std::string::npos) {
+                    currentField.clear();
+                }
+
+                isHeader = false;
+                continue;
+            }
+
+            if (!currentField.empty() && !line.empty()) {
+                if (currentField == "name") _name = line;
+                else if (currentField == "inf") _inf = line;
+                else if (currentField == "type") _type = line;
+                else if (currentField == "quantity") _quantity = line;
+                else if (currentField == "price") _price = line;
+                else if (currentField == "discount") _discount = line;
+                else if (currentField == "manufacture_Date") _manufacture_Date = line;
+                else if (currentField == "expiry_Date") _expiry_Date = line;
+            }
+        }
+
+        crow::json::wvalue res;
 
     if (_name == "")
     {
@@ -311,12 +359,6 @@ void setup_add_product_routes(crow::App<CORS> &app)
     else if (_inf == "")
     {
         res["message"] = "Vui lòng nhập thông tin sản phẩm";
-        return crow::response{res};
-    }
-    else if ((findContains(_inf, "thức ăn") && findContains(_inf, "đồ uống"))
-              || !findContains(_inf, "thức ăn") && !findContains(_inf, "đồ uống"))
-    {
-        res["message"] = "Thông tin sản phẩm không hợp lệ";
         return crow::response{res};
     }
     else if (_quantity == "")
@@ -372,19 +414,64 @@ void setup_add_product_routes(crow::App<CORS> &app)
         return crow::response{res};
     }
 
-    if (findContains(_inf, "thức ăn"))
+        // ──────────────── PHẦN 2: ĐỌC ẢNH (theo bạn gửi) ────────────────
+        std::istringstream streamFile(req.body);
+        while (std::getline(streamFile, line)) {
+            if (!line.empty() && line.back() == '\r') line.pop_back();
+
+            if (line.find(boundary) != std::string::npos) {
+                if (ofs.is_open()) {
+                    ofs.close();
+                }
+                isParsingFile = false;
+                startedWriting = false;
+                continue;
+            }
+
+            if (line.find("Content-Disposition:") != std::string::npos && line.find("filename=") != std::string::npos) {
+                std::string filename = "product_" + std::to_string(time(nullptr)) + ".jpg";
+                std::string imageFolder = "../backend/images/product/";
+                std::filesystem::create_directories(imageFolder);
+                imageFilePath = imageFolder + filename;
+                ofs.open(imageFilePath, std::ios::binary);
+                isParsingFile = true;
+                continue;
+            }
+
+            if (isParsingFile && !startedWriting) {
+                if (line.empty()) {
+                    startedWriting = true;  
+                }
+                continue;
+            }
+
+            if (startedWriting && isParsingFile && ofs.is_open()) {
+                ofs << line << "\n";
+            }
+        }
+    if (imageFilePath.empty())
     {
-        auto food = std::make_unique<Food>(_name, _inf, std::stoi(_quantity), _price, std::stof(_discount), std::move(manufacture_Date), std::move(expiry_Date));
-        khoHang.add(std::move(food));
-        res["message"] = "Thêm sản phẩm thành công";
+        res["message"] = "Vui chọn nhập ảnh";
         return crow::response{res};
     }
-    else if (findContains(_inf, "đồ uống"))
+    else
     {
-        auto drink = std::make_unique<Drink>(_name, _inf, std::stoi(_quantity), _price, std::stof(_discount), std::move(manufacture_Date), std::move(expiry_Date));
-        khoHang.add(std::move(drink));
-        res["message"] = "Thêm sản phẩm thành công";
-        return crow::response{res};
+        if (_type == "food")
+        {
+            auto food = std::make_unique<Food>(_name, _inf, std::stoi(_quantity), _price, std::stof(_discount), std::move(manufacture_Date), std::move(expiry_Date), imageFilePath);
+            std::cout << food->get_imagePath() << std::endl;
+            khoHang.add(std::move(food));
+            res["message"] = "Thêm sản phẩm thành công";
+            return crow::response{res};
+        }
+        else if (_type == "drink")
+        {
+            auto drink = std::make_unique<Drink>(_name, _inf, std::stoi(_quantity), _price, std::stof(_discount), std::move(manufacture_Date), std::move(expiry_Date), imageFilePath);
+            std::cout << drink->get_imagePath() << std::endl;
+            khoHang.add(std::move(drink));
+            res["message"] = "Thêm sản phẩm thành công";
+            return crow::response{res};
+        }
     }
     res["message"] = "Thêm sản phẩm không thành công";
     return crow::response{res}; });
@@ -406,8 +493,6 @@ void setup_show_product_routes(crow::App<CORS> &app)
         crow::json::wvalue res;
         int i = 0;
 
-        auto BanhMi = std::make_unique<Food>("Bánh mì", "Thức ăn", 10, "20000", 0, DateTime(2023, 10, 1), DateTime(2024, 10, 1));
-        khoHang.add(std::move(BanhMi));
         if (khoHang.getProduct().get_size() == 0)
         {
             res["message"] = "Kho hàng trống";
@@ -415,7 +500,7 @@ void setup_show_product_routes(crow::App<CORS> &app)
         }
         else
         {
-            const auto &products = khoHang.getProduct(); // lấy tham chiếu tránh copy
+            const auto &products = khoHang.getProduct();
             for (auto it = products.begin(); it != products.end(); ++it)
             {
                 const auto &product = *it;
@@ -431,11 +516,26 @@ void setup_show_product_routes(crow::App<CORS> &app)
                 res["products"][i]["discount"] = product->get_discount();
                 res["products"][i]["manufacture_Date"] = product->get_manufacture_Date().get_date();
                 res["products"][i]["expiry_Date"] = product->get_expiry_Date().get_date(); 
+                res["products"][i]["image_url"] = product->get_imagePath();
                 i++;
             }
         }
 
         return crow::response{res}; });
+}
+
+void setup_show_image_product_routes(crow::App<CORS> &app)
+{
+    CROW_ROUTE(app, "/images/product/<string>").methods("GET"_method)([](const crow::request &, const std::string &filename)
+                                                                      {
+        std::string path = "../backend/images/product/" + filename;
+        std::ifstream file(path, std::ios::binary);
+        if (!file) return crow::response(404);
+        std::ostringstream ss;
+        ss << file.rdbuf();
+        crow::response res(ss.str());
+        res.add_header("Content-Type", "image/jpeg");
+        return res; });
 }
 
 void setup_update_product_routes(crow::App<CORS> &app)
@@ -666,10 +766,6 @@ void setup_checkout_routes(crow::App<CORS> &app)
             Bill bill1;
             auto bill = bill1.confirmBill(userManagement, id_user, dateTime);
             billManagement.add(std::move(bill));
-            for (const auto &item : list)
-            {
-                std::cout << item->get_dateTime().get_date() << std::endl;
-            }
             res["message"] = "Success";
             return crow::response{res};
         }

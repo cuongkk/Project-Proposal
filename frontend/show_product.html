@@ -5,94 +5,112 @@
     <meta charset="UTF-8">
     <title>Danh sách sản phẩm</title>
     <style>
-        table {
-            width: 90%;
-            border-collapse: collapse;
-            margin: 20px auto;
-        }
-
-        th,
-        td {
-            border: 1px solid #ccc;
-            padding: 12px;
-            text-align: left;
-        }
-
-        th {
-            background-color: #f2f2f2;
-        }
-
-        p {
+        body {
+            font-family: Arial, sans-serif;
+            background: #f6f6f6;
             margin: 0;
+            padding: 0;
         }
 
-        .clickable {
-            color: blue;
-            cursor: pointer;
-            text-decoration: underline;
+        h2 {
+            text-align: center;
+            margin-top: 20px;
         }
 
-        #cart-container {
-            width: 90%;
-            margin: 30px auto;
-            border: 1px solid #aaa;
-            padding: 10px;
-            background-color: #f9f9f9;
+        .product-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+            margin: 30px;
         }
 
-        #cart-container h3 {
-            margin-top: 0;
+        .product-card {
+            background: white;
+            border-radius: 8px;
+            width: 260px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+            padding: 16px;
+            text-align: center;
+            transition: transform 0.2s ease;
         }
 
-        button {
-            margin: 0 20px;
+        .product-card:hover {
+            transform: scale(1.02);
+        }
+
+        .product-card img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+            border-radius: 5px;
+        }
+
+        .product-card h3 {
+            font-size: 18px;
+            margin: 10px 0 6px;
+        }
+
+        .product-card p {
+            font-size: 14px;
+            margin: 4px 0;
+        }
+
+        .product-card button {
+            margin-top: 10px;
             padding: 8px 16px;
+            background-color: #2196f3;
+            color: white;
+            border: none;
+            border-radius: 5px;
             cursor: pointer;
+        }
+
+        .product-card button:hover {
+            background-color: #1976d2;
+        }
+
+        .cart-btn {
+            display: block;
+            margin: 20px auto;
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .cart-btn:hover {
+            background-color: #388e3c;
         }
     </style>
 </head>
 
 <body>
 
-    <h2 style="text-align:center;">Danh sách sản phẩm</h2>
-    <div style="text-align:center;">
-        <button onclick="showCart()">🛒 Xem giỏ hàng</button>
+    <h2>Danh sách sản phẩm</h2>
+    <button class="cart-btn" onclick="showCart()">🛒 Xem giỏ hàng</button>
+
+    <div id="product-list" class="product-grid">
+        <!-- Thẻ sản phẩm sẽ thêm bằng JavaScript -->
     </div>
 
-    <table>
-        <thead>
-            <tr>
-                <th>Tên sản phẩm</th>
-                <th>Thông tin</th>
-                <th>Số lượng</th>
-                <th>Giá</th>
-                <th>Giảm giá</th>
-                <th>Ngày sản xuất</th>
-                <th>Ngày hết hạn</th>
-            </tr>
-        </thead>
-        <tbody id="product-list">
-            <!-- Hàng sản phẩm sẽ được thêm ở đây bằng JavaScript -->
-        </tbody>
-    </table>
-
     <script>
-
         document.addEventListener('DOMContentLoaded', async () => {
             const _params = new URLSearchParams(window.location.search);
             const _id_user = _params.get('msg');
-
             if (!_id_user) {
                 console.error("Không có 'msg' trên URL");
                 return;
             }
-
             await refreshProductList(_id_user);
         });
 
         async function refreshProductList(_id_user) {
-            const tbody = document.getElementById('product-list');
-            tbody.innerHTML = "<tr><td colspan='7'>Đang tải...</td></tr>";
+            const container = document.getElementById('product-list');
+            container.innerHTML = `<p>Đang tải...</p>`;
 
             try {
                 const response = await fetch('http://localhost:18080/show_product', {
@@ -104,34 +122,40 @@
                 const result = await response.json();
                 const products = result.products || [];
 
-                tbody.innerHTML = '';
+                container.innerHTML = '';
                 if (products.length === 0) {
-                    tbody.innerHTML = `<tr><td colspan="7">Không có sản phẩm nào</td></tr>`;
+                    container.innerHTML = `<p>Không có sản phẩm nào</p>`;
                     return;
                 }
 
                 products.forEach((product) => {
-                    const row = document.createElement('tr');
-                    row.innerHTML = `
-                        <td style="display:none;"><p>${product.id}</p></td>
-                        <td><p class="clickable">${product.name}</p></td>
-                        <td><p>${product.inf}</p></td>
-                        <td><p>${product.quantity}</p></td>
-                        <td><p>${product.price}</p></td>
-                        <td><p>${product.discount}</p></td>
-                        <td><p>${product.manufacture_Date}</p></td>
-                        <td><p>${product.expiry_Date}</p></td>
-                    `;
-                    tbody.appendChild(row);
+                    const card = document.createElement('div');
+                    card.className = 'product-card';
 
-                    row.querySelector('.clickable').addEventListener('click', () => {
+                    const imgSrc = product.image_url || 'https://via.placeholder.com/250x180?text=No+Image';
+
+                    card.innerHTML = `
+                        <img src="${imgSrc}" alt="Ảnh sản phẩm">
+                        <h3>${product.name}</h3>
+                        <p>${product.inf}</p>
+                        <p><strong>Giá:</strong> ${product.price}</p>
+                        <p><strong>Giảm giá:</strong> ${product.discount}</p>
+                        <p><strong>Còn lại:</strong> ${product.quantity}</p>
+                        <p><small>NSX: ${product.manufacture_Date}</small></p>
+                        <p><small>HSD: ${product.expiry_Date}</small></p>
+                        <button>➕ Thêm vào giỏ</button>
+                    `;
+
+                    card.querySelector('button').addEventListener('click', () => {
                         addToCart(product);
                     });
+
+                    container.appendChild(card);
                 });
 
             } catch (error) {
                 console.error('Lỗi khi tải sản phẩm:', error);
-                tbody.innerHTML = `<tr><td colspan="7">Lỗi khi tải sản phẩm</td></tr>`;
+                container.innerHTML = `<p>Lỗi khi tải sản phẩm</p>`;
             }
         }
 
@@ -164,8 +188,6 @@
             const encodedMsg = encodeURIComponent(_id_user);
             window.location.href = `http://127.0.0.1:5503/frontend/show_cart.html?msg=${encodedMsg}`;
         }
-
-
     </script>
 
 </body>

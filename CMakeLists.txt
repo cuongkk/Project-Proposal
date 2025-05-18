@@ -9,6 +9,7 @@ set(CROW_DIR "${CMAKE_SOURCE_DIR}/external/crow")
 # Thêm include path cho thư viện và mã nguồn
 include_directories(
     ${CROW_DIR}/include
+    ${CMAKE_SOURCE_DIR}/backend/images
     ${CMAKE_SOURCE_DIR}/backend/models
     ${CMAKE_SOURCE_DIR}/backend/routes
     ${PROJECT_SOURCE_DIR}/external/asio/asio-1.34.2/include

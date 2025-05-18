@@ -36,18 +36,33 @@ extern std::unordered_map<std::string, std::string> workUser;
 
 // void add_cors_headers(crow::response &res);
 void setup_username_routes(crow::App<CORS> &);
+
 void setup_user_routes(crow::App<CORS> &);
+
 void setup_signup_routes(crow::App<CORS> &);
+
 void setup_login_routes(crow::App<CORS> &);
+
 void setup_inf_user_routes(crow::App<CORS> &);
+
 void setup_update_inf_user_routes(crow::App<CORS> &);
+
 void setup_add_product_routes(crow::App<CORS> &);
+
 void setup_show_product_routes(crow::App<CORS> &);
+
+void setup_show_image_product_routes(crow::App<CORS> &);
+
 void setup_update_product_routes(crow::App<CORS> &);
+
 void setup_add_product_to_cart_routes(crow::App<CORS> &);
+
 void setup_remove_product_from_cart_routes(crow::App<CORS> &);
+
 void setup_show_cart_routes(crow::App<CORS> &);
+
 void setup_checkout_routes(crow::App<CORS> &);
+
 void setup_show_bill_routes(crow::App<CORS> &);
 
 #endif

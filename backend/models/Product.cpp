@@ -18,6 +18,7 @@ Product::Product(const Product &sp)
     _discount = sp.get_discount();
     _manufacture_Date = sp.get_manufacture_Date();
     _expiry_Date = sp.get_expiry_Date();
+    _imagePath = sp.get_imagePath();
     _origin = this;
 }
 
@@ -29,12 +30,13 @@ Product::Product(Product &&sp) noexcept
     _discount = std::move(sp._discount);
     _manufacture_Date = std::move(sp._manufacture_Date);
     _expiry_Date = std::move(sp._expiry_Date);
+    _imagePath = std::move(sp._imagePath);
     _origin = this;
 }
 
 Product::Product(const int &quantity, const std::string &money,
                  const float &discount,
-                 const DateTime &manufacture_Date, const DateTime &expiry_Date)
+                 const DateTime &manufacture_Date, const DateTime &expiry_Date, const std::string &imagePath)
 {
     _id_sp = set_id("SP", _id_counter_sp);
     _quantity = quantity;
@@ -42,6 +44,7 @@ Product::Product(const int &quantity, const std::string &money,
     _discount = discount;
     _manufacture_Date = manufacture_Date;
     _expiry_Date = expiry_Date;
+    _imagePath = imagePath;
     _origin = this;
 }
 
@@ -94,6 +97,16 @@ DateTime Product::get_manufacture_Date() const
 DateTime Product::get_expiry_Date() const
 {
     return _expiry_Date;
+}
+
+void Product::set_imagePath(const std::string &imagePath)
+{
+    _imagePath = imagePath;
+}
+
+std::string Product::get_imagePath() const
+{
+    return _imagePath;
 }
 
 std::string operator+(const long long &m1, const std::string &m2)

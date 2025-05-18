@@ -20,7 +20,8 @@ public:
           const std::string &,
           const float &,
           const DateTime &,
-          const DateTime &);
+          const DateTime &,
+          const std::string &);
 
     std::unique_ptr<Product> clone() const override;
     Product *get_origin() override;

@@ -47,119 +47,119 @@ build cmake_object_order_depends_target_server: phony || .
 build CMakeFiles/server.dir/backend/routes/main.cpp.obj: CXX_COMPILER__server_unscanned_ D$:/Canteen-Management-System/backend/routes/main.cpp || cmake_object_order_depends_target_server
   DEP_FILE = CMakeFiles\server.dir\backend\routes\main.cpp.obj.d
   FLAGS = -std=gnu++17
-  INCLUDES = -ID:/Canteen-Management-System/external/crow/include -ID:/Canteen-Management-System/backend/models -ID:/Canteen-Management-System/backend/routes -ID:/Canteen-Management-System/external/asio/asio-1.34.2/include
+  INCLUDES = -ID:/Canteen-Management-System/external/crow/include -ID:/Canteen-Management-System/backend/images -ID:/Canteen-Management-System/backend/models -ID:/Canteen-Management-System/backend/routes -ID:/Canteen-Management-System/external/asio/asio-1.34.2/include
   OBJECT_DIR = CMakeFiles\server.dir
   OBJECT_FILE_DIR = CMakeFiles\server.dir\backend\routes
 
 build CMakeFiles/server.dir/backend/models/Admin.cpp.obj: CXX_COMPILER__server_unscanned_ D$:/Canteen-Management-System/backend/models/Admin.cpp || cmake_object_order_depends_target_server
   DEP_FILE = CMakeFiles\server.dir\backend\models\Admin.cpp.obj.d
   FLAGS = -std=gnu++17
-  INCLUDES = -ID:/Canteen-Management-System/external/crow/include -ID:/Canteen-Management-System/backend/models -ID:/Canteen-Management-System/backend/routes -ID:/Canteen-Management-System/external/asio/asio-1.34.2/include
+  INCLUDES = -ID:/Canteen-Management-System/external/crow/include -ID:/Canteen-Management-System/backend/images -ID:/Canteen-Management-System/backend/models -ID:/Canteen-Management-System/backend/routes -ID:/Canteen-Management-System/external/asio/asio-1.34.2/include
   OBJECT_DIR = CMakeFiles\server.dir
   OBJECT_FILE_DIR = CMakeFiles\server.dir\backend\models
 
 build CMakeFiles/server.dir/backend/models/Bill.cpp.obj: CXX_COMPILER__server_unscanned_ D$:/Canteen-Management-System/backend/models/Bill.cpp || cmake_object_order_depends_target_server
   DEP_FILE = CMakeFiles\server.dir\backend\models\Bill.cpp.obj.d
   FLAGS = -std=gnu++17
-  INCLUDES = -ID:/Canteen-Management-System/external/crow/include -ID:/Canteen-Management-System/backend/models -ID:/Canteen-Management-System/backend/routes -ID:/Canteen-Management-System/external/asio/asio-1.34.2/include
+  INCLUDES = -ID:/Canteen-Management-System/external/crow/include -ID:/Canteen-Management-System/backend/images -ID:/Canteen-Management-System/backend/models -ID:/Canteen-Management-System/backend/routes -ID:/Canteen-Management-System/external/asio/asio-1.34.2/include
   OBJECT_DIR = CMakeFiles\server.dir
   OBJECT_FILE_DIR = CMakeFiles\server.dir\backend\models
 
 build CMakeFiles/server.dir/backend/models/BillManagement.cpp.obj: CXX_COMPILER__server_unscanned_ D$:/Canteen-Management-System/backend/models/BillManagement.cpp || cmake_object_order_depends_target_server
   DEP_FILE = CMakeFiles\server.dir\backend\models\BillManagement.cpp.obj.d
   FLAGS = -std=gnu++17
-  INCLUDES = -ID:/Canteen-Management-System/external/crow/include -ID:/Canteen-Management-System/backend/models -ID:/Canteen-Management-System/backend/routes -ID:/Canteen-Management-System/external/asio/asio-1.34.2/include
+  INCLUDES = -ID:/Canteen-Management-System/external/crow/include -ID:/Canteen-Management-System/backend/images -ID:/Canteen-Management-System/backend/models -ID:/Canteen-Management-System/backend/routes -ID:/Canteen-Management-System/external/asio/asio-1.34.2/include
   OBJECT_DIR = CMakeFiles\server.dir
   OBJECT_FILE_DIR = CMakeFiles\server.dir\backend\models
 
 build CMakeFiles/server.dir/backend/models/Cart.cpp.obj: CXX_COMPILER__server_unscanned_ D$:/Canteen-Management-System/backend/models/Cart.cpp || cmake_object_order_depends_target_server
   DEP_FILE = CMakeFiles\server.dir\backend\models\Cart.cpp.obj.d
   FLAGS = -std=gnu++17
-  INCLUDES = -ID:/Canteen-Management-System/external/crow/include -ID:/Canteen-Management-System/backend/models -ID:/Canteen-Management-System/backend/routes -ID:/Canteen-Management-System/external/asio/asio-1.34.2/include
+  INCLUDES = -ID:/Canteen-Management-System/external/crow/include -ID:/Canteen-Management-System/backend/images -ID:/Canteen-Management-System/backend/models -ID:/Canteen-Management-System/backend/routes -ID:/Canteen-Management-System/external/asio/asio-1.34.2/include
   OBJECT_DIR = CMakeFiles\server.dir
   OBJECT_FILE_DIR = CMakeFiles\server.dir\backend\models
 
 build CMakeFiles/server.dir/backend/models/Customer.cpp.obj: CXX_COMPILER__server_unscanned_ D$:/Canteen-Management-System/backend/models/Customer.cpp || cmake_object_order_depends_target_server
   DEP_FILE = CMakeFiles\server.dir\backend\models\Customer.cpp.obj.d
   FLAGS = -std=gnu++17
-  INCLUDES = -ID:/Canteen-Management-System/external/crow/include -ID:/Canteen-Management-System/backend/models -ID:/Canteen-Management-System/backend/routes -ID:/Canteen-Management-System/external/asio/asio-1.34.2/include
+  INCLUDES = -ID:/Canteen-Management-System/external/crow/include -ID:/Canteen-Management-System/backend/images -ID:/Canteen-Management-System/backend/models -ID:/Canteen-Management-System/backend/routes -ID:/Canteen-Management-System/external/asio/asio-1.34.2/include
   OBJECT_DIR = CMakeFiles\server.dir
   OBJECT_FILE_DIR = CMakeFiles\server.dir\backend\models
 
 build CMakeFiles/server.dir/backend/models/Datetime.cpp.obj: CXX_COMPILER__server_unscanned_ D$:/Canteen-Management-System/backend/models/Datetime.cpp || cmake_object_order_depends_target_server
   DEP_FILE = CMakeFiles\server.dir\backend\models\Datetime.cpp.obj.d
   FLAGS = -std=gnu++17
-  INCLUDES = -ID:/Canteen-Management-System/external/crow/include -ID:/Canteen-Management-System/backend/models -ID:/Canteen-Management-System/backend/routes -ID:/Canteen-Management-System/external/asio/asio-1.34.2/include
+  INCLUDES = -ID:/Canteen-Management-System/external/crow/include -ID:/Canteen-Management-System/backend/images -ID:/Canteen-Management-System/backend/models -ID:/Canteen-Management-System/backend/routes -ID:/Canteen-Management-System/external/asio/asio-1.34.2/include
   OBJECT_DIR = CMakeFiles\server.dir
   OBJECT_FILE_DIR = CMakeFiles\server.dir\backend\models
 
 build CMakeFiles/server.dir/backend/models/Drink.cpp.obj: CXX_COMPILER__server_unscanned_ D$:/Canteen-Management-System/backend/models/Drink.cpp || cmake_object_order_depends_target_server
   DEP_FILE = CMakeFiles\server.dir\backend\models\Drink.cpp.obj.d
   FLAGS = -std=gnu++17
-  INCLUDES = -ID:/Canteen-Management-System/external/crow/include -ID:/Canteen-Management-System/backend/models -ID:/Canteen-Management-System/backend/routes -ID:/Canteen-Management-System/external/asio/asio-1.34.2/include
+  INCLUDES = -ID:/Canteen-Management-System/external/crow/include -ID:/Canteen-Management-System/backend/images -ID:/Canteen-Management-System/backend/models -ID:/Canteen-Management-System/backend/routes -ID:/Canteen-Management-System/external/asio/asio-1.34.2/include
   OBJECT_DIR = CMakeFiles\server.dir
   OBJECT_FILE_DIR = CMakeFiles\server.dir\backend\models
 
 build CMakeFiles/server.dir/backend/models/Food.cpp.obj: CXX_COMPILER__server_unscanned_ D$:/Canteen-Management-System/backend/models/Food.cpp || cmake_object_order_depends_target_server
   DEP_FILE = CMakeFiles\server.dir\backend\models\Food.cpp.obj.d
   FLAGS = -std=gnu++17
-  INCLUDES = -ID:/Canteen-Management-System/external/crow/include -ID:/Canteen-Management-System/backend/models -ID:/Canteen-Management-System/backend/routes -ID:/Canteen-Management-System/external/asio/asio-1.34.2/include
+  INCLUDES = -ID:/Canteen-Management-System/external/crow/include -ID:/Canteen-Management-System/backend/images -ID:/Canteen-Management-System/backend/models -ID:/Canteen-Management-System/backend/routes -ID:/Canteen-Management-System/external/asio/asio-1.34.2/include
   OBJECT_DIR = CMakeFiles\server.dir
   OBJECT_FILE_DIR = CMakeFiles\server.dir\backend\models
 
 build CMakeFiles/server.dir/backend/models/KhoHang.cpp.obj: CXX_COMPILER__server_unscanned_ D$:/Canteen-Management-System/backend/models/KhoHang.cpp || cmake_object_order_depends_target_server
   DEP_FILE = CMakeFiles\server.dir\backend\models\KhoHang.cpp.obj.d
   FLAGS = -std=gnu++17
-  INCLUDES = -ID:/Canteen-Management-System/external/crow/include -ID:/Canteen-Management-System/backend/models -ID:/Canteen-Management-System/backend/routes -ID:/Canteen-Management-System/external/asio/asio-1.34.2/include
+  INCLUDES = -ID:/Canteen-Management-System/external/crow/include -ID:/Canteen-Management-System/backend/images -ID:/Canteen-Management-System/backend/models -ID:/Canteen-Management-System/backend/routes -ID:/Canteen-Management-System/external/asio/asio-1.34.2/include
   OBJECT_DIR = CMakeFiles\server.dir
   OBJECT_FILE_DIR = CMakeFiles\server.dir\backend\models
 
 build CMakeFiles/server.dir/backend/models/Main_all.cpp.obj: CXX_COMPILER__server_unscanned_ D$:/Canteen-Management-System/backend/models/Main_all.cpp || cmake_object_order_depends_target_server
   DEP_FILE = CMakeFiles\server.dir\backend\models\Main_all.cpp.obj.d
   FLAGS = -std=gnu++17
-  INCLUDES = -ID:/Canteen-Management-System/external/crow/include -ID:/Canteen-Management-System/backend/models -ID:/Canteen-Management-System/backend/routes -ID:/Canteen-Management-System/external/asio/asio-1.34.2/include
+  INCLUDES = -ID:/Canteen-Management-System/external/crow/include -ID:/Canteen-Management-System/backend/images -ID:/Canteen-Management-System/backend/models -ID:/Canteen-Management-System/backend/routes -ID:/Canteen-Management-System/external/asio/asio-1.34.2/include
   OBJECT_DIR = CMakeFiles\server.dir
   OBJECT_FILE_DIR = CMakeFiles\server.dir\backend\models
 
 build CMakeFiles/server.dir/backend/models/Money.cpp.obj: CXX_COMPILER__server_unscanned_ D$:/Canteen-Management-System/backend/models/Money.cpp || cmake_object_order_depends_target_server
   DEP_FILE = CMakeFiles\server.dir\backend\models\Money.cpp.obj.d
   FLAGS = -std=gnu++17
-  INCLUDES = -ID:/Canteen-Management-System/external/crow/include -ID:/Canteen-Management-System/backend/models -ID:/Canteen-Management-System/backend/routes -ID:/Canteen-Management-System/external/asio/asio-1.34.2/include
+  INCLUDES = -ID:/Canteen-Management-System/external/crow/include -ID:/Canteen-Management-System/backend/images -ID:/Canteen-Management-System/backend/models -ID:/Canteen-Management-System/backend/routes -ID:/Canteen-Management-System/external/asio/asio-1.34.2/include
   OBJECT_DIR = CMakeFiles\server.dir
   OBJECT_FILE_DIR = CMakeFiles\server.dir\backend\models
 
 build CMakeFiles/server.dir/backend/models/Product.cpp.obj: CXX_COMPILER__server_unscanned_ D$:/Canteen-Management-System/backend/models/Product.cpp || cmake_object_order_depends_target_server
   DEP_FILE = CMakeFiles\server.dir\backend\models\Product.cpp.obj.d
   FLAGS = -std=gnu++17
-  INCLUDES = -ID:/Canteen-Management-System/external/crow/include -ID:/Canteen-Management-System/backend/models -ID:/Canteen-Management-System/backend/routes -ID:/Canteen-Management-System/external/asio/asio-1.34.2/include
+  INCLUDES = -ID:/Canteen-Management-System/external/crow/include -ID:/Canteen-Management-System/backend/images -ID:/Canteen-Management-System/backend/models -ID:/Canteen-Management-System/backend/routes -ID:/Canteen-Management-System/external/asio/asio-1.34.2/include
   OBJECT_DIR = CMakeFiles\server.dir
   OBJECT_FILE_DIR = CMakeFiles\server.dir\backend\models
 
 build CMakeFiles/server.dir/backend/models/User.cpp.obj: CXX_COMPILER__server_unscanned_ D$:/Canteen-Management-System/backend/models/User.cpp || cmake_object_order_depends_target_server
   DEP_FILE = CMakeFiles\server.dir\backend\models\User.cpp.obj.d
   FLAGS = -std=gnu++17
-  INCLUDES = -ID:/Canteen-Management-System/external/crow/include -ID:/Canteen-Management-System/backend/models -ID:/Canteen-Management-System/backend/routes -ID:/Canteen-Management-System/external/asio/asio-1.34.2/include
+  INCLUDES = -ID:/Canteen-Management-System/external/crow/include -ID:/Canteen-Management-System/backend/images -ID:/Canteen-Management-System/backend/models -ID:/Canteen-Management-System/backend/routes -ID:/Canteen-Management-System/external/asio/asio-1.34.2/include
   OBJECT_DIR = CMakeFiles\server.dir
   OBJECT_FILE_DIR = CMakeFiles\server.dir\backend\models
 
 build CMakeFiles/server.dir/backend/models/UserManagement.cpp.obj: CXX_COMPILER__server_unscanned_ D$:/Canteen-Management-System/backend/models/UserManagement.cpp || cmake_object_order_depends_target_server
   DEP_FILE = CMakeFiles\server.dir\backend\models\UserManagement.cpp.obj.d
   FLAGS = -std=gnu++17
-  INCLUDES = -ID:/Canteen-Management-System/external/crow/include -ID:/Canteen-Management-System/backend/models -ID:/Canteen-Management-System/backend/routes -ID:/Canteen-Management-System/external/asio/asio-1.34.2/include
+  INCLUDES = -ID:/Canteen-Management-System/external/crow/include -ID:/Canteen-Management-System/backend/images -ID:/Canteen-Management-System/backend/models -ID:/Canteen-Management-System/backend/routes -ID:/Canteen-Management-System/external/asio/asio-1.34.2/include
   OBJECT_DIR = CMakeFiles\server.dir
   OBJECT_FILE_DIR = CMakeFiles\server.dir\backend\models
 
 build CMakeFiles/server.dir/backend/models/main.cpp.obj: CXX_COMPILER__server_unscanned_ D$:/Canteen-Management-System/backend/models/main.cpp || cmake_object_order_depends_target_server
   DEP_FILE = CMakeFiles\server.dir\backend\models\main.cpp.obj.d
   FLAGS = -std=gnu++17
-  INCLUDES = -ID:/Canteen-Management-System/external/crow/include -ID:/Canteen-Management-System/backend/models -ID:/Canteen-Management-System/backend/routes -ID:/Canteen-Management-System/external/asio/asio-1.34.2/include
+  INCLUDES = -ID:/Canteen-Management-System/external/crow/include -ID:/Canteen-Management-System/backend/images -ID:/Canteen-Management-System/backend/models -ID:/Canteen-Management-System/backend/routes -ID:/Canteen-Management-System/external/asio/asio-1.34.2/include
   OBJECT_DIR = CMakeFiles\server.dir
   OBJECT_FILE_DIR = CMakeFiles\server.dir\backend\models
 
 build CMakeFiles/server.dir/backend/routes/Route.cpp.obj: CXX_COMPILER__server_unscanned_ D$:/Canteen-Management-System/backend/routes/Route.cpp || cmake_object_order_depends_target_server
   DEP_FILE = CMakeFiles\server.dir\backend\routes\Route.cpp.obj.d
   FLAGS = -std=gnu++17
-  INCLUDES = -ID:/Canteen-Management-System/external/crow/include -ID:/Canteen-Management-System/backend/models -ID:/Canteen-Management-System/backend/routes -ID:/Canteen-Management-System/external/asio/asio-1.34.2/include
+  INCLUDES = -ID:/Canteen-Management-System/external/crow/include -ID:/Canteen-Management-System/backend/images -ID:/Canteen-Management-System/backend/models -ID:/Canteen-Management-System/backend/routes -ID:/Canteen-Management-System/external/asio/asio-1.34.2/include
   OBJECT_DIR = CMakeFiles\server.dir
   OBJECT_FILE_DIR = CMakeFiles\server.dir\backend\routes
 

@@ -14,6 +14,7 @@ protected:
     Money _money;
     DateTime _manufacture_Date;
     DateTime _expiry_Date;
+    std::string _imagePath;
     Product *_origin = nullptr;
 
 public:
@@ -23,7 +24,7 @@ public:
     Product(Product &&) noexcept;
     virtual ~Product() = default;
     Product(const int &, const std::string &,
-            const float &, const DateTime &, const DateTime &);
+            const float &, const DateTime &, const DateTime &, const std::string &);
 
     virtual std::unique_ptr<Product> clone() const = 0;
     virtual Product *get_origin() = 0;
@@ -41,6 +42,8 @@ public:
     float get_discount() const;
     DateTime get_manufacture_Date() const;
     DateTime get_expiry_Date() const;
+    void set_imagePath(const std::string &);
+    std::string get_imagePath() const;
 
     friend std::string operator+(const std::string &, const std::string &);
     friend std::string operator+(const std::string &, const Product &);

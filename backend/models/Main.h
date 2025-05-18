@@ -12,6 +12,8 @@
 #include <ctime>
 #include <regex>
 #include <bitset>
+#include <fstream>
+#include <filesystem>
 
 std::string create_id(const std::string &, const int &);
 int get_counter_from_id(const std::string &, const std::string &);
