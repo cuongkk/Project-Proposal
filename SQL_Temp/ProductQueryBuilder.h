@@ -30,6 +30,44 @@ public:
         return query;
     }
 
+    std::string Insert(const std::string& name, double price, const std::string& category) const {
+        return "INSERT INTO Products (name, price, category) VALUES ('" + name + "', " + std::to_string(price) + ", '" + category + "')";
+    }
+
+    std::string Delete() const {
+        std::string query = "DELETE FROM Products";
+        if (!conditions.empty()) {
+            query += " WHERE " + joinConditions();
+        }
+        return query;    
+    } 
+
+    std::string Update(const std::string& column, const std::string& value) const {
+        std::string query = "UPDATE Products SET " + column + " = '" + value + "'";
+        if (!conditions.empty()) {
+            query += " WHERE " + joinConditions();
+        }
+        return query;
+    }
+
+    std::string Update(const std::string& column, double value) const {
+        std::string query = "UPDATE Products SET " + column + " = " + std::to_string(value);
+        if (!conditions.empty()) {
+            query += " WHERE " + joinConditions();
+        }
+        return query;
+    }
+
+    std::string Update(const std::string& column, int value) const {
+        std::string query = "UPDATE Products SET " + column + " = " + std::to_string(value);
+        if (!conditions.empty()) {
+            query += " WHERE " + joinConditions();
+        }
+        return query;
+    }
+
+
+
 private:
     std::string joinConditions() const {
         std::string result = conditions[0];
