@@ -1,0 +1,10 @@
+^C:\OOP\PROJECT\PROJECT-PROPOSAL\CANTEEN-MANAGEMENT-SYSTEM-TUANCUONG\CMAKELISTS.TXT
+setlocal
+C:\winlibs\mingw64\bin\cmake.exe -SC:/OOP/Project/Project-Proposal/Canteen-Management-System-TuanCuong -BC:/OOP/Project/Project-Proposal/Canteen-Management-System-TuanCuong/build --check-stamp-file C:/OOP/Project/Project-Proposal/Canteen-Management-System-TuanCuong/build/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd

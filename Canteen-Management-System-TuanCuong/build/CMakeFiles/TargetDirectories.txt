@@ -1,0 +1,3 @@
+C:/OOP/Project/Project-Proposal/Canteen-Management-System-TuanCuong/build/CMakeFiles/server.dir
+C:/OOP/Project/Project-Proposal/Canteen-Management-System-TuanCuong/build/CMakeFiles/ALL_BUILD.dir
+C:/OOP/Project/Project-Proposal/Canteen-Management-System-TuanCuong/build/CMakeFiles/ZERO_CHECK.dir

@@ -1,0 +1,64 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="17.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="C:\OOP\Project\Project-Proposal\Canteen-Management-System-TuanCuong\backend\routes\main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\OOP\Project\Project-Proposal\Canteen-Management-System-TuanCuong\backend\models\Admin.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\OOP\Project\Project-Proposal\Canteen-Management-System-TuanCuong\backend\models\Bill.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\OOP\Project\Project-Proposal\Canteen-Management-System-TuanCuong\backend\models\BillManagement.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\OOP\Project\Project-Proposal\Canteen-Management-System-TuanCuong\backend\models\Cart.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\OOP\Project\Project-Proposal\Canteen-Management-System-TuanCuong\backend\models\Customer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\OOP\Project\Project-Proposal\Canteen-Management-System-TuanCuong\backend\models\Datetime.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\OOP\Project\Project-Proposal\Canteen-Management-System-TuanCuong\backend\models\Drink.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\OOP\Project\Project-Proposal\Canteen-Management-System-TuanCuong\backend\models\Food.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\OOP\Project\Project-Proposal\Canteen-Management-System-TuanCuong\backend\models\KhoHang.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\OOP\Project\Project-Proposal\Canteen-Management-System-TuanCuong\backend\models\Main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\OOP\Project\Project-Proposal\Canteen-Management-System-TuanCuong\backend\models\Main_all.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\OOP\Project\Project-Proposal\Canteen-Management-System-TuanCuong\backend\models\Money.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\OOP\Project\Project-Proposal\Canteen-Management-System-TuanCuong\backend\models\Product.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\OOP\Project\Project-Proposal\Canteen-Management-System-TuanCuong\backend\models\User.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\OOP\Project\Project-Proposal\Canteen-Management-System-TuanCuong\backend\models\UserManagement.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\OOP\Project\Project-Proposal\Canteen-Management-System-TuanCuong\backend\routes\Route.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="C:\OOP\Project\Project-Proposal\Canteen-Management-System-TuanCuong\CMakeLists.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{0ED8A42A-83FE-3587-B1CB-B2DF573650F2}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

@@ -58,6 +58,22 @@
         "text_encoding": "cpp",
         "variant": "cpp",
         "*.tpp": "cpp",
-        "iomanip": "cpp"
+        "iomanip": "cpp",
+        "any": "cpp",
+        "strstream": "cpp",
+        "chrono": "cpp",
+        "cinttypes": "cpp",
+        "codecvt": "cpp",
+        "condition_variable": "cpp",
+        "coroutine": "cpp",
+        "csignal": "cpp",
+        "set": "cpp",
+        "ratio": "cpp",
+        "source_location": "cpp",
+        "future": "cpp",
+        "mutex": "cpp",
+        "semaphore": "cpp",
+        "stop_token": "cpp",
+        "thread": "cpp"
     }
 }

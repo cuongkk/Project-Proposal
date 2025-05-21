@@ -11,8 +11,8 @@
                 "C:/winlibs/mingw64/include",
                 "C:/winlibs/mingw64/lib/gcc/x86_64-w64-mingw32/14.2.0/include-fixed",
                 "C:/winlibs/mingw64/x86_64-w64-mingw32/include",
-                "C:/Program Files/MySQL/mysql-connector-c++-9.3.0-winx64/include",
-                "C:/Program Files/MySQL/mysql-connector-c++-9.3.0-winx64/lib64"
+                "C:/Program Files/MySQL/mysql-connector-c++-8.4.0-winx64/include",
+                "C:/Program Files/MySQL/mysql-connector-c++-8.4.0-winx64/lib64/vs14"
             ],
             "defines": [],
             "compilerPath": "C:/winlibs/mingw64/bin/g++.exe",

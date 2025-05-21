@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="17.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <CustomBuild Include="C:\OOP\Project\Project-Proposal\Canteen-Management-System-TuanCuong\build\CMakeFiles\8b2e79409d2f6bf886905f0ba194145f\generate.stamp.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="CMake Rules">
+      <UniqueIdentifier>{98EA8D87-6DFC-3EFB-ADF9-96E6DAEEF5BD}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>
