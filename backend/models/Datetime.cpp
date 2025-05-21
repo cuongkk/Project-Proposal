@@ -21,6 +21,28 @@ DateTime::DateTime(const DateTime &dt)
     _second = dt._second;
 }
 
+DateTime::DateTime(const std::string &date)
+{
+    std::istringstream ss(date);
+    std::string token;
+
+    try
+    {
+        token = date.substr(0, 4);
+        _year = std::stoi(token);
+
+        token = date.substr(5, 2);
+        _month = std::stoi(token);
+
+        token = date.substr(8, 2);
+        _day = std::stoi(token);
+    }
+    catch (...)
+    {
+        throw std::invalid_argument("Invalid date format");
+    }
+}
+
 DateTime::DateTime(int day, int month, int year)
 {
     _day = day;

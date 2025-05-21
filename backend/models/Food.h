@@ -13,14 +13,16 @@ private:
 public:
     Food();
     ~Food();
-    Food(const std::string &,
-         const std::string &,
-         const int &,
-         const std::string &,
-         const float &,
-         const DateTime &,
-         const DateTime &,
-         const std::string &);
+    Food(
+        const std::string &,
+        const std::string &,
+        const std::string &,
+        const int &,
+        const std::string &,
+        const float &,
+        const DateTime &,
+        const DateTime &,
+        const std::string &);
 
     std::unique_ptr<Product> clone() const override;
     Product *get_origin() override;

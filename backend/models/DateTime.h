@@ -17,6 +17,7 @@ public:
     DateTime();
     ~DateTime();
     DateTime(const DateTime &);
+    DateTime(const std::string &);
     DateTime(int day, int month, int year);
 
     void set_day(int day);

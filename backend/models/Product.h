@@ -23,7 +23,7 @@ public:
     Product(const Product &);
     Product(Product &&) noexcept;
     virtual ~Product() = default;
-    Product(const int &, const std::string &,
+    Product(const std::string &, const int &, const std::string &,
             const float &, const DateTime &, const DateTime &, const std::string &);
 
     virtual std::unique_ptr<Product> clone() const = 0;
@@ -45,7 +45,7 @@ public:
     void set_imagePath(const std::string &);
     std::string get_imagePath() const;
 
-    friend std::string operator+(const std::string &, const std::string &);
+    // friend std::string operator+(const std::string &, const std::string &);
     friend std::string operator+(const std::string &, const Product &);
 
     friend bool operator==(const Product &, const Product &);

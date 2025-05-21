@@ -458,7 +458,8 @@ void setup_add_product_routes(crow::App<CORS> &app)
     {
         if (_type == "food")
         {
-            auto food = std::make_unique<Food>(_name, _inf, std::stoi(_quantity), _price, std::stof(_discount), std::move(manufacture_Date), std::move(expiry_Date), imageFilePath);
+            std::string _id_sp = set_id("SP", Product::_id_counter_sp); 
+            auto food = std::make_unique<Food>(_id_sp, _name, _inf, std::stoi(_quantity), _price, std::stof(_discount), std::move(manufacture_Date), std::move(expiry_Date), imageFilePath);
             std::cout << food->get_imagePath() << std::endl;
             khoHang.add(std::move(food));
             res["message"] = "Thêm sản phẩm thành công";
@@ -466,7 +467,8 @@ void setup_add_product_routes(crow::App<CORS> &app)
         }
         else if (_type == "drink")
         {
-            auto drink = std::make_unique<Drink>(_name, _inf, std::stoi(_quantity), _price, std::stof(_discount), std::move(manufacture_Date), std::move(expiry_Date), imageFilePath);
+            std::string _id_sp = set_id("SP", Product::_id_counter_sp); 
+            auto drink = std::make_unique<Drink>(_id_sp, _name, _inf, std::stoi(_quantity), _price, std::stof(_discount), std::move(manufacture_Date), std::move(expiry_Date), imageFilePath);
             std::cout << drink->get_imagePath() << std::endl;
             khoHang.add(std::move(drink));
             res["message"] = "Thêm sản phẩm thành công";

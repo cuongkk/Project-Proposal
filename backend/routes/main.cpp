@@ -3,6 +3,51 @@
 int main()
 {
 
+    // try
+    // {
+    //     ProductRepositoryImpl_MySQL repo(
+    //         "tcp://127.0.0.1:3306", "root", "0328228324", "Canteen_Management");
+    //     repo.loadFromDatabase();
+
+    //     std::cout << "Danh sách sản phẩm hiện tại:\n";
+    //     for (const auto &product : repo.getAll())
+    //     {
+    //         std::cout << *product << "\n";
+    //     }
+    // }
+    // catch (const sql::SQLException &e)
+    // {
+    //     std::cout << "Error: " << e.what() << "\n";
+    // }
+    // catch (const std::exception &e)
+    // {
+    //     std::cout << "Error: " << e.what() << "\n";
+    // }
+    try
+    {
+        ProductRepositoryImpl_MySQL repo(
+            "tcp://127.0.0.1:3306", "root", "0328228324", "Canteen_Management");
+
+        repo.loadFromDatabase();
+
+        for (const auto &product : repo.getAll())
+        {
+            std::cout << *product << "\n";
+        }
+    }
+    catch (const sql::SQLException &e)
+    {
+        std::cout << "❌ SQL Error: " << e.what() << "\n";
+    }
+    catch (const std::exception &e)
+    {
+        std::cout << "❌ General Error: " << e.what() << "\n";
+    }
+    catch (...)
+    {
+        std::cout << "❌ Unknown error occurred.\n";
+    }
+
     crow::App<CORS> app;
 
     setup_user_routes(app);

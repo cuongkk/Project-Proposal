@@ -14,7 +14,7 @@ std::string create_id(const std::string &prefix, const int &counter)
     {
         id_str = '0' + id_str;
     }
-    return prefix + id_str;
+    return std::string(prefix) + id_str;
 }
 
 int get_counter_from_id(const std::string &prefix, const std::string &id)

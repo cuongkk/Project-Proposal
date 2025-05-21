@@ -34,11 +34,11 @@ Product::Product(Product &&sp) noexcept
     _origin = this;
 }
 
-Product::Product(const int &quantity, const std::string &money,
+Product::Product(const std::string &id_sp, const int &quantity, const std::string &money,
                  const float &discount,
                  const DateTime &manufacture_Date, const DateTime &expiry_Date, const std::string &imagePath)
 {
-    _id_sp = set_id("SP", _id_counter_sp);
+    _id_sp = id_sp;
     _quantity = quantity;
     _money = Money(money);
     _discount = discount;
