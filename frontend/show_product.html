@@ -93,6 +93,26 @@
     <h2>Danh sách sản phẩm</h2>
     <button class="cart-btn" onclick="showCart()">🛒 Xem giỏ hàng</button>
 
+    <div style="text-align: center; margin-top: 20px;">
+        <label for="category">Loại:</label>
+        <select id="category" name="category">
+            <option value="all">Tất cả</option>
+            <option value="class Food">Đồ ăn</option>
+            <option value="class Drink">Đồ uống</option>
+        </select>
+
+        <label for="price">Giá:</label>
+        <select id="price" name="price">
+            <option value="0-0">...</option>
+            <option value="0-20000">&lt; 20K</option>
+            <option value="20000-50000">20K - 50K</option>
+            <option value="50000-0">&gt; 50K</option>
+        </select>
+
+        <button class="cart-btn" onclick="filterProducts()">Lọc</button>
+    </div>
+
+
     <div id="product-list" class="product-grid">
         <!-- Thẻ sản phẩm sẽ thêm bằng JavaScript -->
     </div>
@@ -159,6 +179,64 @@
             }
         }
 
+        async function filterProducts() {
+            const _id_user = new URLSearchParams(window.location.search).get('msg');
+            const _category = document.getElementById('category').value;
+            const _priceRange = document.getElementById('price').value;
+
+            const container = document.getElementById('product-list');
+            container.innerHTML = `<p>Đang tải...</p>`;
+
+            try {
+                const response = await fetch('http://localhost:18080/filter_product', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        id_user: _id_user,
+                        category: _category,
+                        priceRange: _priceRange
+                    })
+                });
+
+                const result = await response.json();
+                const products = result.products || [];
+
+                container.innerHTML = '';
+                if (products.length === 0) {
+                    container.innerHTML = `<p>Không có sản phẩm nào</p>`;
+                    return;
+                }
+
+                products.forEach((product) => {
+                    const card = document.createElement('div');
+                    card.className = 'product-card';
+
+                    const imgSrc = product.image_url || 'https://via.placeholder.com/250x180?text=No+Image';
+
+                    card.innerHTML = `
+                        <img src="${imgSrc}" alt="Ảnh sản phẩm">
+                        <h3>${product.name}</h3>
+                        <p>${product.inf}</p>
+                        <p><strong>Giá:</strong> ${product.price}</p>
+                        <p><strong>Giảm giá:</strong> ${product.discount}</p>
+                        <p><strong>Còn lại:</strong> ${product.quantity}</p>
+                        <p><small>NSX: ${product.manufacture_Date}</small></p>
+                        <p><small>HSD: ${product.expiry_Date}</small></p>
+                        <button>➕ Thêm vào giỏ</button>
+                    `;
+
+                    card.querySelector('button').addEventListener('click', () => {
+                        addToCart(product);
+                    });
+
+                    container.appendChild(card);
+                });
+
+            } catch (error) {
+                console.error('Lỗi khi tải sản phẩm:', error);
+                container.innerHTML = `<p>Không có sản phẩm phù hợp</p>`;
+            }
+        }
         function addToCart(product) {
             const _id_user = new URLSearchParams(window.location.search).get('msg');
             const productId = product.id || product.name;

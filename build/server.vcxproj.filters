@@ -49,6 +49,12 @@
     <ClCompile Include="D:\Canteen-Management-System\backend\models\main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="D:\Canteen-Management-System\backend\repository\ProductRepository.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Canteen-Management-System\backend\repository\UserRepository.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="D:\Canteen-Management-System\backend\routes\Route.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>

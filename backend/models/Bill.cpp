@@ -31,25 +31,19 @@ Bill::Bill(const std::string &id_Customer, Cart &&cart, const DateTime &dateTime
     : _dateTime(dateTime)
 {
 
-    _id_Bill = set_id("BI", _id_counter_bill);
     _id_Customer = id_Customer;
     _cart = std::move(cart);
     _totalCost = _cart.get_money();
 }
 
-std::unique_ptr<Bill> Bill::clone()
+std::shared_ptr<Bill> Bill::clone()
 {
-    return std::make_unique<Bill>(*this);
+    return std::make_shared<Bill>(*this);
 }
 
 Bill *Bill::get_origin()
 {
     return _origin;
-}
-
-void Bill::set_counter(const int &index)
-{
-    _id_counter_bill[index] = 0;
 }
 
 std::string Bill::get_id() const

@@ -15,6 +15,7 @@ include_directories(
     ${CMAKE_SOURCE_DIR}/backend/images
     ${CMAKE_SOURCE_DIR}/backend/models
     ${CMAKE_SOURCE_DIR}/backend/routes
+    ${CMAKE_SOURCE_DIR}/backend/repository
     ${PROJECT_SOURCE_DIR}/external/asio/asio-1.34.2/include
     ${MYSQL_CONN_ROOT}/include
     ${MYSQL_CONN_ROOT}/include/jdbc
@@ -25,6 +26,7 @@ include_directories(
 file(GLOB_RECURSE MAIN_SOURCES 
     "${CMAKE_SOURCE_DIR}/backend/models/*.cpp" 
     "${CMAKE_SOURCE_DIR}/backend/routes/*.cpp"
+    "${CMAKE_SOURCE_DIR}/backend/repository/*.cpp"
 )
 
 # Tạo executable

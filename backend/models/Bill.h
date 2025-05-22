@@ -18,18 +18,15 @@ protected:
     Bill *_origin = nullptr;
 
 public:
-    static std::vector<int> _id_counter_bill;
-
     Bill();
     ~Bill();
     Bill(const Bill &);
     Bill(Bill &&) noexcept;
     Bill(const std::string &, Cart &&, const DateTime &);
 
-    std::unique_ptr<Bill> clone();
+    std::shared_ptr<Bill> clone();
     Bill *get_origin();
 
-    void set_counter(const int &);
     std::string get_id() const;
     std::string get_id_Customer() const;
 

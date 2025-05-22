@@ -1,11 +1,11 @@
 #include "Main_all.h"
 #include "Main.h"
 
-std::vector<int> User::_id_counter_user = {0};
+std::vector<int> UserManagement::_id_counter_user = {0};
 
-std::vector<int> Bill::_id_counter_bill = {0};
+std::vector<int> BillManagement::_id_counter_bill = {0};
 
-std::vector<int> Product::_id_counter_sp = {0};
+std::vector<int> KhoHang::_id_counter_sp = {0};
 
 std::string create_id(const std::string &prefix, const int &counter)
 {
@@ -23,6 +23,26 @@ int get_counter_from_id(const std::string &prefix, const std::string &id)
     return std::stoi(counter);
 }
 
+void set_id_counter(const std::string &id, std::vector<int> &_id_counter)
+{
+    int counter = get_counter_from_id("AA", id);
+    if (counter >= _id_counter.size())
+    {
+        for (int i = _id_counter.size(); i < counter; i++)
+        {
+            _id_counter.push_back(0);
+        }
+        _id_counter[counter - 1] = 1;
+    }
+}
+void delete_id_counter(const std::string &id, std::vector<int> &_id_counter)
+{
+    int counter = get_counter_from_id("AA", id);
+    if (counter < _id_counter.size())
+    {
+        _id_counter[counter - 1] = 0;
+    }
+}
 std::string set_id(const std::string &prefix, std::vector<int> &_id_counter)
 {
     std::string id = "";

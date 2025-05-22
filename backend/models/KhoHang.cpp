@@ -1,13 +1,15 @@
 #include "KhoHang.h"
 
-void KhoHang::add(std::unique_ptr<Product> sp)
+void KhoHang::add(std::shared_ptr<Product> sp)
 {
-    _Product.add_Tail(std::move(sp));
+    set_id_counter(sp->get_id(), _id_counter_sp);
+    _Product.add_Tail(sp);
 }
 
-void KhoHang::remove(std::unique_ptr<Product> sp)
+void KhoHang::remove(std::shared_ptr<Product> sp)
 {
-    _Product.remove_from_KhoHang(std::move(sp));
+    delete_id_counter(sp->get_id(), _id_counter_sp);
+    _Product.remove_from_KhoHang(sp);
 }
 
 void KhoHang::updateQuantity(const Product &sp, const int &quantity)
@@ -53,6 +55,46 @@ std::unique_ptr<Product> KhoHang::getProduct_from_id(const std::string &id)
     return nullptr;
 }
 
+KhoHang &KhoHang::search_category(const std::string &category)
+{
+    if (category == "all")
+    {
+        return *this;
+    }
+    KhoHang *result = new KhoHang();
+    for (const auto &item : _Product.get_Item())
+    {
+        if (typeid(*item).name() == category)
+        {
+            result->add(item);
+        }
+    }
+    return *result;
+}
+KhoHang &KhoHang::search_price(const std::string &min_price, const std::string &max_price)
+{
+    KhoHang *result = new KhoHang();
+    std::string min_price_temp = min_price;
+    std::string max_price_temp = max_price;
+    if (max_price == "0")
+    {
+        max_price_temp = "1000000000";
+    }
+    for (const auto &item : _Product.get_Item())
+    {
+        if (std::stof(item->get_money()) >= std::stof(min_price_temp) && std::stof(item->get_money()) <= std::stof(max_price_temp))
+        {
+            result->add(item);
+        }
+    }
+    return *result;
+}
+
+void KhoHang::clear()
+{
+    _Product.clear();
+}
+
 // bool KhoHang::isExpired(const std::string &expiryDateStr) const
 // {
 //     // 1. Lấy ngày hệ thống
@@ -77,46 +119,46 @@ std::unique_ptr<Product> KhoHang::getProduct_from_id(const std::string &id)
 //     return now_time < expiry_time; // true nếu đã còn hạn
 // }
 
-bool KhoHang::containsKeyword(const std::string &keyword, const int &option, const Product &sp) const
-{
-    std::regex pattern(keyword, std::regex_constants::icase); // không phân biệt hoa thường
-    switch (option)
-    {
-    case 1: // Tìm kiếm theo tên, thông tin, id
-        return std::regex_search(sp.get_name(), pattern) || std::regex_search(sp.get_inf(), pattern) || std::regex_match(sp.get_id(), pattern);
-    case 2: // Tìm kiếm sản phẩm theo mức giá nhập vào trở xuống
-        return (std::stof(sp.get_money()) <= std::stof(keyword));
-    case 3: // Tìm kiếm sản phẩm theo mức giá nhập vào trở lên
-        return (std::stof(sp.get_money()) >= std::stof(keyword));
-    case 4: // Tìm kiếm sản phẩm còn hàng
-        return (sp.get_quantity() > 0);
-    // case 5: // Tìm kiếm sản phẩm còn hạn sử dụng
-    //     return isExpired(sp.get_expiry_Date());
-    // case 6: // Tìm kiếm sản phẩm hết hạn sử dụng
-    //     return !isExpired(sp.get_expiry_Date());
-    default:
-        return false; // Invalid option
-    }
-}
+// bool KhoHang::containsKeyword(const std::string &keyword, const int &option, const Product &sp) const
+// {
+//     std::regex pattern(keyword, std::regex_constants::icase); // không phân biệt hoa thường
+//     switch (option)
+//     {
+//     case 1: // Tìm kiếm theo tên, thông tin, id
+//         return std::regex_search(sp.get_name(), pattern) || std::regex_search(sp.get_inf(), pattern) || std::regex_match(sp.get_id(), pattern);
+//     case 2: // Tìm kiếm sản phẩm theo mức giá nhập vào trở xuống
+//         return (std::stof(sp.get_money()) <= std::stof(keyword));
+//     case 3: // Tìm kiếm sản phẩm theo mức giá nhập vào trở lên
+//         return (std::stof(sp.get_money()) >= std::stof(keyword));
+//     case 4: // Tìm kiếm sản phẩm còn hàng
+//         return (sp.get_quantity() > 0);
+//     // case 5: // Tìm kiếm sản phẩm còn hạn sử dụng
+//     //     return isExpired(sp.get_expiry_Date());
+//     // case 6: // Tìm kiếm sản phẩm hết hạn sử dụng
+//     //     return !isExpired(sp.get_expiry_Date());
+//     default:
+//         return false; // Invalid option
+//     }
+// }
 
-std::vector<std::string> KhoHang::search(const std::string &keyword, const int &optionSearch)
-{
-    bool found = false;
-    std::vector<std::string> result;
-    for (const auto &item : _Product.get_Item())
-    {
-        if (containsKeyword(keyword, optionSearch, *item))
-        {
-            found = true;
-            result.push_back(item->get_id());
-        }
-    }
-    if (!found)
-    {
-        std::cout << "Không tìm thấy sản phẩm nào.\n";
-    }
-    return result;
-}
+// std::vector<std::string> KhoHang::search(const std::string &keyword, const int &optionSearch)
+// {
+//     bool found = false;
+//     std::vector<std::string> result;
+//     for (const auto &item : _Product.get_Item())
+//     {
+//         if (containsKeyword(keyword, optionSearch, *item))
+//         {
+//             found = true;
+//             result.push_back(item->get_id());
+//         }
+//     }
+//     if (!found)
+//     {
+//         std::cout << "Không tìm thấy sản phẩm nào.\n";
+//     }
+//     return result;
+// }
 
 std::ostream &operator<<(std::ostream &os, const KhoHang &KhoHang)
 {

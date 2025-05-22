@@ -17,6 +17,8 @@
 
 std::string create_id(const std::string &, const int &);
 int get_counter_from_id(const std::string &, const std::string &);
+void set_id_counter(const std::string &, std::vector<int> &);
+void delete_id_counter(const std::string &, std::vector<int> &);
 std::string set_id(const std::string &, std::vector<int> &);
 bool findContains(const std::string &text, const std::string &pattern);
 bool is_positive_number(const std::string &str);

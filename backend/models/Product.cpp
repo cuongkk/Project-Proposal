@@ -4,7 +4,7 @@ Product::Product()
     _id_sp = "";
     _quantity = 0;
     Money _money;
-    _discount = 0;
+    _discount = "";
     _manufacture_Date = DateTime();
     _expiry_Date = DateTime();
     _origin = this;
@@ -35,7 +35,7 @@ Product::Product(Product &&sp) noexcept
 }
 
 Product::Product(const std::string &id_sp, const int &quantity, const std::string &money,
-                 const float &discount,
+                 const std::string &discount,
                  const DateTime &manufacture_Date, const DateTime &expiry_Date, const std::string &imagePath)
 {
     _id_sp = id_sp;
@@ -46,11 +46,6 @@ Product::Product(const std::string &id_sp, const int &quantity, const std::strin
     _expiry_Date = expiry_Date;
     _imagePath = imagePath;
     _origin = this;
-}
-
-void Product::set_counter(const int &index)
-{
-    _id_counter_sp[index] = 0;
 }
 
 std::string Product::get_id() const
@@ -84,7 +79,7 @@ void Product::set_discount(const int &discount)
     _discount = discount;
 }
 
-float Product::get_discount() const
+std::string Product::get_discount() const
 {
     return _discount;
 }
@@ -119,7 +114,7 @@ std::string operator+(const std::string &a, const Product &b)
 {
     long long money_value = std::stoll(b._money.get_value());
 
-    long long total_cost = money_value * b.get_quantity() * (100 - b.get_discount()) / 100;
+    long long total_cost = money_value * b.get_quantity() * (100 - std::stof(b.get_discount()));
     if (a == "")
     {
         return std::to_string(total_cost);

@@ -12,7 +12,7 @@ Food::~Food()
 
 Food::Food(const std::string &id_sp, const std::string &name, const std::string &inf,
            const int &quantity, const std::string &money,
-           const float &discount,
+           const std::string &discount,
            const DateTime &manufacture_Date, const DateTime &expiry_Date,
            const std::string &imagePath)
     : Product(id_sp, quantity, money, discount, manufacture_Date, expiry_Date, imagePath)

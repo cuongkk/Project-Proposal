@@ -1,7 +1,9 @@
 #ifndef ROUTE_H
 #define ROUTE_H
 
-#include "Main_all.h"
+#include "..\models\Main_all.h"
+#include "..\repository\UserRepository.h"
+#include "..\repository\ProductRepository.h"
 #include "crow.h"
 #include "crow/json.h"
 #include <unordered_map>
@@ -29,6 +31,9 @@ struct CORS
     }
 };
 
+extern ProductRepositoryImpl repoProduct;
+extern UserRepositoryImpl repoUser;
+
 extern std::vector<std::string> username;
 extern std::unordered_map<std::string, std::string> UserList;
 extern std::unordered_map<std::string, std::string> workUser;
@@ -53,6 +58,8 @@ void setup_show_product_routes(crow::App<CORS> &);
 void setup_show_image_product_routes(crow::App<CORS> &);
 
 void setup_update_product_routes(crow::App<CORS> &);
+
+void setup_filter_product_routes(crow::App<CORS> &);
 
 void setup_add_product_to_cart_routes(crow::App<CORS> &);
 

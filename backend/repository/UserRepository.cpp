@@ -1,0 +1,79 @@
+#include "Repository.h"
+#include "UserRepository.h"
+
+UserRepositoryImpl::UserRepositoryImpl(const std::string &host,
+                                       const std::string &user,
+                                       const std::string &pass,
+                                       const std::string &db)
+{
+    driver = sql::mysql::get_mysql_driver_instance();
+    conn.reset(driver->connect(host, user, pass));
+    conn->setSchema(db);
+    conn->setClientOption("CHARSET", "utf8mb4");
+}
+
+void UserRepositoryImpl::loadFromDatabase()
+{
+    _user.clear();
+
+    std::shared_ptr<sql::Statement> stmt(conn->createStatement());
+    std::shared_ptr<sql::ResultSet> res(
+        stmt->executeQuery("SELECT id, username, password, name, fullname, email, phoneNumber, money FROM User"));
+
+    while (res->next())
+    {
+        std::string username = res->getString("username");
+        if (username.compare("admin") == 0)
+        {
+            auto user = std::make_shared<Admin>(
+                res->getString("id"),
+                res->getString("username"),
+                res->getString("password"),
+                res->getString("name"));
+            _user.push_back(user);
+        }
+        else
+        {
+            auto user = std::make_shared<Customer>(
+                res->getString("id"),
+                res->getString("username"),
+                res->getString("password"),
+                res->getString("name"),
+                res->getString("fullname"),
+                res->getString("email"),
+                res->getString("phoneNumber"),
+                std::to_string(res->getInt("money")));
+            _user.push_back(user);
+        }
+    }
+}
+
+LinkedList<User> &UserRepositoryImpl::getAll()
+{
+    return _user;
+}
+
+void UserRepositoryImpl::insert(const std::vector<std::string> &fields)
+{
+    if (fields.size() != 10)
+    {
+        throw std::invalid_argument("Không đủ số lượng trường cho sản phẩm (cần 10).");
+    }
+
+    std::shared_ptr<sql::PreparedStatement> pstmt(conn->prepareStatement(
+        "INSERT INTO Products (id, name, inf, category, price, discount, quantity, manufacture_date, expiry_date, image_path) "
+        "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)"));
+
+    pstmt->setString(1, fields[0]);         // id
+    pstmt->setString(2, fields[1]);         // name
+    pstmt->setString(3, fields[2]);         // inf
+    pstmt->setString(4, fields[3]);         // category
+    pstmt->setString(5, fields[4]);         // price
+    pstmt->setString(6, fields[5]);         // discount
+    pstmt->setInt(7, std::stoi(fields[6])); // quantity
+    pstmt->setString(8, fields[7]);         // manufacture_date
+    pstmt->setString(9, fields[8]);         // expiry_date
+    pstmt->setString(10, fields[9]);        // image_path
+
+    pstmt->executeUpdate();
+}

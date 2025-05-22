@@ -145,7 +145,6 @@ void LinkedList<T>::remove_from_KhoHang(std::shared_ptr<T> sp)
     {
         if (**item == *sp)
         {
-            (*item)->set_counter(get_counter_from_id("SP", (*item)->get_id()) - 1);
             _list.erase(item);
             return;
         }

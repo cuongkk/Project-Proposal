@@ -15,10 +15,8 @@
 #include "Drink.h"
 #include "Admin.h"
 #include "Customer.h"
-#include "../respository/ProductRepository.h"
 
 extern KhoHang khoHang;
 extern UserManagement userManagement;
 extern BillManagement billManagement;
-
 #endif

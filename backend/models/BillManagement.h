@@ -13,16 +13,19 @@ private:
     LinkedList<Bill> _bill;
 
 public:
+    static std::vector<int> _id_counter_bill;
+
     BillManagement() = default;
     ~BillManagement() = default;
 
-    void add(std::unique_ptr<Bill>);
-    void remove(std::unique_ptr<Bill>);
-    std::unique_ptr<Bill> getBill_from_id(const std::string &);
-    std::list<std::unique_ptr<Bill>> getBill_from_id_Customer(const std::string &);
-    bool containsKeyword(const std::string &, const int &, const Bill &) const;
-    std::vector<std::string> search(const std::string &, const int &);
-    std::unique_ptr<Bill> confirmBill(UserManagement &, const std::string &, Cart &&);
+    void add(std::shared_ptr<Bill>);
+    void remove(std::shared_ptr<Bill>);
+    std::shared_ptr<Bill> getBill_from_id(const std::string &);
+    std::list<std::shared_ptr<Bill>> getBill_from_id_Customer(const std::string &);
+    // bool containsKeyword(const std::string &, const int &, const Bill &) const;
+    // std::vector<std::string> search(const std::string &, const int &);
+    std::shared_ptr<Bill> confirmBill(UserManagement &, const std::string &, Cart &&);
+    void clear();
 
     friend std::ostream &operator<<(std::ostream &, const BillManagement &);
     friend bool operator==(const Bill &, const Bill &);

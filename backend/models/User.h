@@ -15,16 +15,15 @@ protected:
 
 public:
     Cart _cart;
-    static std::vector<int> _id_counter_user;
 
     User();
     virtual ~User() = default;
-    User(const std::string &, const std::string &, const std::string &);
+    User(const std::string &, const std::string &,
+         const std::string &, const std::string &);
 
-    virtual std::unique_ptr<User> clone() const = 0;
+    virtual std::shared_ptr<User> clone() const = 0;
     virtual User *get_origin() const = 0;
 
-    void set_counter(const int &);
     std::string get_id() const;
     void set_username(const std::string &);
     std::string get_username() const;
@@ -43,10 +42,10 @@ public:
     virtual std::string get_money() const = 0;
     virtual Cart get_cart() const = 0;
 
-    friend std::string operator-(const std::unique_ptr<User> &, const std::string &);
+    friend std::string operator-(const std::shared_ptr<User> &, const std::string &);
 
-    friend bool operator<=(const std::unique_ptr<User> &, const long long &);
-    friend bool operator>=(const std::unique_ptr<User> &, const long long &);
+    friend bool operator<=(const std::shared_ptr<User> &, const long long &);
+    friend bool operator>=(const std::shared_ptr<User> &, const long long &);
     friend bool operator==(const User &, const User &);
 
     virtual void print(std::ostream &) const = 0;

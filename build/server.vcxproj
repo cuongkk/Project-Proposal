@@ -86,7 +86,7 @@
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
-      <AdditionalIncludeDirectories>D:\Canteen-Management-System\external\crow\include;D:\Canteen-Management-System\backend\images;D:\Canteen-Management-System\backend\models;D:\Canteen-Management-System\backend\routes;D:\Canteen-Management-System\external\asio\asio-1.34.2\include;C:\Users\84328\Downloads\mysql-connector-c++-9.3.0-winx64\mysql-connector-c++-9.3.0-winx64\include;C:\Users\84328\Downloads\mysql-connector-c++-9.3.0-winx64\mysql-connector-c++-9.3.0-winx64\include\jdbc;D:\Canteen-Management-System\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>D:\Canteen-Management-System\external\crow\include;D:\Canteen-Management-System\backend\images;D:\Canteen-Management-System\backend\models;D:\Canteen-Management-System\backend\routes;D:\Canteen-Management-System\backend\repository;D:\Canteen-Management-System\external\asio\asio-1.34.2\include;C:\Users\84328\Downloads\mysql-connector-c++-9.3.0-winx64\mysql-connector-c++-9.3.0-winx64\include;C:\Users\84328\Downloads\mysql-connector-c++-9.3.0-winx64\mysql-connector-c++-9.3.0-winx64\include\jdbc;D:\Canteen-Management-System\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
@@ -107,10 +107,10 @@
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_DEBUG;_WINDOWS;CMAKE_INTDIR=\"Debug\"</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>D:\Canteen-Management-System\external\crow\include;D:\Canteen-Management-System\backend\images;D:\Canteen-Management-System\backend\models;D:\Canteen-Management-System\backend\routes;D:\Canteen-Management-System\external\asio\asio-1.34.2\include;C:\Users\84328\Downloads\mysql-connector-c++-9.3.0-winx64\mysql-connector-c++-9.3.0-winx64\include;C:\Users\84328\Downloads\mysql-connector-c++-9.3.0-winx64\mysql-connector-c++-9.3.0-winx64\include\jdbc;D:\Canteen-Management-System\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>D:\Canteen-Management-System\external\crow\include;D:\Canteen-Management-System\backend\images;D:\Canteen-Management-System\backend\models;D:\Canteen-Management-System\backend\routes;D:\Canteen-Management-System\backend\repository;D:\Canteen-Management-System\external\asio\asio-1.34.2\include;C:\Users\84328\Downloads\mysql-connector-c++-9.3.0-winx64\mysql-connector-c++-9.3.0-winx64\include;C:\Users\84328\Downloads\mysql-connector-c++-9.3.0-winx64\mysql-connector-c++-9.3.0-winx64\include\jdbc;D:\Canteen-Management-System\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ResourceCompile>
     <Midl>
-      <AdditionalIncludeDirectories>D:\Canteen-Management-System\external\crow\include;D:\Canteen-Management-System\backend\images;D:\Canteen-Management-System\backend\models;D:\Canteen-Management-System\backend\routes;D:\Canteen-Management-System\external\asio\asio-1.34.2\include;C:\Users\84328\Downloads\mysql-connector-c++-9.3.0-winx64\mysql-connector-c++-9.3.0-winx64\include;C:\Users\84328\Downloads\mysql-connector-c++-9.3.0-winx64\mysql-connector-c++-9.3.0-winx64\include\jdbc;D:\Canteen-Management-System\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>D:\Canteen-Management-System\external\crow\include;D:\Canteen-Management-System\backend\images;D:\Canteen-Management-System\backend\models;D:\Canteen-Management-System\backend\routes;D:\Canteen-Management-System\backend\repository;D:\Canteen-Management-System\external\asio\asio-1.34.2\include;C:\Users\84328\Downloads\mysql-connector-c++-9.3.0-winx64\mysql-connector-c++-9.3.0-winx64\include;C:\Users\84328\Downloads\mysql-connector-c++-9.3.0-winx64\mysql-connector-c++-9.3.0-winx64\include\jdbc;D:\Canteen-Management-System\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
       <HeaderFileName>%(Filename).h</HeaderFileName>
       <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
@@ -133,7 +133,7 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
-      <AdditionalIncludeDirectories>D:\Canteen-Management-System\external\crow\include;D:\Canteen-Management-System\backend\images;D:\Canteen-Management-System\backend\models;D:\Canteen-Management-System\backend\routes;D:\Canteen-Management-System\external\asio\asio-1.34.2\include;C:\Users\84328\Downloads\mysql-connector-c++-9.3.0-winx64\mysql-connector-c++-9.3.0-winx64\include;C:\Users\84328\Downloads\mysql-connector-c++-9.3.0-winx64\mysql-connector-c++-9.3.0-winx64\include\jdbc;D:\Canteen-Management-System\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>D:\Canteen-Management-System\external\crow\include;D:\Canteen-Management-System\backend\images;D:\Canteen-Management-System\backend\models;D:\Canteen-Management-System\backend\routes;D:\Canteen-Management-System\backend\repository;D:\Canteen-Management-System\external\asio\asio-1.34.2\include;C:\Users\84328\Downloads\mysql-connector-c++-9.3.0-winx64\mysql-connector-c++-9.3.0-winx64\include;C:\Users\84328\Downloads\mysql-connector-c++-9.3.0-winx64\mysql-connector-c++-9.3.0-winx64\include\jdbc;D:\Canteen-Management-System\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
       <BasicRuntimeChecks>Default</BasicRuntimeChecks>
       <ExceptionHandling>Sync</ExceptionHandling>
@@ -155,10 +155,10 @@
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;CMAKE_INTDIR=\"Release\"</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>D:\Canteen-Management-System\external\crow\include;D:\Canteen-Management-System\backend\images;D:\Canteen-Management-System\backend\models;D:\Canteen-Management-System\backend\routes;D:\Canteen-Management-System\external\asio\asio-1.34.2\include;C:\Users\84328\Downloads\mysql-connector-c++-9.3.0-winx64\mysql-connector-c++-9.3.0-winx64\include;C:\Users\84328\Downloads\mysql-connector-c++-9.3.0-winx64\mysql-connector-c++-9.3.0-winx64\include\jdbc;D:\Canteen-Management-System\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>D:\Canteen-Management-System\external\crow\include;D:\Canteen-Management-System\backend\images;D:\Canteen-Management-System\backend\models;D:\Canteen-Management-System\backend\routes;D:\Canteen-Management-System\backend\repository;D:\Canteen-Management-System\external\asio\asio-1.34.2\include;C:\Users\84328\Downloads\mysql-connector-c++-9.3.0-winx64\mysql-connector-c++-9.3.0-winx64\include;C:\Users\84328\Downloads\mysql-connector-c++-9.3.0-winx64\mysql-connector-c++-9.3.0-winx64\include\jdbc;D:\Canteen-Management-System\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ResourceCompile>
     <Midl>
-      <AdditionalIncludeDirectories>D:\Canteen-Management-System\external\crow\include;D:\Canteen-Management-System\backend\images;D:\Canteen-Management-System\backend\models;D:\Canteen-Management-System\backend\routes;D:\Canteen-Management-System\external\asio\asio-1.34.2\include;C:\Users\84328\Downloads\mysql-connector-c++-9.3.0-winx64\mysql-connector-c++-9.3.0-winx64\include;C:\Users\84328\Downloads\mysql-connector-c++-9.3.0-winx64\mysql-connector-c++-9.3.0-winx64\include\jdbc;D:\Canteen-Management-System\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>D:\Canteen-Management-System\external\crow\include;D:\Canteen-Management-System\backend\images;D:\Canteen-Management-System\backend\models;D:\Canteen-Management-System\backend\routes;D:\Canteen-Management-System\backend\repository;D:\Canteen-Management-System\external\asio\asio-1.34.2\include;C:\Users\84328\Downloads\mysql-connector-c++-9.3.0-winx64\mysql-connector-c++-9.3.0-winx64\include;C:\Users\84328\Downloads\mysql-connector-c++-9.3.0-winx64\mysql-connector-c++-9.3.0-winx64\include\jdbc;D:\Canteen-Management-System\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
       <HeaderFileName>%(Filename).h</HeaderFileName>
       <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
@@ -181,7 +181,7 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">
     <ClCompile>
-      <AdditionalIncludeDirectories>D:\Canteen-Management-System\external\crow\include;D:\Canteen-Management-System\backend\images;D:\Canteen-Management-System\backend\models;D:\Canteen-Management-System\backend\routes;D:\Canteen-Management-System\external\asio\asio-1.34.2\include;C:\Users\84328\Downloads\mysql-connector-c++-9.3.0-winx64\mysql-connector-c++-9.3.0-winx64\include;C:\Users\84328\Downloads\mysql-connector-c++-9.3.0-winx64\mysql-connector-c++-9.3.0-winx64\include\jdbc;D:\Canteen-Management-System\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>D:\Canteen-Management-System\external\crow\include;D:\Canteen-Management-System\backend\images;D:\Canteen-Management-System\backend\models;D:\Canteen-Management-System\backend\routes;D:\Canteen-Management-System\backend\repository;D:\Canteen-Management-System\external\asio\asio-1.34.2\include;C:\Users\84328\Downloads\mysql-connector-c++-9.3.0-winx64\mysql-connector-c++-9.3.0-winx64\include;C:\Users\84328\Downloads\mysql-connector-c++-9.3.0-winx64\mysql-connector-c++-9.3.0-winx64\include\jdbc;D:\Canteen-Management-System\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
       <BasicRuntimeChecks>Default</BasicRuntimeChecks>
       <ExceptionHandling>Sync</ExceptionHandling>
@@ -203,10 +203,10 @@
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;CMAKE_INTDIR=\"MinSizeRel\"</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>D:\Canteen-Management-System\external\crow\include;D:\Canteen-Management-System\backend\images;D:\Canteen-Management-System\backend\models;D:\Canteen-Management-System\backend\routes;D:\Canteen-Management-System\external\asio\asio-1.34.2\include;C:\Users\84328\Downloads\mysql-connector-c++-9.3.0-winx64\mysql-connector-c++-9.3.0-winx64\include;C:\Users\84328\Downloads\mysql-connector-c++-9.3.0-winx64\mysql-connector-c++-9.3.0-winx64\include\jdbc;D:\Canteen-Management-System\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>D:\Canteen-Management-System\external\crow\include;D:\Canteen-Management-System\backend\images;D:\Canteen-Management-System\backend\models;D:\Canteen-Management-System\backend\routes;D:\Canteen-Management-System\backend\repository;D:\Canteen-Management-System\external\asio\asio-1.34.2\include;C:\Users\84328\Downloads\mysql-connector-c++-9.3.0-winx64\mysql-connector-c++-9.3.0-winx64\include;C:\Users\84328\Downloads\mysql-connector-c++-9.3.0-winx64\mysql-connector-c++-9.3.0-winx64\include\jdbc;D:\Canteen-Management-System\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ResourceCompile>
     <Midl>
-      <AdditionalIncludeDirectories>D:\Canteen-Management-System\external\crow\include;D:\Canteen-Management-System\backend\images;D:\Canteen-Management-System\backend\models;D:\Canteen-Management-System\backend\routes;D:\Canteen-Management-System\external\asio\asio-1.34.2\include;C:\Users\84328\Downloads\mysql-connector-c++-9.3.0-winx64\mysql-connector-c++-9.3.0-winx64\include;C:\Users\84328\Downloads\mysql-connector-c++-9.3.0-winx64\mysql-connector-c++-9.3.0-winx64\include\jdbc;D:\Canteen-Management-System\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>D:\Canteen-Management-System\external\crow\include;D:\Canteen-Management-System\backend\images;D:\Canteen-Management-System\backend\models;D:\Canteen-Management-System\backend\routes;D:\Canteen-Management-System\backend\repository;D:\Canteen-Management-System\external\asio\asio-1.34.2\include;C:\Users\84328\Downloads\mysql-connector-c++-9.3.0-winx64\mysql-connector-c++-9.3.0-winx64\include;C:\Users\84328\Downloads\mysql-connector-c++-9.3.0-winx64\mysql-connector-c++-9.3.0-winx64\include\jdbc;D:\Canteen-Management-System\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
       <HeaderFileName>%(Filename).h</HeaderFileName>
       <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
@@ -229,7 +229,7 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">
     <ClCompile>
-      <AdditionalIncludeDirectories>D:\Canteen-Management-System\external\crow\include;D:\Canteen-Management-System\backend\images;D:\Canteen-Management-System\backend\models;D:\Canteen-Management-System\backend\routes;D:\Canteen-Management-System\external\asio\asio-1.34.2\include;C:\Users\84328\Downloads\mysql-connector-c++-9.3.0-winx64\mysql-connector-c++-9.3.0-winx64\include;C:\Users\84328\Downloads\mysql-connector-c++-9.3.0-winx64\mysql-connector-c++-9.3.0-winx64\include\jdbc;D:\Canteen-Management-System\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>D:\Canteen-Management-System\external\crow\include;D:\Canteen-Management-System\backend\images;D:\Canteen-Management-System\backend\models;D:\Canteen-Management-System\backend\routes;D:\Canteen-Management-System\backend\repository;D:\Canteen-Management-System\external\asio\asio-1.34.2\include;C:\Users\84328\Downloads\mysql-connector-c++-9.3.0-winx64\mysql-connector-c++-9.3.0-winx64\include;C:\Users\84328\Downloads\mysql-connector-c++-9.3.0-winx64\mysql-connector-c++-9.3.0-winx64\include\jdbc;D:\Canteen-Management-System\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
       <BasicRuntimeChecks>Default</BasicRuntimeChecks>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
@@ -250,10 +250,10 @@
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;CMAKE_INTDIR=\"RelWithDebInfo\"</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>D:\Canteen-Management-System\external\crow\include;D:\Canteen-Management-System\backend\images;D:\Canteen-Management-System\backend\models;D:\Canteen-Management-System\backend\routes;D:\Canteen-Management-System\external\asio\asio-1.34.2\include;C:\Users\84328\Downloads\mysql-connector-c++-9.3.0-winx64\mysql-connector-c++-9.3.0-winx64\include;C:\Users\84328\Downloads\mysql-connector-c++-9.3.0-winx64\mysql-connector-c++-9.3.0-winx64\include\jdbc;D:\Canteen-Management-System\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>D:\Canteen-Management-System\external\crow\include;D:\Canteen-Management-System\backend\images;D:\Canteen-Management-System\backend\models;D:\Canteen-Management-System\backend\routes;D:\Canteen-Management-System\backend\repository;D:\Canteen-Management-System\external\asio\asio-1.34.2\include;C:\Users\84328\Downloads\mysql-connector-c++-9.3.0-winx64\mysql-connector-c++-9.3.0-winx64\include;C:\Users\84328\Downloads\mysql-connector-c++-9.3.0-winx64\mysql-connector-c++-9.3.0-winx64\include\jdbc;D:\Canteen-Management-System\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ResourceCompile>
     <Midl>
-      <AdditionalIncludeDirectories>D:\Canteen-Management-System\external\crow\include;D:\Canteen-Management-System\backend\images;D:\Canteen-Management-System\backend\models;D:\Canteen-Management-System\backend\routes;D:\Canteen-Management-System\external\asio\asio-1.34.2\include;C:\Users\84328\Downloads\mysql-connector-c++-9.3.0-winx64\mysql-connector-c++-9.3.0-winx64\include;C:\Users\84328\Downloads\mysql-connector-c++-9.3.0-winx64\mysql-connector-c++-9.3.0-winx64\include\jdbc;D:\Canteen-Management-System\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>D:\Canteen-Management-System\external\crow\include;D:\Canteen-Management-System\backend\images;D:\Canteen-Management-System\backend\models;D:\Canteen-Management-System\backend\routes;D:\Canteen-Management-System\backend\repository;D:\Canteen-Management-System\external\asio\asio-1.34.2\include;C:\Users\84328\Downloads\mysql-connector-c++-9.3.0-winx64\mysql-connector-c++-9.3.0-winx64\include;C:\Users\84328\Downloads\mysql-connector-c++-9.3.0-winx64\mysql-connector-c++-9.3.0-winx64\include\jdbc;D:\Canteen-Management-System\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
       <HeaderFileName>%(Filename).h</HeaderFileName>
       <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
@@ -352,6 +352,8 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
     <ClCompile Include="D:\Canteen-Management-System\backend\models\main.cpp">
       <ObjectFileName>$(IntDir)/backend/models/main.cpp.obj</ObjectFileName>
     </ClCompile>
+    <ClCompile Include="D:\Canteen-Management-System\backend\repository\ProductRepository.cpp" />
+    <ClCompile Include="D:\Canteen-Management-System\backend\repository\UserRepository.cpp" />
     <ClCompile Include="D:\Canteen-Management-System\backend\routes\Route.cpp" />
   </ItemGroup>
   <ItemGroup />

@@ -7,14 +7,15 @@ Admin::Admin() : User()
 Admin::~Admin()
 {
 }
-Admin::Admin(const std::string &username, const std::string &password, const std::string &inf)
-    : User(username, password, inf)
+Admin::Admin(const std::string &id_user, const std::string &username,
+             const std::string &password, const std::string &name)
+    : User(id_user, username, password, name)
 {
 }
 
-std::unique_ptr<User> Admin::clone() const
+std::shared_ptr<User> Admin::clone() const
 {
-    auto cloned = std::make_unique<Admin>(*this);
+    auto cloned = std::make_shared<Admin>(*this);
     auto nonconst_this = const_cast<Admin *>(this);
     cloned->_origin = static_cast<User *>(nonconst_this);
     return cloned;

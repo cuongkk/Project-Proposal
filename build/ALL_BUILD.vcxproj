@@ -69,7 +69,7 @@
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <Midl>
-      <AdditionalIncludeDirectories>D:\Canteen-Management-System\external\crow\include;D:\Canteen-Management-System\backend\images;D:\Canteen-Management-System\backend\models;D:\Canteen-Management-System\backend\routes;D:\Canteen-Management-System\external\asio\asio-1.34.2\include;C:\Users\84328\Downloads\mysql-connector-c++-9.3.0-winx64\mysql-connector-c++-9.3.0-winx64\include;C:\Users\84328\Downloads\mysql-connector-c++-9.3.0-winx64\mysql-connector-c++-9.3.0-winx64\include\jdbc;D:\Canteen-Management-System\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>D:\Canteen-Management-System\external\crow\include;D:\Canteen-Management-System\backend\images;D:\Canteen-Management-System\backend\models;D:\Canteen-Management-System\backend\routes;D:\Canteen-Management-System\backend\repository;D:\Canteen-Management-System\external\asio\asio-1.34.2\include;C:\Users\84328\Downloads\mysql-connector-c++-9.3.0-winx64\mysql-connector-c++-9.3.0-winx64\include;C:\Users\84328\Downloads\mysql-connector-c++-9.3.0-winx64\mysql-connector-c++-9.3.0-winx64\include\jdbc;D:\Canteen-Management-System\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
       <HeaderFileName>%(Filename).h</HeaderFileName>
       <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
@@ -79,7 +79,7 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <Midl>
-      <AdditionalIncludeDirectories>D:\Canteen-Management-System\external\crow\include;D:\Canteen-Management-System\backend\images;D:\Canteen-Management-System\backend\models;D:\Canteen-Management-System\backend\routes;D:\Canteen-Management-System\external\asio\asio-1.34.2\include;C:\Users\84328\Downloads\mysql-connector-c++-9.3.0-winx64\mysql-connector-c++-9.3.0-winx64\include;C:\Users\84328\Downloads\mysql-connector-c++-9.3.0-winx64\mysql-connector-c++-9.3.0-winx64\include\jdbc;D:\Canteen-Management-System\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>D:\Canteen-Management-System\external\crow\include;D:\Canteen-Management-System\backend\images;D:\Canteen-Management-System\backend\models;D:\Canteen-Management-System\backend\routes;D:\Canteen-Management-System\backend\repository;D:\Canteen-Management-System\external\asio\asio-1.34.2\include;C:\Users\84328\Downloads\mysql-connector-c++-9.3.0-winx64\mysql-connector-c++-9.3.0-winx64\include;C:\Users\84328\Downloads\mysql-connector-c++-9.3.0-winx64\mysql-connector-c++-9.3.0-winx64\include\jdbc;D:\Canteen-Management-System\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
       <HeaderFileName>%(Filename).h</HeaderFileName>
       <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
@@ -89,7 +89,7 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">
     <Midl>
-      <AdditionalIncludeDirectories>D:\Canteen-Management-System\external\crow\include;D:\Canteen-Management-System\backend\images;D:\Canteen-Management-System\backend\models;D:\Canteen-Management-System\backend\routes;D:\Canteen-Management-System\external\asio\asio-1.34.2\include;C:\Users\84328\Downloads\mysql-connector-c++-9.3.0-winx64\mysql-connector-c++-9.3.0-winx64\include;C:\Users\84328\Downloads\mysql-connector-c++-9.3.0-winx64\mysql-connector-c++-9.3.0-winx64\include\jdbc;D:\Canteen-Management-System\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>D:\Canteen-Management-System\external\crow\include;D:\Canteen-Management-System\backend\images;D:\Canteen-Management-System\backend\models;D:\Canteen-Management-System\backend\routes;D:\Canteen-Management-System\backend\repository;D:\Canteen-Management-System\external\asio\asio-1.34.2\include;C:\Users\84328\Downloads\mysql-connector-c++-9.3.0-winx64\mysql-connector-c++-9.3.0-winx64\include;C:\Users\84328\Downloads\mysql-connector-c++-9.3.0-winx64\mysql-connector-c++-9.3.0-winx64\include\jdbc;D:\Canteen-Management-System\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
       <HeaderFileName>%(Filename).h</HeaderFileName>
       <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
@@ -99,7 +99,7 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">
     <Midl>
-      <AdditionalIncludeDirectories>D:\Canteen-Management-System\external\crow\include;D:\Canteen-Management-System\backend\images;D:\Canteen-Management-System\backend\models;D:\Canteen-Management-System\backend\routes;D:\Canteen-Management-System\external\asio\asio-1.34.2\include;C:\Users\84328\Downloads\mysql-connector-c++-9.3.0-winx64\mysql-connector-c++-9.3.0-winx64\include;C:\Users\84328\Downloads\mysql-connector-c++-9.3.0-winx64\mysql-connector-c++-9.3.0-winx64\include\jdbc;D:\Canteen-Management-System\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>D:\Canteen-Management-System\external\crow\include;D:\Canteen-Management-System\backend\images;D:\Canteen-Management-System\backend\models;D:\Canteen-Management-System\backend\routes;D:\Canteen-Management-System\backend\repository;D:\Canteen-Management-System\external\asio\asio-1.34.2\include;C:\Users\84328\Downloads\mysql-connector-c++-9.3.0-winx64\mysql-connector-c++-9.3.0-winx64\include;C:\Users\84328\Downloads\mysql-connector-c++-9.3.0-winx64\mysql-connector-c++-9.3.0-winx64\include\jdbc;D:\Canteen-Management-System\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
       <HeaderFileName>%(Filename).h</HeaderFileName>
       <TypeLibraryName>%(Filename).tlb</TypeLibraryName>

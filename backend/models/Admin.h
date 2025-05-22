@@ -10,9 +10,10 @@ class Admin : public User
 public:
     Admin();
     ~Admin();
-    Admin(const std::string &, const std::string &, const std::string &);
+    Admin(const std::string &, const std::string &,
+          const std::string &, const std::string &);
 
-    std::unique_ptr<User> clone() const override;
+    std::shared_ptr<User> clone() const override;
     User *get_origin() const override;
 
     void set_fullname(const std::string &) override;

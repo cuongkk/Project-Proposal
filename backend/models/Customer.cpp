@@ -10,25 +10,23 @@ Customer::Customer() : User()
 
 Customer::~Customer() = default;
 
-Customer::Customer(const std::string &username, const std::string &password, const std::string &name)
-    : User(username, password, name)
-
+Customer::Customer(const std::string &id_user, const std::string &username,
+                   const std::string &password, const std::string &name)
+    : User(id_user, username, password, name)
 {
 }
-Customer::Customer(const std::string &username, const std::string &password, const std::string &name,
+Customer::Customer(const std::string &id_user, const std::string &username,
+                   const std::string &password, const std::string &name,
                    const std::string &fullname, const std::string &email,
                    const std::string &phoneNumber, const std::string &money)
-    : User(username, password, name)
+    : User(id_user, username, password, name), _fullname(fullname), _email(email),
+      _phoneNumber(phoneNumber), _money(money)
 {
-    _fullname = fullname;
-    _email = email;
-    _phoneNumber = phoneNumber;
-    _money = Money(money);
 }
 
-std::unique_ptr<User> Customer::clone() const
+std::shared_ptr<User> Customer::clone() const
 {
-    auto cloned = std::make_unique<Customer>(*this);
+    auto cloned = std::make_shared<Customer>(*this);
     auto nonconst_this = const_cast<Customer *>(this);
     cloned->_origin = static_cast<User *>(nonconst_this);
     return cloned;

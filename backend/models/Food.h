@@ -19,7 +19,7 @@ public:
         const std::string &,
         const int &,
         const std::string &,
-        const float &,
+        const std::string &,
         const DateTime &,
         const DateTime &,
         const std::string &);
