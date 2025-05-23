@@ -1,0 +1,10 @@
+^D:\CANTEEN-MANAGEMENT-SYSTEM\CMAKELISTS.TXT
+setlocal
+C:\Users\84328\Downloads\winlibs-x86_64-posix-seh-gcc-15.1.0-mingw-w64ucrt-12.0.0-r1\mingw64\bin\cmake.exe -SD:/Canteen-Management-System -BD:/Canteen-Management-System/build --check-stamp-file D:/Canteen-Management-System/build/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd

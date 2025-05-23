@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Thêm Sản Phẩm</title>
+</head>
+
+<body>
+    <h1>Thêm Sản Phẩm</h1>
+    <form id="form_add_product" enctype="multipart/form-data">
+        <label for="name">Tên sản phẩm:</label>
+        <input type="text" id="name" name="name"><br><br>
+
+        <label for="inf">Thông tin:</label>
+        <input type="text" id="inf" name="inf"><br><br>
+
+        <label for="type">Loại sản phẩm:</label>
+        <select id="type" name="type">
+            <option value="Đồ ăn">Đồ ăn</option>
+            <option value="Đồ uống">Thức uống</option>
+        </select><br><br>
+
+        <label for="quantity">Số lượng:</label>
+        <input type="text" id="quantity" name="quantity"><br><br>
+
+        <label for="price">Giá:</label>
+        <input type="text" id="price" name="price"><br><br>
+
+        <label for="discount">Giảm giá:</label>
+        <input type="text" id="discount" name="discount"><br><br>
+
+        <label for="manufacture_Date">Ngày sản xuất:</label>
+        <input type="date" id="manufacture_Date" name="manufacture_Date"><br><br>
+
+        <label for="expiry_Date">Ngày hết hạn:</label>
+        <input type="date" id="expiry_Date" name="expiry_Date"><br><br>
+
+        <label for="image">Hình ảnh:</label>
+        <input type="file" id="image" name="image"><br><br>
+
+        <button id="add_product">Thêm sản phẩm</button>
+
+        <p id="response"></p>
+    </form>
+
+    <script>
+        const _params = new URLSearchParams(window.location.search);
+        const _id_user = _params.get('msg');
+
+        const _form = document.getElementById('form_add_product');
+        _form.style.display = 'none';
+
+        if (_id_user == "US0001") {
+            _form.style.display = 'inline-block';
+            const _add_product = document.getElementById('add_product');
+
+            _add_product.addEventListener('click', async function (e) {
+                e.preventDefault();
+
+                const formData = new FormData();
+                formData.append('name', document.getElementById('name').value);
+                formData.append('inf', document.getElementById('inf').value);
+                formData.append('type', document.getElementById('type').value);
+                formData.append('quantity', document.getElementById('quantity').value);
+                formData.append('price', document.getElementById('price').value);
+                formData.append('discount', document.getElementById('discount').value);
+                formData.append('manufacture_Date', document.getElementById('manufacture_Date').value);
+                formData.append('expiry_Date', document.getElementById('expiry_Date').value);
+                formData.append('image', document.getElementById('image').files[0]);
+
+                const response = await fetch('http://localhost:18080/add_product', {
+                    method: 'POST',
+                    body: formData // Không dùng headers 'Content-Type'!
+                });;
+
+                const result = await response.json();
+                document.getElementById('response').innerText = result.message;
+
+            });
+        }
+    </script>
+</body>

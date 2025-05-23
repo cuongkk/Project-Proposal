@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Danh sách sản phẩm</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f6f6f6;
+            margin: 0;
+            padding: 0;
+        }
+
+        h2 {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .product-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+            margin: 30px;
+        }
+
+        .product-card {
+            background: white;
+            border-radius: 8px;
+            width: 260px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+            padding: 16px;
+            text-align: center;
+            transition: transform 0.2s ease;
+        }
+
+        .product-card:hover {
+            transform: scale(1.02);
+        }
+
+        .product-card img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+            border-radius: 5px;
+        }
+
+        .product-card h3 {
+            font-size: 18px;
+            margin: 10px 0 6px;
+        }
+
+        .product-card p {
+            font-size: 14px;
+            margin: 4px 0;
+        }
+
+        .product-card button {
+            margin-top: 10px;
+            padding: 8px 16px;
+            background-color: #2196f3;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .product-card button:hover {
+            background-color: #1976d2;
+        }
+
+        .cart-btn {
+            display: block;
+            margin: 20px auto;
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .cart-btn:hover {
+            background-color: #388e3c;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h2>Danh sách sản phẩm</h2>
+    <button class="cart-btn" onclick="showCart()">🛒 Xem giỏ hàng</button>
+
+    <div style="text-align: center; margin-top: 20px;">
+        <label for="category">Loại:</label>
+        <select id="category" name="category">
+            <option value="all">Tất cả</option>
+            <option value="class Food">Đồ ăn</option>
+            <option value="class Drink">Đồ uống</option>
+        </select>
+
+        <label for="price">Giá:</label>
+        <select id="price" name="price">
+            <option value="0-0">...</option>
+            <option value="0-20000">&lt; 20K</option>
+            <option value="20000-50000">20K - 50K</option>
+            <option value="50000-0">&gt; 50K</option>
+        </select>
+
+        <button class="cart-btn" onclick="filterProducts()">Lọc</button>
+    </div>
+
+
+    <div id="product-list" class="product-grid">
+        <!-- Thẻ sản phẩm sẽ thêm bằng JavaScript -->
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', async () => {
+            const _params = new URLSearchParams(window.location.search);
+            const _id_user = _params.get('msg');
+            if (!_id_user) {
+                console.error("Không có 'msg' trên URL");
+                return;
+            }
+            await refreshProductList(_id_user);
+        });
+
+        async function refreshProductList(_id_user) {
+            const container = document.getElementById('product-list');
+            container.innerHTML = `<p>Đang tải...</p>`;
+
+            try {
+                const response = await fetch('http://localhost:18080/show_product', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ id_user: _id_user })
+                });
+
+                const result = await response.json();
+                const products = result.products || [];
+
+                container.innerHTML = '';
+                if (products.length === 0) {
+                    container.innerHTML = `<p>Không có sản phẩm nào</p>`;
+                    return;
+                }
+
+                products.forEach((product) => {
+                    const card = document.createElement('div');
+                    card.className = 'product-card';
+
+                    const imgSrc = product.image_url || 'https://via.placeholder.com/250x180?text=No+Image';
+
+                    card.innerHTML = `
+                        <img src="${imgSrc}" alt="Ảnh sản phẩm">
+                        <h3>${product.name}</h3>
+                        <p>${product.inf}</p>
+                        <p><strong>Giá:</strong> ${product.price}</p>
+                        <p><strong>Giảm giá:</strong> ${product.discount}</p>
+                        <p><strong>Còn lại:</strong> ${product.quantity}</p>
+                        <p><small>NSX: ${product.manufacture_Date}</small></p>
+                        <p><small>HSD: ${product.expiry_Date}</small></p>
+                        <button>➕ Thêm vào giỏ</button>
+                    `;
+
+                    card.querySelector('button').addEventListener('click', () => {
+                        addToCart(product);
+                    });
+
+                    container.appendChild(card);
+                });
+
+            } catch (error) {
+                console.error('Lỗi khi tải sản phẩm:', error);
+                container.innerHTML = `<p>Lỗi khi tải sản phẩm</p>`;
+            }
+        }
+
+        async function filterProducts() {
+            const _id_user = new URLSearchParams(window.location.search).get('msg');
+            const _category = document.getElementById('category').value;
+            const _priceRange = document.getElementById('price').value;
+
+            const container = document.getElementById('product-list');
+            container.innerHTML = `<p>Đang tải...</p>`;
+
+            try {
+                const response = await fetch('http://localhost:18080/filter_product', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        id_user: _id_user,
+                        category: _category,
+                        priceRange: _priceRange
+                    })
+                });
+
+                const result = await response.json();
+                const products = result.products || [];
+
+                container.innerHTML = '';
+                if (products.length === 0) {
+                    container.innerHTML = `<p>Không có sản phẩm nào</p>`;
+                    return;
+                }
+
+                products.forEach((product) => {
+                    const card = document.createElement('div');
+                    card.className = 'product-card';
+
+                    const imgSrc = product.image_url || 'https://via.placeholder.com/250x180?text=No+Image';
+
+                    card.innerHTML = `
+                        <img src="${imgSrc}" alt="Ảnh sản phẩm">
+                        <h3>${product.name}</h3>
+                        <p>${product.inf}</p>
+                        <p><strong>Giá:</strong> ${product.price}</p>
+                        <p><strong>Giảm giá:</strong> ${product.discount}</p>
+                        <p><strong>Còn lại:</strong> ${product.quantity}</p>
+                        <p><small>NSX: ${product.manufacture_Date}</small></p>
+                        <p><small>HSD: ${product.expiry_Date}</small></p>
+                        <button>➕ Thêm vào giỏ</button>
+                    `;
+
+                    card.querySelector('button').addEventListener('click', () => {
+                        addToCart(product);
+                    });
+
+                    container.appendChild(card);
+                });
+
+            } catch (error) {
+                console.error('Lỗi khi tải sản phẩm:', error);
+                container.innerHTML = `<p>Không có sản phẩm phù hợp</p>`;
+            }
+        }
+        function addToCart(product) {
+            const _id_user = new URLSearchParams(window.location.search).get('msg');
+            const productId = product.id || product.name;
+            const quantityToAdd = "1";
+
+            fetch('http://localhost:18080/add_product_to_cart', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    id_user: _id_user,
+                    id_product: productId,
+                    quantity_change: quantityToAdd
+                })
+            })
+                .then(res => res.json())
+                .then(res => {
+                    if (res.message == "Success") {
+                        refreshProductList(_id_user);
+                    } else {
+                        alert("Không thể cập nhật số lượng tồn kho.");
+                    }
+                })
+        }
+
+        function showCart() {
+            const _id_user = new URLSearchParams(window.location.search).get('msg');
+            const encodedMsg = encodeURIComponent(_id_user);
+            window.location.href = `http://127.0.0.1:5503/frontend/show_cart.html?msg=${encodedMsg}`;
+        }
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Đăng nhập</title>
+    <style>
+        .clickable {
+            color: blue;
+            cursor: pointer;
+            text-decoration: underline;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="cart-container">
+        <h3>🛒 Giỏ hàng của bạn</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>Tên sản phẩm</th>
+                    <th>Số lượng</th>
+                    <th>Giá</th>
+                </tr>
+            </thead>
+            <tbody id="cart-list">
+            </tbody>
+        </table>
+        <p id="total-price" style="text-align:right; margin-top: 10px;"></p>
+        <div style="text-align:right;">
+            <button onclick="checkout()">🧾 Thanh toán</button>
+        </div>
+    </div>
+
+
+    <script>
+        document.addEventListener('DOMContentLoaded', async () => {
+            const _params = new URLSearchParams(window.location.search);
+            const _id_user = _params.get('msg');
+
+            if (!_id_user) {
+                console.error("Không có 'msg' trên URL");
+                return;
+            }
+
+            await refreshCartList(_id_user);
+        });
+
+        async function refreshCartList(_id_user) {
+
+            const cartList = document.getElementById('cart-list');
+            const totalPriceElem = document.getElementById('total-price');
+
+            fetch('http://localhost:18080/show_cart', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ id_user: _id_user })
+            })
+                .then(res => res.json())
+                .then(data => {
+                    const cartItems = data.products || [];
+                    const total = data.price || 0;
+
+                    cartList.innerHTML = '';
+
+                    if (cartItems.length === 0) {
+                        cartList.innerHTML = `<tr><td colspan="3">Giỏ hàng trống</td></tr>`;
+                        totalPriceElem.textContent = `Tổng tiền: ${parseFloat(total).toLocaleString("vi-VN", { style: "currency", currency: "VND" })}`;
+
+                        return;
+                    }
+
+                    totalPriceElem.textContent = `Tổng tiền: ${parseFloat(total).toLocaleString("vi-VN", { style: "currency", currency: "VND" })}`;
+
+                    cartItems.forEach(product => {
+                        const row = document.createElement('tr');
+                        row.innerHTML = `
+                <td style="display:none;"><p>${product.id}</p></td>
+                <td><p class="clickable">${product.name}</p></td>
+                <td><p>${product.quantity}</p></td>
+                <td><p>${product.price}</p></td>
+            `;
+                        cartList.appendChild(row);
+
+                        row.querySelector('.clickable').addEventListener('click', () => {
+                            removeToCart(product);
+                        });
+                    });
+
+
+                })
+                .catch(err => {
+                    console.error("Lỗi khi tải giỏ hàng:", err);
+                    cartList.innerHTML = `<tr><td colspan="3">Lỗi khi tải giỏ hàng</td></tr>`;
+                });
+        }
+
+        function removeToCart(product) {
+            const _id_user = new URLSearchParams(window.location.search).get('msg');
+            const productId = product.id || product.name;
+            const quantityToRemove = "1";
+
+            fetch('http://localhost:18080/remove_product_from_cart', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    id_user: _id_user,
+                    id_product: productId,
+                    quantity_change: quantityToRemove
+                })
+            })
+                .then(res => res.json())
+                .then(res => {
+                    if (res.message == "Success") {
+                        refreshCartList(_id_user);
+                    } else {
+                        alert("Không thể xóa sản phẩm.");
+                    }
+                })
+        }
+        function checkout() {
+            const _id_user = new URLSearchParams(window.location.search).get('msg');
+            const today = new Date();
+            const _date = {
+                day: today.getDate(),
+                month: today.getMonth() + 1,
+                year: today.getFullYear()
+            };
+            fetch('http://localhost:18080/checkout', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    id_user: _id_user,
+                    date: _date
+                })
+            })
+                .then(res => res.json())
+                .then(res => {
+                    console.log(res);
+                    if (res.message == "Success") {
+                        alert("Thanh toán thành công.");
+                        refreshCartList(_id_user);
+                    }
+                    else {
+                        alert(res.message);
+                    }
+                })
+                .catch(err => {
+                    alert("Lỗi khi thanh toán.");
+                    console.error(err);
+                });
+        }
+    </script>
+
+</body>
+
+</html>

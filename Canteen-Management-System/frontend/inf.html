@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Thông tin</title>
+</head>
+
+<body>
+    <h1>Thông tin <p id="id">
+        </p>
+    </h1>
+    <form id="inf_user">
+        <p id="username"></p>
+        <p id="password"></p>
+        <p id="Name"></p>
+
+        <label for="fullname">fullname:</label>
+        <input type="text" id="fullname" required><br><br>
+
+        <label for="email">email:</label>
+        <input type="text" id="email" required><br><br>
+
+        <label for="phone">phone:</label>
+        <input type="text" id="phoneNumber" required><br><br>
+
+        <label for="money">money:</label>
+        <input type="text" id="money" required><br><br>
+
+        <button id="confirm" type="button">Xác nhận</button>
+        <p id="response"></p>
+    </form>
+    <hr>
+
+    <script>
+        const _params = new URLSearchParams(window.location.search);
+        const _id_user = _params.get('msg');
+
+        const _form = document.getElementById('inf_user');
+        const _button_confirm = document.getElementById('confirm');
+
+
+
+        async function get_inf() {
+            if (_id_user) {
+                const response = await fetch('http://localhost:18080/inf_user', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        id_user: _id_user,
+                    })
+                });
+                const result = await response.json();
+                username.textContent = result.username;
+                password.textContent = result.password;
+                Name.textContent = result.name;
+                document.getElementById('fullname').value = result.fullname;
+                document.getElementById('email').value = result.email;
+                document.getElementById('phoneNumber').value = result.phoneNumber;
+                document.getElementById('money').value = result.money;
+            }
+
+        }
+
+        get_inf();
+
+        _button_confirm.addEventListener('click', async function (e) {
+            e.preventDefault();
+
+            const _fullname = document.getElementById('fullname').value;
+            const _email = document.getElementById('email').value;
+            const _phoneNumber = document.getElementById('phoneNumber').value;
+            const _money = document.getElementById('money').value;
+
+            const response = await fetch('http://localhost:18080/update_inf_user', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    id_user: _id_user,
+                    fullname: _fullname,
+                    email: _email,
+                    phoneNumber: _phoneNumber,
+                    money: _money
+                })
+            });
+
+            const result = await response.json();
+            document.getElementById('response').innerText = result.message;
+        });
+
+    </script>
+</body>
+
+</html>
