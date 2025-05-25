@@ -7,7 +7,6 @@ class IRepository
 public:
     virtual ~IRepository() = default;
     virtual void loadFromDatabase() = 0;
-    virtual void insert(const std::vector<std::string> &fields) = 0;
 };
 
 #endif

@@ -24,7 +24,7 @@ public:
     std::list<std::shared_ptr<Bill>> getBill_from_id_Customer(const std::string &);
     // bool containsKeyword(const std::string &, const int &, const Bill &) const;
     // std::vector<std::string> search(const std::string &, const int &);
-    std::shared_ptr<Bill> confirmBill(UserManagement &, const std::string &, Cart &&);
+    // std::shared_ptr<Bill> confirmBill(UserManagement &, const std::string &, Cart &&);
     void clear();
 
     friend std::ostream &operator<<(std::ostream &, const BillManagement &);

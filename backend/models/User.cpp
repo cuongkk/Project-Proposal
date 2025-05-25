@@ -11,6 +11,7 @@ User::User(const std::string &id_user, const std::string &username,
            const std::string &password, const std::string &name)
     : _id_user(id_user), _username(username), _password(password), _name(name)
 {
+    _origin = this;
 }
 
 std::string User::get_id() const

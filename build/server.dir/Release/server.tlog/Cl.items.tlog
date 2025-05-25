@@ -14,6 +14,9 @@ D:\Canteen-Management-System\backend\models\Product.cpp;D:\Canteen-Management-Sy
 D:\Canteen-Management-System\backend\models\User.cpp;D:\Canteen-Management-System\build\server.dir\Release\User.obj
 D:\Canteen-Management-System\backend\models\UserManagement.cpp;D:\Canteen-Management-System\build\server.dir\Release\UserManagement.obj
 D:\Canteen-Management-System\backend\models\main.cpp;D:\Canteen-Management-System\build\server.dir\Release\backend\models\main.cpp.obj
+D:\Canteen-Management-System\backend\repository\BillRepository.cpp;D:\Canteen-Management-System\build\server.dir\Release\BillRepository.obj
+D:\Canteen-Management-System\backend\repository\ProductQueryBuilder.h.cpp;D:\Canteen-Management-System\build\server.dir\Release\ProductQueryBuilder.h.obj
 D:\Canteen-Management-System\backend\repository\ProductRepository.cpp;D:\Canteen-Management-System\build\server.dir\Release\ProductRepository.obj
+D:\Canteen-Management-System\backend\repository\UserQueryBuilder.cpp;D:\Canteen-Management-System\build\server.dir\Release\UserQueryBuilder.obj
 D:\Canteen-Management-System\backend\repository\UserRepository.cpp;D:\Canteen-Management-System\build\server.dir\Release\UserRepository.obj
 D:\Canteen-Management-System\backend\routes\Route.cpp;D:\Canteen-Management-System\build\server.dir\Release\Route.obj

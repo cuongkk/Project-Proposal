@@ -4,7 +4,7 @@
 
 #include "Main.h"
 #include "Cart.h"
-#include "UserManagement.h"
+#include "Customer.h"
 #include "DateTime.h"
 
 class Bill
@@ -18,11 +18,12 @@ protected:
     Bill *_origin = nullptr;
 
 public:
+    static std::vector<int> _id_counter_bill;
     Bill();
     ~Bill();
     Bill(const Bill &);
     Bill(Bill &&) noexcept;
-    Bill(const std::string &, Cart &&, const DateTime &);
+    Bill(const std::string &, const std::string &, Cart &&, const DateTime &);
 
     std::shared_ptr<Bill> clone();
     Bill *get_origin();
@@ -30,7 +31,7 @@ public:
     std::string get_id() const;
     std::string get_id_Customer() const;
 
-    std::unique_ptr<Bill> confirmBill(UserManagement &, std::string &, const DateTime &);
+    std::shared_ptr<Bill> confirmBill(const std::string &, User *, const DateTime &);
     Cart get_cart() const;
     std::string get_totalCost() const;
     DateTime get_dateTime() const;

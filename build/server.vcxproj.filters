@@ -49,7 +49,16 @@
     <ClCompile Include="D:\Canteen-Management-System\backend\models\main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="D:\Canteen-Management-System\backend\repository\BillRepository.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Canteen-Management-System\backend\repository\ProductQueryBuilder.h.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="D:\Canteen-Management-System\backend\repository\ProductRepository.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Canteen-Management-System\backend\repository\UserQueryBuilder.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="D:\Canteen-Management-System\backend\repository\UserRepository.cpp">

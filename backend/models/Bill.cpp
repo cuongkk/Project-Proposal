@@ -27,10 +27,10 @@ Bill::Bill(Bill &&other) noexcept
     _dateTime = std::move(other._dateTime);
 }
 
-Bill::Bill(const std::string &id_Customer, Cart &&cart, const DateTime &dateTime)
+Bill::Bill(const std::string &id_Bill, const std::string &id_Customer, Cart &&cart, const DateTime &dateTime)
     : _dateTime(dateTime)
 {
-
+    _id_Bill = id_Bill;
     _id_Customer = id_Customer;
     _cart = std::move(cart);
     _totalCost = _cart.get_money();
@@ -56,14 +56,11 @@ std::string Bill::get_id_Customer() const
     return _id_Customer;
 }
 
-std::unique_ptr<Bill> Bill::confirmBill(UserManagement &userManagement, std::string &id_user, const DateTime &dateTime)
-
+std::shared_ptr<Bill> Bill::confirmBill(const std::string &id_bill, User *customer, const DateTime &dateTime)
 {
-    auto Customer = userManagement.getUser_from_id(id_user);
-    auto cart = Customer->get_cart();
-    Customer->get_origin()->_cart.clear();
-    Customer->get_origin()->set_money(std::to_string(stoll(Customer->get_money()) - stoll(cart.get_money())));
-    auto bill = std::make_unique<Bill>(id_user, std::move(cart), dateTime);
+    auto cart = customer->get_cart();
+    customer->get_origin()->_cart.clear();
+    auto bill = std::make_shared<Bill>(id_bill, customer->get_id(), std::move(cart), dateTime);
     return bill;
 }
 

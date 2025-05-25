@@ -45,10 +45,9 @@
 
             const result = await response.json();
 
-            if (result.message) {
-                _responseServer.textContent = result.message;
-            }
-            else if (result.id_user.trim() == "US0001") {
+            _responseServer.textContent = result.message;
+
+            if (result.id_user.trim() == "US0001") {
                 const encodedMsg = encodeURIComponent(result.id_user);
                 window.location.href = `http://127.0.0.1:5503/frontend/UI_admin.html?msg=${encodedMsg}`;
 

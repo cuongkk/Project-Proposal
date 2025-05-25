@@ -1,4 +1,3 @@
-#include "Repository.h"
 #include "ProductRepository.h"
 
 ProductRepositoryImpl::ProductRepositoryImpl(const std::string &host,
@@ -12,6 +11,40 @@ ProductRepositoryImpl::ProductRepositoryImpl(const std::string &host,
     conn->setClientOption("CHARSET", "utf8mb4");
 }
 
+void ProductRepositoryImpl::set_products(const std::shared_ptr<sql::ResultSet> &res)
+{
+    std::string category = res->getString("category");
+    std::string DoAn = "Đồ ăn";
+    std::string DoUong = "Đồ uống";
+    if (category.compare(DoUong) == 0)
+    {
+        auto product = std::make_shared<Drink>(
+            res->getString("id"),
+            res->getString("name"),
+            res->getString("inf"),
+            res->getInt("quantity"),
+            std::to_string(res->getInt("price")),
+            std::to_string(res->getInt("discount")),
+            DateTime(res->getString("manufacture_date")),
+            DateTime(res->getString("expiry_date")),
+            res->getString("image_path"));
+        _products.push_back(product);
+    }
+    else if (category.compare(DoAn) == 0)
+    {
+        auto product = std::make_shared<Food>(
+            res->getString("id"),
+            res->getString("name"),
+            res->getString("inf"),
+            res->getInt("quantity"),
+            std::to_string(res->getInt("price")),
+            std::to_string(res->getInt("discount")),
+            DateTime(res->getString("manufacture_date")),
+            DateTime(res->getString("expiry_date")),
+            res->getString("image_path"));
+        _products.push_back(product);
+    }
+}
 void ProductRepositoryImpl::loadFromDatabase()
 {
     _products.clear();
@@ -22,41 +55,11 @@ void ProductRepositoryImpl::loadFromDatabase()
 
     while (res->next())
     {
-        std::string category = res->getString("category");
-        std::string DoAn = "Đồ ăn";
-        std::string DoUong = "Đồ uống";
-        if (category.compare(DoUong) == 0)
-        {
-            auto product = std::make_shared<Drink>(
-                res->getString("id"),
-                res->getString("name"),
-                res->getString("inf"),
-                res->getInt("quantity"),
-                std::to_string(res->getInt("price")),
-                std::to_string(res->getInt("discount")),
-                DateTime(res->getString("manufacture_date")),
-                DateTime(res->getString("expiry_date")),
-                res->getString("image_path"));
-            _products.push_back(product);
-        }
-        else if (category.compare(DoAn) == 0)
-        {
-            auto product = std::make_shared<Food>(
-                res->getString("id"),
-                res->getString("name"),
-                res->getString("inf"),
-                res->getInt("quantity"),
-                std::to_string(res->getInt("price")),
-                std::to_string(res->getInt("discount")),
-                DateTime(res->getString("manufacture_date")),
-                DateTime(res->getString("expiry_date")),
-                res->getString("image_path"));
-            _products.push_back(product);
-        }
+        set_products(res);
     }
 }
 
-LinkedList<Product> &ProductRepositoryImpl::getAll()
+const LinkedList<Product> &ProductRepositoryImpl::getAll()
 {
     return _products;
 }
@@ -84,4 +87,24 @@ void ProductRepositoryImpl::insert(const std::vector<std::string> &fields)
     pstmt->setString(10, fields[9]);        // image_path
 
     pstmt->executeUpdate();
+}
+
+void ProductRepositoryImpl::filter(const std::string &id, const std::string &name,
+                                   const std::string &category, const std::string &minPrice, const std::string &maxPrice)
+{
+    _products.clear();
+
+    productQueryBuilder.filterById(id)
+        .filterByName(name)
+        .filterByCategory(category)
+        .filterByPriceRange(minPrice, maxPrice);
+
+    std::shared_ptr<sql::Statement> stmt(conn->createStatement());
+    std::shared_ptr<sql::ResultSet> res(
+        stmt->executeQuery(productQueryBuilder.build()));
+
+    while (res->next())
+    {
+        set_products(res);
+    }
 }
