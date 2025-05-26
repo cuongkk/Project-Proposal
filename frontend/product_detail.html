@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <title id="title">Thông tin sản phẩm</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f6f6f6;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .top-bar {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .top-bar button {
+            margin: 5px;
+            padding: 8px 14px;
+            font-size: 14px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .top-bar button:hover {
+            background-color: #388e3c;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: #fff;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+            display: flex;
+            padding: 20px;
+            gap: 30px;
+        }
+
+        .product-image {
+            flex: 1;
+        }
+
+        .product-image img {
+            width: 100%;
+            max-height: 400px;
+            object-fit: contain;
+            border-radius: 8px;
+        }
+
+        .product-info {
+            flex: 2;
+        }
+
+        .product-info h2 {
+            margin-top: 0;
+        }
+
+        .product-info p {
+            margin: 8px 0;
+            font-size: 15px;
+        }
+
+        .product-info input[type="number"] {
+            width: 60px;
+            padding: 6px;
+            margin-right: 10px;
+        }
+
+        .product-info button {
+            padding: 10px 16px;
+            background-color: #2196f3;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .product-info button:hover {
+            background-color: #1976d2;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div style="position: fixed; top: 10px; left: 10px; z-index: 1000;">
+        <button onclick="goHome()" style="
+        font-size: 20px;
+        padding: 6px 12px;
+        background-color: #ffffff;
+        border: 2px solid #ccc;
+        border-radius: 50%;
+        cursor: pointer;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    ">
+            🏠
+        </button>
+    </div>
+
+
+    <div class="top-bar" id="user-info-bar">
+    </div>
+
+
+    <div class="container">
+        <div class="product-image">
+            <img id="productImage" src="" alt="Ảnh sản phẩm">
+        </div>
+        <div class="product-info">
+            <h2 id="productName"></h2>
+            <p id="productInf"></p>
+            <p><strong>Giá:</strong> <span id="productPrice"></span></p>
+            <p><strong>Giảm giá:</strong> <span id="productDiscount"></span></p>
+            <p><strong>Số lượng còn lại:</strong> <span id="productQuantity"></span></p>
+            <p><strong>NSX:</strong> <span id="productNSX"></span></p>
+            <p><strong>HSD:</strong> <span id="productHSD"></span></p>
+
+            <div style="margin-top: 20px;">
+                <input type="number" id="quantityInput" value="1" min="1">
+                <button id="addToCartBtn">➕ Thêm vào giỏ</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        window.addEventListener('DOMContentLoaded', async () => {
+            const params = new URLSearchParams(window.location.search);
+            const userId = params.get("msg");
+            const productJSON = sessionStorage.getItem("selectedProduct");
+
+            // Lấy user info
+            if (userId) {
+                try {
+                    const response = await fetch('http://localhost:18080/user', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ id_user: userId })
+                    });
+                    const result = await response.json();
+                    const name = result["name"];
+                    const money = result["money"];
+
+                    document.getElementById('user-info-bar').innerHTML = `
+                    <span>👋 Chào <strong id="username">${name}</strong></span>
+                    <span>💰 Số dư: <strong id="usermoney">${parseFloat(money).toLocaleString("vi-VN", { style: "currency", currency: "VND" })}</strong></span>
+                    <button onclick="showCart()">🛒</button>
+                `;
+                } catch (err) {
+                    console.error("Lỗi khi lấy thông tin người dùng:", err);
+                }
+            }
+
+            if (!productJSON) {
+                alert("Không có dữ liệu sản phẩm.");
+                return;
+            }
+
+            let productData;
+            try {
+                productData = JSON.parse(productJSON);
+            } catch (e) {
+                console.error("Lỗi parse JSON:", e);
+                return;
+            }
+
+            document.title = productData.name || "Thông tin sản phẩm";
+            document.getElementById("productImage").src = productData.image_url || "https://via.placeholder.com/250x180?text=No+Image";
+            document.getElementById("productName").innerText = productData.name;
+            document.getElementById("productInf").innerText = productData.inf || "Không có mô tả.";
+            document.getElementById("productPrice").innerText = parseFloat(productData.price).toLocaleString("vi-VN", { style: "currency", currency: "VND" });
+            document.getElementById("productDiscount").innerText = productData.discount;
+            document.getElementById("productQuantity").innerText = productData.quantity;
+            document.getElementById("productNSX").innerText = productData.manufacture_Date;
+            document.getElementById("productHSD").innerText = productData.expiry_Date;
+
+            document.getElementById("addToCartBtn").addEventListener("click", () => {
+                const quantity = document.getElementById("quantityInput").value;
+                if (isNaN(quantity) || quantity < 1) {
+                    alert("Số lượng không hợp lệ");
+                    return;
+                }
+
+                fetch('http://localhost:18080/add_product_to_cart', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        id_user: userId,
+                        id_product: productData.id,
+                        quantity_change: quantity
+                    })
+                })
+                    .then(res => res.json())
+                    .then(res => {
+                        if (res.message === "Success") {
+                            alert("Đã thêm vào giỏ hàng!");
+                        } else {
+                            alert("Không thể thêm vào giỏ. Có thể đã hết hàng.");
+                        }
+                    })
+                    .catch(err => {
+                        console.error("Lỗi khi thêm vào giỏ:", err);
+                        alert("Có lỗi xảy ra.");
+                    });
+            });
+        });
+
+        function showCart() {
+            const userId = new URLSearchParams(window.location.search).get('msg');
+            if (!userId) return;
+            const encoded = encodeURIComponent(userId);
+            window.location.href = `show_cart.html?msg=${encoded}`;
+        }
+
+
+
+        document.addEventListener('DOMContentLoaded', async () => {
+            const _params = new URLSearchParams(window.location.search);
+            const _id_user = _params.get('msg');
+
+            if (!_id_user) {
+
+            } else {
+                const response = await fetch('http://localhost:18080/user', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ id_user: _id_user })
+                });
+                const result = await response.json();
+                const name = result["name"];
+                const money = result["money"];
+
+                document.getElementById('user-info-bar').innerHTML = `
+            <span>👋 Chào <strong id="username">${name}</strong></span>
+            <span>💰 Số dư: <strong id="usermoney">${parseFloat(money).toLocaleString("vi-VN", { style: "currency", currency: "VND" })}</strong></span>
+            <button onclick="showCart()">🛒</button>
+        `;
+            }
+
+            await refreshProductList(_id_user);
+        });
+
+        function goHome() {
+            const userId = new URLSearchParams(window.location.search).get('msg');
+            if (userId) {
+                window.location.href = `show_product.html?msg=${encodeURIComponent(userId)}`;
+            } else {
+                window.location.href = 'show_product.html';
+            }
+        }
+
+    </script>
+</body>
+
+</html>

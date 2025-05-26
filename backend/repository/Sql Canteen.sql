@@ -35,12 +35,12 @@ CREATE TABLE Bill (
 
 CREATE TABLE Bill_Details (
     id_Bill VARCHAR(6),
-    id_Products VARCHAR(6),
+    id_Product VARCHAR(6),
     quantity INT NOT NULL,
     price INT NOT NULL,
-    PRIMARY KEY (id_Bill, id_Products),
+    PRIMARY KEY (id_Bill, id_Product),
     FOREIGN KEY (id_Bill) REFERENCES Bill(id_Bill),
-    FOREIGN KEY (id_Products) REFERENCES Products(id)
+    FOREIGN KEY (id_Product) REFERENCES Products(id)
 );
 
 -- Thêm dữ liệu mẫu
@@ -51,7 +51,10 @@ VALUES
 
 INSERT INTO User (id, username, password, name, fullname, email, phoneNumber, money)
 VALUES
-('US0001', 'admin', 'admin', 'admin', null, null, null, null);
+('US0001', 'admin', 'admin', 'admin', null, null, null, null),
+('US0002', 'nguyentuancuong', '123456', 'cuong', N'Nguyễn Tuấn Cường', N'ntuancuong2005@gmail.com', '0328228324', '100000');
+
+
 
 use master
 drop database Canteen_Management

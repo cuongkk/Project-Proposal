@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Danh sách sản phẩm</title>
+    <title>Trang chủ</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -12,9 +12,58 @@
             padding: 0;
         }
 
-        h2 {
+        .top-bar {
             text-align: center;
             margin-top: 20px;
+        }
+
+        .top-bar button {
+            margin: 5px;
+            padding: 8px 14px;
+            font-size: 14px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .top-bar button:hover {
+            background-color: #388e3c;
+        }
+
+        .search-bar {
+            display: flex;
+            justify-content: center;
+            margin: 20px 0;
+        }
+
+        .search-bar input[type="text"] {
+            width: 300px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-top-left-radius: 5px;
+            border-bottom-left-radius: 5px;
+            font-size: 14px;
+        }
+
+        .search-bar button {
+            padding: 10px 15px;
+            border: none;
+            background-color: #2196f3;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+            border-top-right-radius: 5px;
+            border-bottom-right-radius: 5px;
+        }
+
+        .search-bar button:hover {
+            background-color: #1976d2;
+        }
+
+        .filter-options {
+            text-align: center;
         }
 
         .product-grid {
@@ -28,26 +77,27 @@
         .product-card {
             background: white;
             border-radius: 8px;
-            width: 260px;
+            width: 220px;
             box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
-            padding: 16px;
+            padding: 12px;
             text-align: center;
             transition: transform 0.2s ease;
+            cursor: pointer;
         }
 
         .product-card:hover {
-            transform: scale(1.02);
+            transform: scale(1.03);
         }
 
         .product-card img {
             width: 100%;
-            height: 180px;
+            height: 160px;
             object-fit: cover;
             border-radius: 5px;
         }
 
         .product-card h3 {
-            font-size: 18px;
+            font-size: 16px;
             margin: 10px 0 6px;
         }
 
@@ -55,45 +105,21 @@
             font-size: 14px;
             margin: 4px 0;
         }
-
-        .product-card button {
-            margin-top: 10px;
-            padding: 8px 16px;
-            background-color: #2196f3;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-
-        .product-card button:hover {
-            background-color: #1976d2;
-        }
-
-        .cart-btn {
-            display: block;
-            margin: 20px auto;
-            padding: 10px 20px;
-            font-size: 16px;
-            background-color: #4CAF50;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-
-        .cart-btn:hover {
-            background-color: #388e3c;
-        }
     </style>
 </head>
 
 <body>
 
-    <h2>Danh sách sản phẩm</h2>
-    <button class="cart-btn" onclick="showCart()">🛒 Xem giỏ hàng</button>
+    <div class="top-bar" id="user-info-bar">
+    </div>
 
-    <div style="text-align: center; margin-top: 20px;">
+
+    <div class="search-bar">
+        <input type="text" id="searchInput" placeholder="Tìm kiếm sản phẩm...">
+        <button onclick="refreshProductList()">🔍</button>
+    </div>
+
+    <div class="filter-options">
         <label for="category">Loại:</label>
         <select id="category" name="category">
             <option value="all">Tất cả</option>
@@ -108,32 +134,38 @@
             <option value="20000-50000">20K - 50K</option>
             <option value="50000-0">&gt; 50K</option>
         </select>
-
-        <button class="cart-btn" onclick="refreshProductList()">Lọc</button>
     </div>
 
-
     <div id="product-list" class="product-grid">
-        <!-- Thẻ sản phẩm sẽ thêm bằng JavaScript -->
+        <!-- Thẻ sản phẩm thêm bằng JavaScript -->
     </div>
 
     <script>
+
         document.addEventListener('DOMContentLoaded', async () => {
             const _params = new URLSearchParams(window.location.search);
             const _id_user = _params.get('msg');
+
+            refreshProductList();
+
             if (!_id_user) {
-                console.error("Không có 'msg' trên URL");
-                return;
+                document.getElementById('user-info-bar').innerHTML = `
+                    <button onclick = "window.location.href='login.html'" >🔐 Đăng nhập</ >
+            <button onclick="window.location.href='register.html'">📝 Đăng ký</button>
+            <button onclick="showCart()">🛒</button>
+                `;
+            } else {
+                refreshUserInfo();
             }
-            await refreshProductList(_id_user);
+
         });
 
 
         async function refreshProductList() {
             const _id_user = new URLSearchParams(window.location.search).get('msg');
+            const _name = document.getElementById('searchInput').value.trim();
             const _category = document.getElementById('category').value;
             const _priceRange = document.getElementById('price').value;
-
             const container = document.getElementById('product-list');
             container.innerHTML = `<p>Đang tải...</p>`;
 
@@ -142,7 +174,7 @@
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({
-                        id_user: _id_user,
+                        name: _name,
                         category: _category,
                         priceRange: _priceRange
                     })
@@ -160,24 +192,26 @@
                 products.forEach((product) => {
                     const card = document.createElement('div');
                     card.className = 'product-card';
-
                     const imgSrc = product.image_url || 'https://via.placeholder.com/250x180?text=No+Image';
 
                     card.innerHTML = `
                         <img src="${imgSrc}" alt="Ảnh sản phẩm">
                         <h3>${product.name}</h3>
-                        <p>${product.inf}</p>
-                        <p><strong>Giá:</strong> ${parseFloat(product.price).toLocaleString("vi-VN", { style: "currency", currency: "VND" })}</p>
-                        <p><strong>Giảm giá:</strong> ${product.discount}</p>
-                        <p><strong>Còn lại:</strong> ${product.quantity}</p>
-                        <p><small>NSX: ${product.manufacture_Date}</small></p>
-                        <p><small>HSD: ${product.expiry_Date}</small></p>
-                        <button>➕ Thêm vào giỏ</button>
+                        <p><strong>${parseFloat(product.price).toLocaleString("vi-VN", { style: "currency", currency: "VND" })}</strong></p>
                     `;
 
-                    card.querySelector('button').addEventListener('click', () => {
-                        addToCart(product);
+                    card.addEventListener('click', () => {
+                        if (!_id_user || _id_user === "null") {
+                            alert("Vui lòng đăng nhập trước khi xem giỏ hàng.");
+                            window.location.href = "show_product.html";
+                            return;
+                        }
+                        sessionStorage.setItem("selectedProduct", JSON.stringify(product));
+                        window.location.href = `product_detail.html?msg=${_id_user}`;
                     });
+
+
+
 
                     container.appendChild(card);
                 });
@@ -187,37 +221,48 @@
                 container.innerHTML = `<p>Không có sản phẩm phù hợp</p>`;
             }
         }
-        function addToCart(product) {
-            const _id_user = new URLSearchParams(window.location.search).get('msg');
-            const productId = product.id || product.name;
-            const quantityToAdd = "1";
 
-            fetch('http://localhost:18080/add_product_to_cart', {
+        async function refreshUserInfo() {
+            const _id_user = new URLSearchParams(window.location.search).get('msg'); // ✅ Sửa dòng này
+            const response = await fetch('http://localhost:18080/user', {
                 method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({
-                    id_user: _id_user,
-                    id_product: productId,
-                    quantity_change: quantityToAdd
-                })
-            })
-                .then(res => res.json())
-                .then(res => {
-                    if (res.message == "Success") {
-                        refreshProductList(_id_user);
-                    } else {
-                        alert("Không thể cập nhật số lượng tồn kho.");
-                    }
-                })
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ id_user: _id_user })
+            });
+            const result = await response.json();
+            const name = result["name"];
+            const money = result["money"];
+
+            document.getElementById('user-info-bar').innerHTML = `
+            <button onclick="goToInf()">ℹ️</button>
+            <span>👋 Chào <strong id="username">${name}</strong></span>
+            <span>💰 Số dư: <strong id="usermoney">${parseFloat(money).toLocaleString("vi-VN", { style: "currency", currency: "VND" })}</strong></span>
+            <button onclick="showCart()">🛒</button>
+        `;
         }
+
+
+        function goToInf() {
+            const _id_user = new URLSearchParams(window.location.search).get('msg');
+            if (!_id_user || _id_user === "null") {
+                alert("Vui lòng đăng nhập để xem thông tin.");
+                window.location.href = "login.html";
+                return;
+            }
+
+            window.location.href = `inf.html?msg=${encodeURIComponent(_id_user)}`;
+        }
+
 
         function showCart() {
             const _id_user = new URLSearchParams(window.location.search).get('msg');
             const encodedMsg = encodeURIComponent(_id_user);
             window.location.href = `http://127.0.0.1:5503/frontend/show_cart.html?msg=${encodedMsg}`;
         }
-    </script>
 
+    </script>
 </body>
 
 </html>
