@@ -799,6 +799,14 @@ void setup_checkout_routes(crow::App<CORS> &app)
         if (!userPtr)
             return crow::response(404, "User not found");
 
+        billManagement.clear();
+        repoBill.filter("", id_user, "", "");
+        const LinkedList<Bill> &bills = repoBill.getAll();
+        for (const auto& bill : bills) 
+        {
+            billManagement.add(bill);
+        }
+
         crow::json::wvalue res;
 
         if (userPtr->_cart.get_size() == 0)
@@ -816,12 +824,11 @@ void setup_checkout_routes(crow::App<CORS> &app)
             DateTime dateTime(body["date"]["day"].i(), body["date"]["month"].i(), body["date"]["year"].i());
             std::string _id_bill = set_id("BI", BillManagement::_id_counter_bill);
             repoUser.update(id_user, "", "", "", std::to_string(std::stoll(userPtr->get_money()) - std::stoll(userPtr->get_cart().get_money())));
-            std::vector<std::string> fields = {_id_bill, id_user, userPtr->get_cart().get_money(), dateTime.get_date()};
-            std::cout << userPtr->get_cart().get_money() << std::endl;
             for (const auto &item : userPtr->_cart.get_list())
             {
-                std::cout << item->get_id() << " " << item->get_name() << " " << item->get_quantity() << std::endl;
+                repoProduct.update(item->get_id(), "", "", "", "", std::to_string(item->get_origin()->get_quantity() - item->get_quantity()), "", "", "");
             }
+            std::vector<std::string> fields = {_id_bill, id_user, userPtr->get_cart().get_money(), dateTime.get_date()};
             repoBill.insert(fields, userPtr->_cart.get_list());
             res["message"] = "Success";
             return crow::response{res};
@@ -843,33 +850,36 @@ void setup_show_bill_routes(crow::App<CORS> &app)
             return crow::response(404, "User not found");
 
         crow::json::wvalue res;
-        int i = 0;
 
-        std::list<std::shared_ptr<Bill>> list = billManagement.getBill_from_id_Customer(id_user);
-        if (list.size() == 0)
+        repoBill.filter("", id_user, "", "");
+        const LinkedList<Bill> &list = repoBill.getAll();
+
+        if (list.get_size() ==0 ) 
         {
             res["message"] = "Không có hóa đơn nào";
             return crow::response{res};
         }
-        else
+
+        int i = 0;
+        for (const auto& bill : list) 
         {
-            for (const auto &item : list)
+            const auto& products = bill->get_cart().get_list();
+            int j = 0;
+
+            for (const auto& product : products) 
             {
-                int j = 0; 
-                for (const auto &product : item->get_cart().get_list())
-                {
-                    res["bills"][i]["products"][j]["name"] = product->get_name();
-                    res["bills"][i]["products"][j]["quantity"] = product->get_quantity();
-                    res["bills"][i]["products"][j]["price"] = product->get_money();
-                    j++;
-                }
-                res["bills"][i]["totalCost"] = item->get_totalCost();
-                res["bills"][i]["dateTime"] = item->get_dateTime().get_date();
-                i++;
+                auto& p = res["bills"][i]["products"][j];
+                p["name"] = product->get_name();
+                p["quantity"] = product->get_quantity();
+                p["price"] = product->get_money();
+                ++j;
             }
 
-            res["message"] = "Success";
-            return crow::response{res};
+            res["bills"][i]["totalCost"] = bill->get_totalCost();
+            res["bills"][i]["dateTime"] = bill->get_dateTime().get_date();
+            ++i;
         }
+
+        res["message"] = "Success";
         return crow::response{res}; });
 }

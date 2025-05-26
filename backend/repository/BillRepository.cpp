@@ -54,3 +54,39 @@ void BillRepositoryImpl::insert(const std::vector<std::string> &fields, const Li
         pstmt->executeUpdate();
     }
 }
+
+void BillRepositoryImpl::filter(const std::string &id, const std::string &id_Customer,
+                                const std::string &totalCost, const std::string &paid_date)
+{
+    _bills.clear();
+
+    if (id.empty() && id_Customer.empty() && totalCost.empty() && paid_date.empty())
+    {
+        return;
+    }
+
+    billQueryBuilder.filterByIdBill(id).filterByIdCustomer(id_Customer).filterByTotalCost(totalCost).filterByPaidDate(paid_date);
+
+    std::shared_ptr<sql::Statement> stmt(conn->createStatement());
+    std::shared_ptr<sql::ResultSet> res(
+        stmt->executeQuery(billQueryBuilder.buildFilter()));
+
+    while (res->next())
+    {
+        std::shared_ptr<sql::ResultSet> res1(
+            stmt->executeQuery("SELECT id_Product, quantity, price FROM Bill_Details WHERE id_Bill = '" + res->getString("id_Bill") + "'"));
+        Cart cart;
+        while (res1->next())
+        {
+            for (int i = 0; i < res1->getInt("quantity"); ++i)
+            {
+                cart.add(khoHang.getProduct_from_id(res1->getString("id_Product"))->clone());
+            }
+        }
+        auto bill = std::make_shared<Bill>(res->getString("id_Bill"),
+                                           res->getString("id_User"),
+                                           std::move(cart),
+                                           DateTime(res->getString("paid_date")));
+        _bills.push_back(bill);
+    }
+}

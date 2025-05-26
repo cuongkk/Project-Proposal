@@ -45,6 +45,7 @@ void ProductRepositoryImpl::set_products(const std::shared_ptr<sql::ResultSet> &
         _products.push_back(product);
     }
 }
+
 void ProductRepositoryImpl::loadFromDatabase()
 {
     _products.clear();
@@ -101,10 +102,32 @@ void ProductRepositoryImpl::filter(const std::string &id, const std::string &nam
 
     std::shared_ptr<sql::Statement> stmt(conn->createStatement());
     std::shared_ptr<sql::ResultSet> res(
-        stmt->executeQuery(productQueryBuilder.build()));
+        stmt->executeQuery(productQueryBuilder.buildFilter()));
 
     while (res->next())
     {
         set_products(res);
     }
+}
+
+void ProductRepositoryImpl::update(const std::string &id, const std::string &name,
+                                   const std::string &inf, const std::string &price,
+                                   const std::string &discount, const std::string &quantity,
+                                   const std::string &manufactureDate, const std::string &expiryDate,
+                                   const std::string &imagePath)
+{
+    productQueryBuilder.updateName(name)
+        .updateInf(inf)
+        .updatePrice(price)
+        .updateDiscount(discount)
+        .updateQuantity(quantity)
+        .updateManufactureDate(manufactureDate)
+        .updateExpiryDate(expiryDate)
+        .updateImagePath(imagePath);
+
+    std::shared_ptr<sql::PreparedStatement> pstmt(conn->prepareStatement(
+        productQueryBuilder.buildUpdate() + " WHERE id = ?"));
+
+    pstmt->setString(1, id);
+    pstmt->executeUpdate();
 }

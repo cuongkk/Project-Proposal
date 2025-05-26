@@ -110,7 +110,6 @@ std::string UserQueryBuilder::buildUpdate()
         query += joinUpdateFields();
     }
     updateFields.clear();
-    conditions.clear();
     return query;
 }
 std::string UserQueryBuilder::joinConditions()

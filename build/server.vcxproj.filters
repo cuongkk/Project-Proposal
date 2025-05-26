@@ -49,6 +49,9 @@
     <ClCompile Include="D:\Canteen-Management-System\backend\models\main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="D:\Canteen-Management-System\backend\repository\BillQueryBuilder.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="D:\Canteen-Management-System\backend\repository\BillRepository.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>

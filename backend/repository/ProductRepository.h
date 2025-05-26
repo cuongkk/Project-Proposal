@@ -29,6 +29,12 @@ public:
 
     void filter(const std::string &, const std::string &,
                 const std::string &, const std::string &, const std::string &);
+
+    void update(const std::string &, const std::string &,
+                const std::string &, const std::string &,
+                const std::string &, const std::string &,
+                const std::string &, const std::string &,
+                const std::string &);
 };
 
 #endif

@@ -167,7 +167,7 @@
                         <img src="${imgSrc}" alt="Ảnh sản phẩm">
                         <h3>${product.name}</h3>
                         <p>${product.inf}</p>
-                        <p><strong>Giá:</strong> ${product.price}</p>
+                        <p><strong>Giá:</strong> ${parseFloat(product.price).toLocaleString("vi-VN", { style: "currency", currency: "VND" })}</p>
                         <p><strong>Giảm giá:</strong> ${product.discount}</p>
                         <p><strong>Còn lại:</strong> ${product.quantity}</p>
                         <p><small>NSX: ${product.manufacture_Date}</small></p>
