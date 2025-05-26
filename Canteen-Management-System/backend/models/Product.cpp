@@ -74,6 +74,11 @@ std::string Product::get_money() const
     return _money.get_money();
 }
 
+std::string Product::get_money_value() const
+{
+    return _money.get_value();
+}
+
 void Product::set_discount(const int &discount)
 {
     _discount = discount;

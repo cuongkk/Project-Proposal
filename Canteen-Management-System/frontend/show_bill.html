@@ -59,14 +59,14 @@
                         billDiv.innerHTML = `
                         <h3>Hóa đơn #${index + 1}</h3>
                         <p><strong>Ngày:</strong> ${bill.dateTime}</p>
-                        <p><strong>Tổng tiền:</strong> ${bill.totalCost}</p>
+                        <p><strong>Tổng tiền:</strong> ${parseFloat(bill.totalCost).toLocaleString("vi-VN", { style: "currency", currency: "VND" })}</p>
                         <div><strong>Sản phẩm:</strong></div>
                     `;
 
                         bill.products.forEach(product => {
                             const p = document.createElement('div');
                             p.className = 'product';
-                            p.innerHTML = `- ${product.name} (SL: ${product.quantity}, Giá: ${product.price})`;
+                            p.innerHTML = `- ${product.name} (SL: ${product.quantity}, Giá: ${parseFloat(product.price).toLocaleString("vi-VN", { style: "currency", currency: "VND" })})`;
                             billDiv.appendChild(p);
                         });
 

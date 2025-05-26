@@ -35,8 +35,9 @@ public:
     void remove_from_KhoHang(std::shared_ptr<T>);
     void remove_from_Cart(std::shared_ptr<T>);
     LinkedList<T> &operator=(const LinkedList &other);
+    const std::shared_ptr<T> &operator[](int);
+    const std::shared_ptr<T> &operator[](int) const;
 };
-
 template <typename T>
 std::ostream &operator<<(std::ostream &, const LinkedList<T> &);
 

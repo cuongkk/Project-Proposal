@@ -6,6 +6,7 @@
 // }
 ProductRepositoryImpl repoProduct("tcp://127.0.0.1:3306", "root", "2005", "Canteen_Management");
 UserRepositoryImpl repoUser("tcp://127.0.0.1:3306", "root", "2005", "Canteen_Management");
+BillRepositoryImpl repoBill("tcp://127.0.0.1:3306", "root", "2005", "Canteen_Management");
 
 UserManagement userManagement;
 KhoHang khoHang;
@@ -44,6 +45,26 @@ void setup_username_routes(crow::App<CORS> &app)
                 // add_cors_headers(res);
                 res.code = 204; 
                 return res; });
+}
+
+void setup_user_routes(crow::App<CORS> &app)
+{
+    CROW_ROUTE(app, "/user").methods(crow::HTTPMethod::POST)([](const crow::request &req)
+                                                             {
+        auto body = crow::json::load(req.body);
+        if (!body || !body.has("id_user"))
+            return crow::response(400, "Invalid request: missing 'msg'");
+    
+        std::string _id_user = body["id_user"].s();
+
+        auto userPtr = userManagement.getUser_from_id(_id_user);
+        if (!userPtr)
+            return crow::response(404, "User not found");
+                    
+        crow::json::wvalue res;
+        res["name"] = userPtr->get_name();
+    
+        return crow::response{res}; });
 }
 
 void setup_signup_routes(crow::App<CORS> &app)
@@ -93,8 +114,7 @@ void setup_signup_routes(crow::App<CORS> &app)
         else
         {
             std::string _id_us = set_id("US", UserManagement::_id_counter_user); 
-            User = std::make_unique<Customer>(_id_us, username, password, name);
-            userManagement.add(std::move(User));
+            repoUser.insert({ _id_us, username, password, name});
             result["message"] = "Success";
         }
 
@@ -108,7 +128,7 @@ void setup_login_routes(crow::App<CORS> &app)
 
     for (const auto &user : repoUser.getAll())
     {
-        // userManagement.add(user);
+        userManagement.add(user);
     }
     CROW_ROUTE(app, "/login").methods(crow::HTTPMethod::POST)([](const crow::request &req)
                                                               {
@@ -118,18 +138,18 @@ void setup_login_routes(crow::App<CORS> &app)
 
         std::string username = body["username"].s();
         std::string password = body["password"].s();
-        auto User = std::make_unique<Customer>();
         crow::json::wvalue result;
 
-        std::vector<std::string> id_user = userManagement.search(username, 2);
+        repoUser.filter("", username, "", "", "", "");
+        const LinkedList<User> &users = repoUser.getAll();
 
-        if (id_user.size() == 0)
+        if (users.get_size() == 0)
         {
             result["message"] = username + " Không tồn tại ";
             return crow::response{result.dump()};
         }
 
-        std::string true_password = userManagement.getUser_from_id(id_user[0])->get_password();
+        std::string true_password = users[0]->get_password();
        
         if (password == "")
         {
@@ -141,32 +161,13 @@ void setup_login_routes(crow::App<CORS> &app)
             result["message"] = "Sai mật khẩu";
             return crow::response{result.dump()};
         }
-        else
-        {
-            result["id_user"] = id_user[0];
-        }
-
+        // else
+        // {
+        //     result["id_user"] = id_user[0];
+        // }
+        result["message"] = "Thành công";
+        result["id_user"] = users[0]->get_id();
         return crow::response{result.dump()}; });
-}
-
-void setup_user_routes(crow::App<CORS> &app)
-{
-    CROW_ROUTE(app, "/user").methods(crow::HTTPMethod::POST)([](const crow::request &req)
-                                                             {
-        auto body = crow::json::load(req.body);
-        if (!body || !body.has("id_user"))
-            return crow::response(400, "Invalid request: missing 'msg'");
-    
-        std::string _id_user = body["id_user"].s();
-
-        auto userPtr = userManagement.getUser_from_id(_id_user);
-        if (!userPtr)
-            return crow::response(404, "User not found");
-                    
-        crow::json::wvalue res;
-        res["name"] = userPtr->get_name();
-    
-        return crow::response{res}; });
 }
 
 void setup_inf_user_routes(crow::App<CORS> &app)
@@ -181,17 +182,16 @@ void setup_inf_user_routes(crow::App<CORS> &app)
 
         std::string id_user = body["id_user"].s();
 
-        auto userPtr = userManagement.getUser_from_id(id_user);
-        if (!userPtr)
-            return crow::response(404, "User not found");
+        repoUser.filter(id_user, "", "", "", "", "");
+        const LinkedList<User> &userPtr = repoUser.getAll();
 
-        std::string _username = userPtr->get_username();
-        std::string _password = userPtr->get_password();
-        std::string _name = userPtr->get_name();
-        std::string _fullname = userPtr->get_fullname();
-        std::string _email = userPtr->get_email();
-        std::string _phoneNumber = userPtr->get_phoneNumber();
-        std::string _money = userPtr->get_money();
+        std::string _username = userPtr[0]->get_username();
+        std::string _password = userPtr[0]->get_password();
+        std::string _name = userPtr[0]->get_name();
+        std::string _fullname = userPtr[0]->get_fullname();
+        std::string _email = userPtr[0]->get_email();
+        std::string _phoneNumber = userPtr[0]->get_phoneNumber();
+        std::string _money = userPtr[0]->get_money();
 
         res["username"] = _username;
         res["password"] = _password;
@@ -272,10 +272,7 @@ void setup_update_inf_user_routes(crow::App<CORS> &app)
         }
         else
         {
-            userPtr->get_origin()->set_fullname(_fullname);
-            userPtr->get_origin()->set_email(_email);
-            userPtr->get_origin()->set_phoneNumber(_phoneNumber);
-            userPtr->get_origin()->set_money(_money);
+            repoUser.update(id_user, _fullname, _email, _phoneNumber, _money);
             res["message"] = "Cập nhật thông tin thành công";
             return crow::response{res};
         }
@@ -505,6 +502,13 @@ void setup_add_product_routes(crow::App<CORS> &app)
 
 void setup_show_product_routes(crow::App<CORS> &app)
 {
+    khoHang.clear();
+    repoProduct.loadFromDatabase();
+
+    for (const auto &product : repoProduct.getAll())
+    {
+        khoHang.add(product);
+    }
     CROW_ROUTE(app, "/show_product").methods(crow::HTTPMethod::POST)([](const crow::request &req)
                                                                      {
         auto body = crow::json::load(req.body);
@@ -516,41 +520,56 @@ void setup_show_product_routes(crow::App<CORS> &app)
         if (!userPtr)
             return crow::response(404, "User not found");
 
+        std::string category = "";
+        if (body["category"].s() == "all")
+        {
+            category = "";
+        }
+        else if (body["category"].s() == "Food")
+        {
+            category = "Đồ ăn";
+        }
+        else if (body["category"].s() == "Drink")
+        {
+            category = "Đồ uống";
+        }
+        std::string priceRange = body["priceRange"].s();
+        std::stringstream ss(priceRange);
+        std::string min_price, max_price;
+        std::getline(ss, min_price, '-');
+        std::getline(ss, max_price);
+        if (max_price == "0")
+        {
+            max_price = "1000000000";
+        }
+
         crow::json::wvalue res;
         int i = 0;
-        khoHang.clear();
-        repoProduct.loadFromDatabase();
 
-        for (const auto& product : repoProduct.getAll())
+        repoProduct.filter("", "", category, min_price, max_price);
+        const LinkedList<Product> &products = repoProduct.getAll();
+        if (products.get_size() == 0)
         {
-            khoHang.add(product);
-        }
-        if (khoHang.getProduct().get_size() == 0)
-        {
-            res["message"] = "Kho hàng trống";
+            res["message"] = "Không có sản phẩm nào";
             return crow::response{res};
         }
-        else
+        for (auto it = products.begin(); it != products.end(); ++it)
         {
-            const auto &products = khoHang.getProduct();
-            for (auto it = products.begin(); it != products.end(); ++it)
+            const auto &product = *it;
+            if (product->get_origin()->get_quantity() == 0)
             {
-                const auto &product = *it;
-                if (product->get_origin()->get_quantity() == 0)
-                {
-                    continue;
-                }
-                res["products"][i]["id"] = product->get_id();
-                res["products"][i]["name"] = product->get_name();
-                res["products"][i]["inf"] = product->get_inf();
-                res["products"][i]["quantity"] = product->get_quantity();
-                res["products"][i]["price"] = product->get_money();
-                res["products"][i]["discount"] = product->get_discount();
-                res["products"][i]["manufacture_Date"] = product->get_manufacture_Date().get_date();
-                res["products"][i]["expiry_Date"] = product->get_expiry_Date().get_date(); 
-                res["products"][i]["image_url"] = product->get_imagePath();
-                i++;
+                continue;
             }
+            res["products"][i]["id"] = product->get_id();
+            res["products"][i]["name"] = product->get_name();
+            res["products"][i]["inf"] = product->get_inf();
+            res["products"][i]["quantity"] = product->get_quantity();
+            res["products"][i]["price"] = product->get_money();
+            res["products"][i]["discount"] = product->get_discount();
+            res["products"][i]["manufacture_Date"] = product->get_manufacture_Date().get_date();
+            res["products"][i]["expiry_Date"] = product->get_expiry_Date().get_date(); 
+            res["products"][i]["image_url"] = product->get_imagePath();
+            i++;
         }
 
         return crow::response{res}; });
@@ -639,78 +658,6 @@ void setup_update_product_routes(crow::App<CORS> &app)
                     return crow::response(404, "User not found"); });
 }
 
-void setup_filter_product_routes(crow::App<CORS> &app)
-{
-    CROW_ROUTE(app, "/filter_product").methods(crow::HTTPMethod::POST)([](const crow::request &req)
-                                                                       {
-        auto body = crow::json::load(req.body);
-        if (!body || !body.has("id_user"))
-            return crow::response(400, "Invalid request: missing 'msg'");
-
-        std::string id_user = body["id_user"].s();
-        auto userPtr = userManagement.getUser_from_id(id_user);
-        if (!userPtr)
-            return crow::response(404, "User not found");
-
-        std::string category = body["category"].s();
-
-        std::string priceRange = body["priceRange"].s();
-        std::stringstream ss(priceRange);
-        std::string min_price, max_price;
-        if (priceRange == "0-0")
-        {
-            min_price = "0";
-            max_price = "1000000000";
-        }
-        else
-        {
-            std::getline(ss, min_price, '-');
-            std::getline(ss, max_price);
-        }
-
-        crow::json::wvalue res;
-        int i = 0;
-
-        khoHang.clear();
-        repoProduct.loadFromDatabase();
-
-        for (const auto& product : repoProduct.getAll())
-        {
-            khoHang.add(product);
-        }
-
-        if (khoHang.getProduct().get_size() == 0)
-        {
-            res["message"] = "Kho hàng trống";
-            return crow::response{res};
-        }
-        else
-        {
-            const auto &products = khoHang.search_category(category).search_price(min_price, max_price).getProduct();
-            for (auto it = products.begin(); it != products.end(); ++it)
-            {
-                const auto &product = *it;
-                if (product->get_origin()->get_quantity() == 0)
-                {
-                    continue;
-                }
-                res["products"][i]["id"] = product->get_id();
-                res["products"][i]["name"] = product->get_name();
-                res["products"][i]["inf"] = product->get_inf();
-                res["products"][i]["quantity"] = product->get_quantity();
-                res["products"][i]["price"] = product->get_money();
-                res["products"][i]["discount"] = product->get_discount();
-                res["products"][i]["manufacture_Date"] = product->get_manufacture_Date().get_date();
-                res["products"][i]["expiry_Date"] = product->get_expiry_Date().get_date(); 
-                res["products"][i]["image_url"] = product->get_imagePath();
-                i++;
-                std::cout << "a";
-            }
-        }
-
-        return crow::response{res}; });
-}
-
 void setup_add_product_to_cart_routes(crow::App<CORS> &app)
 {
     CROW_ROUTE(app, "/add_product_to_cart").methods(crow::HTTPMethod::POST)([](const crow::request &req)
@@ -721,6 +668,7 @@ void setup_add_product_to_cart_routes(crow::App<CORS> &app)
 
         std::string id_user = body["id_user"].s();
         auto userPtr = userManagement.getUser_from_id(id_user)->get_origin();
+
         if (!userPtr)
             return crow::response(404, "User not found");
         
@@ -745,7 +693,6 @@ void setup_add_product_to_cart_routes(crow::App<CORS> &app)
             if (quantity != 0)
             {
                 userPtr->_cart.add(khoHang.getProduct_from_id(_id_product));
-                khoHang.getProduct_from_id(_id_product)->get_origin()->set_quantity(quantity - std::stoi(_quantity_change));
                 res["message"] = "Success";
                 return crow::response{res};
             }
@@ -789,9 +736,7 @@ void setup_remove_product_from_cart_routes(crow::App<CORS> &app)
         }
         else
         {
-            int quantity = khoHang.getProduct_from_id(_id_product)->get_origin()->get_quantity();
             userPtr->_cart.remove(khoHang.getProduct_from_id(_id_product));
-            khoHang.getProduct_from_id(_id_product)->get_origin()->set_quantity(quantity + std::stoi(_quantity_change));
             res["message"] = "Success";
             return crow::response{res};
             
@@ -809,6 +754,7 @@ void setup_show_cart_routes(crow::App<CORS> &app)
             return crow::response(400, "Invalid request: missing 'msg'");
 
         std::string id_user = body["id_user"].s();
+        
         auto userPtr = userManagement.getUser_from_id(id_user)->get_origin();
         if (!userPtr)
             return crow::response(404, "User not found");
@@ -848,9 +794,18 @@ void setup_checkout_routes(crow::App<CORS> &app)
             return crow::response(400, "Invalid request: missing 'msg'");
 
         std::string id_user = body["id_user"].s();
-        auto userPtr = userManagement.getUser_from_id(id_user);
+       
+        auto userPtr = userManagement.getUser_from_id(id_user)->get_origin();
         if (!userPtr)
             return crow::response(404, "User not found");
+
+        billManagement.clear();
+        repoBill.filter("", id_user, "", "");
+        const LinkedList<Bill> &bills = repoBill.getAll();
+        for (const auto& bill : bills) 
+        {
+            billManagement.add(bill);
+        }
 
         crow::json::wvalue res;
 
@@ -867,9 +822,14 @@ void setup_checkout_routes(crow::App<CORS> &app)
         else
         {
             DateTime dateTime(body["date"]["day"].i(), body["date"]["month"].i(), body["date"]["year"].i());
-            Bill bill1;
-            auto bill = bill1.confirmBill(userManagement, id_user, dateTime);
-            billManagement.add(std::move(bill));
+            std::string _id_bill = set_id("BI", BillManagement::_id_counter_bill);
+            repoUser.update(id_user, "", "", "", std::to_string(std::stoll(userPtr->get_money()) - std::stoll(userPtr->get_cart().get_money())));
+            for (const auto &item : userPtr->_cart.get_list())
+            {
+                repoProduct.update(item->get_id(), "", "", "", "", std::to_string(item->get_origin()->get_quantity() - item->get_quantity()), "", "", "");
+            }
+            std::vector<std::string> fields = {_id_bill, id_user, userPtr->get_cart().get_money(), dateTime.get_date()};
+            repoBill.insert(fields, userPtr->_cart.get_list());
             res["message"] = "Success";
             return crow::response{res};
         }
@@ -890,33 +850,36 @@ void setup_show_bill_routes(crow::App<CORS> &app)
             return crow::response(404, "User not found");
 
         crow::json::wvalue res;
-        int i = 0;
 
-        std::list<std::shared_ptr<Bill>> list = billManagement.getBill_from_id_Customer(id_user);
-        if (list.size() == 0)
+        repoBill.filter("", id_user, "", "");
+        const LinkedList<Bill> &list = repoBill.getAll();
+
+        if (list.get_size() ==0 ) 
         {
             res["message"] = "Không có hóa đơn nào";
             return crow::response{res};
         }
-        else
+
+        int i = 0;
+        for (const auto& bill : list) 
         {
-            for (const auto &item : list)
+            const auto& products = bill->get_cart().get_list();
+            int j = 0;
+
+            for (const auto& product : products) 
             {
-                int j = 0; 
-                for (const auto &product : item->get_cart().get_list())
-                {
-                    res["bills"][i]["products"][j]["name"] = product->get_name();
-                    res["bills"][i]["products"][j]["quantity"] = product->get_quantity();
-                    res["bills"][i]["products"][j]["price"] = product->get_money();
-                    j++;
-                }
-                res["bills"][i]["totalCost"] = item->get_totalCost();
-                res["bills"][i]["dateTime"] = item->get_dateTime().get_date();
-                i++;
+                auto& p = res["bills"][i]["products"][j];
+                p["name"] = product->get_name();
+                p["quantity"] = product->get_quantity();
+                p["price"] = product->get_money();
+                ++j;
             }
 
-            res["message"] = "Success";
-            return crow::response{res};
+            res["bills"][i]["totalCost"] = bill->get_totalCost();
+            res["bills"][i]["dateTime"] = bill->get_dateTime().get_date();
+            ++i;
         }
+
+        res["message"] = "Success";
         return crow::response{res}; });
 }

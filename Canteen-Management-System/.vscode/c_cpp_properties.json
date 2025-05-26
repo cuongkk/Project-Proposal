@@ -1,22 +1,24 @@
 {
     "configurations": [
         {
-            "name": "Linux",
+            "name": "MinGW",
             "includePath": [
                 "${workspaceFolder}/**",
-                "${workspaceFolder}/external/crow/include",
-                "/usr/local/include/**",
-                "/usr/include/x86_64-linux-gnu/**",
-                "/usr/include/**",
-                "/usr/include/mysql/**",
-                "${workspaceFolder}/backend/models",
-                "${workspaceFolder}/backend/repository"
+                "C:/winlibs/mingw64/include/c++/14.2.0",
+                "C:/winlibs/mingw64/include/c++/14.2.0/x86_64-w64-mingw32",
+                "C:/winlibs/mingw64/include/c++/14.2.0/backward",
+                "C:/winlibs/mingw64/lib/gcc/x86_64-w64-mingw32/14.2.0/include",
+                "C:/winlibs/mingw64/include",
+                "C:/winlibs/mingw64/lib/gcc/x86_64-w64-mingw32/14.2.0/include-fixed",
+                "C:/winlibs/mingw64/x86_64-w64-mingw32/include",
+                "C:/Program Files/MySQL/mysql-connector-c++-9.3.0-winx64/include",
+                "C:/Program Files/MySQL/mysql-connector-c++-9.3.0-winx64/lib64/vs14"
             ],
             "defines": [],
-            "compilerPath": "/usr/bin/g++-13",
+            "compilerPath": "C:/winlibs/mingw64/bin/g++.exe",
             "cStandard": "c23",
             "cppStandard": "c++23",
-            "intelliSenseMode": "linux-gcc-x64"
+            "intelliSenseMode": "windows-gcc-x64"
         }
     ],
     "version": 4

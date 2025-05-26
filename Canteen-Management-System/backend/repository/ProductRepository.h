@@ -3,6 +3,7 @@
 
 #include "Repository.h"
 #include "../models/Main_all.h"
+#include "ProductQueryBuilder.h"
 #include <mysql/jdbc.h>
 
 class ProductRepositoryImpl : public IRepository
@@ -11,6 +12,7 @@ private:
     sql::mysql::MySQL_Driver *driver;
     std::shared_ptr<sql::Connection> conn;
     LinkedList<Product> _products;
+    ProductQueryBuilder productQueryBuilder;
 
 public:
     ProductRepositoryImpl(const std::string &,
@@ -18,12 +20,24 @@ public:
                           const std::string &,
                           const std::string &);
 
-    void loadFromDatabase() override;
-    LinkedList<Product> &getAll();
+    void set_products(const std::shared_ptr<sql::ResultSet> &);
 
-    void insert(const std::vector<std::string> &fields) override;
-    void deleteByID(const std::string &id) override;
-    void update(const std::vector<std::string> &fields) override;
+    void loadFromDatabase() override;
+    const LinkedList<Product> &getAll();
+
+    void insert(const std::vector<std::string> &);
+
+    void filter(const std::string &, const std::string &,
+                const std::string &, const std::string &, const std::string &);
+
+    void update(const std::string &, const std::string &,
+                const std::string &, const std::string &,
+                const std::string &, const std::string &,
+                const std::string &, const std::string &,
+                const std::string &);
+
+    void remove(const std::string &);
+
 };
 
 #endif

@@ -33,12 +33,12 @@ int LinkedList<T>::get_size() const
 template <typename T>
 std::string LinkedList<T>::get_money() const
 {
-    std::string totalCost = "";
+    std::string totalCost = "0";
     for (const auto &item : _list)
     {
-        totalCost = totalCost + *item;
+        totalCost = std::to_string(std::stoll(totalCost) + std::stoll(item->get_money_value()) * item->get_quantity() * (100 - std::stoll(item->get_discount())) / 100);
     }
-    return totalCost + " VND";
+    return totalCost;
 }
 
 template <typename T>
@@ -180,6 +180,30 @@ LinkedList<T> &LinkedList<T>::operator=(const LinkedList<T> &other)
         }
     }
     return *this;
+}
+
+template <typename T>
+const std::shared_ptr<T> &LinkedList<T>::operator[](int index)
+{
+    if (index < 0 || index >= _list.size())
+    {
+        throw std::out_of_range("Index out of range");
+    }
+    auto it = _list.begin();
+    std::advance(it, index);
+    return *it;
+}
+
+template <typename T>
+const std::shared_ptr<T> &LinkedList<T>::operator[](int index) const
+{
+    if (index < 0 || index >= _list.size())
+    {
+        throw std::out_of_range("Index out of range");
+    }
+    auto it = _list.begin();
+    std::advance(it, index);
+    return *it;
 }
 
 template <typename T>

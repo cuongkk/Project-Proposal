@@ -4,6 +4,8 @@
             "name": "MinGW",
             "includePath": [
                 "${workspaceFolder}/**",
+                "C:/OOP/Project/Project-Proposal/Canteen-Management-System/external/crow/include",
+                "C:/OOP/Project/Project-Proposal/Canteen-Management-System/external/asio/asio-1.34.2/include",
                 "C:/winlibs/mingw64/include/c++/14.2.0",
                 "C:/winlibs/mingw64/include/c++/14.2.0/x86_64-w64-mingw32",
                 "C:/winlibs/mingw64/include/c++/14.2.0/backward",

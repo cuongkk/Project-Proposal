@@ -97,8 +97,8 @@
         <label for="category">Loại:</label>
         <select id="category" name="category">
             <option value="all">Tất cả</option>
-            <option value="class Food">Đồ ăn</option>
-            <option value="class Drink">Đồ uống</option>
+            <option value="Food">Đồ ăn</option>
+            <option value="Drink">Đồ uống</option>
         </select>
 
         <label for="price">Giá:</label>
@@ -109,7 +109,7 @@
             <option value="50000-0">&gt; 50K</option>
         </select>
 
-        <button class="cart-btn" onclick="filterProducts()">Lọc</button>
+        <button class="cart-btn" onclick="refreshProductList()">Lọc</button>
     </div>
 
 
@@ -128,58 +128,8 @@
             await refreshProductList(_id_user);
         });
 
-        async function refreshProductList(_id_user) {
-            const container = document.getElementById('product-list');
-            container.innerHTML = `<p>Đang tải...</p>`;
 
-            try {
-                const response = await fetch('http://localhost:18080/show_product', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ id_user: _id_user })
-                });
-
-                const result = await response.json();
-                const products = result.products || [];
-
-                container.innerHTML = '';
-                if (products.length === 0) {
-                    container.innerHTML = `<p>Không có sản phẩm nào</p>`;
-                    return;
-                }
-
-                products.forEach((product) => {
-                    const card = document.createElement('div');
-                    card.className = 'product-card';
-
-                    const imgSrc = product.image_url || 'https://via.placeholder.com/250x180?text=No+Image';
-
-                    card.innerHTML = `
-                        <img src="${imgSrc}" alt="Ảnh sản phẩm">
-                        <h3>${product.name}</h3>
-                        <p>${product.inf}</p>
-                        <p><strong>Giá:</strong> ${product.price}</p>
-                        <p><strong>Giảm giá:</strong> ${product.discount}</p>
-                        <p><strong>Còn lại:</strong> ${product.quantity}</p>
-                        <p><small>NSX: ${product.manufacture_Date}</small></p>
-                        <p><small>HSD: ${product.expiry_Date}</small></p>
-                        <button>➕ Thêm vào giỏ</button>
-                    `;
-
-                    card.querySelector('button').addEventListener('click', () => {
-                        addToCart(product);
-                    });
-
-                    container.appendChild(card);
-                });
-
-            } catch (error) {
-                console.error('Lỗi khi tải sản phẩm:', error);
-                container.innerHTML = `<p>Lỗi khi tải sản phẩm</p>`;
-            }
-        }
-
-        async function filterProducts() {
+        async function refreshProductList() {
             const _id_user = new URLSearchParams(window.location.search).get('msg');
             const _category = document.getElementById('category').value;
             const _priceRange = document.getElementById('price').value;
@@ -188,7 +138,7 @@
             container.innerHTML = `<p>Đang tải...</p>`;
 
             try {
-                const response = await fetch('http://localhost:18080/filter_product', {
+                const response = await fetch('http://localhost:18080/show_product', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({
@@ -217,7 +167,7 @@
                         <img src="${imgSrc}" alt="Ảnh sản phẩm">
                         <h3>${product.name}</h3>
                         <p>${product.inf}</p>
-                        <p><strong>Giá:</strong> ${product.price}</p>
+                        <p><strong>Giá:</strong> ${parseFloat(product.price).toLocaleString("vi-VN", { style: "currency", currency: "VND" })}</p>
                         <p><strong>Giảm giá:</strong> ${product.discount}</p>
                         <p><strong>Còn lại:</strong> ${product.quantity}</p>
                         <p><small>NSX: ${product.manufacture_Date}</small></p>

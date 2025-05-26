@@ -46,7 +46,7 @@ CREATE TABLE Bill_Details (
 -- Thêm dữ liệu mẫu
 INSERT INTO Products (id, name, inf, category, price, discount, quantity, manufacture_date, expiry_date, image_path)
 VALUES 
-('SP0001', N'Bánh Mì', N'Bánh', N'Đồ ăn', 15000, 10, 10, '2024-01-01', '2027-01-01', 'images/laptop.jpg'),
+('SP0001', N'Bánh Mì', N'Bánh', N'Đồ ăn', 25000, 10, 10, '2024-01-01', '2027-01-01', 'images/laptop.jpg'),
 ('SP0002', N'Nước Suối', N'Nước', N'Đồ uống', 10000, 5, 50, '2024-03-01', '2025-03-01', 'images/mouse.jpg');
 
 INSERT INTO User (id, username, password, name, fullname, email, phoneNumber, money)

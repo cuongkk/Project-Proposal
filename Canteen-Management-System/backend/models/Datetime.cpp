@@ -86,11 +86,12 @@ int DateTime::get_year() const
 std::string DateTime::get_date() const
 {
     std::ostringstream oss;
-    oss << std::setw(2) << std::setfill('0') << _day << "/"
-        << std::setw(2) << std::setfill('0') << _month << "/"
-        << _year;
+    oss << _year << "-"
+        << std::setw(2) << std::setfill('0') << _month << "-"
+        << std::setw(2) << std::setfill('0') << _day;
     return oss.str();
 }
+
 void DateTime::operator=(const DateTime &dt)
 {
     _day = dt.get_day();

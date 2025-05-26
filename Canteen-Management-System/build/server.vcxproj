@@ -352,7 +352,11 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
     <ClCompile Include="D:\Canteen-Management-System\backend\models\main.cpp">
       <ObjectFileName>$(IntDir)/backend/models/main.cpp.obj</ObjectFileName>
     </ClCompile>
+    <ClCompile Include="D:\Canteen-Management-System\backend\repository\BillQueryBuilder.cpp" />
+    <ClCompile Include="D:\Canteen-Management-System\backend\repository\BillRepository.cpp" />
+    <ClCompile Include="D:\Canteen-Management-System\backend\repository\ProductQueryBuilder.h.cpp" />
     <ClCompile Include="D:\Canteen-Management-System\backend\repository\ProductRepository.cpp" />
+    <ClCompile Include="D:\Canteen-Management-System\backend\repository\UserQueryBuilder.cpp" />
     <ClCompile Include="D:\Canteen-Management-System\backend\repository\UserRepository.cpp" />
     <ClCompile Include="D:\Canteen-Management-System\backend\routes\Route.cpp" />
   </ItemGroup>

@@ -79,7 +79,7 @@
                 <td style="display:none;"><p>${product.id}</p></td>
                 <td><p class="clickable">${product.name}</p></td>
                 <td><p>${product.quantity}</p></td>
-                <td><p>${product.price}</p></td>
+                <td><p>${parseFloat(product.price).toLocaleString("vi-VN", { style: "currency", currency: "VND" })}</p></td>
             `;
                         cartList.appendChild(row);
 
