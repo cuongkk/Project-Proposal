@@ -2,55 +2,90 @@
 <html lang="vi">
 
 <head>
-    <meta charset="UTF-8">
-    <title>Thông tin người dùng & Hóa đơn</title>
+    <meta charset="utf-8" />
+    <title>Thông tin người dùng &amp; Hóa đơn</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <style>
+        .home-btn {
+            position: fixed;
+            top: 10px;
+            left: 10px;
+            z-index: 1000;
+        }
+
+        .home-btn button {
+            font-size: 20px;
+            padding: 6px 12px;
+            background-color: #ffffff;
+            border: 2px solid #ccc;
+            border-radius: 50%;
+            cursor: pointer;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
         body {
-            font-family: Arial, sans-serif;
-            background-color: #f6f6f6;
-            margin: 20px;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f4f6f9;
+            margin: 0;
+            padding: 20px;
         }
 
         h1,
-        h2 {
+        h2,
+        h3 {
             text-align: center;
+            color: #333;
         }
 
         .container {
-            max-width: 800px;
-            margin: auto;
+            max-width: 700px;
+            margin: 20px auto;
             background: white;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
         }
 
-        label {
-            display: block;
-            margin-top: 10px;
-            font-weight: bold;
+        .form-row {
+            display: grid;
+            grid-template-columns: 2fr 8fr 1fr;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 12px;
         }
 
-        input[type="text"] {
-            width: 100%;
-            padding: 8px;
-            margin-top: 5px;
+        .form-row input {
+            height: 30px;
+            padding: 8px 12px;
+            border-radius: 6px;
+            border: 1px solid #ccc;
             box-sizing: border-box;
+            font-size: 14px;
         }
 
-        button {
-            margin-top: 15px;
-            padding: 10px 20px;
-            font-size: 16px;
-            background-color: #2196f3;
-            color: white;
+        .form-row button {
+            height: 30px;
+            width: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #007bff;
             border: none;
-            border-radius: 5px;
+            border-radius: 6px;
+            color: white;
             cursor: pointer;
+            box-shadow: 0 4px 8px rgba(0, 123, 255, 0.3);
+            transition: all 0.2s ease;
+            padding: 0;
         }
 
-        button:hover {
-            background-color: #1976d2;
+        .form-row button:hover {
+            background-color: #0056b3;
+            transform: translateY(-1px);
+        }
+
+        .form-row button i {
+            font-size: 16px;
         }
 
         .bill {
@@ -71,125 +106,159 @@
     </style>
 </head>
 
-<body>
-    <div class="container">
-        <h1>Thông tin người dùng</h1>
-        <form id="inf_user">
-            <p><strong>Tài khoản:</strong> <span id="username"></span></p>
-            <p><strong>Mật khẩu:</strong> <span id="password"></span></p>
-            <p><strong>Tên hiển thị:</strong> <span id="Name"></span></p>
+<br>
+<!-- Nút Home -->
+<div class="home-btn">
+    <button onclick="goHome()">🏠</button>
+</div>
+</br>
+<div class="container">
+    <h2>Thông tin người dùng</h2>
+    <form id="inf_user">
+        <p><strong>Tài khoản:</strong> <span id="username"></span></p>
+        <p><strong>Mật khẩu:</strong> <span id="password"></span></p>
+        <p><strong>Tên hiển thị:</strong> <span id="Name"></span></p>
+        <div class="form-row">
+            <label>Họ và tên:</label>
+            <input id="fullname" type="text" />
+            <button type="button" onclick="toggleEdit('fullname')"><i class="fas fa-cog"></i></button>
+        </div>
+        <div class="form-row">
+            <label>Email:</label>
+            <input id="email" type="text" />
+            <button type="button" onclick="toggleEdit('email')"><i class="fas fa-cog"></i></button>
+        </div>
+        <div class="form-row">
+            <label>Số điện thoại:</label>
+            <input id="phoneNumber" type="text" />
+            <button type="button" onclick="toggleEdit('phoneNumber')"><i class="fas fa-cog"></i></button>
+        </div>
+        <div class="form-row">
+            <label>Số dư:</label>
+            <input id="money" type="text" />
+            <button type="button" onclick="toggleEdit('money')"><i class="fas fa-cog"></i></button>
+        </div>
+        <p id="response"></p>
+    </form>
+    <hr />
+    <h2>Hóa đơn của bạn</h2>
+    <button onclick="fetchBills()">📋 Xem hóa đơn</button>
+    <div id="result"></div>
+</div>
+<script>
+    const _params = new URLSearchParams(window.location.search);
+    const _id_user = _params.get('msg');
+    const originalValues = {};
+    const editedFlags = {};
 
-            <label for="fullname">Họ và tên:</label>
-            <input type="text" id="fullname" required>
-
-            <label for="email">Email:</label>
-            <input type="text" id="email" required>
-
-            <label for="phone">Số điện thoại:</label>
-            <input type="text" id="phoneNumber" required>
-
-            <label for="money">Số dư:</label>
-            <input type="text" id="money" required>
-
-            <button id="confirm" type="button">Cập nhật thông tin</button>
-            <p id="response"></p>
-        </form>
-
-        <hr>
-
-        <h2>Hóa đơn của bạn</h2>
-        <button onclick="fetchBills()">📋 Xem hóa đơn</button>
-        <div id="result"></div>
-    </div>
-
-    <script>
-        const _params = new URLSearchParams(window.location.search);
-        const _id_user = _params.get('msg');
-
-        const username = document.getElementById('username');
-        const password = document.getElementById('password');
-        const Name = document.getElementById('Name');
-        const _button_confirm = document.getElementById('confirm');
-
-        async function get_inf() {
-            if (_id_user) {
-                const response = await fetch('http://localhost:18080/inf_user', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ id_user: _id_user })
-                });
-                const result = await response.json();
-                username.textContent = result.username;
-                password.textContent = result.password;
-                Name.textContent = result.name;
-                document.getElementById('fullname').value = result.fullname;
-                document.getElementById('email').value = result.email;
-                document.getElementById('phoneNumber').value = result.phoneNumber;
-                document.getElementById('money').value = result.money;
-            }
-        }
-
-        _button_confirm.addEventListener('click', async function (e) {
-            e.preventDefault();
-            const _fullname = document.getElementById('fullname').value;
-            const _email = document.getElementById('email').value;
-            const _phoneNumber = document.getElementById('phoneNumber').value;
-            const _money = document.getElementById('money').value;
-
-            const response = await fetch('http://localhost:18080/update_inf_user', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({
-                    id_user: _id_user,
-                    fullname: _fullname,
-                    email: _email,
-                    phoneNumber: _phoneNumber,
-                    money: _money
-                })
-            });
-            const result = await response.json();
-            document.getElementById('response').innerText = result.message;
-        });
-
-        async function fetchBills() {
-            const response = await fetch('http://localhost:18080/show_bill', {
+    async function get_inf() {
+        if (_id_user) {
+            const response = await fetch('http://localhost:18080/inf_user', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ id_user: _id_user })
             });
+            const result = await response.json();
 
-            const data = await response.json();
-            const container = document.getElementById('result');
-            container.innerHTML = '';
+            const fields = ['fullname', 'email', 'phoneNumber', 'money'];
+            fields.forEach(field => {
+                const input = document.getElementById(field);
+                if (result[field]) {
+                    input.value = result[field];
+                    input.disabled = true;
+                    originalValues[field] = result[field];
+                    editedFlags[field] = false;
+                } else {
+                    input.placeholder = 'Chưa có dữ liệu';
+                    input.disabled = false;
+                    editedFlags[field] = true;
+                }
+            });
 
-            if (data.message !== "Success") {
-                container.innerHTML = `<p class="error">${data.message}</p>`;
-                return;
+            document.getElementById('username').textContent = result.username;
+            document.getElementById('password').textContent = result.password;
+            document.getElementById('Name').textContent = result.name;
+        }
+    }
+
+    async function toggleEdit(id) {
+        const input = document.getElementById(id);
+        const button = input.nextElementSibling;
+
+        if (!editedFlags[id]) {
+            input.disabled = false;
+            input.focus();
+            editedFlags[id] = true;
+        } else {
+            const newValue = input.value;
+            const response = await fetch("http://localhost:18080/update_inf_user", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                    id_user: _id_user,
+                    field: id,
+                    value: newValue
+                })
+            });
+
+            const result = await response.json();
+            if (result.message) {
+                input.disabled = true;
+                originalValues[id] = newValue;
+                document.getElementById('response').innerText = result.message;
+                editedFlags[id] = false;
+            } else {
+                input.value = originalValues[id] || '';
+                input.disabled = true;
+                alert("Cập nhật thất bại!");
+                editedFlags[id] = false;
             }
+        }
+    }
 
-            data.bills.forEach((bill, index) => {
-                const billDiv = document.createElement('div');
-                billDiv.className = 'bill';
-                billDiv.innerHTML = `
+    async function fetchBills() {
+        const response = await fetch('http://localhost:18080/show_bill', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ id_user: _id_user })
+        });
+
+        const data = await response.json();
+        const container = document.getElementById('result');
+        container.innerHTML = '';
+
+        if (data.message !== "Success") {
+            container.innerHTML = `<p class="error">${data.message}</p>`;
+            return;
+        }
+
+        data.bills.forEach((bill, index) => {
+            const billDiv = document.createElement('div');
+            billDiv.className = 'bill';
+            billDiv.innerHTML = `
                     <h3>Hóa đơn #${index + 1}</h3>
                     <p><strong>Ngày:</strong> ${bill.dateTime}</p>
                     <p><strong>Tổng tiền:</strong> ${parseFloat(bill.totalCost).toLocaleString("vi-VN", { style: "currency", currency: "VND" })}</p>
                     <div><strong>Sản phẩm:</strong></div>
                 `;
-
-                bill.products.forEach(product => {
-                    const p = document.createElement('div');
-                    p.className = 'product';
-                    p.innerHTML = `- ${product.name} (SL: ${product.quantity}, Giá: ${parseFloat(product.price).toLocaleString("vi-VN", { style: "currency", currency: "VND" })})`;
-                    billDiv.appendChild(p);
-                });
-
-                container.appendChild(billDiv);
+            bill.products.forEach(product => {
+                const p = document.createElement('div');
+                p.className = 'product';
+                p.innerHTML = `- ${product.name} (SL: ${product.quantity}, Giá: ${parseFloat(product.price).toLocaleString("vi-VN", { style: "currency", currency: "VND" })})`;
+                billDiv.appendChild(p);
             });
-        }
 
-        get_inf();
-    </script>
+            container.appendChild(billDiv);
+        });
+    }
+
+    function goHome() {
+        window.location.href = `show_product.html?msg=${encodeURIComponent(_id_user)}`;
+    }
+    get_inf();
+
+
+</script>
 </body>
 
 </html>

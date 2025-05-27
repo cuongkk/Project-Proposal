@@ -115,9 +115,13 @@ bool operator<(const DateTime &dt1, const DateTime &dt2)
 bool operator>(const DateTime &dt1, const DateTime &dt2)
 {
     if (dt1._year != dt2._year)
+    {
         return dt1._year > dt2._year;
+    }
     if (dt1._month != dt2._month)
+    {
         return dt1._month > dt2._month;
+    }
     return dt1._day > dt2._day;
 }
 

@@ -28,5 +28,10 @@ public:
 
     void filter(const std::string &, const std::string &,
                 const std::string &, const std::string &);
+
+    void filterCart(std::string &);
+    void updateCart(const std::string &, const std::string &,
+                    const int &, const std::string &);
+    void deleteCart(const std::string &, const std::string &);
 };
 #endif

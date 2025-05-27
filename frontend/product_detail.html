@@ -2,9 +2,8 @@
 <html lang="vi">
 
 <head>
-    <meta charset="UTF-8">
+    <meta charset="utf-8" />
     <title id="title">Thông tin sản phẩm</title>
-
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -14,28 +13,36 @@
         }
 
         .top-bar {
-            text-align: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
             margin-top: 20px;
+            flex-wrap: wrap;
+            text-align: center;
         }
 
-        .top-bar button {
-            margin: 5px;
-            padding: 8px 14px;
-            font-size: 14px;
+        .cart-btn {
             background-color: #4CAF50;
             color: white;
             border: none;
-            border-radius: 5px;
+            border-radius: 6px;
+            font-size: 16px;
+            padding: 6px 10px;
+            height: 36px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             cursor: pointer;
         }
 
-        .top-bar button:hover {
-            background-color: #388e3c;
+        .cart-btn:hover {
+            background-color: #0056b3;
         }
 
         .container {
             max-width: 900px;
-            margin: 0 auto;
+            margin: 20px auto;
             background: #fff;
             border-radius: 10px;
             box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
@@ -90,7 +97,6 @@
 </head>
 
 <body>
-
     <div style="position: fixed; top: 10px; left: 10px; z-index: 1000;">
         <button onclick="goHome()" style="
         font-size: 20px;
@@ -105,14 +111,15 @@
         </button>
     </div>
 
-
-    <div class="top-bar" id="user-info-bar">
+    <div class="top-bar">
+        <span>👋 Xin chào, <strong id="user-name">User</strong></span>
+        <span class="balance" id="user-balance">💰 200.000đ</span>
+        <button class="cart-btn" onclick="showCart()">🛒</button>
     </div>
-
 
     <div class="container">
         <div class="product-image">
-            <img id="productImage" src="" alt="Ảnh sản phẩm">
+            <img alt="Ảnh sản phẩm" id="productImage" src="" />
         </div>
         <div class="product-info">
             <h2 id="productName"></h2>
@@ -122,14 +129,12 @@
             <p><strong>Số lượng còn lại:</strong> <span id="productQuantity"></span></p>
             <p><strong>NSX:</strong> <span id="productNSX"></span></p>
             <p><strong>HSD:</strong> <span id="productHSD"></span></p>
-
             <div style="margin-top: 20px;">
-                <input type="number" id="quantityInput" value="1" min="1">
+                <input id="quantityInput" min="1" type="number" value="1" />
                 <button id="addToCartBtn">➕ Thêm vào giỏ</button>
             </div>
         </div>
     </div>
-
     <script>
         window.addEventListener('DOMContentLoaded', async () => {
             const params = new URLSearchParams(window.location.search);

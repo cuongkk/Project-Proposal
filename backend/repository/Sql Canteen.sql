@@ -43,18 +43,19 @@ CREATE TABLE Bill_Details (
     FOREIGN KEY (id_Product) REFERENCES Products(id)
 );
 
--- Thêm dữ liệu mẫu
-INSERT INTO Products (id, name, inf, category, price, discount, quantity, manufacture_date, expiry_date, image_path)
-VALUES 
-('SP0001', N'Bánh Mì', N'Bánh', N'Đồ ăn', 25000, 10, 10, '2024-01-01', '2027-01-01', 'images/laptop.jpg'),
-('SP0002', N'Nước Suối', N'Nước', N'Đồ uống', 10000, 5, 50, '2024-03-01', '2025-03-01', 'images/mouse.jpg');
+CREATE TABLE Cart_Details (
+    id_User VARCHAR(6),
+    id_Product VARCHAR(6),
+    quantity INT NOT NULL,
+    price INT NOT NULL,
+    PRIMARY KEY (id_User, id_Product),
+    FOREIGN KEY (id_Product) REFERENCES Products(id)
+);
+
 
 INSERT INTO User (id, username, password, name, fullname, email, phoneNumber, money)
 VALUES
 ('US0001', 'admin', 'admin', 'admin', null, null, null, null),
 ('US0002', 'nguyentuancuong', '123456', 'cuong', N'Nguyễn Tuấn Cường', N'ntuancuong2005@gmail.com', '0328228324', '100000');
 
-
-
-use master
-drop database Canteen_Management
+--drop database Canteen_Management

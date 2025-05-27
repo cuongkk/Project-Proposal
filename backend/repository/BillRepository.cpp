@@ -90,3 +90,86 @@ void BillRepositoryImpl::filter(const std::string &id, const std::string &id_Cus
         _bills.push_back(bill);
     }
 }
+
+void BillRepositoryImpl::filterCart(std::string &id_Customer)
+{
+
+    if (id_Customer.empty())
+    {
+        return;
+    }
+    userManagement.getUser_from_id(id_Customer)->get_origin()->_cart.clear();
+
+    std::shared_ptr<sql::PreparedStatement> stmt(conn->prepareStatement(
+        "SELECT id_Product, quantity, price FROM Cart_Details WHERE id_User = ?"));
+    stmt->setString(1, id_Customer);
+    std::shared_ptr<sql::ResultSet> res(stmt->executeQuery());
+
+    while (res->next())
+    {
+        for (int i = 0; i < res->getInt("quantity"); ++i)
+        {
+            userManagement.getUser_from_id(id_Customer)->get_origin()->_cart.add(khoHang.getProduct_from_id(res->getString("id_Product"))->clone());
+            std::cout << "a";
+        }
+    }
+}
+
+void BillRepositoryImpl::updateCart(const std::string &id_Customer, const std::string &id_Product,
+                                    const int &quantity, const std::string &price)
+{
+    if (id_Customer.empty() || id_Product.empty() || price.empty())
+    {
+        throw std::invalid_argument("Không đủ thông tin để cập nhật giỏ hàng.");
+    }
+
+    // Kiểm tra xem bản ghi đã tồn tại chưa
+    std::shared_ptr<sql::PreparedStatement> checkStmt(conn->prepareStatement(
+        "SELECT COUNT(*) FROM Cart_Details WHERE id_User = ? AND id_Product = ?"));
+    checkStmt->setString(1, id_Customer);
+    checkStmt->setString(2, id_Product);
+    std::shared_ptr<sql::ResultSet> res(checkStmt->executeQuery());
+
+    bool exists = false;
+    if (res->next())
+    {
+        exists = res->getInt(1) > 0;
+    }
+
+    if (exists)
+    {
+        // Nếu đã tồn tại, cập nhật số lượng
+        std::shared_ptr<sql::PreparedStatement> updateStmt(conn->prepareStatement(
+            "UPDATE Cart_Details SET quantity = quantity + ? WHERE id_User = ? AND id_Product = ?"));
+        updateStmt->setInt(1, quantity);
+        updateStmt->setString(2, id_Customer);
+        updateStmt->setString(3, id_Product);
+        updateStmt->executeUpdate();
+    }
+    else
+    {
+        // Nếu chưa tồn tại, chèn mới
+        std::shared_ptr<sql::PreparedStatement> insertStmt(conn->prepareStatement(
+            "INSERT INTO Cart_Details (id_User, id_Product, quantity, price) VALUES (?, ?, ?, ?)"));
+        insertStmt->setString(1, id_Customer);
+        insertStmt->setString(2, id_Product);
+        insertStmt->setInt(3, quantity);
+        insertStmt->setInt(4, std::stoll(price));
+        insertStmt->executeUpdate();
+    }
+}
+
+void BillRepositoryImpl::deleteCart(const std::string &id_Customer, const std::string &id_Product)
+{
+    if (id_Customer.empty() || id_Product.empty())
+    {
+        throw std::invalid_argument("Không đủ thông tin để xóa sản phẩm khỏi giỏ hàng.");
+    }
+
+    std::shared_ptr<sql::PreparedStatement> pstmt(conn->prepareStatement(
+        "DELETE FROM Cart_Details WHERE id_User = ? AND id_Product = ?"));
+    pstmt->setString(1, id_Customer);
+    pstmt->setString(2, id_Product);
+
+    pstmt->executeUpdate();
+}

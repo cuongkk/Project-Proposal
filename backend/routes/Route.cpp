@@ -229,60 +229,87 @@ void setup_update_inf_user_routes(crow::App<CORS> &app)
         if (!userPtr)
             return crow::response(404, "User not found");
 
-        std::string _fullname = body["fullname"].s();
-        std::string _email = body["email"].s();
-        std::string _phoneNumber = body["phoneNumber"].s();
-        std::string _money = body["money"].s();
+        std::string field = body["field"].s();
+        std::string newValue = body["value"].s();
+        
+        if (field == "fullname")
+        {
+            if (newValue == "")
+            {
+                res["message"] = "Vui lòng nhập họ tên";
+                return crow::response{res};
+            }
+            else if (newValue.length() > 50)
+            {
+                res["message"] = "Họ tên không được quá 50 ký tự";
+                return crow::response{res};
+            }
+            repoUser.update(id_user, newValue, "", "", "");
+            res["message"] = "Cập nhật họ tên thành công";
+            return crow::response{res};
 
-        if (_fullname == "")
+        }
+        else if (field == "email")
         {
-            res["message"] = "Vui lòng nhập họ tên";
+            if (newValue == "")
+            {
+                res["message"] = "Vui lòng nhập email";
+                return crow::response{res};
+            }
+            else if (newValue.length() > 50)
+            {
+                res["message"] = "Email không được quá 50 ký tự";
+                return crow::response{res};
+            }
+            else if (!is_diffrent_name(newValue, userManagement.get_email_user()))
+            {
+                res["message"] = newValue + " đã trùng lặp";
+                return crow::response{res};
+            }
+            repoUser.update(id_user, "", newValue, "", "");
+            res["message"] = "Cập nhật email thành công";
             return crow::response{res};
         }
-        else if (_fullname.length() > 50)
+        else if (field == "phoneNumber")
         {
-            res["message"] = "Họ tên không được quá 50 ký tự";
+            if (newValue == "")
+            {
+                res["message"] = "Vui lòng nhập số điện thoại";
+                return crow::response{res};
+            }
+            else if (newValue.length() > 15)
+            {
+                res["message"] = "Số điện thoại không được quá 15 ký tự";
+                return crow::response{res};
+            }
+            else if (!is_diffrent_name(newValue, userManagement.get_phoneNumber_user()))
+            {
+                res["message"] = newValue + " đã trùng lặp";
+                return crow::response{res};
+            }
+            repoUser.update(id_user, "", "", newValue, "");
+            res["message"] = "Cập nhật số điện thoại thành công";
             return crow::response{res};
         }
-        else if (_email == "")
+        else if (field == "money")
         {
-            res["message"] = "Vui lòng nhập email";
-            return crow::response{res};
-        }
-        else if (!is_diffrent_name(_email, userManagement.get_email_user()))
-        {
-            res["message"] = _email + " đã trùng lặp";
-            return crow::response{res};
-        }
-        else if (_phoneNumber == "")
-        {
-            res["message"] = "Vui lòng nhập số điện thoại";
-            return crow::response{res};
-        }
-        else if (!is_diffrent_name(_phoneNumber, userManagement.get_phoneNumber_user()))
-        {
-            res["message"] = _phoneNumber + " đã trùng lặp";
-            return crow::response{res};
-        }
-        else if (_phoneNumber.length() != 10)
-        {
-            res["message"] = "Số điện thoại không hợp lệ";
-            return crow::response{res};
-        }
-        else if (_money == "")
-        {
-            res["message"] = "Vui lòng nhập số tiền";
-            return crow::response{res};
-        }
-        else if (!is_positive_number(_money))
-        {
-            res["message"] = "Số tiền không hợp lệ";
+            if (newValue == "")
+            {
+                res["message"] = "Vui lòng nhập số tiền";
+                return crow::response{res};
+            }
+            else if (!is_positive_number(newValue))
+            {
+                res["message"] = "Số tiền không hợp lệ";
+                return crow::response{res};
+            }
+            repoUser.update(id_user, "", "", "", newValue);
+            res["message"] = "Cập nhật số tiền thành công";
             return crow::response{res};
         }
         else
         {
-            repoUser.update(id_user, _fullname, _email, _phoneNumber, _money);
-            res["message"] = "Cập nhật thông tin thành công";
+            res["message"] = "Trường không hợp lệ";
             return crow::response{res};
         }
         res["message"] = "Cập nhật thông tin không thành công";
@@ -426,8 +453,8 @@ void setup_add_product_routes(crow::App<CORS> &app)
     int month_expiry_Date = std::stoi(_expiry_Date.substr(5, 2));
     int day_expiry_Date = std::stoi(_expiry_Date.substr(8, 2));
 
-    DateTime manufacture_Date(year_manufacture_Date, month_manufacture_Date, day_manufacture_Date);
-    DateTime expiry_Date(year_expiry_Date, month_expiry_Date, day_expiry_Date);
+    DateTime manufacture_Date(day_manufacture_Date, month_manufacture_Date, year_manufacture_Date);
+    DateTime expiry_Date(day_expiry_Date, month_expiry_Date, year_expiry_Date);
 
     if (manufacture_Date > expiry_Date)
     {
@@ -688,11 +715,11 @@ void setup_add_product_to_cart_routes(crow::App<CORS> &app)
         }
         else
         {
-            int quantity = khoHang.getProduct_from_id(_id_product)->get_origin()->get_quantity();
-            for (int i = 0; i < std::stoi(_quantity_change); i++)
-            {
-                userPtr->_cart.add(khoHang.getProduct_from_id(_id_product));
-            }
+            int quantity = std::stoi(_quantity_change);
+            std::string money = khoHang.getProduct_from_id(_id_product)->get_origin()->get_money();
+            long long discount = std::stoll(khoHang.getProduct_from_id(_id_product)->get_origin()->get_discount());
+            std::string cost = std::to_string(std::stoll(money) * (100 - discount) / 100);
+            repoBill.updateCart(id_user, _id_product, quantity, cost);
             res["message"] = "Success";
             return crow::response{res};
 
@@ -731,7 +758,11 @@ void setup_remove_product_from_cart_routes(crow::App<CORS> &app)
         }
         else
         {
-            userPtr->_cart.remove(khoHang.getProduct_from_id(_id_product));
+            int quantity = std::stoi(_quantity_change);
+            std::string money = khoHang.getProduct_from_id(_id_product)->get_origin()->get_money();
+            long long discount = std::stoll(khoHang.getProduct_from_id(_id_product)->get_origin()->get_discount());
+            std::string cost = std::to_string(std::stoll(money) * (100 - discount) / 100);
+            repoBill.updateCart(id_user, _id_product, quantity, cost);
             res["message"] = "Success";
             return crow::response{res};
             
@@ -757,6 +788,7 @@ void setup_show_cart_routes(crow::App<CORS> &app)
         crow::json::wvalue res;
         int i = 0;
 
+        repoBill.filterCart(id_user);
         if (userPtr->_cart.get_size() == 0)
         {
             res["message"] = "Giỏ hàng trống";
