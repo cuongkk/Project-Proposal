@@ -22,7 +22,8 @@ CREATE TABLE User (
     fullname NVARCHAR(100),
     email NVARCHAR(100),
     phoneNumber VARCHAR(10),
-    money INT
+    money INT,
+	image_path VARCHAR(255)
 );
 
 CREATE TABLE Bill (
@@ -53,9 +54,7 @@ CREATE TABLE Cart_Details (
 );
 
 
-INSERT INTO User (id, username, password, name, fullname, email, phoneNumber, money)
+INSERT INTO User (id, username, password, name, fullname, email, phoneNumber, money, image_path)
 VALUES
-('US0001', 'admin', 'admin', 'admin', null, null, null, null),
-('US0002', 'nguyentuancuong', '123456', 'cuong', N'Nguyễn Tuấn Cường', N'ntuancuong2005@gmail.com', '0328228324', '100000');
-
---drop database Canteen_Management
+('US0001', 'admin', 'admin', 'admin', null, null, null, null, '../backend/images/user/user.jpg'),
+('US0002', 'nguyentuancuong', '123456', 'cuong', N'Nguyễn Tuấn Cường', N'ntuancuong2005@gmail.com', '0328228324', '100000', '../backend/images/user/user.jpg');
