@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <title>Đăng kí</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f4f6f9;
+            margin: 0;
+            padding: 20px;
+        }
+
+        h1,
+        h2,
+        h3 {
+            text-align: center;
+            color: #333;
+        }
+
+        form,
+        .container,
+        .content {
+            max-width: 700px;
+            margin: 20px auto;
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        input[type="text"],
+        input[type="password"],
+        input[type="number"],
+        input[type="date"],
+        select,
+        textarea {
+            width: 100%;
+            padding: 10px;
+            margin: 8px 0 20px 0;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            box-sizing: border-box;
+        }
+
+        button,
+        input[type="submit"] {
+            background-color: #007bff;
+            color: white;
+            padding: 12px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            width: 100%;
+            font-size: 16px;
+        }
+
+        button:hover,
+        input[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            background-color: white;
+        }
+
+        th,
+        td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        hr {
+            margin: 30px 0;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Đăng kí</h1>
+    <form id="signupForm">
+        <label for="username">Username:</label>
+        <input id="username" required="" type="text" /><br /><br />
+        <label for="password">Password:</label>
+        <input id="password" required="" type="password" /><br /><br />
+        <label for=" name">Name:</label>
+        <input id="name" required="" type="text" /><br /><br />
+        <button id="signup" type="button">Đăng kí</button>
+    </form>
+    <p id="response"></p>
+    <hr />
+    <script>
+        const _form = document.getElementById('signupForm');
+        const _signup = document.getElementById('signup');
+        const _login = document.getElementById('login');
+        const _responseServer = document.getElementById('response');
+
+
+
+
+        _signup.addEventListener('click', async function (e) {
+            e.preventDefault();
+
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+            const name = document.getElementById('name').value;
+
+
+            const response = await fetch('http://localhost:18080/signup', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ username, password, name })
+            });
+
+            const result = await response.json();
+
+            if (result.message == "Success") {
+                window.location.href = "http://127.0.0.1:5503/frontend/login.html"
+            }
+            else {
+                _responseServer.textContent = result.message || JSON.stringify(result);
+
+            }
+
+            _form.reset();
+        });
+
+    </script>
+</body>
+
+</html>

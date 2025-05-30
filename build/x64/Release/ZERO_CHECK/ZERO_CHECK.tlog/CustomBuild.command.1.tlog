@@ -1,0 +1,10 @@
+^C:\OOP\PROJECT\CANTEEN-MANAGEMENT-SYSTEM\BUILD\CMAKEFILES\BB2E13A26A1527280FBFE1069D94E5C3\GENERATE.STAMP.RULE
+setlocal
+C:\winlibs\mingw64\bin\cmake.exe -SC:/OOP/Project/Canteen-Management-System -BC:/OOP/Project/Canteen-Management-System/build --check-stamp-list CMakeFiles/generate.stamp.list --vs-solution-file C:/OOP/Project/Canteen-Management-System/build/crow_project.sln
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd

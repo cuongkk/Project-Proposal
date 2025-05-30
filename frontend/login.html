@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Đăng nhập</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f0f2f5;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+
+        .login-container {
+            background-color: #fff;
+            padding: 30px 40px;
+            border-radius: 12px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 400px;
+            text-align: center;
+        }
+
+        h1 {
+            margin-bottom: 24px;
+            color: #333;
+        }
+
+        label {
+            display: block;
+            text-align: left;
+            margin-bottom: 6px;
+            font-weight: bold;
+            color: #555;
+        }
+
+        input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 18px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            font-size: 16px;
+        }
+
+        button {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 6px;
+            font-size: 16px;
+            cursor: pointer;
+            width: 100%;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        #response {
+            margin-top: 20px;
+            color: rgb(1, 0, 12);
+        }
+
+        hr {
+            margin-top: 30px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="login-container">
+        <h1>Đăng nhập</h1>
+        <form id="loginForm">
+            <label for="username">Tên đăng nhập:</label>
+            <input type="text" id="username" required>
+
+            <label for="password">Mật khẩu:</label>
+            <input type="text" id="password" required>
+
+
+            <button id="login" type="button">Đăng nhập</button>
+        </form>
+
+        <p id="response"></p>
+        <hr>
+    </div>
+
+    <script>
+        const _form = document.getElementById('loginForm');
+        const _login = document.getElementById('login');
+        const _responseServer = document.getElementById('response');
+
+        _login.addEventListener('click', async function (e) {
+            e.preventDefault();
+
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+
+            const response = await fetch('http://localhost:18080/login', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ username, password })
+            });
+
+            const result = await response.json();
+            _responseServer.textContent = result.message;
+
+            if (result.id_user.trim() == "US0001") {
+                const encodedMsg = encodeURIComponent(result.id_user);
+                window.location.href = `http://127.0.0.1:5503/frontend/UI_admin.html?msg=${encodedMsg}`;
+            }
+            else if (result.id_user.trim().startsWith("US")) {
+                const encodedMsg = encodeURIComponent(result.id_user);
+                window.location.href = `http://127.0.0.1:5503/frontend/show_product.html?msg=${encodedMsg}`;
+            }
+            _form.reset();
+        });
+    </script>
+</body>
+
+</html>

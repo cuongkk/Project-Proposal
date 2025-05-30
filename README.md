@@ -62,6 +62,7 @@
 
 ### 1. Thiết kế hệ thống hướng đối tượng
 - Sử dụng kế thừa, đa hình (class `SanPham` làm cha cho `ThucAn` và `ThucUong`; class `User` làm cha cho `Admin` và `Customer`).
+- Sử dụng get_clone() và get_Origin() để đảm bảo tính nguyên vẹn của dữ liệu 
 - Quản lý danh sách sản phẩm, người dùng, hóa đơn bằng các lớp quản lý (`KhoHang`, `UserManagement`, `BillManagement`).
 
 ### 2. Tổ chức mã nguồn rõ ràng
@@ -80,6 +81,13 @@
 ### 5. Khả năng mở rộng
 - Dễ dàng mở rộng thêm loại sản phẩm khác (nhờ đa hình).
 - Có thể thêm phân quyền nâng cao hoặc tính năng báo cáo trong tương lai.
+
+### 6. Công việc tiếp theo 
+- Sử dụng **RESTful API** để hỗ trỡ giao tiếp giữa người dùng
+- Thiết kế giao diện với **HTML/CSS** và **JavaScript**
+- Sử dụng **SQL Server** để quản lí dữ liệu, truy vẫn nhanh chóng
+- Hoàn thiện models và mở rộng các tính năng
+
 
 ---
 

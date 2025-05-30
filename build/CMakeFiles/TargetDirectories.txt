@@ -1,0 +1,3 @@
+C:/OOP/Project/Canteen-Management-System/build/CMakeFiles/server.dir
+C:/OOP/Project/Canteen-Management-System/build/CMakeFiles/ALL_BUILD.dir
+C:/OOP/Project/Canteen-Management-System/build/CMakeFiles/ZERO_CHECK.dir

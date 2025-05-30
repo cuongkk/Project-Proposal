@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="utf-8" />
+    <title>Thông tin người dùng &amp; Hóa đơn</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <style>
+        .home-btn {
+            position: fixed;
+            top: 10px;
+            left: 10px;
+            z-index: 1000;
+        }
+
+        .home-btn button {
+            font-size: 20px;
+            padding: 6px 12px;
+            background-color: #ffffff;
+            border: 2px solid #ccc;
+            border-radius: 50%;
+            cursor: pointer;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f4f6f9;
+            margin: 0;
+            padding: 20px;
+        }
+
+        h1,
+        h2,
+        h3 {
+            text-align: center;
+            color: #333;
+        }
+
+        .container {
+            max-width: 700px;
+            margin: 20px auto;
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 2fr 8fr 1fr;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 12px;
+        }
+
+        .form-row input {
+            height: 30px;
+            padding: 8px 12px;
+            border-radius: 6px;
+            border: 1px solid #ccc;
+            box-sizing: border-box;
+            font-size: 14px;
+        }
+
+        .form-row button {
+            height: 30px;
+            width: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #007bff;
+            border: none;
+            border-radius: 6px;
+            color: white;
+            cursor: pointer;
+            box-shadow: 0 4px 8px rgba(0, 123, 255, 0.3);
+            transition: all 0.2s ease;
+            padding: 0;
+        }
+
+        .form-row button:hover {
+            background-color: #0056b3;
+            transform: translateY(-1px);
+        }
+
+        .form-row button i {
+            font-size: 16px;
+        }
+
+        .bill {
+            border: 1px solid #ccc;
+            padding: 15px;
+            margin-top: 20px;
+            border-radius: 8px;
+            background-color: #fafafa;
+        }
+
+        .product {
+            margin-left: 20px;
+        }
+
+        .error {
+            color: red;
+        }
+    </style>
+</head>
+
+<br>
+<!-- Nút Home -->
+<div class="home-btn">
+    <button onclick="goHome()">🏠</button>
+</div>
+</br>
+<div class="container">
+    <h2>Thông tin người dùng</h2>
+    <form id="inf_user">
+        <div style="position: relative; width: 150px; height: 150px; margin: 0 auto 15px auto;">
+            <img id="userImage" src="" alt="Ảnh người dùng"
+                style="width: 100%; height: 100%; object-fit: cover; border-radius: 50%; border: 2px solid #ccc;">
+
+            <label for="imageFile"
+                style="position: absolute; top: 4px; right: 4px; background: #007bff; color: white; border-radius: 50%; width: 30px; height: 30px; display: flex; align-items: center; justify-content: center; cursor: pointer; box-shadow: 0 0 5px rgba(0,0,0,0.3);">
+                <i class="fas fa-pen"></i>
+            </label>
+            <input id="imageFile" type="file" accept="image/*" style="display: none;" onchange="uploadImage()" />
+        </div>
+
+
+        <p><strong>Tài khoản:</strong> <span id="username"></span></p>
+        <div class="form-row">
+            <label>Mật khẩu:</label>
+            <input id="password" type="text" />
+            <button type="button" onclick="toggleEdit('password')"><i class="fas fa-cog"></i></button>
+        </div>
+        <div class="form-row">
+            <label>Tên hiển thị:</label>
+            <input id="name" type="text" />
+            <button type="button" onclick="toggleEdit('name')"><i class="fas fa-cog"></i></button>
+        </div>
+        <div class="form-row">
+            <label>Họ và tên:</label>
+            <input id="fullname" type="text" />
+            <button type="button" onclick="toggleEdit('fullname')"><i class="fas fa-cog"></i></button>
+        </div>
+        <div class="form-row">
+            <label>Email:</label>
+            <input id="email" type="text" />
+            <button type="button" onclick="toggleEdit('email')"><i class="fas fa-cog"></i></button>
+        </div>
+        <div class="form-row">
+            <label>Số điện thoại:</label>
+            <input id="phoneNumber" type="text" />
+            <button type="button" onclick="toggleEdit('phoneNumber')"><i class="fas fa-cog"></i></button>
+        </div>
+        <div class="form-row">
+            <label>Số dư:</label>
+            <input id="money" type="text" />
+            <button type="button" onclick="toggleEdit('money')"><i class="fas fa-cog"></i></button>
+        </div>
+        <p id="response"></p>
+    </form>
+    <hr />
+    <h2>Hóa đơn của bạn</h2>
+    <button onclick="fetchBills()">📋 Xem hóa đơn</button>
+    <div id="result"></div>
+</div>
+<script>
+    const _params = new URLSearchParams(window.location.search);
+    const _id_user = _params.get('msg');
+    const originalValues = {};
+    const editedFlags = {};
+
+    async function get_inf() {
+        if (_id_user) {
+            const response = await fetch('http://localhost:18080/inf_user', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ id_user: _id_user })
+            });
+            const result = await response.json();
+
+            const fields = ['password', 'name', 'fullname', 'email', 'phoneNumber', 'money'];
+            fields.forEach(field => {
+                const input = document.getElementById(field);
+                if (result[field]) {
+                    input.value = result[field];
+                    input.disabled = true;
+                    originalValues[field] = result[field];
+                    editedFlags[field] = false;
+                } else {
+                    input.placeholder = 'Chưa có dữ liệu';
+                    input.disabled = false;
+                    editedFlags[field] = true;
+                }
+            });
+            document.getElementById('userImage').src = result.imagePath || "https://via.placeholder.com/250x180?text=No+Image";
+            document.getElementById('username').textContent = result.username;
+            document.getElementById('password').textContent = result.password;
+            document.getElementById('Name').textContent = result.name;
+        }
+    }
+
+    async function toggleEdit(id) {
+        const input = document.getElementById(id);
+        const button = input.nextElementSibling;
+
+        if (!editedFlags[id]) {
+            input.disabled = false;
+            input.focus();
+            editedFlags[id] = true;
+        } else {
+            const newValue = input.value;
+            const response = await fetch("http://localhost:18080/update_inf_user", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                    id_user: _id_user,
+                    field: id,
+                    value: newValue
+                })
+            });
+
+            const result = await response.json();
+            if (result.message) {
+                input.disabled = true;
+                originalValues[id] = newValue;
+                document.getElementById('response').innerText = result.message;
+                editedFlags[id] = false;
+            } else {
+                input.value = originalValues[id] || '';
+                input.disabled = true;
+                alert("Cập nhật thất bại!");
+                editedFlags[id] = false;
+            }
+        }
+    }
+
+    async function uploadImage() {
+        const fileInput = document.getElementById("imageFile");
+        const file = fileInput.files[0];
+        const formData = new FormData();
+        formData.append("id_user", _id_user);
+        formData.append("image", file); // phải có tên "image"
+
+        await fetch("http://localhost:18080/update_image_user", {
+            method: "POST",
+            body: formData
+        });
+
+
+        const result = await response.json();
+        if (result.message === "Success") {
+            // Gán lại ảnh đại diện mới
+            document.getElementById("userImage").src = `http://localhost:18080/images/user/${result.newImage}`;
+            document.getElementById("response").innerText = "Ảnh đã được cập nhật!";
+        } else {
+            alert("Lỗi khi cập nhật ảnh: " + result.message);
+        }
+    }
+
+
+
+
+    async function fetchBills() {
+        const response = await fetch('http://localhost:18080/show_bill', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ id_user: _id_user })
+        });
+
+        const data = await response.json();
+        const container = document.getElementById('result');
+        container.innerHTML = '';
+
+        if (data.message !== "Success") {
+            container.innerHTML = `<p class="error">${data.message}</p>`;
+            return;
+        }
+
+        data.bills.forEach((bill, index) => {
+            const billDiv = document.createElement('div');
+            billDiv.className = 'bill';
+            billDiv.innerHTML = `
+                    <h3>Hóa đơn #${index + 1}</h3>
+                    <p><strong>Ngày:</strong> ${bill.dateTime}</p>
+                    <p><strong>Tổng tiền:</strong> ${parseFloat(bill.totalCost).toLocaleString("vi-VN", { style: "currency", currency: "VND" })}</p>
+                    <div><strong>Sản phẩm:</strong></div>
+                `;
+            bill.products.forEach(product => {
+                const p = document.createElement('div');
+                p.className = 'product';
+                p.innerHTML = `- ${product.name} (SL: ${product.quantity}, Giá: ${parseFloat(product.price).toLocaleString("vi-VN", { style: "currency", currency: "VND" })})`;
+                billDiv.appendChild(p);
+            });
+
+            container.appendChild(billDiv);
+        });
+    }
+
+    function goHome() {
+        window.location.href = `show_product.html?msg=${encodeURIComponent(_id_user)}`;
+    }
+    get_inf();
+
+
+</script>
+</body>
+
+</html>

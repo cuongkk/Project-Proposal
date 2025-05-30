@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <title>Thêm Sản Phẩm</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f4f6f9;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .home-btn {
+            position: fixed;
+            top: 10px;
+            left: 10px;
+            z-index: 1000;
+        }
+
+        .home-btn button {
+            font-size: 20px;
+            padding: 6px 12px;
+            background-color: #ffffff;
+            border: 2px solid #ccc;
+            border-radius: 50%;
+            cursor: pointer;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+
+        .main-container {
+            display: flex;
+            gap: 40px;
+            justify-content: center;
+            align-items: flex-start;
+            max-width: 1200px;
+            margin: auto;
+        }
+
+        form {
+            flex: 1;
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .preview-card {
+            width: 300px;
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        .preview-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 8px;
+            background: #eee;
+            margin-bottom: 10px;
+        }
+
+        .preview-card h3 {
+            margin: 10px 0 5px;
+        }
+
+        .preview-card p {
+            margin: 5px 0;
+        }
+
+        input[type="text"],
+        input[type="password"],
+        input[type="number"],
+        input[type="date"],
+        select,
+        textarea {
+            width: 100%;
+            padding: 10px;
+            margin: 8px 0 20px 0;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            box-sizing: border-box;
+        }
+
+        button {
+            background-color: #007bff;
+            color: white;
+            padding: 12px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            width: 100%;
+            font-size: 16px;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        #response {
+            margin-top: 15px;
+            color: green;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="home-btn">
+        <button onclick="goHome()">🏠</button>
+    </div>
+    <h1>Thêm Sản Phẩm</h1>
+    <div class="main-container">
+        <form enctype="multipart/form-data" id="form_add_product">
+            <label for="name">Tên sản phẩm:</label>
+            <input id="name" name="name" type="text" oninput="updatePreview()" />
+
+            <label for="inf">Thông tin:</label>
+            <input id="inf" name="inf" type="text" />
+
+            <label for="type">Loại sản phẩm:</label>
+            <select id="type" name="type">
+                <option value="Đồ ăn">Đồ ăn</option>
+                <option value="Đồ uống">Thức uống</option>
+            </select>
+
+            <label for="quantity">Số lượng:</label>
+            <input id="quantity" name="quantity" type="text" />
+
+            <label for="price">Giá:</label>
+            <input id="price" name="price" type="text" oninput="updatePreview()" />
+
+            <label for="discount">Giảm giá:</label>
+            <input id="discount" name="discount" type="text" />
+
+            <label for="manufacture_Date">Ngày sản xuất:</label>
+            <input id="manufacture_Date" name="manufacture_Date" type="date" />
+
+            <label for="expiry_Date">Ngày hết hạn:</label>
+            <input id="expiry_Date" name="expiry_Date" type="date" />
+
+            <label for="image">Hình ảnh:</label>
+            <input id="image" name="image" type="file" accept="image/*" onchange="previewImage(event)" />
+
+            <button id="add_product">Thêm sản phẩm</button>
+            <p id="response"></p>
+        </form>
+
+        <div class="preview-card">
+            <img id="preview-img" src="https://via.placeholder.com/300x200?text=Ảnh" alt="Xem trước ảnh">
+            <h3 id="preview-name">Tên sản phẩm</h3>
+            <p id="preview-price">Giá: 0₫</p>
+        </div>
+    </div>
+
+    <script>
+        const _params = new URLSearchParams(window.location.search);
+        const _id_user = _params.get('msg');
+        const _form = document.getElementById('form_add_product');
+        _form.style.display = 'none';
+
+        if (_id_user == "US0001") {
+            _form.style.display = 'inline-block';
+            const _add_product = document.getElementById('add_product');
+
+            _add_product.addEventListener('click', async function (e) {
+                e.preventDefault();
+
+                const formData = new FormData();
+                formData.append('name', document.getElementById('name').value);
+                formData.append('inf', document.getElementById('inf').value);
+                formData.append('type', document.getElementById('type').value);
+                formData.append('quantity', document.getElementById('quantity').value);
+                formData.append('price', document.getElementById('price').value);
+                formData.append('discount', document.getElementById('discount').value);
+                formData.append('manufacture_Date', document.getElementById('manufacture_Date').value);
+                formData.append('expiry_Date', document.getElementById('expiry_Date').value);
+                formData.append('image', document.getElementById('image').files[0]);
+
+                const response = await fetch('http://localhost:18080/add_product', {
+                    method: 'POST',
+                    body: formData
+                });
+
+                const result = await response.json();
+                document.getElementById('response').innerText = result.message;
+            });
+        }
+
+        function updatePreview() {
+            const name = document.getElementById("name").value;
+            const price = document.getElementById("price").value;
+            document.getElementById("preview-name").textContent = name || "Tên sản phẩm";
+            document.getElementById("preview-price").textContent = price ? "Giá: " + parseInt(price).toLocaleString("vi-VN") + "₫" : "Giá: 0₫";
+        }
+
+        function previewImage(event) {
+            const output = document.getElementById('preview-img');
+            const file = event.target.files[0];
+            if (file) {
+                output.src = URL.createObjectURL(file);
+            } else {
+                output.src = "https://via.placeholder.com/300x200?text=Ảnh";
+            }
+        }
+        function goHome() {
+            window.location.href = `UI_admin.html?msg=${encodeURIComponent(_id_user)}`;
+        }
+    </script>
+</body>
+
+</html>
