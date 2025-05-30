@@ -110,7 +110,6 @@ void BillRepositoryImpl::filterCart(std::string &id_Customer)
         for (int i = 0; i < res->getInt("quantity"); ++i)
         {
             userManagement.getUser_from_id(id_Customer)->get_origin()->_cart.add(khoHang.getProduct_from_id(res->getString("id_Product"))->clone());
-            std::cout << "a";
         }
     }
 }

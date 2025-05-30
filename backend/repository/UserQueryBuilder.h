@@ -6,7 +6,7 @@
 class UserQueryBuilder
 {
 private:
-    std::string baseQueryFilter = "SELECT id, username, password, name, fullname, email, phoneNumber, money FROM User";
+    std::string baseQueryFilter = "SELECT id, username, password, name, fullname, email, phoneNumber, money, image_path FROM User";
     std::string baseQueryUpdate = "UPDATE User SET ";
     std::vector<std::string> conditions;
     std::vector<std::string> updateFields;
@@ -24,6 +24,7 @@ public:
     UserQueryBuilder &updateEmail(const std::string &);
     UserQueryBuilder &updatePhoneNumber(const std::string &);
     UserQueryBuilder &updateMoney(const std::string &);
+    UserQueryBuilder &updateImage(const std::string &);
     std::string buildUpdate();
 
 private:

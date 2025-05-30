@@ -144,7 +144,7 @@
             // Lấy user info
             if (userId) {
                 try {
-                    const response = await fetch('http://localhost:18080/user', {
+                    const response = await fetch('http://localhost:18080/inf_user', {
                         method: 'POST',
                         headers: { 'Content-Type': 'application/json' },
                         body: JSON.stringify({ id_user: userId })
@@ -153,13 +153,12 @@
                     const name = result["name"];
                     const money = result["money"];
 
-                    document.getElementById('user-info-bar').innerHTML = `
-                    <span>👋 Chào <strong id="username">${name}</strong></span>
-                    <span>💰 Số dư: <strong id="usermoney">${parseFloat(money).toLocaleString("vi-VN", { style: "currency", currency: "VND" })}</strong></span>
-                    <button onclick="showCart()">🛒</button>
-                `;
+                    document.getElementById('user-name').innerText = name || "User";
+                    document.getElementById('user-balance').innerText = `💰 ${parseFloat(money).toLocaleString("vi-VN", { style: "currency", currency: "VND" })}`;
                 } catch (err) {
                     console.error("Lỗi khi lấy thông tin người dùng:", err);
+                    document.getElementById('user-name').innerText = "User";
+                    document.getElementById('user-balance').innerText = `💰 200.000đ`;
                 }
             }
 
@@ -187,6 +186,10 @@
             document.getElementById("productHSD").innerText = productData.expiry_Date;
 
             document.getElementById("addToCartBtn").addEventListener("click", () => {
+                if (userId === 'US0001') {
+                    alert("Admin không thể thêm sản phẩm vào giỏ hàng.");
+                    return;
+                }
                 const quantity = document.getElementById("quantityInput").value;
                 if (isNaN(quantity) || quantity < 1) {
                     alert("Số lượng không hợp lệ");
@@ -221,38 +224,10 @@
             const userId = new URLSearchParams(window.location.search).get('msg');
             if (!userId) return;
             const encoded = encodeURIComponent(userId);
-            window.location.href = `show_cart.html?msg=${encoded}`;
+            window.location.href = `show_cart.html?msg=${encoded} `;
         }
 
 
-
-        document.addEventListener('DOMContentLoaded', async () => {
-            const _params = new URLSearchParams(window.location.search);
-            const _id_user = _params.get('msg');
-
-            if (!_id_user) {
-
-            } else {
-                const response = await fetch('http://localhost:18080/user', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify({ id_user: _id_user })
-                });
-                const result = await response.json();
-                const name = result["name"];
-                const money = result["money"];
-
-                document.getElementById('user-info-bar').innerHTML = `
-            <span>👋 Chào <strong id="username">${name}</strong></span>
-            <span>💰 Số dư: <strong id="usermoney">${parseFloat(money).toLocaleString("vi-VN", { style: "currency", currency: "VND" })}</strong></span>
-            <button onclick="showCart()">🛒</button>
-        `;
-            }
-
-            await refreshProductList(_id_user);
-        });
 
         function goHome() {
             const userId = new URLSearchParams(window.location.search).get('msg');

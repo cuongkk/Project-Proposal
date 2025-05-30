@@ -102,7 +102,7 @@
         "xutility": "cpp"
     },
     "liveServer.settings.port": 5503,
-    "cmake.sourceDirectory": "/workspaces/Project-Proposal/Html",
+    "cmake.sourceDirectory": "/workspaces/Project-Proposal/frontend",
     "cmake.ignoreCMakeListsMissing": true,
     "editor.quickSuggestions": {
         "other": true,

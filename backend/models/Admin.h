@@ -11,7 +11,8 @@ public:
     Admin();
     ~Admin();
     Admin(const std::string &, const std::string &,
-          const std::string &, const std::string &);
+          const std::string &, const std::string &,
+          const std::string &);
 
     std::shared_ptr<User> clone() const override;
     User *get_origin() const override;

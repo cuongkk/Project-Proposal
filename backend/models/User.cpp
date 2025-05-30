@@ -8,8 +8,8 @@ User::User()
 }
 
 User::User(const std::string &id_user, const std::string &username,
-           const std::string &password, const std::string &name)
-    : _id_user(id_user), _username(username), _password(password), _name(name)
+           const std::string &password, const std::string &name, const std::string &imagePath)
+    : _id_user(id_user), _username(username), _password(password), _name(name), _imagePath(imagePath)
 {
     _origin = this;
 }
@@ -47,6 +47,16 @@ void User::set_name(const std::string &name)
 std::string User::get_name() const
 {
     return _name;
+}
+
+void User::set_imagePath(const std::string &imagePath)
+{
+    _imagePath = imagePath;
+}
+
+std::string User::get_imagePath() const
+{
+    return _imagePath;
 }
 
 std::string operator-(const std::shared_ptr<User> &a, const std::string &b)

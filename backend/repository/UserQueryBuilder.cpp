@@ -91,6 +91,14 @@ UserQueryBuilder &UserQueryBuilder::updateMoney(const std::string &money)
     return *this;
 }
 
+UserQueryBuilder &UserQueryBuilder::updateImage(const std::string &imagePath)
+{
+    if (!imagePath.empty())
+    {
+        updateFields.push_back("image_path = '" + imagePath + "'");
+    }
+    return *this;
+}
 std::string UserQueryBuilder::buildFilter()
 {
     std::string query = baseQueryFilter;

@@ -85,6 +85,7 @@ void setup_signup_routes(crow::App<CORS> &app)
     {
         userManagement.add(user);
     }
+
     CROW_ROUTE(app, "/signup").methods(crow::HTTPMethod::POST)([](const crow::request &req)
                                                                {
         auto body = crow::json::load(req.body);
@@ -122,8 +123,9 @@ void setup_signup_routes(crow::App<CORS> &app)
         }
         else
         {
+            std::cout << "a";
             std::string _id_us = set_id("US", UserManagement::_id_counter_user); 
-            repoUser.insert({ _id_us, username, password, name});
+            repoUser.insert({ _id_us, username, password, name, "../backend/images/user/user.jpg"});
             result["message"] = "Success";
         }
 
@@ -148,7 +150,6 @@ void setup_login_routes(crow::App<CORS> &app)
         std::string username = body["username"].s();
         std::string password = body["password"].s();
         crow::json::wvalue result;
-
         repoUser.filter("", username, "", "", "", "");
         const LinkedList<User> &users = repoUser.getAll();
 
@@ -201,6 +202,7 @@ void setup_inf_user_routes(crow::App<CORS> &app)
         std::string _email = userPtr[0]->get_email();
         std::string _phoneNumber = userPtr[0]->get_phoneNumber();
         std::string _money = userPtr[0]->get_money();
+        std::string _imagePath = userPtr[0]->get_imagePath();
 
         res["username"] = _username;
         res["password"] = _password;
@@ -209,6 +211,7 @@ void setup_inf_user_routes(crow::App<CORS> &app)
         res["email"] = _email;
         res["phoneNumber"] = _phoneNumber;
         res["money"] = _money;
+        res["imagePath"] = _imagePath;
         res["message"] = "Thành công";
         return crow::response{res}; });
 }
@@ -217,7 +220,7 @@ void setup_update_inf_user_routes(crow::App<CORS> &app)
 {
     CROW_ROUTE(app, "/update_inf_user").methods(crow::HTTPMethod::POST)([](const crow::request &req)
                                                                         {
-                            auto body = crow::json::load(req.body);
+        auto body = crow::json::load(req.body);
         if (!body || !body.has("id_user"))
             return crow::response(400, "Invalid request: missing 'msg'");
 
@@ -244,7 +247,7 @@ void setup_update_inf_user_routes(crow::App<CORS> &app)
                 res["message"] = "Họ tên không được quá 50 ký tự";
                 return crow::response{res};
             }
-            repoUser.update(id_user, newValue, "", "", "");
+            repoUser.update(id_user, newValue, "", "", "", "");
             res["message"] = "Cập nhật họ tên thành công";
             return crow::response{res};
 
@@ -266,7 +269,7 @@ void setup_update_inf_user_routes(crow::App<CORS> &app)
                 res["message"] = newValue + " đã trùng lặp";
                 return crow::response{res};
             }
-            repoUser.update(id_user, "", newValue, "", "");
+            repoUser.update(id_user, "", newValue, "", "", "");
             res["message"] = "Cập nhật email thành công";
             return crow::response{res};
         }
@@ -287,7 +290,7 @@ void setup_update_inf_user_routes(crow::App<CORS> &app)
                 res["message"] = newValue + " đã trùng lặp";
                 return crow::response{res};
             }
-            repoUser.update(id_user, "", "", newValue, "");
+            repoUser.update(id_user, "", "", newValue, "", "");
             res["message"] = "Cập nhật số điện thoại thành công";
             return crow::response{res};
         }
@@ -303,7 +306,7 @@ void setup_update_inf_user_routes(crow::App<CORS> &app)
                 res["message"] = "Số tiền không hợp lệ";
                 return crow::response{res};
             }
-            repoUser.update(id_user, "", "", "", newValue);
+            repoUser.update(id_user, "", "", "", newValue, "");
             res["message"] = "Cập nhật số tiền thành công";
             return crow::response{res};
         }
@@ -313,6 +316,128 @@ void setup_update_inf_user_routes(crow::App<CORS> &app)
             return crow::response{res};
         }
         res["message"] = "Cập nhật thông tin không thành công";
+        return crow::response{res}; });
+}
+
+void setup_update_image_user_routes(crow::App<CORS> &app)
+{
+    CROW_ROUTE(app, "/update_image_user").methods(crow::HTTPMethod::POST)([](const crow::request &req)
+                                                                          {
+        crow::json::wvalue res;
+
+        // Kiểm tra Content-Type có boundary không
+        std::string contentType = req.get_header_value("Content-Type");
+        std::smatch match;
+        std::regex boundary_regex("boundary=(.*)");
+        if (!std::regex_search(contentType, match, boundary_regex)) {
+            res["message"] = "Thiếu boundary trong Content-Type";
+            return crow::response(400, res);
+        }
+
+        std::string boundary = "--" + match[1].str();
+        std::string id_user;
+        std::string imageFilePath;
+        std::ofstream ofs;
+        bool isParsingFile = false, startedWriting = false;
+
+        std::istringstream stream(req.body);
+        std::string line;
+
+        while (std::getline(stream, line)) {
+            if (!line.empty() && line.back() == '\r') line.pop_back();
+
+            if (line.find(boundary) != std::string::npos) {
+                if (ofs.is_open()) ofs.close();
+                isParsingFile = false;
+                startedWriting = false;
+                continue;
+            }
+
+            if (line.find("Content-Disposition:") != std::string::npos) {
+                if (line.find("name=\"id_user\"") != std::string::npos) {
+                    std::getline(stream, line); // skip empty line
+                    std::getline(stream, id_user);
+                    if (!id_user.empty() && id_user.back() == '\r') id_user.pop_back();
+                } else if (line.find("filename=") != std::string::npos) {
+                    std::string filename = "user_" + std::to_string(time(nullptr)) + ".jpg";
+                    std::string imageFolder = "../backend/images/user/";
+                    std::filesystem::create_directories(imageFolder);
+                    imageFilePath = imageFolder + filename;
+                    ofs.open(imageFilePath, std::ios::binary);
+                    isParsingFile = true;
+                }
+                continue;
+            }
+
+            if (isParsingFile && !startedWriting) {
+                if (line.empty()) {
+                    startedWriting = true;
+                }
+                continue;
+            }
+
+            if (startedWriting && isParsingFile && ofs.is_open()) {
+                ofs << line << '\n';
+            }
+        }
+
+        if (id_user.empty()) {
+            res["message"] = "Thiếu id_user";
+            return crow::response(400, res);
+        }
+
+        if (imageFilePath.empty()) {
+            res["message"] = "Không nhận được file ảnh";
+            return crow::response(400, res);
+        }
+
+        // Cập nhật DB
+        repoUser.update(id_user, "", "", "", "", imageFilePath);
+        res["message"] = "Success";
+        res["newImage"] = std::filesystem::path(imageFilePath).filename().string();
+        return crow::response(200, res); });
+}
+
+void setup_show_user_routes(crow::App<CORS> &app)
+{
+    khoHang.clear();
+    repoProduct.loadFromDatabase();
+
+    for (const auto &product : repoProduct.getAll())
+    {
+        khoHang.add(product);
+    }
+    CROW_ROUTE(app, "/show_user").methods(crow::HTTPMethod::POST)([](const crow::request &req)
+                                                                  {
+        auto body = crow::json::load(req.body);
+        std::string name = body["name"].s();
+
+
+        crow::json::wvalue res;
+        int i = 0;
+
+        repoUser.filter("", "", "", name, "", "");
+        const LinkedList<User> &users = repoUser.getAll();
+        if (users.get_size() == 0)
+        {
+            res["message"] = "Không có user nào";
+            return crow::response{res};
+        }
+        for (auto it = users.begin(); it != users.end(); ++it)
+        {
+            const auto &user = *it;
+            res["id_user"][i] = user->get_id();
+            res["username"][i] = user->get_username();
+            res["password"][i] = user->get_password();
+            res["name"][i] = user->get_name();
+            res["imagePath"][i] = user->get_imagePath();
+            res["fullname"][i] = user->get_fullname();
+            res["email"][i] = user->get_email();
+            res["phoneNumber"][i] = user->get_phoneNumber();
+            res["money"][i] = user->get_money();
+            i++;
+        }
+
         return crow::response{res}; });
 }
 
@@ -616,6 +741,20 @@ void setup_show_image_product_routes(crow::App<CORS> &app)
         return res; });
 }
 
+void setup_show_image_user_routes(crow::App<CORS> &app)
+{
+    CROW_ROUTE(app, "/images/user/<string>").methods("GET"_method)([](const crow::request &, const std::string &filename)
+                                                                   {
+    std::string path = "../backend/images/user/" + filename;
+    std::ifstream file(path, std::ios::binary);
+    if (!file) return crow::response(404);
+    std::ostringstream ss;
+    ss << file.rdbuf();
+    crow::response res(ss.str());
+    res.add_header("Content-Type", "image/jpeg");
+    return res; });
+}
+
 void setup_update_product_routes(crow::App<CORS> &app)
 {
     CROW_ROUTE(app, "/update_product").methods(crow::HTTPMethod::POST)([](const crow::request &req)
@@ -751,11 +890,6 @@ void setup_remove_product_from_cart_routes(crow::App<CORS> &app)
             res["message"] = "Vui lòng nhập số lượng";
             return crow::response{res};
         }
-        else if (!is_positive_number(_quantity_change))
-        {
-            res["message"] = "Số lượng không hợp lệ";
-            return crow::response{res};
-        }
         else
         {
             int quantity = std::stoi(_quantity_change);
@@ -804,6 +938,7 @@ void setup_show_cart_routes(crow::App<CORS> &app)
                 res["products"][i]["quantity"] = item->get_quantity();
                 res["products"][i]["discount"] = item->get_discount();
                 res["products"][i]["price"] =  item->get_money();
+                res["products"][i]["image_url"] = item->get_imagePath();
                 i++;
             }
             res["price"] =  userPtr->_cart.get_money();
@@ -851,14 +986,18 @@ void setup_checkout_routes(crow::App<CORS> &app)
         {
             DateTime dateTime(body["date"]["day"].i(), body["date"]["month"].i(), body["date"]["year"].i());
             std::string _id_bill = set_id("BI", BillManagement::_id_counter_bill);
-            repoUser.update(id_user, "", "", "", std::to_string(std::stoll(userPtr->get_money()) - std::stoll(userPtr->get_cart().get_money())));
+            repoUser.update(id_user, "", "", "", std::to_string(std::stoll(userPtr->get_money()) - std::stoll(userPtr->get_cart().get_money())), "");
             for (const auto &item : userPtr->_cart.get_list())
             {
-                repoProduct.update(item->get_id(), "", "", "", "", std::to_string(item->get_origin()->get_quantity() - item->get_quantity()), "", "", "");
+                int quantity = khoHang.getProduct_from_id(item->get_id())->get_quantity();
+                repoProduct.update(item->get_id(), "", "", "", "", std::to_string(quantity - item->get_quantity()), "", "", "");
             }
             std::vector<std::string> fields = {_id_bill, id_user, userPtr->get_cart().get_money(), dateTime.get_date()};
             repoBill.insert(fields, userPtr->_cart.get_list());
-            userPtr->_cart.clear();
+            for (const auto &item : userPtr->_cart.get_list())
+            {
+                repoBill.deleteCart(id_user, item->get_id());
+            }
             res["message"] = "Success";
             return crow::response{res};
         }

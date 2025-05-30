@@ -88,12 +88,16 @@
     <form id="inf and buy">
         <button id="add">Thêm Sản Phẩm</button>
         <br> <br>
-        <button id="show">Xem Sản Phẩm</button>
+        <button id="show_product">Xem Sản Phẩm</button>
+        <br> <br>
+        <button id="show_user">Xem Người Dùng</button>
+
     </form>
     <hr />
     <script>
         const _add = document.getElementById('add');
-        const _show = document.getElementById('show');
+        const _show_product = document.getElementById('show_product');
+        const _show_user = document.getElementById('show_user');
 
 
         const _params = new URLSearchParams(window.location.search);
@@ -121,10 +125,15 @@
             window.location.href = `http://127.0.0.1:5503/frontend/add_product.html?msg=${encodedMsg}`;
         });
 
-        _show.addEventListener('click', async function (e) {
+        _show_product.addEventListener('click', async function (e) {
             e.preventDefault();
             const encodedMsg = encodeURIComponent(_id_user);
             window.location.href = `http://127.0.0.1:5503/frontend/show_product.html?msg=${encodedMsg}`;
+        });
+        _show_user.addEventListener('click', async function (e) {
+            e.preventDefault();
+            const encodedMsg = encodeURIComponent(_id_user);
+            window.location.href = `http://127.0.0.1:5503/frontend/show_user.html?msg=${encodedMsg}`;
         });
 
 

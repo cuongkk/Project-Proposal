@@ -51,11 +51,19 @@ void setup_login_routes(crow::App<CORS> &);
 
 void setup_inf_user_routes(crow::App<CORS> &);
 
+void setup_update_image_user_routes(crow::App<CORS> &);
+
 void setup_update_inf_user_routes(crow::App<CORS> &);
+
+void setup_update_image_user_routes(crow::App<CORS> &);
+
+void setup_show_user_routes(crow::App<CORS> &);
 
 void setup_add_product_routes(crow::App<CORS> &);
 
 void setup_show_product_routes(crow::App<CORS> &);
+
+void setup_show_image_user_routes(crow::App<CORS> &);
 
 void setup_show_image_product_routes(crow::App<CORS> &);
 

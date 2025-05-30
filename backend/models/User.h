@@ -11,6 +11,7 @@ protected:
     std::string _username;
     std::string _password;
     std::string _name;
+    std::string _imagePath;
     User *_origin = nullptr;
 
 public:
@@ -19,7 +20,8 @@ public:
     User();
     virtual ~User() = default;
     User(const std::string &, const std::string &,
-         const std::string &, const std::string &);
+         const std::string &, const std::string &,
+         const std::string &);
 
     virtual std::shared_ptr<User> clone() const = 0;
     virtual User *get_origin() const = 0;
@@ -31,6 +33,8 @@ public:
     std::string get_password() const;
     void set_name(const std::string &);
     std::string get_name() const;
+    void set_imagePath(const std::string &);
+    std::string get_imagePath() const;
 
     virtual void set_fullname(const std::string &) = 0;
     virtual std::string get_fullname() const = 0;

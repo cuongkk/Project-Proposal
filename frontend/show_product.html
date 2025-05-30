@@ -12,6 +12,23 @@
             padding: 0;
         }
 
+        .home-btn {
+            position: fixed;
+            top: 10px;
+            left: 10px;
+            z-index: 1000;
+        }
+
+        .home-btn button {
+            font-size: 20px;
+            padding: 6px 12px;
+            background-color: #ffffff;
+            border: 2px solid #ccc;
+            border-radius: 50%;
+            cursor: pointer;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
         .top-bar {
             text-align: center;
             margin-top: 20px;
@@ -109,7 +126,9 @@
 </head>
 
 <body>
-
+    <div class="home-btn" id="homeButton" hidden>
+        <button onclick="goHome()">🏠</button>
+    </div>
     <div class="top-bar" id="user-info-bar">
     </div>
 
@@ -141,6 +160,11 @@
     </div>
 
     <script>
+        const _params = new URLSearchParams(window.location.search);
+        const _id_user = _params.get('msg');
+        if (_id_user === "US0001") {
+            document.getElementById('homeButton').removeAttribute('hidden');
+        }
 
         document.addEventListener('DOMContentLoaded', async () => {
             const _params = new URLSearchParams(window.location.search);
@@ -151,7 +175,7 @@
             if (!_id_user) {
                 document.getElementById('user-info-bar').innerHTML = `
                     <button onclick = "window.location.href='login.html'" >🔐 Đăng nhập</ >
-            <button onclick="window.location.href='register.html'">📝 Đăng ký</button>
+            <button onclick="window.location.href='signup.html'">📝 Đăng ký</button>
             <button onclick="showCart()">🛒</button>
                 `;
             } else {
@@ -223,7 +247,7 @@
         }
 
         async function refreshUserInfo() {
-            const _id_user = new URLSearchParams(window.location.search).get('msg'); // ✅ Sửa dòng này
+            const _id_user = new URLSearchParams(window.location.search).get('msg');
             const response = await fetch('http://localhost:18080/user', {
                 method: 'POST',
                 headers: {
@@ -233,7 +257,7 @@
             });
             const result = await response.json();
             const name = result["name"];
-            const money = result["money"];
+            const money = result["money"] || 0;
 
             document.getElementById('user-info-bar').innerHTML = `
             <button onclick="goToInf()">ℹ️</button>
@@ -258,10 +282,17 @@
 
         function showCart() {
             const _id_user = new URLSearchParams(window.location.search).get('msg');
+            if (_id_user === 'US0001') {
+                alert("Admin không thể xem giỏ hàng.");
+                return;
+            }
             const encodedMsg = encodeURIComponent(_id_user);
             window.location.href = `http://127.0.0.1:5503/frontend/show_cart.html?msg=${encodedMsg}`;
         }
 
+        function goHome() {
+            window.location.href = `UI_admin.html?msg=${encodeURIComponent(_id_user)}`;
+        }
     </script>`
 </body>
 

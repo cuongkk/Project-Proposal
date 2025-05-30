@@ -14,13 +14,15 @@ UserRepositoryImpl::UserRepositoryImpl(const std::string &host,
 void UserRepositoryImpl::set_users(const std::shared_ptr<sql::ResultSet> &res)
 {
     std::string username = res->getString("username");
+
     if (username.compare("admin") == 0)
     {
         auto user = std::make_shared<Admin>(
             res->getString("id"),
             res->getString("username"),
             res->getString("password"),
-            res->getString("name"));
+            res->getString("name"),
+            res->getString("image_path"));
         _users.push_back(user);
     }
     else
@@ -30,6 +32,7 @@ void UserRepositoryImpl::set_users(const std::shared_ptr<sql::ResultSet> &res)
             res->getString("username"),
             res->getString("password"),
             res->getString("name"),
+            res->getString("image_path"),
             res->getString("fullname"),
             res->getString("email"),
             res->getString("phoneNumber"),
@@ -43,8 +46,7 @@ void UserRepositoryImpl::loadFromDatabase()
 
     std::shared_ptr<sql::Statement> stmt(conn->createStatement());
     std::shared_ptr<sql::ResultSet> res(
-        stmt->executeQuery("SELECT id, username, password, name, fullname, email, phoneNumber, money FROM User"));
-
+        stmt->executeQuery("SELECT id, username, password, name, fullname, email, phoneNumber, money, image_path FROM User"));
     while (res->next())
     {
         set_users(res);
@@ -79,31 +81,33 @@ void UserRepositoryImpl::filter(const std::string &id, const std::string &userna
 
 void UserRepositoryImpl::insert(const std::vector<std::string> &fields)
 {
-    if (fields.size() != 4)
+    if (fields.size() != 5)
     {
         throw std::invalid_argument("Không đủ số lượng trường cho sản phẩm (cần 4).");
     }
 
     std::shared_ptr<sql::PreparedStatement> pstmt(conn->prepareStatement(
-        "INSERT INTO User (id, username, password, name) "
-        "VALUES (?, ?, ?, ?)"));
+        "INSERT INTO User (id, username, password, name, image_path) "
+        "VALUES (?, ?, ?, ?, ?)"));
 
     pstmt->setString(1, fields[0]); // id
     pstmt->setString(2, fields[1]); // username
     pstmt->setString(3, fields[2]); // password
     pstmt->setString(4, fields[3]); // name
+    pstmt->setString(5, fields[4]); // image_path
 
     pstmt->executeUpdate();
 }
 
 void UserRepositoryImpl::update(const std::string &id, const std::string &fullname,
                                 const std::string &email, const std::string &phoneNumber,
-                                const std::string &money)
+                                const std::string &money, const std::string &image)
 {
     userQueryBuilder.updateFullname(fullname)
         .updateEmail(email)
         .updatePhoneNumber(phoneNumber)
-        .updateMoney(money);
+        .updateMoney(money)
+        .updateImage(image);
     std::shared_ptr<sql::PreparedStatement> pstmt(conn->prepareStatement(
         userQueryBuilder.buildUpdate() + " WHERE id = ?"));
 
@@ -111,27 +115,3 @@ void UserRepositoryImpl::update(const std::string &id, const std::string &fullna
 
     pstmt->executeUpdate();
 }
-// void UserRepositoryImpl::select_name(const std::string &username)
-// {
-//     _user.clear();
-
-//     std::shared_ptr<sql::PreparedStatement> pstmt(conn->prepareStatement(
-//         "SELECT id, username, password, name, fullname, email, phoneNumber, money FROM User WHERE username = ?"));
-//     pstmt->setString(1, username);
-
-//     std::shared_ptr<sql::ResultSet> res(pstmt->executeQuery());
-
-//     while (res->next())
-//     {
-//         auto user = std::make_shared<Customer>(
-//             res->getString("id"),
-//             res->getString("username"),
-//             res->getString("password"),
-//             res->getString("name"),
-//             res->getString("fullname"),
-//             res->getString("email"),
-//             res->getString("phoneNumber"),
-//             std::to_string(res->getInt("money")));
-//         _user.push_back(user);
-//     }
-// }

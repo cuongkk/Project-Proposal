@@ -31,7 +31,7 @@ public:
 
     void update(const std::string &, const std::string &,
                 const std::string &, const std::string &,
-                const std::string &);
+                const std::string &, const std::string &);
 
     // void select_name(const std::string &) override;
     // void select_category(const std::string &) override {};

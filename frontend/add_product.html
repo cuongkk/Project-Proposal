@@ -12,6 +12,23 @@
             padding: 20px;
         }
 
+        .home-btn {
+            position: fixed;
+            top: 10px;
+            left: 10px;
+            z-index: 1000;
+        }
+
+        .home-btn button {
+            font-size: 20px;
+            padding: 6px 12px;
+            background-color: #ffffff;
+            border: 2px solid #ccc;
+            border-radius: 50%;
+            cursor: pointer;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
         h1 {
             text-align: center;
             color: #333;
@@ -97,6 +114,9 @@
 </head>
 
 <body>
+    <div class="home-btn">
+        <button onclick="goHome()">🏠</button>
+    </div>
     <h1>Thêm Sản Phẩm</h1>
     <div class="main-container">
         <form enctype="multipart/form-data" id="form_add_product">
@@ -190,6 +210,9 @@
             } else {
                 output.src = "https://via.placeholder.com/300x200?text=Ảnh";
             }
+        }
+        function goHome() {
+            window.location.href = `UI_admin.html?msg=${encodeURIComponent(_id_user)}`;
         }
     </script>
 </body>

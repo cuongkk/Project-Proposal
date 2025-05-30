@@ -84,6 +84,7 @@
             <label for="password">Mật khẩu:</label>
             <input type="text" id="password" required>
 
+
             <button id="login" type="button">Đăng nhập</button>
         </form>
 
@@ -119,7 +120,6 @@
                 const encodedMsg = encodeURIComponent(result.id_user);
                 window.location.href = `http://127.0.0.1:5503/frontend/show_product.html?msg=${encodedMsg}`;
             }
-
             _form.reset();
         });
     </script>

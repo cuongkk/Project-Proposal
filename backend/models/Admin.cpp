@@ -8,8 +8,9 @@ Admin::~Admin()
 {
 }
 Admin::Admin(const std::string &id_user, const std::string &username,
-             const std::string &password, const std::string &name)
-    : User(id_user, username, password, name)
+             const std::string &password, const std::string &name,
+             const std::string &imagePath)
+    : User(id_user, username, password, name, imagePath)
 {
 }
 

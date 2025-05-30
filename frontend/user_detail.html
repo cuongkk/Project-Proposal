@@ -118,50 +118,20 @@
         <div style="position: relative; width: 150px; height: 150px; margin: 0 auto 15px auto;">
             <img id="userImage" src="" alt="Ảnh người dùng"
                 style="width: 100%; height: 100%; object-fit: cover; border-radius: 50%; border: 2px solid #ccc;">
-
-            <label for="imageFile"
-                style="position: absolute; top: 4px; right: 4px; background: #007bff; color: white; border-radius: 50%; width: 30px; height: 30px; display: flex; align-items: center; justify-content: center; cursor: pointer; box-shadow: 0 0 5px rgba(0,0,0,0.3);">
-                <i class="fas fa-pen"></i>
-            </label>
-            <input id="imageFile" type="file" accept="image/*" style="display: none;" onchange="uploadImage()" />
         </div>
 
 
         <p><strong>Tài khoản:</strong> <span id="username"></span></p>
-        <div class="form-row">
-            <label>Mật khẩu:</label>
-            <input id="password" type="text" />
-            <button type="button" onclick="toggleEdit('password')"><i class="fas fa-cog"></i></button>
-        </div>
-        <div class="form-row">
-            <label>Tên hiển thị:</label>
-            <input id="name" type="text" />
-            <button type="button" onclick="toggleEdit('name')"><i class="fas fa-cog"></i></button>
-        </div>
-        <div class="form-row">
-            <label>Họ và tên:</label>
-            <input id="fullname" type="text" />
-            <button type="button" onclick="toggleEdit('fullname')"><i class="fas fa-cog"></i></button>
-        </div>
-        <div class="form-row">
-            <label>Email:</label>
-            <input id="email" type="text" />
-            <button type="button" onclick="toggleEdit('email')"><i class="fas fa-cog"></i></button>
-        </div>
-        <div class="form-row">
-            <label>Số điện thoại:</label>
-            <input id="phoneNumber" type="text" />
-            <button type="button" onclick="toggleEdit('phoneNumber')"><i class="fas fa-cog"></i></button>
-        </div>
-        <div class="form-row">
-            <label>Số dư:</label>
-            <input id="money" type="text" />
-            <button type="button" onclick="toggleEdit('money')"><i class="fas fa-cog"></i></button>
-        </div>
+        <p><strong>Mật khẩu:</strong> <span id="password"></span></p>
+        <p><strong>Tên hiển thị:</strong> <span id="name"></span></p>
+        <p><strong>Họ và tên:</strong> <span id="fullname"></span></p>
+        <p><strong>Email:</strong> <span id="email"></span></p>
+        <p><strong>Số điện thoại:</strong> <span id="phoneNumber"></span></p>
+        <p><strong>Số dư:</strong> <span id="money"></span></p>
         <p id="response"></p>
     </form>
     <hr />
-    <h2>Hóa đơn của bạn</h2>
+    <h2>Hóa đơn</h2>
     <button onclick="fetchBills()">📋 Xem hóa đơn</button>
     <div id="result"></div>
 </div>
@@ -197,7 +167,13 @@
             document.getElementById('userImage').src = result.imagePath || "https://via.placeholder.com/250x180?text=No+Image";
             document.getElementById('username').textContent = result.username;
             document.getElementById('password').textContent = result.password;
-            document.getElementById('Name').textContent = result.name;
+            document.getElementById('name').textContent = result.name;
+            document.getElementById('fullname').textContent = result.fullname;
+            document.getElementById('email').textContent = result.email;
+            document.getElementById('phoneNumber').textContent = result.phoneNumber;
+            document.getElementById('money').textContent = parseFloat(result.money).toLocaleString("vi-VN", { style: "currency", currency: "VND" });
+
+
         }
     }
 
@@ -233,29 +209,6 @@
                 alert("Cập nhật thất bại!");
                 editedFlags[id] = false;
             }
-        }
-    }
-
-    async function uploadImage() {
-        const fileInput = document.getElementById("imageFile");
-        const file = fileInput.files[0];
-        const formData = new FormData();
-        formData.append("id_user", _id_user);
-        formData.append("image", file); // phải có tên "image"
-
-        await fetch("http://localhost:18080/update_image_user", {
-            method: "POST",
-            body: formData
-        });
-
-
-        const result = await response.json();
-        if (result.message === "Success") {
-            // Gán lại ảnh đại diện mới
-            document.getElementById("userImage").src = `http://localhost:18080/images/user/${result.newImage}`;
-            document.getElementById("response").innerText = "Ảnh đã được cập nhật!";
-        } else {
-            alert("Lỗi khi cập nhật ảnh: " + result.message);
         }
     }
 
@@ -299,7 +252,7 @@
     }
 
     function goHome() {
-        window.location.href = `show_product.html?msg=${encodeURIComponent(_id_user)}`;
+        window.location.href = `show_user.html?msg=${encodeURIComponent("US0001")}`;
     }
     get_inf();
 

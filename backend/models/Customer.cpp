@@ -11,17 +11,23 @@ Customer::Customer() : User()
 Customer::~Customer() = default;
 
 Customer::Customer(const std::string &id_user, const std::string &username,
-                   const std::string &password, const std::string &name)
-    : User(id_user, username, password, name)
+                   const std::string &password, const std::string &name,
+                   const std::string &imagePath)
+    : User(id_user, username, password, name, imagePath)
 {
 }
 Customer::Customer(const std::string &id_user, const std::string &username,
                    const std::string &password, const std::string &name,
-                   const std::string &fullname, const std::string &email,
-                   const std::string &phoneNumber, const std::string &money)
-    : User(id_user, username, password, name), _fullname(fullname), _email(email),
-      _phoneNumber(phoneNumber), _money(money)
+                   const std::string &imagePath, const std::string &fullname,
+                   const std::string &email, const std::string &phoneNumber,
+                   const std::string &money)
+    : User(id_user, username, password, name, imagePath)
 {
+    _fullname = fullname;
+    _email = email;
+    _phoneNumber = phoneNumber;
+    _money.set_value(money);
+    _money.set_type("VND");
 }
 
 std::shared_ptr<User> Customer::clone() const
