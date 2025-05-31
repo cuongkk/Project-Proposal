@@ -35,6 +35,8 @@ public:
                 const std::string &, const std::string &,
                 const std::string &, const std::string &,
                 const std::string &);
+
+    void remove(const std::string &);
 };
 
 #endif

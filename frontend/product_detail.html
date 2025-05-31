@@ -132,6 +132,7 @@
             <div style="margin-top: 20px;">
                 <input id="quantityInput" min="1" type="number" value="1" />
                 <button id="addToCartBtn">➕ Thêm vào giỏ</button>
+
             </div>
         </div>
     </div>
@@ -151,10 +152,10 @@
                     });
                     const result = await response.json();
                     const name = result["name"];
-                    const money = result["money"];
+                    const money = result["money"] || 0;
 
                     document.getElementById('user-name').innerText = name || "User";
-                    document.getElementById('user-balance').innerText = `💰 ${parseFloat(money).toLocaleString("vi-VN", { style: "currency", currency: "VND" })}`;
+                    document.getElementById('user-balance').innerText = `💰 ${parseFloat(money).toLocaleString("vi-VN", { style: "currency", currency: "VND" })}` || "0";
                 } catch (err) {
                     console.error("Lỗi khi lấy thông tin người dùng:", err);
                     document.getElementById('user-name').innerText = "User";

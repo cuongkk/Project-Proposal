@@ -87,7 +87,19 @@
 </head>
 
 <body>
-
+    <div style="position: fixed; top: 10px; left: 10px; z-index: 1000;">
+        <button onclick="goHome()" style="
+        font-size: 20px;
+        padding: 6px 12px;
+        background-color: #ffffff;
+        border: 2px solid #ccc;
+        border-radius: 50%;
+        cursor: pointer;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    ">
+            🏠
+        </button>
+    </div>
     <h2>Danh sách người dùng</h2>
 
     <div class="search-bar">
@@ -100,10 +112,15 @@
     </div>
 
     <script>
+        function goHome() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const _id_user = urlParams.get('msg');
+            window.location.href = `UI_admin.html?msg=${encodeURIComponent(_id_user)}`;
+        }
+
         async function loadUsers() {
             const input = document.getElementById("searchInput");
             const keyword = input.value.trim();
-            console.log("Tìm kiếm với từ khóa:", keyword);
             // Nếu người dùng vừa quay lại từ trang chi tiết, xóa ô tìm kiếm để hiển thị đầy đủ
             if (performance.getEntriesByType("navigation")[0].type === "back_forward") {
                 input.value = "";
@@ -154,5 +171,6 @@
         window.onload = loadUsers;
     </script>
 </body>
+a
 
 </html>

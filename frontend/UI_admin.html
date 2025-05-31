@@ -79,12 +79,26 @@
         hr {
             margin: 30px 0;
         }
+
+        #logoutBtn {
+            position: fixed;
+            top: 3%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: none;
+            border: none;
+            font-size: 40px;
+            cursor: pointer;
+        }
+
+        #logoutBtn:hover {
+            opacity: 0.7;
+        }
     </style>
 </head>
 
 <body>
-    <h1>UI</h1>
-    <p id="Name"></p><br />
+    <button id="logoutBtn" onclick="logout()">⬅️</button><br />
     <form id="inf and buy">
         <button id="add">Thêm Sản Phẩm</button>
         <br> <br>
@@ -118,7 +132,9 @@
         }
         get_username();
 
-
+        function logout() {
+            window.location.href = "show_product.html";
+        }
         _add.addEventListener('click', async function (e) {
             e.preventDefault();
             const encodedMsg = encodeURIComponent(_id_user);

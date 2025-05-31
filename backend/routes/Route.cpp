@@ -426,6 +426,8 @@ void setup_show_user_routes(crow::App<CORS> &app)
         for (auto it = users.begin(); it != users.end(); ++it)
         {
             const auto &user = *it;
+            if (user->get_id() == "US0001") 
+                continue;
             res["id_user"][i] = user->get_id();
             res["username"][i] = user->get_username();
             res["password"][i] = user->get_password();
@@ -671,6 +673,7 @@ void setup_show_product_routes(crow::App<CORS> &app)
     CROW_ROUTE(app, "/show_product").methods(crow::HTTPMethod::POST)([](const crow::request &req)
                                                                      {
         auto body = crow::json::load(req.body);
+        std::string id_user = body["id_user"].s();
         std::string name = body["name"].s();
         std::string category = "";
         if (body["category"].s() == "all")
@@ -697,7 +700,7 @@ void setup_show_product_routes(crow::App<CORS> &app)
 
         crow::json::wvalue res;
         int i = 0;
-
+        
         repoProduct.filter("", name, category, min_price, max_price);
         const LinkedList<Product> &products = repoProduct.getAll();
         if (products.get_size() == 0)
@@ -708,7 +711,7 @@ void setup_show_product_routes(crow::App<CORS> &app)
         for (auto it = products.begin(); it != products.end(); ++it)
         {
             const auto &product = *it;
-            if (product->get_origin()->get_quantity() == 0)
+            if (product->get_origin()->get_quantity() == 0 && id_user != "US0001")
             {
                 continue;
             }

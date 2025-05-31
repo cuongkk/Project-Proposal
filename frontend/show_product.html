@@ -172,7 +172,7 @@
 
             refreshProductList();
 
-            if (!_id_user) {
+            if (!_id_user || _id_user === "null") {
                 document.getElementById('user-info-bar').innerHTML = `
                     <button onclick = "window.location.href='login.html'" >🔐 Đăng nhập</ >
             <button onclick="window.location.href='signup.html'">📝 Đăng ký</button>
@@ -198,6 +198,7 @@
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({
+                        id_user: _id_user,
                         name: _name,
                         category: _category,
                         priceRange: _priceRange
@@ -255,19 +256,30 @@
                 },
                 body: JSON.stringify({ id_user: _id_user })
             });
+
             const result = await response.json();
             const name = result["name"];
             const money = result["money"] || 0;
 
+            // Xây nội dung user-info-bar theo điều kiện
+            let logoutBtn = '';
+            if (_id_user !== "US0001") {
+                logoutBtn = `<button id="logoutBtn" onclick="logout()">⬅️</button>`;
+            }
+
             document.getElementById('user-info-bar').innerHTML = `
-            <button onclick="goToInf()">ℹ️</button>
-            <span>👋 Chào <strong id="username">${name}</strong></span>
-            <span>💰 Số dư: <strong id="usermoney">${parseFloat(money).toLocaleString("vi-VN", { style: "currency", currency: "VND" })}</strong></span>
-            <button onclick="showCart()">🛒</button>
-        `;
+        ${logoutBtn}
+        <button onclick="goToInf()">ℹ️</button>
+        <span>👋 Chào <strong id="username">${name}</strong></span>
+        <span>💰 Số dư: <strong id="usermoney">${parseFloat(money).toLocaleString("vi-VN", { style: "currency", currency: "VND" })}</strong></span>
+        <button onclick="showCart()">🛒</button>
+    `;
         }
 
 
+        function logout() {
+            window.location.href = "show_product.html";
+        }
         function goToInf() {
             const _id_user = new URLSearchParams(window.location.search).get('msg');
             if (!_id_user || _id_user === "null") {

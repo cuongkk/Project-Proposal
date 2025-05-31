@@ -131,3 +131,11 @@ void ProductRepositoryImpl::update(const std::string &id, const std::string &nam
     pstmt->setString(1, id);
     pstmt->executeUpdate();
 }
+
+void ProductRepositoryImpl::remove(const std::string &id)
+{
+    std::shared_ptr<sql::PreparedStatement> pstmt(conn->prepareStatement(
+        "DELETE FROM Products WHERE id = ?"));
+    pstmt->setString(1, id);
+    pstmt->executeUpdate();
+}
