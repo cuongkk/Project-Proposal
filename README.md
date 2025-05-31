@@ -59,12 +59,42 @@
 
 ## Tỉ lệ hoàn thành đồ án : 100%
 
+## Các extension và thư viện cài thêm:
+MySQL:
+https://dev.mysql.com/downloads/connector/cpp/
+https://dev.mysql.com/downloads/workbench/
+
+Extension: 
+- `Live Server` (để hiển thị Web)
+
+Thư viện (nằm trong thư mục `external`):
+- `crow`
+- `asio`
+
+Chuẩn bị: 
+- Tạo database trong `mySQL` bằng cách sử dụng file `Sql Canteen.sql` trong đồ án
+- Sửa đổi mật khẩu trong `route.cpp`
+
+Cách chạy
+- Xóa thư mục build và thực thi câu lệnh:
+mkdir build
+cd build
+cmake .. -G "Visual Studio 17 2022" -A x64
+
+- Sau đó vào thư mục build và thực thi câu lệnh:
+cmake --build . --config Release
+
+- Thực hiện câu lệnh: .\Release\server.exe
+
+- Chọn (Open Live Server) file `show-product.html`
 
 ---
 
 ## Class Diagram và Mô tả
 title Class Diagram - Full System
-' ======================= USER & ROLE ========================= '
+
+======================= USER & ROLE ========================= 
+
 class User {
   - _id_user: string
   - _username: string
@@ -159,8 +189,8 @@ User <|-- Admin
 User <|-- Customer
 UserManagement --> "1..*" User
 
----
-' ======================= PRODUCT ========================= '
+======================= PRODUCT =========================
+
 abstract class Product {
   - _id_sp: string
   - _quantity: int
@@ -193,7 +223,8 @@ class Drink {
 Product <|-- Food
 Product <|-- Drink
 
-' ======================= KHOHANG =========================
+======================= KHOHANG =========================
+
 class KhoHang {
   - _Product: LinkedList<Product>
   + add(shared_ptr<Product>)
@@ -209,9 +240,8 @@ class KhoHang {
 
 KhoHang --> "1..*" Product
 
+======================= CART ========================= 
 
----
-' ======================= CART ========================= '
 class Cart {
   - _id_Customer: string
   - _list: LinkedList<Product>
@@ -224,7 +254,8 @@ Customer --> Cart
 User --> Cart
 Cart --> "1..*" Product
 
-' ======================= BILL ========================= '
+======================= BILL ========================= 
+
 class Bill {
   - _id_Bill: string
   - _id_Customer: string
