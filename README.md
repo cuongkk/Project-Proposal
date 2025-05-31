@@ -11,17 +11,22 @@
 ## Phân công công việc
 
 ### Nguyễn Tuấn Cường
-- Tạo lớp ThucAn, ThucUong để quản lí sản phẩm, tạo lớp trừu tượng SanPham để ứng dụng tính đa hình. Tạo lớp KhoHang để quản lí sản phẩm
-- Tạo lớp Customer, Admin để quản lí người dùng, với lớp trừu tượng User và lớp UserManagement để quản lí User
+- Thiết kế Frontend để hiển thị giao diện người dùng (đăng kí tài khoản, mua sản phẩm, xem giỏ hàng, hóa đơn,...)
+- Bổ sung database
+- Tạo lớp `ThucAn`, `ThucUong` để quản lí sản phẩm, tạo lớp trừu tượng `SanPham` để ứng dụng tính đa hình. Tạo lớp `KhoHang` để quản lí sản phẩm
+- Tạo lớp `Customer`, Admin để quản lí người dùng, với lớp trừu tượng `User` và lớp `UserManagement` để quản lí User
 - Tạo Cart để thêm xóa sản phẩm trước khi mua
-- Tạo Bill để thanh toán và BillManagement để quản lí Bill
+- Tạo Bill để thanh toán và `BillManagement` để quản lí Bill
 - Sử dụng std::move() để tối ưu bộ nhớ, sử dụng get_clone() để thao tác trên bản sao tránh gây lỗi. Dùng get_Origin() để kiểm tra bản gốc cũng như cập nhật
 - Xây dựng mối quan hệ giữa các lớp
  + Customer và Admin được phân quyền rõ ràng (sẽ cập nhật thêm)
- + Khi thêm SanPham vào Cart sẽ kiểm tra số lượng trước khi thêm. Khi thêm vào thì sẽ tự động cập nhập lại số lượng sản phẩm trong KhoHang.
- + Khi Bill được thanh toán sẽ lưu lại trong BillManagement và tự động cập nhật số tiền của Customer
+ + Khi thêm SanPham vào Cart sẽ kiểm tra số lượng trước khi thêm. Khi thêm vào thì sẽ tự động cập nhập lại số lượng sản phẩm trong `KhoHang`.
+ + Khi Bill được thanh toán sẽ lưu lại trong `BillManagement` và tự động cập nhật số tiền của Customer
+
+- Link Commit: https://github.com/cuongkk/Canteen-Management-System/commits/TuanCuong
 
 ### Trần Gia Cường
+- Xây dựng cơ sở dữ liệu, sử dụng SQL để lưu trữ dữ liệu
 - Xây dựng chức năng tìm kiếm:
   - Tìm kiếm sản phẩm trong `KhoHang`, người dùng trong `UserManagement`, hóa đơn trong `BillManagement`.
   - Hỗ trợ tìm kiếm theo nhiều tiêu chí (ID, tên, loại,...) sử dụng `regex`.
@@ -30,7 +35,9 @@
 - Viết hàm `main` để kiểm thử toàn bộ chương trình:
   - Thêm/xóa sản phẩm vào `KhoHang`, `Cart`, `Bill`, sau đó tìm kiếm.
   - Thêm `Admin`, `Customer` vào `UserManagement`, kiểm tra tính năng tìm kiếm.
+- Class Diagram và mô tả các lớp
 
+- Link Commit: https://github.com/cuongkk/Canteen-Management-System/commits/cuong225
 
 ---
 
@@ -45,56 +52,19 @@
 
 ## Tỉ lệ điểm đề xuất
 
-
-
 | Thành viên         | Điểm (%) |
 |--------------------|----------|
-| Nguyễn Tuấn Cường  | 100%     | 
-| Trần Gia Cường     | 100%     |
+| Nguyễn Tuấn Cường  | 100      | 
+| Trần Gia Cường     | 100      |
 
-## Tỉ lệ hoàn thành đồ án : 40%
-- Còn tích hợp SQL vào quản lý dữ liệu
-- Thiết kế giao diện sử dụng
-
----
-
-## Mô tả yêu cầu và cách đánh giá
-
-### 1. Thiết kế hệ thống hướng đối tượng
-- Sử dụng kế thừa, đa hình (class `SanPham` làm cha cho `ThucAn` và `ThucUong`; class `User` làm cha cho `Admin` và `Customer`).
-- Sử dụng get_clone() và get_Origin() để đảm bảo tính nguyên vẹn của dữ liệu 
-- Quản lý danh sách sản phẩm, người dùng, hóa đơn bằng các lớp quản lý (`KhoHang`, `UserManagement`, `BillManagement`).
-
-### 2. Tổ chức mã nguồn rõ ràng
-- Mỗi lớp được tách riêng biệt theo chức năng.
-- Hàm `main` viết để kiểm thử đầy đủ chức năng, dễ kiểm tra.
-
-### 3. Kỹ thuật lập trình
-- Sử dụng `std::move()` để tăng hiệu suất quản lý bộ nhớ.
-- Kỹ thuật clone và origin giúp tránh lỗi dữ liệu khi thao tác đối tượng phức tạp.
-- Regex tìm kiếm nâng cao, hỗ trợ linh hoạt theo nhiều tiêu chí.
-
-### 4. Đảm bảo tính toàn vẹn dữ liệu
-- Khi thêm sản phẩm vào giỏ hàng sẽ kiểm tra tồn kho.
-- Khi thanh toán hóa đơn sẽ trừ tiền từ khách hàng và cập nhật tồn kho, đảm bảo dữ liệu nhất quán.
-
-### 5. Khả năng mở rộng
-- Dễ dàng mở rộng thêm loại sản phẩm khác (nhờ đa hình).
-- Có thể thêm phân quyền nâng cao hoặc tính năng báo cáo trong tương lai.
-
-### 6. Công việc tiếp theo 
-- Sử dụng **RESTful API** để hỗ trỡ giao tiếp giữa người dùng
-- Thiết kế giao diện với **HTML/CSS** và **JavaScript**
-- Sử dụng **SQL Server** để quản lí dữ liệu, truy vẫn nhanh chóng
-- Hoàn thiện models và mở rộng các tính năng
+## Tỉ lệ hoàn thành đồ án : 100%
 
 
 ---
 
-## Class Diagram
-### User Management System
-title Class Diagram - User Management System
-
+## Class Diagram và Mô tả
+title Class Diagram - Full System
+' ======================= USER & ROLE ========================= '
 class User {
   - _id_user: string
   - _username: string
@@ -189,80 +159,214 @@ User <|-- Admin
 User <|-- Customer
 UserManagement --> "1..*" User
 
-### Mô tả các lớp user:
+---
+' ======================= PRODUCT ========================= '
+abstract class Product {
+  - _id_sp: string
+  - _quantity: int
+  - _discount: string
+  - _money: Money
+  - _manufacture_Date: DateTime
+  - _expiry_Date: DateTime
+  - _imagePath: string
+  - _origin: Product*
+  + clone(): unique_ptr<Product>
+  + get_name(): string
+  + get_inf(): string
+  + ...
+}
 
-## 🧱 Tổng quan
-Hệ thống quản lý người dùng hỗ trợ nhiều loại người dùng như **Admin** và **Customer**. Được xây dựng dựa trên nguyên lý hướng đối tượng, hỗ trợ kế thừa, đa hình, clone đối tượng bằng `shared_ptr`.
+class Food {
+  - _name: string
+  - _inf: string
+  + clone(): unique_ptr<Product>
+  + ...
+}
+
+class Drink {
+  - _name: string
+  - _inf: string
+  + clone(): unique_ptr<Product>
+  + ...
+}
+
+Product <|-- Food
+Product <|-- Drink
+
+' ======================= KHOHANG =========================
+class KhoHang {
+  - _Product: LinkedList<Product>
+  + add(shared_ptr<Product>)
+  + remove(shared_ptr<Product>)
+  + updateQuantity(Product, int)
+  + getProduct(): const LinkedList<Product>&
+  + getProduct_from_id(string): unique_ptr<Product>
+  + get_name_product(): vector<string>
+  + search_category(string): KhoHang&
+  + search_price(string, string): KhoHang&
+  + clear()
+}
+
+KhoHang --> "1..*" Product
+
+
+---
+' ======================= CART ========================= '
+class Cart {
+  - _id_Customer: string
+  - _list: LinkedList<Product>
+  + add(unique_ptr<Product>)
+  + get_money(): string
+  + ...
+}
+
+Customer --> Cart
+User --> Cart
+Cart --> "1..*" Product
+
+' ======================= BILL ========================= '
+class Bill {
+  - _id_Bill: string
+  - _id_Customer: string
+  - _cart: Cart
+  - _totalCost: string
+  - _dateTime: DateTime
+  + clone(): shared_ptr<Bill>
+  + confirmBill(string, User*, DateTime): shared_ptr<Bill>
+  + ...
+}
+
+class BillManagement {
+  - _bill: LinkedList<Bill>
+  + add(shared_ptr<Bill>)
+  + getBill_from_id(string): shared_ptr<Bill>
+  + ...
+}
+
+Bill --> Cart
+Bill --> DateTime
+Bill --> Customer
+BillManagement --> "1..*" Bill
+
+---
+## Hệ thống Quản lý Canteen
+
+## 📌 Tổng quan
+Hệ thống mô phỏng quản lý cửa hàng với các chức năng như:
+- Quản lý người dùng (Admin, Customer)
+- Quản lý giỏ hàng (Cart)
+- Quản lý sản phẩm (Food, Drink)
+- Quản lý hóa đơn (Bill)
 
 ---
 
-## 📦 Danh sách các lớp
+## Cấu trúc Lớp
 
-### 1. `User` (Lớp trừu tượng)
-Lớp cơ sở định nghĩa thông tin và hành vi chung của người dùng.
+### 🧍‍♂️ User (trừu tượng)
+Lớp cơ sở cho tất cả người dùng.
 
-#### Thuộc tính:
-- `id_user`, `username`, `password`, `name`, `imagePath`
-- `_origin`: con trỏ đến đối tượng gốc nếu clone
-- `_cart`: giỏ hàng của người dùng
+#### Thuộc tính chính:
+- ID, username, password, tên, hình ảnh
+- Cart cá nhân
+- Dùng con trỏ gốc (`_origin`) để hỗ trợ clone
 
 #### Phương thức thuần ảo:
-- `clone()`, `get_origin()`
-- `set/get_fullname()`, `set/get_email()`, `set/get_phoneNumber()`, `set/get_money()`
-- `get_cart()`, `print(std::ostream&)`
+- `clone()`, `print()`, `get_cart()`, `get_money()`...
+- `get_fullname()`, `get_email()`, `get_phoneNumber()`
 
 ---
 
-### 2. `Admin` – Kế thừa từ `User`
-Đại diện cho người quản trị hệ thống.
+### 👤 Admin
+Kế thừa từ `User`, dùng cho người quản trị hệ thống.
 
-#### Điểm nổi bật:
-- Cài đặt đầy đủ các hàm thuần ảo từ `User`
-- Không có thêm thuộc tính riêng
-- Ghi đè `clone`, `print`
+- Cài đặt đầy đủ các phương thức từ `User`
+- Không có thêm thuộc tính
 
 ---
 
-### 3. `Customer` – Kế thừa từ `User`
-Đại diện cho người dùng bình thường của hệ thống.
+### 👥 Customer
+Kế thừa từ `User`, đại diện cho khách hàng.
 
-#### Thuộc tính bổ sung:
-- `fullname`, `email`, `phoneNumber`, `money` (kiểu `Money`)
-
-#### Điểm nổi bật:
-- Hai constructor: cơ bản và đầy đủ
-- Lưu thông tin chi tiết của người dùng
-- Quản lý tiền (`Money`) riêng biệt
+#### Thêm thuộc tính:
+- `fullname`, `email`, `phoneNumber`, `money`
 
 ---
 
-### 4. `UserManagement`
-Quản lý danh sách người dùng bằng cấu trúc `LinkedList<User>`.
+### 🛒 Cart
+Giỏ hàng cá nhân của người dùng.
 
-#### Phương thức chính:
-- `add`, `remove` người dùng
-- `get_username_user`, `get_name_user`, `get_email_user`, `get_phoneNumber_user`
-- `getUser_from_id`: lấy người dùng theo ID
-- `clear`: xóa toàn bộ danh sách
+#### Thuộc tính:
+- ID khách hàng
+- Danh sách `Product` (Food/Drink)
+
+#### Chức năng:
+- `add()`, `remove()`, `clear()`
+- `get_money()` tính tổng tiền sản phẩm
 
 ---
 
-## 🔗 Quan hệ giữa các lớp
-- `Admin`, `Customer` kế thừa từ `User`
-- `UserManagement` quản lý danh sách các đối tượng `User` thông qua smart pointer
+### 📦 Product (trừu tượng)
+Lớp cơ sở cho thực phẩm, đồ uống.
+
+#### Thuộc tính:
+- ID, số lượng, giảm giá, giá tiền (`Money`)
+- Ngày sản xuất, hết hạn (`DateTime`)
+- Hình ảnh sản phẩm
+
+#### Phương thức thuần ảo:
+- `clone()`, `get_name()`, `get_inf()`
+
+---
+
+### 🍔 Food / 🍹 Drink
+Kế thừa từ `Product`, đại diện thực phẩm và đồ uống.
+
+- Thêm tên và mô tả (`_name`, `_inf`)
+- Ghi đè `clone()`, `print()`
+
+---
+
+### KhoHang 
+Quản lý toàn bộ sản phẩm trong kho.
+
+#### Thuộc tính:
+- `_Product`: danh sách `Product` (dạng `LinkedList`)
+- `_id_counter_sp`: sinh mã sản phẩm
+
+#### Chức năng:
+- `add(product)`, `remove(product)`
+- `updateQuantity(product, new_quantity)`
+- `getProduct()`: lấy toàn bộ danh sách
+- `getProduct_from_id(id)`: lấy sản phẩm theo mã
+- `search_category(category)`: lọc theo loại (nếu có danh mục)
+- `search_price(min, max)`: lọc sản phẩm theo giá
+- `get_name_product()`: danh sách tên
+- `clear()`: xóa sạch kho
+
+---
+
+### 🧾 Bill
+Hóa đơn ghi nhận lịch sử mua hàng.
+
+#### Thuộc tính:
+- ID hóa đơn, ID khách, giỏ hàng, tổng tiền, ngày tạo
+
+#### Chức năng:
+- `clone()`, `confirmBill()`, `get_totalCost()`
+
+---
+
+### BillManagement
+Quản lý danh sách hóa đơn.
+
+#### Chức năng:
+- `add()`, `remove()`, `getBill_from_id()`, `getBill_from_id_Customer()`
+- `clear()`
 
 ---
 
 ## 📎 Phụ thuộc
-- `Main.h`, `Cart.h`, `Money.h`, `LinkedList.h`
+- `Main.h`, `Money.h`, `DateTime.h`, `LinkedList.h`
+- `Product.h`, `Drink.h`, `Food.h`, `Bill.h`, `Cart.h`, `Customer.h`
 
 ---
-
-## ✨ Mở rộng đề xuất
-- Thêm xác thực đăng nhập
-- Cho phép lọc người dùng theo quyền (admin/customer)
-- Giao diện tương tác đơn giản (console hoặc GUI)
-
-
-
-**Ghi chú**: Mọi đánh giá xin dựa trên chức năng hiện có, tư duy thiết kế hệ thống và khả năng mở rộng của dự án.
