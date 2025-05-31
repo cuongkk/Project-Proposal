@@ -2,7 +2,7 @@
 
 int main()
 {
-
+    runAllTests();
     crow::App<CORS> app;
 
     setup_user_routes(app);

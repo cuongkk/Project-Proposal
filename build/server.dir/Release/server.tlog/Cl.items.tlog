@@ -1,4 +1,4 @@
-D:\Canteen-Management-System\backend\routes\main.cpp;D:\Canteen-Management-System\build\server.dir\Release\backend\routes\main.cpp.obj
+D:\Canteen-Management-System\backend\main.cpp;D:\Canteen-Management-System\build\server.dir\Release\main.obj
 D:\Canteen-Management-System\backend\models\Admin.cpp;D:\Canteen-Management-System\build\server.dir\Release\Admin.obj
 D:\Canteen-Management-System\backend\models\Bill.cpp;D:\Canteen-Management-System\build\server.dir\Release\Bill.obj
 D:\Canteen-Management-System\backend\models\BillManagement.cpp;D:\Canteen-Management-System\build\server.dir\Release\BillManagement.obj
@@ -13,7 +13,6 @@ D:\Canteen-Management-System\backend\models\Money.cpp;D:\Canteen-Management-Syst
 D:\Canteen-Management-System\backend\models\Product.cpp;D:\Canteen-Management-System\build\server.dir\Release\Product.obj
 D:\Canteen-Management-System\backend\models\User.cpp;D:\Canteen-Management-System\build\server.dir\Release\User.obj
 D:\Canteen-Management-System\backend\models\UserManagement.cpp;D:\Canteen-Management-System\build\server.dir\Release\UserManagement.obj
-D:\Canteen-Management-System\backend\models\main.cpp;D:\Canteen-Management-System\build\server.dir\Release\backend\models\main.cpp.obj
 D:\Canteen-Management-System\backend\repository\BillQueryBuilder.cpp;D:\Canteen-Management-System\build\server.dir\Release\BillQueryBuilder.obj
 D:\Canteen-Management-System\backend\repository\BillRepository.cpp;D:\Canteen-Management-System\build\server.dir\Release\BillRepository.obj
 D:\Canteen-Management-System\backend\repository\ProductQueryBuilder.h.cpp;D:\Canteen-Management-System\build\server.dir\Release\ProductQueryBuilder.h.obj

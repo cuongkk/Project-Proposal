@@ -332,9 +332,7 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
     </CustomBuild>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="D:\Canteen-Management-System\backend\routes\main.cpp">
-      <ObjectFileName>$(IntDir)/backend/routes/main.cpp.obj</ObjectFileName>
-    </ClCompile>
+    <ClCompile Include="D:\Canteen-Management-System\backend\main.cpp" />
     <ClCompile Include="D:\Canteen-Management-System\backend\models\Admin.cpp" />
     <ClCompile Include="D:\Canteen-Management-System\backend\models\Bill.cpp" />
     <ClCompile Include="D:\Canteen-Management-System\backend\models\BillManagement.cpp" />
@@ -349,9 +347,6 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
     <ClCompile Include="D:\Canteen-Management-System\backend\models\Product.cpp" />
     <ClCompile Include="D:\Canteen-Management-System\backend\models\User.cpp" />
     <ClCompile Include="D:\Canteen-Management-System\backend\models\UserManagement.cpp" />
-    <ClCompile Include="D:\Canteen-Management-System\backend\models\main.cpp">
-      <ObjectFileName>$(IntDir)/backend/models/main.cpp.obj</ObjectFileName>
-    </ClCompile>
     <ClCompile Include="D:\Canteen-Management-System\backend\repository\BillQueryBuilder.cpp" />
     <ClCompile Include="D:\Canteen-Management-System\backend\repository\BillRepository.cpp" />
     <ClCompile Include="D:\Canteen-Management-System\backend\repository\ProductQueryBuilder.h.cpp" />

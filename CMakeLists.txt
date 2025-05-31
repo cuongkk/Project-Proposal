@@ -30,7 +30,7 @@ file(GLOB_RECURSE MAIN_SOURCES
 )
 
 # Tạo executable
-add_executable(server ${CMAKE_SOURCE_DIR}/backend/routes/main.cpp ${MAIN_SOURCES})
+add_executable(server ${CMAKE_SOURCE_DIR}/backend/main.cpp ${MAIN_SOURCES})
 
 # Link thư viện cần thiết (nếu dùng asio)
 target_link_libraries(server ws2_32 mswsock)
