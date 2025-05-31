@@ -10,7 +10,7 @@
 
 ## Phân công công việc
 
-### Nguyễn Tuấn Cường
+### Nguyễn Tuấn Cường (224)
 - Thiết kế Frontend để hiển thị giao diện người dùng (đăng kí tài khoản, mua sản phẩm, xem giỏ hàng, hóa đơn,...)
 - Bổ sung database
 - Tạo lớp `ThucAn`, `ThucUong` để quản lí sản phẩm, tạo lớp trừu tượng `SanPham` để ứng dụng tính đa hình. Tạo lớp `KhoHang` để quản lí sản phẩm
@@ -23,9 +23,8 @@
  + Khi thêm SanPham vào Cart sẽ kiểm tra số lượng trước khi thêm. Khi thêm vào thì sẽ tự động cập nhập lại số lượng sản phẩm trong `KhoHang`.
  + Khi Bill được thanh toán sẽ lưu lại trong `BillManagement` và tự động cập nhật số tiền của Customer
 
-- Link Commit: https://github.com/cuongkk/Canteen-Management-System/commits/TuanCuong
 
-### Trần Gia Cường
+### Trần Gia Cường (225)
 - Xây dựng cơ sở dữ liệu, sử dụng SQL để lưu trữ dữ liệu
 - Xây dựng chức năng tìm kiếm:
   - Tìm kiếm sản phẩm trong `KhoHang`, người dùng trong `UserManagement`, hóa đơn trong `BillManagement`.
@@ -37,7 +36,9 @@
   - Thêm `Admin`, `Customer` vào `UserManagement`, kiểm tra tính năng tìm kiếm.
 - Class Diagram và mô tả các lớp
 
-- Link Commit: https://github.com/cuongkk/Canteen-Management-System/commits/cuong225
+
+## Link Drive: 
+https://drive.google.com/drive/folders/1hk28qX85MXe0OeqIMZFaVuRDpN8h6Vf5?usp=sharing
 
 ---
 
@@ -45,8 +46,8 @@
 
 | Thành viên         | Tỉ lệ đóng góp |
 |--------------------|----------------|
-| Nguyễn Tuấn Cường  | 100%            |
-| Trần Gia Cường     | 100%            |
+| Nguyễn Tuấn Cường  | 100%           |
+| Trần Gia Cường     | 100%           |
 
 ---
 
@@ -399,5 +400,135 @@ Quản lý danh sách hóa đơn.
 ## 📎 Phụ thuộc
 - `Main.h`, `Money.h`, `DateTime.h`, `LinkedList.h`
 - `Product.h`, `Drink.h`, `Food.h`, `Bill.h`, `Cart.h`, `Customer.h`
+
+---
+---
+
+## Kiến trúc phần mềm
+
+Chương trình được thiết kế theo mô hình kiến trúc phân lớp (**Layered Architecture**) gồm ba lớp chính:
+
+### • Presentation Layer (Giao diện)
+- Đặt trong thư mục `frontend`.
+- Giao diện được xây dựng bằng **HTML**, **CSS** và **JavaScript** thuần.
+- Các trang như: `login.html`, `add_product.html`, `user_detail.html`...
+- Giao tiếp với backend bằng **Fetch API** thông qua các phương thức HTTP như `GET`, `POST`.
+- Dữ liệu truyền qua URL bằng query string (ví dụ: `?msg=US0001`).
+
+### • Business Logic Layer (Xử lý nghiệp vụ)
+- Đặt trong `backend/models`.
+- Gồm các lớp như: `User`, `Customer`, `Product`, `Cart`, `Bill`, `DateTime`.
+- Quản lý hành vi của người dùng, giỏ hàng, sản phẩm, hóa đơn.
+- Áp dụng tính **kế thừa**, **đa hình** để tổ chức lớp rõ ràng.
+
+### • Data Access Layer (Tầng dữ liệu)
+- Đặt trong `backend/repository`.
+- Các lớp trong thư mục repository: `UserRepositoryImpl`, `ProductQueryBuilder`, `BillRepositoryImpl`...
+- Đóng vai trò thao tác với dữ liệu như thêm, sửa, xóa, tìm kiếm.
+- Dữ liệu được quản lý bằng cấu trúc dữ liệu như **LinkedList**.
+
+### • Route/API Layer (Điều phối)
+- Đặt trong `backend/routes`.
+- Được triển khai trong `Route.h` sử dụng thư viện [Crow (C++ Web Framework)](https://github.com/CrowCpp/Crow).
+- Các API REST như `/login`, `/signup`, `/user`, `/product`,... xử lý theo chuẩn **RESTful**.
+- Sử dụng middleware **CORS** để đảm bảo frontend truy cập backend thành công.
+
+
+## Nguyên lý và nguyên tắc lập trình hướng đối tượng (OOP)
+
+### • Đóng gói (Encapsulation)
+- Các thuộc tính được khai báo `private`/`protected`, chỉ truy cập thông qua `getter`/`setter`.
+
+### • Kế thừa (Inheritance)
+- `Customer` kế thừa `User`; `Food` và `Drink` kế thừa `Product`.
+
+### • Đa hình (Polymorphism)
+- Sử dụng `override`/`virtual`, ví dụ: `clone()`, `get_origin()` được ghi đè từ lớp cha.
+
+### • Trừu tượng (Abstraction)
+- Lớp cơ sở như `User`, `Product` định nghĩa hành vi chung cho lớp con.
+
+---
+
+## Các mẫu thiết kế (Design Patterns) được áp dụng
+
+### • Prototype Pattern
+- Dùng phương thức `clone()` để tạo bản sao đối tượng như `User`, `Product`, `Bill`.
+
+### • Repository Pattern
+- Các lớp như `BillRepositoryImpl`, `UserManagement` là kho trung gian giữa dữ liệu và logic.
+
+### • Factory Pattern
+- Việc khởi tạo các đối tượng cụ thể thông qua `clone()` hoặc `constructor` động.
+
+### • Builder Pattern
+- `ProductQueryBuilder`, `UserQueryBuilder` cho phép xây dựng truy vấn dữ liệu một cách linh hoạt.
+
+---
+
+## Áp dụng nguyên lý SOLID
+
+### • S: Single Responsibility
+- Mỗi lớp chỉ chịu trách nhiệm về một mặt của hệ thống.
+  - `Product`: xử lý nghiệp vụ liên quan tới sản phẩm.
+  - `User`: xử lý nghiệp vụ liên quan tới người dùng.
+  - `Datetime`: xử lý nghiệp vụ liên quan tới thời gian.
+  - `Money`: xử lý nghiệp vụ liên quan tới tiền tệ.
+  - ...
+
+### • O: Open/Closed
+- Các lớp như `User`, `Product` là lớp trừu tượng có thể mở rộng thêm các lớp con mà không cần sửa đổi lớp gốc.
+
+### • L: Liskov Substitution
+- Có thể thay thế lớp cha bằng lớp con mà không ảnh hưởng đến logic chương trình.
+
+### • I: Interface Segregation
+- Các lớp con chỉ override các phương thức cần thiết; không bị ép buộc phải triển khai toàn bộ interface.
+- `Admin` và `Customer` được phân quyền rõ ràng về thuộc tính và quyền hạn.
+
+### • D: Dependency Inversion
+- Giao tiếp thông qua `clone()`, `shared_ptr` giúp tách rời phụ thuộc giữa các lớp.
+- Đảm bảo toàn vẹn dữ liệu, tránh rò rỉ bộ nhớ.
+
+---
+## Đảm Bảo Chất Lượng: Test và Coding Convention
+
+### 1. Unit Test
+
+Hàm `runAllTests()` được xây dựng để kiểm thử các chức năng cơ bản của hệ thống, đảm bảo tính đúng đắn khi xử lý dữ liệu và các đối tượng.
+
+#### Các bài kiểm thử bao gồm:
+- Kiểm thử thêm sản phẩm vào giỏ hàng và tính tổng tiền.
+- Kiểm thử phương thức `clone()` của hóa đơn (`Bill`).
+- Kiểm thử `getter/setter` của lớp `Customer` (`email`, số điện thoại, tiền).
+- Kiểm thử xử lý ngày tháng trong lớp `DateTime`.
+- Kiểm thử thêm sản phẩm vào giỏ hàng và tính tổng tiền với nhiều sản phẩm.
+
+Tất cả các kiểm thử đều sử dụng hàm `assert(...)` để xác minh giá trị thực tế với kỳ vọng.
+
+#### Kiểm thử tích hợp:
+- Đảm bảo truyền nhận **JSON** đúng giữa API và giao diện bằng request/response từ server, có thể kiểm tra qua **console** trình duyệt.
+- Đảm bảo kết nối với **database** bằng khối lệnh `try-catch` để bắt và xử lý lỗi khi kết nối thất bại.
+
+---
+
+### 2. Coding Convention
+
+Dưới đây là các quy tắc coding convention đã được tuân thủ trong thư mục `models/`:
+
+#### 1. Tên Class: PascalCase
+- Các class như `BillManagement`, `UserManagement`, `Product`, `Drink`, `Customer` đều tuân thủ quy tắc đặt tên **PascalCase**.
+
+#### 2. Tên biến private: camelCase với tiền tố `_`
+- Ví dụ: `_money`, `_email`, `_phoneNumber`, `_productList`.
+
+#### 3. Không sử dụng `using namespace std`
+- Tất cả các tệp mã sử dụng rõ ràng tiền tố `std::` như `std::string`, `std::vector`, **không** sử dụng `using namespace std`.
+
+#### 4. Định dạng khối hàm và dấu `{`
+- Đặt tên biến, hàm, lớp rõ ràng, có ý nghĩa (ví dụ: `get_money()`, `get_email()`).
+- Sử dụng kiểu dữ liệu phù hợp (ví dụ: `std::string` cho chuỗi, `int` cho số).
+- Các hàm thành viên và hàm tự do đều sử dụng cặp dấu `{}` đúng cách, với `{` nằm **trên cùng một dòng hoặc ngay dưới** dòng khai báo hàm, theo quy ước thống nhất.
+
 
 ---
